@@ -1,16 +1,62 @@
-# React + Vite
+# GEMBA IT — Technology That Works
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketing & portfolio site for **GEMBA IT** — a full‑stack software, DevOps and Web3
+studio based in Varna, Bulgaria.
 
-Currently, two official plugins are available:
+🌐 **Live:** https://gembait.com
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+GEMBA IT designs and ships production software end to end: full‑stack web applications,
+DevOps and cloud infrastructure, payment systems, and Web3 / blockchain solutions. This
+repository holds the source of the public site — a fast, fully bilingual (BG/EN),
+SEO‑optimised single‑page application.
 
-## Expanding the ESLint configuration
+## Tech stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React 19 + Vite, Tailwind CSS
+- **i18n:** in‑app BG/EN translations
+- **Server:** Node.js (`server.cjs`) for static serving, prerendering and SEO endpoints
+- **Quality:** ESLint, Vite production build
+
+## Getting started
+
+```bash
+# prerequisites: Node.js 20+
+npm install
+npm run dev        # local dev server with HMR
+npm run build      # production build → dist/
+npm run preview    # preview the production build
+```
+
+Serve the built site:
+
+```bash
+node server.cjs    # serves dist/ + API/SEO routes
+```
+
+## Project structure
+
+```
+src/            UI components, pages, i18n
+public/         static assets
+dist/           production build (generated)
+server.cjs      Node static + SEO/prerender server
+vite.config.js  build configuration
+```
+
+## Deployment
+
+The site is built to `dist/` and served by `server.cjs` behind Apache (reverse proxy)
+with TLS terminated through Cloudflare (Full strict). Secrets (e.g. content/blog API
+keys) live only in a local, untracked `.env` file.
+
+## License
+
+Released under the [MIT License](./LICENSE).
+
+---
+
+© 2026 GEMBA IT · Varna, Bulgaria

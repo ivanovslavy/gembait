@@ -30,3 +30,6 @@ archives/
 *credential*
 *-credentials-*
 server-configs/
+
+# Claude local settings — never commit
+.claude/
