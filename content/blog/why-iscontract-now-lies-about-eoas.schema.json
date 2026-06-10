@@ -1,0 +1,83 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Why isContract() Now Lies About EOAs",
+    "description": "After EIP-7702, a delegated EOA has 23 bytes of code starting with 0xef0100. Every Solidity contract still using isContract() now lies about humans.",
+    "image": "https://gembait.com/images/blog/why-iscontract-now-lies-about-eoas/hero.webp",
+    "datePublished": "2026-05-11",
+    "dateModified": "2026-05-11",
+    "author": {
+      "@type": "Organization",
+      "name": "GEMBA IT team",
+      "url": "https://gembait.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gembait.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/why-iscontract-now-lies-about-eoas",
+    "articleSection": "Web3 Engineering Deep Dives",
+    "keywords": "solidity, eip-7702, pectra, openzeppelin, eoa-detection, smart-contracts, isContract, extcodesize, delegation, account-abstraction",
+    "proficiencyLevel": "Expert",
+    "dependencies": "Solidity 0.8.20+, OpenZeppelin Contracts 5.5.0, Ethereum Pectra (EIP-7702), Foundry, Hardhat 3, viem, ethers v6"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should I remove every isContract check from my contracts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, but you should review every one. The semantics changed; the validity of the question did not. If your protocol has a 'no contracts' rule because you are protecting against MEV bots or unfair launches, that rule still makes sense, you just need to express it as 'no code at all' (Level 1) instead of 'no code at all, end of check.' If your rule was about routing, that distinction is less useful than it used to be, since delegated EOAs run code on receive. In that case the right answer is often to stop branching entirely and use the same path for both."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this affect tx.origin checks too?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, but differently. tx.origin always returns the original EOA, regardless of delegation, so tx.origin == msg.sender will be true for a delegated EOA calling directly. The check was already known to be fragile (it breaks under arbitrary forwarders, account-abstraction relayers, and even some wallet UX layers), and Pectra did not make it newly wrong, just newly fashionable to abuse. Treat tx.origin as a debugging tool, not a security primitive. If you need to authorize 'the human behind this transaction' in 2026, the right answer is EIP-712 typed-data signatures, not origin checks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will Foundry or Hardhat reproduce delegated-EOA behavior locally?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Foundry's anvil supports the Prague hardfork (which includes EIP-7702). Pass --hardfork prague when starting it, then construct authorization tuples via cheatcodes or by composing the type-4 transaction directly. Hardhat 3 supports Prague natively in its EDR backend as of the 3.0 release; older Hardhat 2 networks default to Cancun and will silently behave as if EIP-7702 doesn't exist, which is exactly the trap that lets the bug ship to production. If your CI passes locally and breaks on a Sepolia or mainnet fork, check your local EVM version first."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I check off-chain whether a user's wallet is delegated, and to what?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Call eth_getCode (provider.getCode in ethers, publicClient.getCode in viem) for the address. If the result is 0x, it's a plain EOA. If it starts with 0xef0100, the next 20 bytes are the delegate address; slice them out and resolve. For end-user UX, several wallet teams have published delegation-checker apps (eip7702.app is a common reference); pointing a concerned user at one is faster than building your own. From a backend perspective, treat the delegate address as you would any other contract address: look it up against your allow-list, fetch its code, and decide whether you trust it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from the older ERC-1271 smart-contract wallet model?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ERC-1271 lets a contract wallet (Safe, Argent, etc.) prove it owns a signature. The contract is deployed at the wallet's address, and code.length > 0. EIP-7702 is the inverse: the EOA gains the ability to run code at its own address by pointing at a delegate. Both are forms of account abstraction, but the on-chain shape is different: an ERC-1271 wallet looks like a contract; a 7702 wallet looks like an EOA with a 23-byte stub. A correct signature-verification flow in 2026 has to handle plain EOAs (ECDSA recover), delegated EOAs (still ECDSA recover at the protocol level, but the delegate may impose extra logic), and ERC-1271 contracts (call isValidSignature)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What about EXTCODEHASH-based audits and access lists?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EXTCODEHASH on a delegated EOA returns the hash of the 23-byte delegation indicator, not the hash of the delegate's bytecode. If you've been using EXTCODEHASH to whitelist 'known-safe' contract code, you'll need an extra step: hash-check the delegation stub, parse out the delegate address, then check the delegate's code hash separately. The same logic applies to EVM access-list audits and bytecode-fingerprint-based bot detection. The single-call shortcut is gone."
+        }
+      }
+    ]
+  }
+}

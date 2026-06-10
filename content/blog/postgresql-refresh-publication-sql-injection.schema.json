@@ -1,0 +1,75 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "PostgreSQL REFRESH PUBLICATION SQL Injection",
+    "description": "CVE-2026-6638: until PostgreSQL 18.4, REFRESH PUBLICATION built SQL from subscriber table names without quoting them. Here is how the trust boundary slipped, and what to do.",
+    "image": "https://gembait.com/images/blog/postgresql-refresh-publication-sql-injection/hero.webp",
+    "datePublished": "2026-05-18",
+    "dateModified": "2026-05-18",
+    "author": {
+      "@type": "Organization",
+      "name": "GEMBA IT team",
+      "url": "https://gembait.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gembait.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/postgresql-refresh-publication-sql-injection",
+    "articleSection": "Backend & Infrastructure Lessons",
+    "keywords": "postgresql, logical-replication, cve-2026-6638, sql-injection, security, alter-subscription, refresh-publication",
+    "proficiencyLevel": "Expert",
+    "dependencies": "PostgreSQL 16, PostgreSQL 17, PostgreSQL 18, logical replication, ALTER SUBSCRIPTION"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I need to act if I don't use logical replication?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The bug lives entirely inside the ALTER SUBSCRIPTION ... REFRESH PUBLICATION code path. If your cluster has no CREATE SUBSCRIPTION objects, check_publications_origin() never runs and there is nothing exploitable. Streaming (physical) replication is unaffected — it doesn't query the subscriber's catalog at all. You should still upgrade for the other ten CVEs in the same release (three of them CVSS 8.8 with practical exploitation paths, including a pg_dump stack-overwrite from a hostile server), but for this specific issue you can sleep through it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "My subscriber's public schema is open. Is that the actual risk?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mostly, yes. The exploit requires creating a table on the subscriber with a hostile name. Anyone with CREATE on any schema can do that — public is the easy one because pre-15 clusters defaulted it to writable for PUBLIC. On 15+ clusters, public is locked down by default unless someone explicitly re-granted it. Run \\dn+ public and verify. If you have application roles that legitimately need CREATE in their own schemas, those roles remain a vector, but the attacker still has to wait for a privileged user to run REFRESH PUBLICATION afterwards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the CVSS only 3.7 if it's SQL injection on the publisher?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Three reasons. The attacker needs an authenticated account on the subscriber that can create tables. A second party has to run REFRESH PUBLICATION after the bad table is created — pure user-interaction-required. And the injected SQL runs as the subscription's publication-side role, which in a well-configured setup is REPLICATION-only and can't do much beyond read. Realistic worst case: privilege escalation in a multi-tenant setup where the subscription role was granted broader privileges than it needed. Bad, but a long way from remote unauthenticated RCE."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is pg_createsubscriber affected too?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, separately. CVE-2026-6476 (CVSS 7.2) covers an SQL injection in pg_createsubscriber where the subscription name parameter is interpolated unsafely and runs as superuser when the tool executes. It only affects PostgreSQL 17 and 18 (16 doesn't ship pg_createsubscriber). The same upgrade — 18.4 / 17.10 — patches both. If you build new subscribers from base backups using that tool, treat this one as the more urgent of the pair."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I detect past exploitation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Partially. The pg_stat_activity view from when REFRESH PUBLICATION ran would have logged the injected query in query, but only if you happened to be sampling at that exact second. Server-side log_statement = 'ddl' or 'all' would have caught it in the server log, and you can grep historical logs for unusual statements running under the subscription's role. If you don't log DDL today, you can't reconstruct what happened — but enabling DDL logging on the publisher is cheap and worth turning on regardless."
+        }
+      }
+    ]
+  }
+}

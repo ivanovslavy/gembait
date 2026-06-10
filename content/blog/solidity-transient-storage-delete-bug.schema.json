@@ -1,0 +1,75 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Solidity's Transient Storage delete Bug",
+    "description": "SOL-2026-1 explained: why delete on a transient state variable can emit sstore instead of tstore in solc 0.8.28–0.8.33 under --via-ir, and what the Yul IR cache-key collision means for contracts in production.",
+    "image": "https://gembait.com/images/blog/solidity-transient-storage-delete-bug/hero.webp",
+    "datePublished": "2026-04-24",
+    "dateModified": "2026-04-24",
+    "author": {
+      "@type": "Organization",
+      "name": "GEMBA IT team",
+      "url": "https://gembait.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gembait.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://gembait.com/en/blog/solidity-transient-storage-delete-bug",
+    "articleSection": "Web3 Engineering Deep Dives",
+    "keywords": "solidity, transient-storage, sol-2026-1, yul-ir, smart-contract-security, solc",
+    "proficiencyLevel": "Expert",
+    "dependencies": "Solidity 0.8.x, Yul IR, EIP-1153 transient storage"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which Solidity compiler versions are affected by SOL-2026-1?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Contracts compiled with --via-ir on solc 0.8.28 through 0.8.33 that use delete on a transient state variable. Contracts compiled via the legacy code path (without --via-ir) are not affected because the Yul IR helper cache the bug lives in is only used by the IR code generator. The issue was fixed in solc 0.8.34 published on 2026-02-18 alongside the official security advisory."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I tell if my contract is vulnerable without re-auditing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grep the source for delete statements applied to any variable declared with the transient keyword. If there is at least one, check whether the contract also uses delete on a matching persistent storage layout — that is the collision condition. Next, compare the deployed bytecode against a re-compilation on 0.8.34. A byte-diff in the cleanup code near your delete statements confirms the miscompile. A zero diff means your specific pattern did not trigger the bug."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is migrating to solc 0.8.34 enough, or do I need to redeploy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Upgrading solc and recompiling fixes future deployments. Contracts already on mainnet keep the buggy bytecode — upgrading the local compiler does not change the on-chain EVM code. For production contracts that rely on transient storage clears, you need to plan a migration: either redeploy new contracts and move state (with the usual governance and user-migration costs) or add a guard function that makes the corrupted path harmless until the next scheduled upgrade."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why didn't audits or tests catch this?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tests that exercised delete on transient storage passed because the opcodes emitted still wrote zero to *some* slot — the wrong slot, but the test did not assert that the right slot was cleared in isolation. Audits focused on source-level invariants, not on IR-level opcode emission. This is a class of bug where the miscompile is invisible at the Solidity layer; detection requires bytecode-level diffing or property-based testing that cross-checks transient clears against persistent storage snapshots."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is the authoritative advisory, and where should I subscribe for future ones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Solidity team publishes security advisories at soliditylang.org/blog and maintains a canonical bug list at docs.soliditylang.org/en/latest/bugs.html. For SOL-2026-1 specifically, the advisory is titled 'Transient Storage Clearing Helper Collision Bug' and was published 2026-02-18 alongside the 0.8.34 release. Subscribe to the Solidity team's RSS at soliditylang.org/feed.xml and watch the soliditylang/solidity GitHub repository security advisories tab for new CVEs."
+        }
+      }
+    ]
+  }
+}

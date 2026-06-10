@@ -1,0 +1,75 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Hardhat 3 Is ESM-Only Now",
+    "description": "Upgrade to Hardhat 3 and your CommonJS config dies with HHE13. Hardhat 3 is ESM-only — here is the cascade that breaks, and how to migrate cleanly.",
+    "image": "https://gembait.com/images/blog/hardhat-3-is-esm-only/hero.webp",
+    "datePublished": "2026-06-01",
+    "dateModified": "2026-06-01",
+    "author": {
+      "@type": "Organization",
+      "name": "GEMBA IT team",
+      "url": "https://gembait.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gembait.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/hardhat-3-is-esm-only",
+    "articleSection": "Web3 Engineering Deep Dives",
+    "keywords": "hardhat, hardhat-3, esm, migration, ethereum, smart-contracts, HHE13, defineConfig, hardhat-deploy, ignition",
+    "proficiencyLevel": "Expert",
+    "dependencies": "Hardhat 3, Node.js ESM, viem, Hardhat Ignition, Solidity, TypeScript"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I keep my CommonJS config and just suppress the error?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. HHE13: Only ESM projects are supported is not a warning you can silence — Hardhat 3 dropped CommonJS config loading entirely. The config file must be an ES module, which means \"type\": \"module\" in package.json, export default instead of module.exports, and import instead of require. Your scripts and tests can still be CommonJS if you really need them to be, but the config itself cannot. Renaming the config to .cjs is the wrong direction and will lead you into a different, more confusing failure rather than out of this one. The only real fix is to convert the project to ESM."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did my plugins stop working after I fixed the config?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because Hardhat 3 changed plugin registration. In Hardhat 2, importing a plugin was enough — the import had a side effect that registered it. In Hardhat 3, an import alone does nothing; you must also add the plugin to the plugins array passed to defineConfig. So every plugin now appears twice in your config: once as an import at the top, once as an entry in the plugins list. If a toolbox or gas reporter went silent right after your config compiled cleanly, this is almost certainly why. Add it to the array."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is hardhat-deploy going to work on Hardhat 3?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not the stable version. hardhat-deploy depends on Hardhat 2's internal APIs, which Hardhat 3 reworked, so it is incompatible. There is an experimental hardhat-deploy@next aimed at Hardhat 3, but as of mid-2026 it is not a smooth drop-in — teams report being unable to get it working against current Hardhat releases. The supported path is Hardhat Ignition. Be aware that Ignition modules forbid async/await and conditional logic inside the module, there is no automated converter for existing deployment artifacts, and you will likely keep your old deployments folders around for reference while you rebuild."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "My contracts compile but fail Etherscan verification after upgrading. Why?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Almost certainly Hardhat 3's new build profiles. Production builds can use different optimizer defaults than the default profile, so the bytecode you deploy may not match the bytecode produced by the settings you think you compiled with. The same source, compiler version, and optimizer runs can yield a different artifact across profiles. The fix is to pin evmVersion and the optimizer configuration explicitly and identically across the profiles you use, so the build is reproducible and the on-chain bytecode matches what the verifier recompiles."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I migrate to Hardhat 3 right now, or wait?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If your project is small and actively developed, migrate on a dedicated branch with a full test pass — the ESM and connection changes are mechanical once you understand them, and you get multichain connections and faster builds out of it. If you lean heavily on hardhat-deploy or have a large deployment history, plan the Ignition migration as its own piece of work rather than rushing it; that is the part with no automated path. Either way, do not bundle the major bump into an unrelated PR. Treat it as a scheduled migration so the HHE13 wall lands on a Tuesday with time to spare, not a Friday with a deadline."
+        }
+      }
+    ]
+  }
+}

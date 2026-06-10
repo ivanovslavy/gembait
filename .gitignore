@@ -1,0 +1,32 @@
+# deps / build
+node_modules/
+dist/
+build/
+.cache/
+# secrets / env
+.env
+.env.*
+*.key
+*.pem
+*mnemonic*
+# private docs (rule: CLAUDE.md/progress.md only in private repos)
+CLAUDE.md
+claude.md
+progress.md
+PROGRESS.md
+# noise
+*.log
+*.bak
+*~
+backups/
+archives/
+*.tar.gz
+.DS_Store
+
+# extra excludes (stray backups / credential dumps)
+*.bak*
+*.orig
+*.old
+*credential*
+*-credentials-*
+server-configs/

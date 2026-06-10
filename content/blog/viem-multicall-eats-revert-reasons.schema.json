@@ -1,0 +1,75 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Why viem Multicall Eats Revert Reasons",
+    "description": "Enable batch.multicall in viem and contract reverts stop telling you why. The revert bytes are still there on the error chain — just never decoded. Here is the trap and the three ways out.",
+    "image": "https://gembait.com/images/blog/viem-multicall-eats-revert-reasons/hero.webp",
+    "datePublished": "2026-05-25",
+    "dateModified": "2026-05-25",
+    "author": {
+      "@type": "Organization",
+      "name": "GEMBA IT team",
+      "url": "https://gembait.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gembait.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/viem-multicall-eats-revert-reasons",
+    "articleSection": "Web3 Engineering Deep Dives",
+    "keywords": "viem, multicall, error-handling, ethereum, typescript, wagmi, decodeErrorResult, batch.multicall",
+    "proficiencyLevel": "Expert",
+    "dependencies": "viem 2.x, wagmi, TypeScript, Multicall3, Ethereum JSON-RPC"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this affect the explicit multicall() function too?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — and this is the important distinction. The explicit multicall() action, called with a contracts: [...] array, returns a result array where failed calls show up as { status: 'failure', error } when allowFailure: true (the default). The error object there is properly decoded against the ABI you passed. The issue only affects the implicit batching that happens when batch.multicall: true is set on the HTTP transport — that path runs through a different formatter that does not reach into the inner Multicall3 returnData when wrapping the error. So you can keep using multicall() directly without changing anything; the trap is only the silent kind."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will turning off batch.multicall kill read performance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In most production apps, no. The win from batch.multicall is real for pages that fire twenty or more reads on mount — NFT galleries, multi-token balance fetches, vault dashboards — but most user-facing flows fire one to three reads at a time, where the wait window adds latency without saving an RPC call. Measure before optimizing. A pragmatic split is the one suggested in the article: a fast client for batch-heavy reads, a clear client for UX-critical paths where the revert reason matters. Gallery pages stay snappy, mint flows stay debuggable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why was the issue closed as not planned?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The maintainers did not comment publicly, but the likely reason is architectural. Viem's error formatting layer is built around a one-call, one-response model, and the multicall path returns N responses inside a single RPC reply. Threading inner revert data back through the error formatter touches a lot of code and introduces ambiguity when multiple calls revert in a single batch — which error wins, which gets logged, which is shown to the user. Saying decode it yourself with walk() and decodeErrorResult is the lower-risk answer for a library that prizes type safety and predictable error shapes, even if it is frustrating in the moment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What about OpenZeppelin v5 custom errors like ERC721NonexistentToken?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Same problem, slightly different decode. Custom errors are encoded as the 4-byte selector plus ABI-encoded arguments. If your contract uses OpenZeppelin v5 custom errors, they live in your contract's ABI as error fragments. As long as those fragments are in the ABI you pass to decodeErrorResult, the function returns { errorName: 'ERC721NonexistentToken', args: [tokenId] } cleanly. If they are missing from the ABI, the call returns the raw bytes and you have to add the error fragments — viem does not and cannot infer custom errors that are not in your ABI. A common mistake here is using a hand-trimmed ABI that includes the function signatures but drops the error fragments to save bytes. Keep the errors in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a way to opt out of multicall just for a single read?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not directly — batch.multicall is a transport-level setting, not a per-call one. The cleanest workaround is to maintain two clients, one with batching on and one with batching off. A more involved option is to set batch.multicall.wait to a very high value (it is the debounce window — calls without siblings inside wait ms fly solo), but that defeats the purpose. Two clients is cleaner, costs almost nothing, and makes the intent of each call obvious at the import site. If you are using wagmi on top of viem, the same pattern applies: create two configs and pick the right one per component."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,336 @@
+[
+  {
+    "slug": "hardhat-3-is-esm-only",
+    "date": "2026-06-01",
+    "lastUpdated": "2026-06-01",
+    "author": "GEMBA IT team",
+    "cluster": "web3-engineering",
+    "tags": [
+      "hardhat",
+      "hardhat-3",
+      "esm",
+      "migration",
+      "ethereum",
+      "smart-contracts"
+    ],
+    "image": "/images/blog/hardhat-3-is-esm-only/hero.webp",
+    "hero": "/images/blog/hardhat-3-is-esm-only/hero.webp",
+    "heroRetina": "/images/blog/hardhat-3-is-esm-only/hero@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Hardhat 3 Is ESM-Only Now"
+    },
+    "excerpt": {
+      "en": "Upgrade to Hardhat 3 and your CommonJS config dies with HHE13. Hardhat 3 is ESM-only — here is the cascade that breaks, and how to migrate cleanly."
+    },
+    "word_count": 2097,
+    "source_url": "https://hardhat.org/docs/migrate-from-hardhat2",
+    "source_type": "industry_publication",
+    "source_date": "2026-05-20",
+    "emotional_hook": "assumed_vs_reality",
+    "first_hand_story_used": false
+  },
+  {
+    "slug": "viem-multicall-eats-revert-reasons",
+    "date": "2026-05-25",
+    "lastUpdated": "2026-05-25",
+    "author": "GEMBA IT team",
+    "cluster": "web3-engineering",
+    "tags": [
+      "viem",
+      "multicall",
+      "error-handling",
+      "ethereum",
+      "typescript",
+      "wagmi"
+    ],
+    "image": "/images/blog/viem-multicall-eats-revert-reasons/hero.webp",
+    "hero": "/images/blog/viem-multicall-eats-revert-reasons/hero.webp",
+    "heroRetina": "/images/blog/viem-multicall-eats-revert-reasons/hero@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Why viem Multicall Eats Revert Reasons"
+    },
+    "excerpt": {
+      "en": "Enable batch.multicall in viem and contract reverts stop telling you why. The revert bytes are still there on the error chain — just never decoded. Here is the trap and the three ways out."
+    },
+    "word_count": 1950,
+    "source_url": "https://github.com/wevm/viem/issues/4006",
+    "source_type": "github_issue",
+    "source_date": "2026-05-25",
+    "emotional_hook": "docs_lie",
+    "first_hand_story_used": false
+  },
+  {
+    "slug": "postgresql-refresh-publication-sql-injection",
+    "date": "2026-05-18",
+    "lastUpdated": "2026-05-18",
+    "author": "GEMBA IT team",
+    "cluster": "backend-infrastructure",
+    "tags": [
+      "postgresql",
+      "logical-replication",
+      "cve-2026-6638",
+      "sql-injection",
+      "security",
+      "alter-subscription"
+    ],
+    "image": "/images/blog/postgresql-refresh-publication-sql-injection/hero.webp",
+    "hero": "/images/blog/postgresql-refresh-publication-sql-injection/hero.webp",
+    "heroRetina": "/images/blog/postgresql-refresh-publication-sql-injection/hero@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "PostgreSQL REFRESH PUBLICATION SQL Injection"
+    },
+    "excerpt": {
+      "en": "CVE-2026-6638: until PostgreSQL 18.4, REFRESH PUBLICATION built SQL from subscriber table names without quoting them. Here is how the trust boundary slipped, and what to do."
+    },
+    "word_count": 2073,
+    "source_url": "https://www.postgresql.org/support/security/CVE-2026-6638/",
+    "source_type": "industry_publication",
+    "source_date": "2026-05-14",
+    "emotional_hook": "hidden_trap",
+    "first_hand_story_used": false
+  },
+  {
+    "slug": "why-iscontract-now-lies-about-eoas",
+    "date": "2026-05-11",
+    "lastUpdated": "2026-05-11",
+    "author": "GEMBA IT team",
+    "cluster": "web3-engineering",
+    "tags": [
+      "solidity",
+      "eip-7702",
+      "pectra",
+      "openzeppelin",
+      "eoa-detection",
+      "smart-contracts"
+    ],
+    "image": "/images/blog/why-iscontract-now-lies-about-eoas/hero.webp",
+    "hero": "/images/blog/why-iscontract-now-lies-about-eoas/hero.webp",
+    "heroRetina": "/images/blog/why-iscontract-now-lies-about-eoas/hero@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Why isContract() Now Lies About EOAs"
+    },
+    "excerpt": {
+      "en": "After EIP-7702, a delegated EOA has 23 bytes of code starting with 0xef0100. Every Solidity contract still using isContract() now lies about humans."
+    },
+    "word_count": 2889,
+    "source_url": "https://github.com/OpenZeppelin/openzeppelin-contracts/issues/5676",
+    "source_type": "github_issue",
+    "source_date": "2025-05-09",
+    "emotional_hook": "hidden_trap",
+    "first_hand_story_used": false
+  },
+  {
+    "slug": "stop-hand-computing-erc-7201-storage-slots",
+    "date": "2026-05-04",
+    "lastUpdated": "2026-05-04",
+    "author": "GEMBA IT team",
+    "cluster": "web3-engineering",
+    "tags": [
+      "solidity",
+      "erc-7201",
+      "upgradeable-contracts",
+      "namespaced-storage",
+      "openzeppelin",
+      "storage-collision"
+    ],
+    "image": "/images/blog/stop-hand-computing-erc-7201-storage-slots/hero.webp",
+    "hero": "/images/blog/stop-hand-computing-erc-7201-storage-slots/hero.webp",
+    "heroRetina": "/images/blog/stop-hand-computing-erc-7201-storage-slots/hero@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Stop Hand-Computing ERC-7201 Storage Slots"
+    },
+    "excerpt": {
+      "en": "Solidity 0.8.35 added an erc7201 comptime builtin that ends a real footgun: hand-typed namespace slot constants in upgradeable contracts. Here is what was breaking, and the new one-liner that fixes it."
+    },
+    "word_count": 1820,
+    "source_url": "https://forum.soliditylang.org/t/solidity-v0-8-35-is-out/3701",
+    "source_type": "industry_publication",
+    "source_date": "2026-04-29",
+    "emotional_hook": "hidden_trap",
+    "first_hand_story_used": false
+  },
+  {
+    "slug": "node-postgres-pool-begin-transaction-race",
+    "date": "2026-04-27",
+    "lastUpdated": "2026-04-27",
+    "author": "GEMBA IT team",
+    "cluster": "backend-infrastructure",
+    "tags": [
+      "node-js",
+      "postgresql",
+      "node-postgres",
+      "transactions",
+      "race-conditions",
+      "connection-pool"
+    ],
+    "image": "/images/blog/node-postgres-pool-begin-transaction-race/hero.webp",
+    "hero": "/images/blog/node-postgres-pool-begin-transaction-race/hero.webp",
+    "heroRetina": "/images/blog/node-postgres-pool-begin-transaction-race/hero@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Why pool.query('BEGIN') Corrupts Your Data",
+      "bg": "Защо pool.query('BEGIN') поврежда данните ви",
+      "es": "Por qué pool.query('BEGIN') corrompe tus datos"
+    },
+    "excerpt": {
+      "en": "A pool.query('BEGIN') / pool.query('COMMIT') transaction passes every test and silently spreads across two clients in production. Here is the race, and the one-pattern fix the node-postgres docs hide in a single sentence.",
+      "bg": "Транзакция с pool.query('BEGIN') / pool.query('COMMIT') минава всеки тест и тихо се разпростира между два клиента в production. Ето я race condition-а и едноредовия fix, който документацията на node-postgres крие в едно изречение.",
+      "es": "Una transacción pool.query('BEGIN') / pool.query('COMMIT') pasa todos los tests y se propaga silenciosamente entre dos clientes en producción. Aquí está la race condition y la solución de una línea que la documentación de node-postgres esconde en una sola frase."
+    },
+    "word_count": 2278,
+    "source_url": "https://github.com/brianc/node-postgres/issues/35",
+    "source_type": "github_issue",
+    "source_date": "2026-04-15",
+    "emotional_hook": "hidden_trap",
+    "first_hand_story_used": false
+  },
+  {
+    "slug": "stripe-webhook-idempotency-race-condition",
+    "date": "2026-04-24",
+    "lastUpdated": "2026-04-24",
+    "author": "GEMBA IT team",
+    "cluster": "payment-integrations",
+    "tags": [
+      "stripe",
+      "webhooks",
+      "idempotency",
+      "postgresql",
+      "node-js",
+      "payments"
+    ],
+    "image": "/images/blog/stripe-webhook-idempotency-race-condition/hero.webp",
+    "hero": "/images/blog/stripe-webhook-idempotency-race-condition/hero.webp",
+    "heroRetina": "/images/blog/stripe-webhook-idempotency-race-condition/hero@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Stripe Webhook Idempotency Race Condition",
+      "bg": "Race condition в идемпотентността на Stripe webhook-овете",
+      "es": "Race condition de idempotencia en webhooks de Stripe"
+    },
+    "excerpt": {
+      "en": "A SELECT-then-INSERT idempotency check passes every test and still double-charges in production. Here is the race, and the one-line Postgres pattern that fixes it.",
+      "bg": "Проверка за идемпотентност чрез SELECT-после-INSERT минава всеки тест и въпреки това удвоява таксуването в production. Ето я race condition-а и едноредовия Postgres pattern, който я решава.",
+      "es": "Una verificación de idempotencia con SELECT-luego-INSERT pasa todos los tests y aún así cobra doble en producción. Aquí está la race condition y el patrón Postgres de una línea que la soluciona."
+    },
+    "word_count": 2044,
+    "source_url": "https://github.com/YNVSolutions/SwiftCause_Web/issues/525",
+    "source_type": "github_issue",
+    "source_date": "2026-03-11",
+    "emotional_hook": "hidden_trap",
+    "first_hand_story_used": false
+  },
+  {
+    "slug": "solidity-transient-storage-delete-bug",
+    "date": "2026-04-24",
+    "lastUpdated": "2026-04-24",
+    "author": "GEMBA IT team",
+    "cluster": "web3-engineering",
+    "tags": [
+      "solidity",
+      "smart-contracts",
+      "compiler-bugs",
+      "transient-storage",
+      "security",
+      "evm"
+    ],
+    "image": "/images/blog/solidity-transient-storage-delete-bug/hero.webp",
+    "hero": "/images/blog/solidity-transient-storage-delete-bug/hero.webp",
+    "heroRetina": "/images/blog/solidity-transient-storage-delete-bug/hero@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Solidity's Transient Storage delete Bug",
+      "bg": "Бъгът delete в transient storage на Solidity",
+      "es": "El bug de delete en transient storage de Solidity"
+    },
+    "excerpt": {
+      "en": "SOL-2026-1 silently swaps sstore for tstore in solc 0.8.28–0.8.33. Here is how the Yul helper cache collision works and how to prove your recompile is safe.",
+      "bg": "SOL-2026-1 тихо подменя sstore с tstore в solc 0.8.28–0.8.33. Ето как работи колизията в кеша на Yul helper-а и как да докажете, че рекомпилираният ви код е безопасен.",
+      "es": "SOL-2026-1 reemplaza silenciosamente sstore por tstore en solc 0.8.28–0.8.33. Aquí está cómo funciona la colisión de caché del helper Yul y cómo demostrar que tu recompilación es segura."
+    },
+    "word_count": 1950,
+    "source_url": "https://hexens.io/research/solidity-compiler-bug-tstore-poison",
+    "source_type": "industry_publication",
+    "source_date": "2026-02-18",
+    "emotional_hook": "hidden_trap",
+    "first_hand_story_used": false
+  },
+  {
+    "slug": "building-failover-infrastructure-on-a-budget",
+    "date": "2026-04-15",
+    "author": "Slavcho Ivanov",
+    "tags": [
+      "devops",
+      "infrastructure",
+      "hetzner"
+    ],
+    "image": null,
+    "title": {
+      "en": "Building Failover Infrastructure on a Budget",
+      "bg": "Изграждане на failover инфраструктура с нисък бюджет",
+      "es": "Construyendo infraestructura failover con bajo presupuesto"
+    },
+    "excerpt": {
+      "en": "How we achieve enterprise-grade uptime with Hetzner servers, PostgreSQL streaming replication, and smart architecture decisions.",
+      "bg": "Как постигаме корпоративен uptime с Hetzner сървъри, PostgreSQL стрийминг репликация и умни архитектурни решения.",
+      "es": "Cómo logramos uptime empresarial con servidores Hetzner, replicación streaming de PostgreSQL y decisiones arquitectónicas inteligentes."
+    },
+    "hero": "/images/blog/building-failover-infrastructure-on-a-budget/hero.webp",
+    "heroRetina": "/images/blog/building-failover-infrastructure-on-a-budget/hero@2x.webp",
+    "hero_status": "generated"
+  },
+  {
+    "slug": "postgresql-streaming-replication-high-availability",
+    "date": "2026-04-15",
+    "author": "Slavcho Ivanov",
+    "tags": [
+      "database",
+      "postgresql",
+      "devops",
+      "infrastructure",
+      "tutorial"
+    ],
+    "image": null,
+    "title": {
+      "en": "PostgreSQL Streaming Replication for High Availability",
+      "bg": "PostgreSQL стрийминг репликация за висока наличност",
+      "es": "Replicación Streaming de PostgreSQL para Alta Disponibilidad"
+    },
+    "excerpt": {
+      "en": "How PostgreSQL streaming replication works, how to configure a primary and standby, and how to handle failover when it matters most.",
+      "bg": "Как работи PostgreSQL стрийминг репликацията, как се конфигурира primary и standby и как да управлявате failover при нужда.",
+      "es": "Cómo funciona la replicación streaming de PostgreSQL, cómo configurar primary y standby, y cómo gestionar el failover cuando más importa."
+    },
+    "hero": "/images/blog/postgresql-streaming-replication-high-availability/hero.webp",
+    "heroRetina": "/images/blog/postgresql-streaming-replication-high-availability/hero@2x.webp",
+    "hero_status": "generated"
+  },
+  {
+    "slug": "web3-for-traditional-businesses",
+    "date": "2026-04-15",
+    "author": "Slavcho Ivanov",
+    "tags": [
+      "web3",
+      "blockchain",
+      "business"
+    ],
+    "image": null,
+    "title": {
+      "en": "Web3 for Traditional Businesses: A Practical Guide",
+      "bg": "Web3 за традиционни бизнеси: практическо ръководство",
+      "es": "Web3 para negocios tradicionales: guía práctica"
+    },
+    "excerpt": {
+      "en": "Bridging Web2 and Web3 without the hype — real use cases that deliver value for businesses ready to embrace the next evolution of the internet.",
+      "bg": "Свързване на Web2 и Web3 без хайпа — реални приложения, които носят стойност за бизнеси, готови да прегърнат следващата еволюция на интернет.",
+      "es": "Conectando Web2 y Web3 sin el hype — casos de uso reales que entregan valor para negocios listos para abrazar la siguiente evolución de internet."
+    },
+    "hero": "/images/blog/web3-for-traditional-businesses/hero.webp",
+    "heroRetina": "/images/blog/web3-for-traditional-businesses/hero@2x.webp",
+    "hero_status": "generated"
+  }
+]

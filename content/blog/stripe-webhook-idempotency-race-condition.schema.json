@@ -1,0 +1,73 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Stripe Webhook Idempotency Race Condition",
+    "description": "A SELECT-then-INSERT idempotency check passes every test and still double-charges in production. Here is the race, and the one-line Postgres pattern that fixes it.",
+    "image": "https://gembait.com/images/blog/stripe-webhook-idempotency-race-condition/hero.webp",
+    "datePublished": "2026-04-24",
+    "dateModified": "2026-04-24",
+    "author": {
+      "@type": "Organization",
+      "name": "GEMBA IT team",
+      "url": "https://gembait.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gembait.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/stripe-webhook-idempotency-race-condition",
+    "articleSection": "Payment Integrations Technical Guide",
+    "keywords": "stripe, webhooks, idempotency, postgresql, node-js, payments, race-condition"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I need a PRIMARY KEY, or will any UNIQUE constraint work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Any unique constraint works. ON CONFLICT (column_name) can target any column or set of columns that has a unique index, not just the primary key. A common pattern is to keep an integer primary key for row identity and add UNIQUE (stripe_event_id) separately. The atomicity guarantee is identical either way — Postgres acquires the appropriate index lock and only one transaction gets through. Use a primary key if stripe_event_id is the natural identifier for the row; otherwise a separate unique index is fine. The cost difference in production is negligible."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this pattern work in MySQL or SQLite?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, with different syntax. MySQL's INSERT ... ON DUPLICATE KEY UPDATE and SQLite's INSERT ... ON CONFLICT DO NOTHING both offer the same atomicity. The tricky part in MySQL is detecting which side won — ROW_COUNT() returns 1 for a fresh insert and 2 for an update, which is a historical quirk worth reading about before shipping. In SQLite the semantics are closer to Postgres, but concurrent writes are serialized anyway, so the race window is smaller to begin with. If you're on a different database, the general rule still applies: find that database's atomic upsert primitive and use it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why not put the entire handler inside a single database transaction?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can, and you should — if every side effect of the handler is a database write in the same Postgres instance. Wrap the INSERT ... ON CONFLICT and all downstream writes in BEGIN / COMMIT. If the transaction rolls back, the claim disappears too, and Stripe's retry gets a clean slate. The reason the article shows a two-step pattern is that most webhook handlers do something outside the database: send an email, call another API, enqueue a background job. Those actions can't be rolled back, so the idempotency record has to outlive them."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I verify the Stripe signature before or after the idempotency check?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Before. Always before. Signature verification is cheap (an HMAC comparison), and skipping it exposes your idempotency table to any attacker who can send HTTP requests to your endpoint. Without verification, a forged event with a chosen event.id can either fill your table with junk or, worse, pre-claim a real event ID so the genuine webhook no-ops when it arrives. The correct order is: read the raw body, verify the signature, parse the event, then run the atomic claim."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the Stripe-provided Idempotency-Key header the same thing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, and the naming confusion costs people hours. Stripe's Idempotency-Key header is for your API calls going out to Stripe — so that retrying a charge creation doesn't double-charge the customer. The pattern described in this article is the mirror image: Stripe's events coming in to your endpoint, where you are the one handling duplicate delivery. Both are idempotency, both use a string key, but they point in opposite directions. Most applications need both."
+        }
+      }
+    ]
+  }
+}

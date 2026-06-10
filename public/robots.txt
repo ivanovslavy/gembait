@@ -1,0 +1,86 @@
+# robots.txt — https://gembait.com
+# Last reviewed: 2026-04
+
+# ---------------------------------------------------------------
+# Default: everything is public. No disallow rules.
+# ---------------------------------------------------------------
+User-agent: *
+Allow: /
+
+# ---------------------------------------------------------------
+# Sitemaps & AI-readable references
+# ---------------------------------------------------------------
+Sitemap: https://gembait.com/sitemap.xml
+
+# AI-readable site summary + deep reference:
+#   https://gembait.com/llms.txt
+#   https://gembait.com/llms-full.txt
+
+# ---------------------------------------------------------------
+# Traditional search engine crawlers
+# ---------------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# ---------------------------------------------------------------
+# AI training crawlers (welcome — we publish llms.txt for you)
+# ---------------------------------------------------------------
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: cohere-training-data-crawler
+Allow: /
+
+# ---------------------------------------------------------------
+# AI user-initiated fetches (answering a user's specific query)
+# ---------------------------------------------------------------
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /

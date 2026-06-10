@@ -1,0 +1,75 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Stop Hand-Computing ERC-7201 Storage Slots",
+    "description": "Solidity 0.8.35 added an erc7201 comptime builtin that ends a real footgun: hand-typed namespace slot constants in upgradeable contracts. Here is what was breaking, and the new one-liner that fixes it.",
+    "image": "https://gembait.com/images/blog/stop-hand-computing-erc-7201-storage-slots/hero.webp",
+    "datePublished": "2026-05-04",
+    "dateModified": "2026-05-04",
+    "author": {
+      "@type": "Organization",
+      "name": "GEMBA IT team",
+      "url": "https://gembait.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gembait.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/stop-hand-computing-erc-7201-storage-slots",
+    "articleSection": "Web3 Engineering Deep Dives",
+    "keywords": "solidity, erc-7201, upgradeable contracts, namespaced storage, openzeppelin, storage collision, solidity 0.8.35",
+    "proficiencyLevel": "Expert",
+    "dependencies": "Solidity 0.8.35, OpenZeppelin Contracts Upgradeable v5, ERC-7201, EVM"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does upgrading to 0.8.35 change the bytecode of existing contracts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, not unless you actually replace the hardcoded constants with erc7201(...). The compiler still produces the same bytes32 literal in the bytecode either way; the difference is whether the literal is computed by you (with potential typos) or by the compiler (always correct). If you bump the compiler version but leave your hand-typed constants in place, your bytecode is identical aside from any unrelated 0.8.35 codegen improvements. The erc7201(...) change is purely a refactor for safety. Run a bytecode diff before and after to confirm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens to my proxy if I change the namespace string in a new implementation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You will silently corrupt your storage. The whole point of the namespace string is that it deterministically picks a storage root; if you change the string, you change the root, and all reads now hit a different slot than the one your previous implementation wrote to. Treat namespace strings as part of the contract's permanent ABI. Pin them in source-of-truth form and never edit them in an upgrade. If you need to introduce new state, define a new namespace alongside the old one — that is what ERC-7201 was designed to enable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I still use the old hardcoded approach in 0.8.35?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. erc7201(...) is additive — the compiler still accepts a bytes32 literal as the storage root via inline assembly, exactly as before. Existing OpenZeppelin Upgradeable contracts will compile unchanged on 0.8.35. The only reason to migrate is safety: every hardcoded constant is a place where a single typo causes silent state corruption with no error message. New contracts should use the builtin. Existing audited contracts can stay as they are if you have already verified the constants by formal means."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the @custom:storage-location annotation still matter when using erc7201(...)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The annotation is what tools (storage layout reporters, audit tools, OpenZeppelin's upgrade plugin) read to describe the namespace in their reports. The builtin computes the runtime constant, but it does not write the comment for you. Keep the annotation in sync with the string you pass to erc7201(...) — if a tool sees erc7201:foo in the comment but you computed the slot from bar, the tool's collision-detection logic will be wrong. Treat the annotation and the builtin call as a paired declaration that must match."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the new --experimental flag related to erc7201?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. erc7201 is stable in 0.8.35 and requires no flag. The new --experimental flag gates a separate set of in-development features, including the SSA CFG code generator (--via-ssa-cfg), an experimental @future EVM version, and the previously-experimental ssa-cfg Yul codegen. The Solidity team formalized the experimental lifecycle in this release so that future preview features can ship in stable releases without accidentally being relied on. If you want to try the SSA CFG codegen for stack-too-deep relief, opt in with --experimental --via-ssa-cfg; everything else, including erc7201, is on by default."
+        }
+      }
+    ]
+  }
+}

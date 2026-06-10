@@ -1,0 +1,428 @@
+# GEMBA IT — Full Reference
+
+GEMBA IT is the technology division of GEMBA EOOD, a Bulgarian engineering group based in Varna. The division designs, builds, deploys and maintains production software across Linux infrastructure, web applications, payment systems and EVM smart contracts. GEMBA EOOD covers both a digital division (GEMBA IT) and an industrial services division (Gemba Industrial at gembaindustrial.com) — the same founder runs both, and the combined experience shapes what we build: technology designed by people who have spent years inside plants and offices where the software actually has to work.
+
+This document is a deep reference for AI agents and search crawlers. It describes the company, the services we sell, the twelve in-house products we ship, the technology stack we use, the infrastructure we run on, and how to reach us. The intent is that an AI agent answering a user's question about GEMBA IT has enough context here to give a specific, accurate answer without having to guess.
+
+## Table of Contents
+
+1. Company
+2. Services
+3. Products
+4. Technology Stack
+5. Infrastructure
+6. Contact & Legal
+
+---
+
+## 1. Company
+
+### Overview
+
+GEMBA IT is the technology brand of GEMBA EOOD. The company is a Bulgarian limited-liability entity registered in Varna under EIK (company identifier) 208656371. GEMBA EOOD operates two divisions: a technology division that publishes under the GEMBA IT brand at gembait.com, and an industrial services division at gembaindustrial.com that handles catalyst changeout, reactor servicing and refinery turnarounds at European industrial clients including Shell, ExxonMobil, BP, Neste and ORLEN.
+
+The technology division's scope is full-stack software engineering — from Linux server operations to React user interfaces to Solidity smart contracts. The division takes products from concept through production deployment and then keeps them running: monitoring, updates, bug fixes, feature work, security patches. We prefer long retainer relationships over one-off project handoffs because the software we build is the kind that has to keep working after the contract ends.
+
+### Founder
+
+Slavcho Ivanov founded GEMBA and leads both divisions. His background pairs twenty-plus years of IT work — Linux administration, full-stack development, payment integration, blockchain engineering — with more than a decade on industrial sites, primarily in refinery catalyst and reactor services across Europe. That combination is unusual enough to shape both what we build and how we build it. Atlas, our industrial workforce SaaS, exists because the founder has lived on the sites where the software would be used; GembaPay's non-custodial architecture exists because the founder has watched closely how payment friction interacts with business reality.
+
+Slavcho is publicly reachable on two LinkedIn profiles — one for the IT work (linkedin.com/in/slavy-ivanov) and one for the industrial work (linkedin.com/in/slavcho-ivanov) — and maintains the GEMBA IT open-source repositories at github.com/ivanovslavy.
+
+### Legal and operational notes
+
+- Legal entity: GEMBA EOOD
+- Company identifier (EIK / ЕИК): 208656371
+- Registered office: Varna, Bulgaria
+- Contact email: contacts@gembait.com
+- Service area: Bulgaria, EU, broader Europe for remote engagements
+- Working languages: English (primary), Bulgarian, Spanish
+- Tax regime: Bulgarian VAT (per EU B2B rules for cross-border services)
+- Currency: quotes in EUR or USD depending on client jurisdiction
+
+---
+
+## 2. Services
+
+GEMBA IT services cluster into seven practice areas. Every engagement can involve any combination of them; our pricing model is a mix of fixed-scope project work and monthly retainer arrangements for ongoing maintenance and development.
+
+### Infrastructure & DevOps
+
+We set up, harden and run Linux servers on Hetzner Cloud, with CI/CD pipelines, automated deployments, systemd service management, log aggregation and real-time monitoring dashboards. For clients who need higher availability, we architect active-passive failover with PostgreSQL streaming replication, Redis replication and DNS-level or load-balancer-level cutover. Cloudflare handles edge security and caching in front of Apache or nginx origin servers. The infrastructure work is the oldest part of the practice and the backbone underneath every product we ship.
+
+### Backend development
+
+We write backend services in Node.js with Express, covering REST APIs, GraphQL endpoints, background workers, signed webhook delivery, third-party integrations (Stripe, PayPal, Moralis, Chainlink, Pinata, Filebase) and the surrounding concerns — authentication, rate limiting, request logging, structured error handling, observability. Database architecture is part of the same conversation: we design PostgreSQL, MongoDB and MariaDB schemas, tune queries, set up replication and handle the migration paths between them when projects outgrow their original choice.
+
+### React apps, corporate & personal websites
+
+Frontend and web work land under a single practice: React single-page applications, progressive web apps, admin panels, multi-language sites (i18next), and corporate and personal websites with SEO fundamentals, structured data and llms.txt built in. Tailwind CSS is the default styling layer; Vite is the default build tool. Mobile-first layouts are reviewed on real mid-range phones before release. Most client-facing projects ship in three languages (English, Bulgarian, Spanish) because our portfolio already does, and localization patterns carry over cleanly between projects.
+
+### Payment integrations
+
+We are a certified Stripe Connect marketplace partner and a certified PayPal PPCP (Partner) integrator. On the crypto side, we build non-custodial payment rails on Ethereum, BSC and Polygon using Solidity smart contracts. The approach is consistent across both sides: merchants receive funds directly into accounts they control, the platform never takes custody, and settlement happens in the same transaction as the payment where the rails allow it.
+
+### Web3 & blockchain
+
+Smart-contract development in Solidity 0.8.x across EVM networks. Every contract we ship goes through static analysis with Slither (and often Mythril), uses OpenZeppelin v5 primitives for access control and value handling, and reaches production with source verified on the relevant block explorer. We avoid proxies and delegatecall by default — a shipped contract is readable end to end, does what the source says, and does not change under admin intervention. For clients who need governance or upgrade paths, we discuss the tradeoffs explicitly before writing anything.
+
+### Smart contract audits
+
+We perform security reviews of Solidity smart contracts — both in isolation and as part of larger application reviews. Static analysis with Slither, symbolic execution with Mythril, test-coverage analysis and manual review against common attack classes (reentrancy, integer edge cases, access control errors, unchecked external calls, front-running exposure). The deliverable is a written report with findings, severities and recommended fixes.
+
+### Physical security & access control
+
+A smaller but specific practice: digital check-in and check-out systems for workforce management, CCTV surveillance with alarm notifications, and integrations with Bulgarian SOT (security-company) infrastructure. The work mostly serves clients where the physical and digital sides need to be connected — industrial operators, site managers, workforce-heavy facilities.
+
+### Ongoing support
+
+Every product we build can move into a monthly retainer arrangement that covers bug fixes, feature work, security patches, monitoring and incident response. Retainers are the default long-term relationship with clients — projects that ship cleanly tend to grow, and growth tends to need the same team that built the thing in the first place.
+
+---
+
+## 3. Products
+
+GEMBA IT ships twelve in-house products. Ten of them are live or on testnet and operated publicly; two are in progress at various stages. Every product has a dedicated page at gembait.com/en/products/{slug}, with Bulgarian and Spanish translations available at the /bg/ and /es/ paths respectively.
+
+### 3.1 GembaPay
+
+- URL: https://gembait.com/en/products/gembapay
+- Live app: https://gembapay.com
+- Status: Live
+- Category: Payments
+- Networks: Ethereum, BSC, Polygon
+
+GembaPay is a non-custodial payment gateway that unifies crypto and card payments behind a single API. Merchants who want to accept both are usually juggling several separate gateways with different dashboards, different fee structures and different settlement schedules. GembaPay replaces that patchwork with one integration that routes each payment directly from the customer to the merchant — platform never takes custody, 1% platform fee split on-chain or via Stripe application fees, merchant keeps 99% in the account they control.
+
+The architecture is three layers that never share custody. The smart-contract layer runs on Ethereum, BSC and Polygon — one PaymentGateway contract per chain, no proxy, no upgradeability. The API layer is Node.js, Express, PostgreSQL and Prisma and handles invoices, merchants and transaction history without holding balances or signing keys. The React frontend is a stateless client for the merchant dashboard and the customer checkout flow.
+
+Key capabilities: unified checkout (crypto, cards and PayPal in one embedded flow), direct wallet-to-wallet settlement, Chainlink-backed pricing in 86+ currencies, Stripe Connect and PayPal Partner card acceptance, a WooCommerce plugin, signed webhooks, invoice generation. Security posture: Slither static analysis with zero high-severity findings across all three PaymentGateway deployments, source verified on Etherscan, BSCScan and PolygonScan, OpenZeppelin Ownable and ReentrancyGuard, no upgradeability, no platform wallet balance to drain.
+
+Contracts (public, verifiable):
+- PaymentGateway on Ethereum: 0xD9c4169061B92970b86afBF32dad4Ecfd749179e
+- PaymentGateway on BSC: 0xeE3d1CbD3cAF2D9194CbfC5B1bE8fdD5c3953eE1
+- PaymentGateway on Polygon: 0x7cceCb66E7Fa6255244035533E31791bD1Fff254
+- GiftNFT (Kotkata) on Ethereum: 0xD24a89dc1686C2F88d33A70250473495459C564a
+- GiftNFT on BSC: 0x8Fee75865E8D87cdB844Ef5676D2D6456262BA7A
+- GiftNFT on Polygon: 0xD24a89dc1686C2F88d33A70250473495459C564a
+
+Primary audience: merchants, e-commerce operators, SaaS businesses and developers who want a single API for multi-rail payments.
+
+### 3.2 GembaTools
+
+- URL: https://gembait.com/en/products/gembatools
+- Live app: https://gembatools.io
+- Status: Testnet (mainnet-ready)
+- Category: Web3
+- Networks: Sepolia (test); Ethereum, BSC, Polygon, Base when promoted
+
+GembaTools is a no-code deployer for independent token and NFT contracts. Fill in a form, connect a wallet, pay a flat fee, and receive a standalone, verified contract that you fully own — no shared proxies, no delegatecall, no admin role retained by the platform. Seven factory contracts cover the standards most projects actually use: GembaERC20, GembaERC20Tax, GembaERC20Advanced, GembaERC721, GembaERC721A, GembaERC1155, and GembaSwapRouter for Uniswap V3 liquidity management.
+
+The contract layer is deliberately boring. Each factory takes constructor arguments from the UI, deploys a standalone child contract, and emits a Created event with the new address. Children are not proxies — they are fully self-contained immutable binaries with their own storage and ownership. The wagmi/viem React frontend reads factory events so a wallet always sees the contracts it created even if the GembaTools backend disappears.
+
+Additional capabilities include hosted presale pages with configurable price, allocation, start/end times and automatic finalization; Uniswap V3 pool creation and concentrated-liquidity management from the same dashboard; ERC721A bulk-mint efficiency (up to 70% gas savings versus vanilla ERC721) for large drops; and automatic source verification on the block explorer right after deployment.
+
+Factory contracts (all on Sepolia at the time of writing):
+- GembaERC20Factory: 0xF3aB51315BbC26ea4e3a509d5bE139d1246a999E
+- GembaERC20TaxFactory: 0x722191FBef1960fa4e23771946D94A2051D5f2Ae
+- GembaERC20AdvancedFactory: 0x8D821d2440Be64D7de39188Aac4Af769F2538e4C
+- GembaERC721Factory: 0xcC95A4A33C4b7e769CfB6841Ec92B922266Df26E
+- GembaERC721AFactory: 0xe6acD89ac14667c95878A71F44c4233Dd0bEcf5f
+- GembaERC1155Factory: 0xFA99A9EBc5b180f6538cD4959f8d9Fb20C26E4f0
+- GembaSwapRouter: 0x8405CEB8212a9e725162C78aBF5Adebab5820387
+
+Source code: https://github.com/ivanovslavy/GembaTools
+
+Primary audience: new token projects, NFT collections, DAO and gaming teams, and independent developers who want to prototype on testnet and promote to mainnet without rewriting deploy scripts.
+
+### 3.3 GembaTicket
+
+- URL: https://gembait.com/en/products/gembaticket
+- Status: Live on GembaBlockchain Testnet
+- Category: Web3
+- Networks: GembaBlockchain (own EVM-compatible Layer-1, chainId 821207 testnet; mainnet 821206 rolling out)
+- Fees: 0 platform fees (only the payment provider's — GembaPay ~1% — plus Stripe/PayPal's own fees on card/PayPal)
+
+GembaTicket is a modern web3 ticket-sales platform — a completely free online ticketing platform that lets organizers sell tickets online and receive the proceeds directly into their own balances at the moment of purchase. It removes printed paper tickets, gives full control over access to the event's different entrances/gates, and leaves a permanent NFT keepsake in the hands of attendees. Traditional ticketing platforms hold buyer funds for weeks (releasing them long after the event) and take 10–15%; GembaTicket is non-custodial, charges no fees of its own, and the only fees come from the payment provider (down to ~1%), so organizers can access up to 99% of turnover even during pre-sales. It runs on GembaBlockchain — GembaTicket's own EVM-compatible Layer-1 with ~0 gas — and the blockchain is an invisible layer: the backend signs transactions when needed, so attendees and organizers never touch wallets, gas or signing. Attendees get their ticket by email and open it without creating an account; the QR is HMAC-signed and rotates every 30 seconds. Every ticket is a multi-page NFT (poster image + on-chain event details + interactive QR page). Organizers register free — the only requirement to create events and accept direct payments is registering with GembaPay (KYC) for an API key + webhook secret. Events support tiered tickets (Early Bird / Regular / VIP / Stage, with date/sell-out activation timers), per-tier access zones and per-zone scanners for full door control.
+
+The system splits cleanly into three layers. Payments go through GembaPay and settle directly to the organizer with zero platform fees. The ticketing API is Node.js, Express, PostgreSQL and Redis — it stores events, ticket records and rotating QR secrets, but never holds customer funds or private keys. The on-chain layer runs on GembaBlockchain: every event deploys its own EIP-1167 minimal-proxy clone for free (gas ~0), minting is gasless (the backend sponsors it), and tickets are multi-page NFTs. Scanning at the door is entirely Web2: the scanner app validates signed QR payloads against the API in well under 200ms with no RPC lookup required.
+
+Key features: zero platform fees, an invisible blockchain (no wallets/gas/signing for users), no-account ticket access (delivered by email), multi-page NFT tickets, HMAC-signed rotating QR codes that invalidate screenshots within seconds, a GembaPay-backed multi-currency checkout, a multi-organizer marketplace with per-event branding, a door scanner app for staff, and clone-factory NFT deployment via EIP-1167.
+
+Primary audience: event organizers, venues, conferences, festivals, sports events, and token-gated communities that need a ticketing platform where organizers keep their money and buyers keep their simplicity.
+
+### 3.4 EduChain
+
+- URL: https://gembait.com/en/products/educhain
+- App: https://educhain.gembait.com
+- Status: Testnet — live on GembaBlockchain
+- Category: Education
+- Networks: GembaBlockchain Testnet (chainId 821207; by design — never mainnet)
+
+EduChain is a guided GembaBlockchain classroom — a full-stack Web3 sandbox designed for EU schools. Mainnet is too risky for minors; general-purpose testnets are too technical for classroom use. EduChain fills the gap with role-based dashboards (student, teacher, administrator), a structured 16-hour student curriculum, a 3-day teacher training track that certifies educators before they lead students, a built-in GMB faucet so lessons never stall on empty gas tanks — and because gas is free on the GembaBlockchain testnet, the whole faucet allowance goes to learning rather than fees — and a dedicated NFT gallery and ERC20 marketplace for students to practice in.
+
+The platform runs on seven GembaBlockchain contracts written in Solidity 0.8.28 with OpenZeppelin v5 primitives: Whitelist, GameToken (ERC20), GameNFTPredefined (ERC721), GameNFTCustom, TokenMarketplace, TrackingContract, and ETHFaucet (a GMB faucet). Every contract is a real deployment on a real network, so students see transaction hashes and block confirmations exactly as they would on mainnet — just without financial consequences. The React frontend uses wagmi, viem and ethers v6 and wraps classroom actions in plain-language UI that explains what's happening on-chain before sending the transaction.
+
+EduChain is deliberately scoped to what teachers can actually run. It does not integrate with student identity systems or gradebooks — the school retains that data under its own policies. It is not an investment simulator or trading game; the point is understanding the mechanics, not speculating on anything.
+
+Contracts (GembaBlockchain testnet, chainId 821207, verified on GembaScan):
+- Whitelist: 0x1e7D76fE34584df2d2029E5304AB575D79Dc8108
+- GameToken (ERC20): 0xe778ee7559907961F24B6F3C31E9792199EC608D
+- GameNFTPredefined: 0x1113D032460A55Fb91808BD07566397502185012
+- GameNFTCustom: 0xba17A76635B4069BF8ca9E3516225a6A1a6e15a3
+- TokenMarketplace: 0xF61647866ad7be8137230Ad688092D2f3F4A1666
+- TrackingContract: 0xc9af98AD8ae78086620821F9Ceb05842Dd7950CF
+- ETHFaucet: 0x7Ff43282d7939418a3f0A308E2d48Dd93536044e
+
+Primary audience: secondary schools, vocational and technical colleges, teacher professional-development programs, and EU-funded digital-literacy pilots that need a GDPR-aware sandbox.
+
+### 3.5 GembaEscrow
+
+- URL: https://gembait.com/en/products/gembaescrow
+- Status: Testnet
+- Category: Web3
+- Networks: Sepolia (test); Ethereum, Polygon, BSC ready
+
+Gemba Escrow replaces traditional escrow accounts with smart contracts you can audit. The design models the full transaction: buyer, seller, licensed notary, and optional agent, each with a role in the contract. The buyer deposits once; the notary performs the off-chain checks they would in any traditional closing, then approves on-chain to release funds in a single transaction to seller, agent and notary with fees capped at 20% total. If the deadline passes without approval, the buyer reclaims their full deposit automatically — no court, no paperwork, no custodian in between.
+
+Architecture: a factory plus per-deal contract design. The factory, written in Solidity 0.8.20 with OpenZeppelin Ownable, deploys a new Escrow clone (EIP-1167 minimal proxy) for each transaction. Each clone locks funds against specific buyer, seller, notary and agent addresses set at construction — those addresses are immutable for the lifetime of the deal. Supporting documents (identity, property paperwork) store on IPFS with hashes anchored on-chain, so anyone with the hash can verify the exact document that was agreed.
+
+Settlement is a single function call. Once the notary approves, the contract distributes principal to the seller, capped fees to notary and agent, and emits a Settled event. Before approval, only the buyer can trigger a reclaim — and only after the deadline has passed. No party, including GEMBA, has override rights. Slither audit: zero high or medium findings; two low findings accepted by design. Hard-coded 20% maximum across notary and agent fees.
+
+Primary audience: real-estate transactions, vehicle and high-value asset sales, cross-border deals that would otherwise need correspondent banking, and commercial agreements where the notary's role is about verification rather than money movement.
+
+### 3.6 GembaWin
+
+- URL: https://gembait.com/en/products/gembawin
+- Status: Testnet
+- Category: Web3
+- Networks: Sepolia, BSC Testnet, Polygon Amoy
+- Repository: https://github.com/ivanovslavy/brscpp-rewards (historically named brscpp-rewards)
+
+GembaWin is a time-locked bounty and contest payout contract. Organizers lock a contest's entire prize pool on-chain before the contest opens — in native ETH or BNB, or in ERC20 stablecoins USDT and USDC — and the contract enforces the payout rules automatically. Organizers assign winners across technical and marketing categories (or custom categories); winners have exactly 30 days from assignment to claim; anything unclaimed after the window returns cleanly to the organizer in a single transaction.
+
+The contract is a single, focused Solidity file — the kind of codebase a security reviewer can read end to end in an afternoon. It tracks prize pools as a mapping of contest identifier to category to funded amount, and it tracks winners as a mapping of contest and category to a list of addresses with claim deadlines attached. OpenZeppelin ReentrancyGuard wraps all value transfers, SafeERC20 handles token transfers reliably, and no admin override or pause mechanism can change outcomes after the fact.
+
+Primary audience: hackathon organizers, marketing contests and giveaway campaigns, bug bounty programs, and DAO or community reward programs that need provably automatic payouts without a trusted intermediary.
+
+### 3.7 Kotkata
+
+- URL: https://gembait.com/en/products/kotkata
+- Live: https://gembapay.com/nft-gift
+- Status: Live
+- Category: NFT
+- Networks: Ethereum, BSC, Polygon
+- Source: https://github.com/ivanovslavy/kotkata-nft
+
+Kotkata is a generative collection of hand-drawn Sphynx cats that functions as a loyalty program for GembaPay merchants. Every customer who completes a GembaPay-processed payment can claim a free NFT across three chains. The same 10,000-piece collection lives on Ethereum, BSC and Polygon; each merchant's customer claims on whichever chain makes sense for them. On Polygon, gas for minting is roughly a tenth of a cent — closer to a sticker than an invoice.
+
+The contract is a straightforward ERC721A written in Solidity 0.8.27, with 5% ERC2981 royalties enforced on-chain and OpenZeppelin access control. The same source compiles to three identical deployments; each tracks its own supply independently, so there is no cross-chain state to synchronize. Claims are signature-gated: when a GembaPay customer qualifies, the backend issues an EIP-712 signature authorizing a specific wallet to mint a specific token ID on a specific chain. The contract verifies the signature, checks the nonce and mints directly to the customer — the platform never holds NFTs in an intermediate wallet. Media generates once and serves from IPFS through Filebase. Slither clean; all 33 contract tests passing.
+
+Primary audience: GembaPay merchants' customer loyalty programs; NFT collectors who value hand-drawn small-cap collections with on-chain provenance across three chains.
+
+### 3.8 NFT Viewer
+
+- URL: https://gembait.com/en/products/nftviewer
+- Live app: https://nftviewer.slavy.space
+- Status: Live
+- Category: Web3
+- Networks: Ethereum, Sepolia, Polygon, BSC
+
+NFT Viewer is a multi-chain NFT gallery that reads the blockchain when indexers fall short. Every NFT gallery is only as good as its data source, and indexers like Moralis lag on freshly minted contracts or miss edge cases entirely. NFT Viewer queries Moralis first for speed, then falls back to direct RPC reads against the contract for anything the indexer missed. Metadata and images resolve through redundant IPFS gateways with automatic failover. Interactive HTML NFTs route through a dedicated sandboxed proxy so on-chain HTML renders cleanly inside the gallery instead of breaking the page.
+
+The backend is Node.js and Express with ethers.js v6 and the Moralis SDK v2; the frontend is React 18 on Vite 6. Users search by wallet address to see holdings, by contract address to see a full collection, or combine both for filtered views. Four chains are queryable from a single search box: Ethereum mainnet, Sepolia testnet, Polygon and BNB Smart Chain.
+
+Primary audience: NFT collectors, ticket and collectible holders, and developers who need a viewer that works for newly deployed collections rather than only established projects.
+
+### 3.9 Atlas
+
+- URL: https://gembait.com/en/products/atlas
+- Status: In development (private alpha)
+- Category: SaaS
+- Deployment: Hosted SaaS or self-hosted Docker
+
+Atlas is a modular SaaS for industrial workforce management. Refineries, plants and workforce-heavy operations typically run on a patchwork of spreadsheets, paper permits and siloed vendor tools. Atlas consolidates shift planning, check-in and check-out, inventory and parts tracking, digital permits (permit-to-work, hot-work, confined-space), an integrated office suite and a contextual AI assistant under one platform. Modules activate independently, so an operator can start with scheduling and check-in and add permits, inventory and documents as the team is ready.
+
+The architecture is a modular monolith: React frontend, Node.js and PostgreSQL backend, packaged so that every module is independently deployable. Deployment comes in two shapes. The hosted SaaS runs on GEMBA's Hetzner infrastructure with failover and database replication, which is the fastest path for most teams. The self-hosted Docker edition bundles the same stack into containers that run on the client's own servers — useful for sites with strict data-residency, offline or security requirements. The AI assistant reads what the platform already knows (shift logs, permit history, inventory movements, documents) and answers in context; it does not retrain on client data and does not leave the client's installation when self-hosted.
+
+Atlas is designed alongside refinery and plant operators, not in a design studio in a different city. The product philosophy is that each module should solve a problem somebody has actually been paid to solve, which is why the initial module set looks the way it does — shift planning, check-in, permits, inventory, documents, AI assistant.
+
+Primary audience: refineries and chemical plants running turnarounds; construction and industrial services firms that manage site attendance and permits; workforce-heavy operations in general; regulated sites that require auditable permit history and the option to self-host.
+
+---
+
+### 3.10 Gemba Sniper Bot
+
+- URL: https://gembait.com/en/products/gembasniper
+- Status: Live
+- Category: Web3 / trading automation
+- Deployment: Hosted SaaS, per-network, non-custodial
+
+Gemba Sniper Bot is a professional, non-custodial on-chain sniper for Uniswap V3 and V4 on Ethereum, Base and Sepolia. It subscribes directly to factory events over WebSockets, so it detects new pools the moment they exist on-chain, and runs each one through a deterministic 10-stage honeypot pipeline — static heuristics, V4 hook analysis, transfer simulation and a real $0.03 round-trip buy-then-sell on the live pool. Only when a token has provably been sold does a real buy fire. Positions are then managed with take-profit, stop-loss, timeout and partial-sell exits, plus a 30-minute auto-unstuck recovery loop.
+
+The bot is non-custodial by construction: the wallet is generated or imported by the user, the private key is AES-256 encrypted in the browser before it ever leaves the device, and the server only ever stores ciphertext. Every transaction settles back into the user's own wallet, and the encrypted key can be exported at any time. The detection-and-screening pipeline is open source. Primary audience: DeFi traders, crypto-native developers and honeypot-defense researchers who want a transparent engine they can read before trusting it with capital.
+
+---
+
+### 3.11 GembaBlockchain
+
+- URL: https://gembait.com/en/products/gembablockchain
+- Explorer: https://gembascan.io (testnet: https://testnet.gembascan.io)
+- Status: Public testnet live
+- Category: Web3 / Layer 1 infrastructure
+- Deployment: Sovereign public chain (Cosmos SDK + Cosmos EVM, CometBFT)
+
+GembaBlockchain is Bulgaria's first blockchain — a fully transparent, decentralized, permissionless Proof-of-Stake Layer 1 built on Cosmos SDK + Cosmos EVM and CometBFT. Its native coin, Gemba (GMB), is a utility coin used for staking, gas and access, not a speculative asset: the supply is fixed at 100,000,000 GMB, minted once at genesis with 0% inflation, and validator rewards stream from a pre-minted reserve and real transaction fees rather than from new issuance. The chain offers instant BFT finality (no reorgs) and full EVM compatibility — Solidity, 0x addresses, MetaMask, Foundry and ethers/viem all work against its JSON-RPC at EVM chainId 821207.
+
+It is decentralized by mechanism, not by promise: validation is permissionless (bond GMB above the threshold and you join the active set, no KYC and no whitelist), there are no privileged validators, reserves never vote, and the founder never validates with privilege. Funds leave the public/municipal, foundation, DAO, contingency and validator reserves only through governance plus a timelock. The project seeds no liquidity, runs no exchange or DEX and makes no public token sale — value is meant to come from use, not speculation. Architecturally it is off-the-shelf Cosmos EVM plus a thin Gemba layer (a zero-inflation reward streamer and a fee split), with a self-hosted Blockscout explorer, GembaScan. Primary audience: public institutions and municipalities, organizations and enterprises, validators, and Web3 developers who want a neutral, sovereign EVM chain.
+
+---
+
+### 3.12 GembaPass
+
+- URL: https://gembait.com/en/products/gembapass
+- App: https://gembapass.com
+- Status: Testnet — live on GembaBlockchain
+- Category: Web3 / access control SaaS
+- Deployment: Cloud multi-tenant or on-prem single-tenant
+- Contract: GembaAccessPass (ERC-1155 soulbound) — 0x1B72b95588B75925B59715d582504C9D42594899, verified on GembaScan
+
+GembaPass is the first dApp built on GembaBlockchain: a multi-tenant subscription SaaS that issues soulbound workplace access-pass NFTs, with the blockchain made completely invisible to the people using it. A company subscribes, adds employees and issues passes in a few clicks. Each pass is an anonymous, soulbound capability NFT — one token id per person — but employees never see a wallet, a seed phrase or gas: the backend silently creates and AES-256-GCM-encrypts a custodial wallet per employee and signs every on-chain action through a single platform issuer key. Issuing a pass is a mint; firing someone is an issuer-only force-burn that closes every door at once. Custody carries no money-transmitter or licensing burden here because GMB is not a financial instrument and no funds are ever held.
+
+The contract is deliberately minimal — it answers only "is this credential alive?" — while zones, access hours, per-zone rights, PINs and entry/exit logs live off-chain in PostgreSQL with per-company row-level security, so no personal data ever touches the chain and everything stays GDPR-erasable. Issuing a pass pins a branded QR and metadata to IPFS and mints the NFT to the employee's custodial wallet; at a door, an offline-capable scanner PWA checks the on-chain validity together with zone rights, access hours, subscription status and an optional PIN, then logs entry or exit. The product surface is five apps — landing, company dashboard, operator dashboard, employee app and scanner — with monthly billing through GembaPay and an operator flow to onboard partner companies with a free grace period. Primary audience: companies and SMEs, public institutions, multi-site organizations and their employees.
+
+---
+
+## 4. Technology Stack
+
+The active stack is deliberately small. Fewer tools, deeper knowledge, better supportability — especially when we inherit a retainer years after the original project ended.
+
+### Languages
+
+- JavaScript (Node.js, browser)
+- TypeScript (selective use — mostly in larger apps)
+- Solidity 0.8.x (19, 20, 27, 28 across different products)
+- Bash (operational scripts, CI tasks)
+- Python (occasional — analytics, data wrangling)
+
+### Backend runtime
+
+- Node.js (LTS) — primary server runtime
+- Express 5 — HTTP layer for most services
+- Prisma — ORM for PostgreSQL in newer projects
+
+### Frontend
+
+- React 18 and React 19 (where the toolchain supports it)
+- Vite 6+ — default build tool
+- Tailwind CSS 4 — styling
+- i18next / react-i18next — localization (en/bg/es)
+- React Router 7 — client-side routing
+- react-helmet-async — head/meta management
+- wagmi + viem — wallet and chain interactions in Web3 apps
+- ethers.js (v5 and v6 depending on age of project)
+- marked — markdown rendering on the client
+
+### Data layer
+
+- PostgreSQL — primary relational database
+- MongoDB — where schemas are genuinely unstructured
+- MariaDB — legacy integrations, older client stacks
+- Redis — cache and ephemeral state (sessions, rate limiting, QR-code token state)
+
+### Blockchain
+
+- Hardhat — contract development, testing, deployment
+- OpenZeppelin v5 — Ownable, ReentrancyGuard, SafeERC20, ERC20, ERC721, ERC1155, ERC2981
+- ERC721A (Azuki) — gas-efficient bulk NFT mints
+- EIP-1167 — minimal-proxy clones for per-deal contracts
+- Slither — static analysis for every contract before production
+- Mythril — symbolic execution where the risk model warrants
+- Solhint — linting
+
+### Oracles and protocols
+
+- Chainlink — price feeds for GembaPay invoice conversion
+- Uniswap V3 — DEX integration for GembaTools
+
+### Payment integrations
+
+- Stripe Connect — marketplace integration (certified partner)
+- PayPal PPCP — Connected Path integration (certified partner)
+
+### Storage and indexing
+
+- IPFS (via Pinata, Filebase)
+- Moralis SDK v2 — NFT and EVM indexing
+
+### Infrastructure
+
+- Linux (Ubuntu, Debian)
+- Docker — container packaging for services and for self-hosted product deployments
+- Apache — reverse proxy and origin web server for most sites
+- systemd — service management, scheduled tasks
+- Cloudflare — DNS, edge caching, TLS, WAF, Turnstile (CAPTCHA)
+- Hetzner Cloud — primary VPS provider (Germany and Finland regions)
+- Let's Encrypt — TLS certificates
+
+### Observability
+
+- systemd-journald + journalctl for service logs
+- Real-time monitoring dashboards built in-house per project
+- Email alerting via Nodemailer and transactional providers
+
+---
+
+## 5. Infrastructure
+
+The production environments we operate run on Hetzner Cloud servers, fronted by Cloudflare for DNS, TLS, edge caching and WAF. Apache (primarily) or nginx (selectively) serves as the origin web server on each VPS; systemd units manage the application processes, Prisma handles database migrations on deploy, and journalctl is the first stop for debugging. For clients with higher uptime requirements, we run an active-passive setup with PostgreSQL streaming replication, Redis replication and DNS-level or load-balancer-level cutover — the details are covered in one of our blog posts, "Building Failover Infrastructure on a Budget."
+
+Deployments are scripted. Each project has a build script that runs on the target server (or on a CI runner), produces artifacts, stages them and reloads Apache or restarts the systemd unit. Blog content goes through a similar path via publish-blog.sh in the gembait.com repo: regenerate sitemap, rebuild, copy statics (robots.txt, sitemap.xml, llms.txt, llms-full.txt, og images) into dist and reload. Backups run on schedule to a separate host; secrets live in environment files owned by the service user and never in the repo.
+
+Security defaults: SSH keys only, non-standard SSH ports, firewall rules that only open what the application needs, Cloudflare WAF in front of the origin, Let's Encrypt certificates renewed automatically, Slither on every smart contract, OpenZeppelin primitives instead of bespoke cryptography, and no proxy-upgrade patterns on contracts unless a client explicitly asks for one and understands the implications.
+
+---
+
+## 6. Contact & Legal
+
+### Contact
+
+- Website: https://gembait.com
+- Email: contacts@gembait.com
+- Phone: available on request via email
+- Address: Varna, Bulgaria (full address provided for contracts)
+- Working hours: Monday–Friday, EET (UTC+2 / UTC+3 during DST)
+- Languages: English, Bulgarian, Spanish
+- Sitemap: https://gembait.com/sitemap.xml
+- Summary for AI agents: https://gembait.com/llms.txt
+- This deep reference: https://gembait.com/llms-full.txt
+
+### Related sites
+
+- Parent group: https://gembateam.com
+- Industrial services division: https://gembaindustrial.com
+- GembaPay live app: https://gembapay.com
+- GembaTools live app: https://gembatools.io
+- EduChain demo: https://school.slavy.space
+- NFT Viewer: https://nftviewer.slavy.space
+
+### Source and social
+
+- GitHub (founder / GEMBA IT open-source repos): https://github.com/ivanovslavy
+- LinkedIn (technology): https://linkedin.com/in/slavy-ivanov
+- LinkedIn (industrial): https://linkedin.com/in/slavcho-ivanov
+
+### Legal
+
+- Legal entity: GEMBA EOOD
+- Company identifier (EIK / ЕИК): 208656371
+- Jurisdiction: Republic of Bulgaria
+- Registered office: Varna, Bulgaria
+- EU VAT treatment applies to B2B cross-border services within the EU
+- Open-source repositories under github.com/ivanovslavy are released under the MIT license unless otherwise noted in each repository's LICENSE file
+- Contract work is governed by a Master Services Agreement signed per engagement; we can work from client MSAs, our template, or a hybrid depending on the deal
+- All code produced under paid engagements transfers to the client on payment unless an alternative license is agreed in writing (e.g., for open-sourcing)
+
+### A note on this document
+
+This file is maintained as part of the gembait.com repository and regenerated as products and services change. AI agents reading this document can treat its contents as current as of the commit that produced the deployed file; the gembait.com home page and the dedicated product pages are the authoritative source for anything time-sensitive (status, metrics, live contract addresses).

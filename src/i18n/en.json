@@ -1,0 +1,1598 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "products": "Products",
+    "about": "About",
+    "blog": "Blog",
+    "careers": "Careers",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Technology division of GEMBA",
+    "title1": "Technology that",
+    "title_works": "works",
+    "title2": "Built by people who",
+    "title_understand": "understand",
+    "subtitle": "From Linux servers to payment gateways, from React interfaces to blockchain smart contracts — we build, deploy, and stand behind complete solutions.",
+    "cta": "Get in touch",
+    "cta2": "View our products"
+  },
+  "services": {
+    "page_title": "Our services",
+    "subtitle": "We build. We deploy. We support.",
+    "modal": {
+      "close": "Close",
+      "learnMoreHint": "Click any service for details",
+      "whatItIncludes": "What it includes",
+      "whenYouNeedIt": "When you need it",
+      "howWeWork": "How we work",
+      "outcome": "Outcome"
+    },
+    "items": [
+      {
+        "title": "Linux servers & DevOps",
+        "desc": "Enterprise infrastructure, CI/CD, failover, security hardening, scaling",
+        "detail": {
+          "summary": "We stand up production Linux infrastructure and keep it running. That means Hetzner Cloud provisioning, hardened configurations, CI/CD pipelines, active-passive failover and the monitoring needed to catch problems before customers notice.",
+          "whatItIncludes": [
+            "Ubuntu / Debian server provisioning with SSH-key-only access, nftables firewall rules, fail2ban and unattended security updates.",
+            "CI/CD pipelines through GitHub Actions — build, test, deploy, rollback — triggered on merge without manual SSH.",
+            "Systemd services, process supervision, zero-downtime reloads and structured logging to journald.",
+            "Active-passive failover with Cloudflare DNS switching, PostgreSQL streaming replication and tested failover drills.",
+            "Edge configuration on Cloudflare: TLS termination, WAF rules, rate limits, caching headers and origin certificates.",
+            "Monitoring through Prometheus and Grafana with alert routing — disk, memory, CPU, response latency, certificate expiry."
+          ],
+          "whenYouNeedIt": "You need this when your application is moving off a single hobby VPS into something that needs to survive a reboot, a traffic spike or a provider outage. Also when a compliance review asks for audit trails, patching policy and documented incident response.",
+          "howWeWork": "We start with a capacity plan: expected load, retention targets and the downtime budget you can tolerate. From there we build the stack in infrastructure-as-code, run through failover scenarios on staging, and hand over runbooks written in plain language.",
+          "outcome": "A production environment you can actually sleep next to, with known-good rollbacks, tested failover and dashboards that tell the truth about what is happening.",
+          "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "Backend & APIs",
+        "desc": "Node.js/Express, RESTful & GraphQL APIs, third-party integrations",
+        "detail": {
+          "summary": "We design and build the Node.js backends that power web and mobile products — REST or GraphQL, authenticated, rate-limited and documented. The APIs we ship integrate cleanly with third parties and survive real traffic.",
+          "whatItIncludes": [
+            "REST or GraphQL services in Node.js / Express, with request validation, structured errors and OpenAPI or schema-first documentation.",
+            "Third-party integrations (Stripe, PayPal, Twilio, shipping providers, partner APIs) with signed webhook handling and idempotent retries.",
+            "Background workers, queues and scheduled jobs for email, PDF generation, reconciliation and heavy processing.",
+            "Authentication and authorization: sessions, JWTs, OAuth flows and role-based access control.",
+            "Rate limiting, request tracing and observability hooks so you can see which endpoints are slow and why.",
+            "Test suites — unit, integration, contract — wired into CI so regressions get caught before production."
+          ],
+          "whenYouNeedIt": "You need this when a spreadsheet or a manual process is no longer enough, when the mobile team needs a real API, or when an existing backend has grown brittle and is blocking the product. It is also the right time when you are onboarding a second consumer (mobile, partner, internal tool) and need stable contracts.",
+          "howWeWork": "We start with the data model and the endpoint contract, not the framework. Once the contract is agreed we implement in thin vertical slices so you see working endpoints each week. Nothing goes to production without logging, searchable errors and a runbook for the integrations it touches.",
+          "outcome": "A backend your product team can build against with confidence, with documented endpoints, sensible limits and logs that answer the question 'what happened?' in minutes rather than hours.",
+          "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "Database architecture",
+        "desc": "PostgreSQL, MongoDB, MariaDB — design, replication, optimization",
+        "detail": {
+          "summary": "We design the database schemas and the operational setup behind them — PostgreSQL, MongoDB or MariaDB — so queries stay fast as data grows and backups actually restore. The goal is a database that is boring in the best way.",
+          "whatItIncludes": [
+            "Schema design with proper normalization, indexes, foreign keys and migration history managed through Prisma, TypeORM or plain SQL migrations.",
+            "Replication setups: PostgreSQL streaming replicas, MongoDB replica sets, MariaDB primary-replica, with documented failover procedure.",
+            "Backup strategy: automated dumps, point-in-time recovery, offsite storage and scheduled restore drills that prove backups work.",
+            "Query optimization: explain plans, missing-index reviews, pagination fixes, N+1 audits on the application side.",
+            "Connection pooling with PgBouncer or equivalent, and pool sizing tuned against realistic load.",
+            "Role separation: migration user, application user, read-only reporting user — no more shared superuser passwords."
+          ],
+          "whenYouNeedIt": "You need this when queries have started to feel slow under normal load, when a migration looks risky, or when backups exist but nobody is sure they can be restored. Also when you are moving from a single-instance database toward replication for redundancy or reporting.",
+          "howWeWork": "We read the existing schema and query log first; optimization without data is guesswork. Then we propose the changes in writing, apply them to staging with representative data, and only promote to production after load tests and a restore drill.",
+          "outcome": "A database that answers queries in predictable time, survives a host failure, and whose backups have been restored at least once outside of an emergency.",
+          "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "React apps, corporate & personal websites",
+        "desc": "SPAs, PWAs, corporate and personal sites, multi-language, SEO-optimized, mobile-first.",
+        "detail": {
+          "summary": "We build the React applications and websites businesses actually use — single-page apps, progressive web apps, corporate sites, personal portfolios, product pages. Written in modern React, multi-language, SEO-aware, and still readable on a five-year-old Android over 4G.",
+          "whatItIncludes": [
+            "React 18 / 19 with Vite or Next.js — SPAs, PWAs or server-rendered pages — component structure designed for reuse across product lines.",
+            "Multi-language content through i18next, with hreflang tags, localized URLs and proper canonical handling for English, Bulgarian, Spanish or other languages.",
+            "SEO fundamentals: semantic HTML, structured data (JSON-LD), sitemaps, llms.txt for AI agents and meta tags the marketing team can actually read.",
+            "Responsive, mobile-first design reviewed on real device sizes — small Android screens and mid-range phones — not just desktop retina.",
+            "Progressive Web App setup when offline use or installability matters: service worker, manifest, caching strategy.",
+            "Accessibility basics: keyboard navigation, focus states, semantic HTML and colour contrast verified on real content.",
+            "Performance budget: core web vitals reviewed on real devices, image optimization, lazy loading and font subsetting.",
+            "Contact forms with spam mitigation, privacy-respecting analytics and an SSL setup that does not require a yearly panic."
+          ],
+          "whenYouNeedIt": "You need this when a v1 built on WordPress or a template is holding the product back, when the design team is delivering work off-the-shelf themes cannot render, when you are launching a new venture and the domain is the first thing a customer or investor will check, or when the current site loads in 12 seconds and you have noticed people bouncing.",
+          "howWeWork": "We start from the story the site needs to tell, the designs and the data — building in visible slices so the user-facing flow works end-to-end early. Reviews happen on a staging URL on real devices, not Figma comments. Every release ships with a bundle-size budget, a performance check on mid-range phones and a handover the marketing team can actually use.",
+          "outcome": "A frontend or website that loads quickly on a mid-range phone over 4G, reads well in every language it targets, ranks for the terms the business cares about, and that future developers can extend without rewriting half of it.",
+          "image": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "Payment integrations",
+        "desc": "Stripe, PayPal, crypto — non-custodial unified payment solutions",
+        "detail": {
+          "summary": "We connect products to the rails that move money — Stripe Connect, PayPal PPCP, and non-custodial crypto on Ethereum, BSC and Polygon. The common thread: merchants receive funds directly, not through a platform-held balance.",
+          "whatItIncludes": [
+            "Stripe Connect marketplaces with onboarding, split payments, application fees and payout management — certified partner integration.",
+            "PayPal Partner Commerce (PPCP) with merchant onboarding, order capture and refund flows.",
+            "Non-custodial crypto payments on Ethereum, BSC and Polygon through audited smart contracts, with Chainlink-backed pricing.",
+            "Signed webhook delivery with replay protection, idempotency keys and retry logic so missed events do not become lost payments.",
+            "Invoice generation, pay-by-link flows and recurring subscriptions where the payment rail supports them.",
+            "Reconciliation tools: transaction history, exportable reports, disputed-payment workflows and tax-ready statements."
+          ],
+          "whenYouNeedIt": "You need this when your product needs to take money from customers and split it between multiple parties, when crypto acceptance is a product requirement rather than a marketing line, or when an existing payment setup is creating custody risk or compliance pain.",
+          "howWeWork": "We map the money flow first — who pays, who receives, who takes a fee, what happens on a refund or a chargeback. Only then do we pick providers. Integrations go through a sandbox test matrix before a single real card or wallet is involved.",
+          "outcome": "A payment flow where merchants receive funds directly to their own account or wallet, the platform fee settles atomically, and the operations team has the reports and webhooks they need to close the books every month.",
+          "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "Web3 & blockchain",
+        "desc": "EVM smart contracts, Ethereum, BSC, Polygon, DApp development",
+        "detail": {
+          "summary": "We write and ship the smart contracts that sit underneath Web3 products — payment gateways, NFT collections, escrow, token sales — on EVM chains. Every contract is source-verified, audited with Slither and Mythril, and tested against the economic edge cases, not just the happy path.",
+          "whatItIncludes": [
+            "Solidity 0.8.x contracts using OpenZeppelin v5 building blocks: Ownable, ReentrancyGuard, SafeERC20, AccessControl.",
+            "Test suite in Hardhat with fork tests against mainnet state where relevant, and gas-usage reports on every merge.",
+            "Static analysis with Slither and Mythril wired into CI; findings either fixed or documented with reasoning.",
+            "DApp integration using ethers.js, wagmi and viem, with wallet connection flows that work across MetaMask, WalletConnect and mobile wallets.",
+            "Deployment scripts with verified source on Etherscan, BSCScan and PolygonScan, plus a post-deploy smoke test on mainnet.",
+            "Chainlink price feed integration, Uniswap V3 liquidity management and custom ERC-20 / 721 / 721A / 1155 tokens where they fit."
+          ],
+          "whenYouNeedIt": "You need this when your product requires trust-minimized settlement, a non-custodial payment path, programmable escrow, or token economics that a database cannot enforce. It is the wrong tool when a Postgres transaction would do the job fine.",
+          "howWeWork": "We draft the threat model and the economic scenarios before any Solidity is written. Contracts are deployed first to Sepolia and exercised end-to-end, and only after static analysis is clean do we consider mainnet.",
+          "outcome": "Verified on-chain code that does what it says, whose source is public, whose test suite reproduces every claimed behaviour, and whose deployment is a single signed transaction — not a chain of upgrades.",
+          "image": "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "Smart contract audit",
+        "desc": "Security review, vulnerability detection, remediation reports",
+        "detail": {
+          "summary": "We review Solidity code the way it should be reviewed — by reading every line, running automated analysis and actually running the contracts against adversarial tests. The output is a written report with severity-ranked findings and concrete fix suggestions.",
+          "whatItIncludes": [
+            "Line-by-line manual review focused on access control, arithmetic, external-call ordering, signature replay and upgrade paths.",
+            "Automated static analysis with Slither, Mythril, Aderyn and custom detectors, triaging every finding rather than listing raw output.",
+            "Fuzz and invariant testing with Foundry where the contract logic supports it — balances never go negative, total supply is preserved, no unauthorized mint path.",
+            "Gas review: unnecessary storage writes, expensive patterns, missing short-circuit checks.",
+            "A written report with executive summary, per-finding writeup (severity, impact, location, recommendation) and retest confirmation after fixes land.",
+            "A follow-up session to walk the team through the findings and the reasoning behind severity calls."
+          ],
+          "whenYouNeedIt": "You need this before any contract holds real value on mainnet, before a governance vote migrates assets, or after a material change to code that a previous audit covered. It is also the right move when an exchange or launchpad requires an independent review.",
+          "howWeWork": "We start from the spec and the threat model, not the code. If either is missing we write them first — an audit that skips the spec is worth less than the PDF it is printed on. Fixes are reviewed in a second pass, and the final report states what was retested.",
+          "outcome": "A signed report you can share with stakeholders and counterparties, a test suite in better shape than when we started, and contracts whose remaining risks are known, named and accepted on purpose.",
+          "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "Monitoring systems",
+        "desc": "Real-time dashboards for servers & industrial infrastructure",
+        "detail": {
+          "summary": "We build the dashboards and alerting that tell operators — digital or industrial — what is happening in real time. That includes servers, queues and, on the industrial side, sensors, PLCs and line equipment.",
+          "whatItIncludes": [
+            "Metric pipelines: Prometheus or compatible collector, long-term storage, retention tuned to the questions operators actually ask.",
+            "Grafana dashboards grouped by audience — executive overview, oncall view, deep diagnostic — so nobody has to scroll through 40 panels to find the one they need.",
+            "Alert rules with useful thresholds, deduplication and routing to the right on-call rotation through PagerDuty, Slack or SMS.",
+            "Industrial integrations: OPC UA, Modbus and MQTT collectors for PLCs, historian writes and side-by-side display of IT and OT metrics.",
+            "Status pages, both internal and customer-facing, generated from the same source of truth as the alerts.",
+            "Post-incident review tools: timelines, metric snapshots and export so the team can actually learn from outages."
+          ],
+          "whenYouNeedIt": "You need this when outages are first noticed by customers rather than the team, when on-call engineers are drowning in noise, or when an industrial operation relies on people watching HMIs instead of alerts finding them. Also when a regulator or insurer wants evidence of operational oversight.",
+          "howWeWork": "We start by asking what question each dashboard is supposed to answer and who reads it. Alerts are calibrated against real historical data, not guesses, and every alert is required to have a runbook attached before it ships.",
+          "outcome": "A monitoring setup where every green screen means something, every alert means action is needed, and post-incident reviews have the data they need without scraping terminal history.",
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "Admin panels",
+        "desc": "Custom control panels, role-based access, workflow automation",
+        "detail": {
+          "summary": "We build the internal tools operations teams actually use — user management, content moderation, financial reconciliation, workflow automation. Custom-built to fit the process, not bent around an off-the-shelf CRM.",
+          "whatItIncludes": [
+            "Role-based access control with audit logs: who changed what, when, and why — required for any operation that touches money or personal data.",
+            "Workflow automation: approval chains, state machines, bulk actions and scheduled tasks that used to be manual SQL.",
+            "Search and filtering that works on production data sizes, not just demo datasets.",
+            "Export tools: CSV, Excel, PDF, signed links, with date ranges and filters preserved for reproducibility.",
+            "Integration hooks into the systems the operations team already uses — email, Slack, ticketing and accounting exports.",
+            "Mobile-friendly layouts for the parts of the panel that are used away from a desk (approvals, quick lookups, status checks)."
+          ],
+          "whenYouNeedIt": "You need this when operations is running on a pile of read-only database queries and manual SQL updates, when customer support is asking for features that no public SaaS will cover, or when an external admin tool is charging per seat for functionality you already have the data for. It is also the right call when compliance asks for audit trails that the current stack cannot produce.",
+          "howWeWork": "We shadow the team doing the work first — what they actually click, what they copy-paste, where the friction is. The panel is built against those real tasks, not a feature list. We release incrementally so each new section replaces a real manual step.",
+          "outcome": "An internal tool that turns the operations team's painful manual routine into a short list of deliberate actions, with an audit trail that passes review and a velocity that does not tank when the team grows.",
+          "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "Access control",
+        "desc": "Check-in/check-out, workforce tracking, attendance visibility",
+        "detail": {
+          "summary": "We deploy workforce access systems that replace paper sign-in sheets and spreadsheet timesheets — digital check-in / check-out, attendance tracking and the reporting layer on top. Built for real sites, including industrial ones where gloves and dust are part of the environment.",
+          "whatItIncludes": [
+            "Digital check-in / check-out using RFID cards, phones or biometric readers, with offline queueing for when the network is down.",
+            "Shift scheduling, overtime calculation and attendance rules configured per site and role.",
+            "Visitor management: pre-registration, on-site badge printing, host notification and automatic badge expiry.",
+            "Reporting: who was on site when, for how long, filtered by site, team, role or date range — exportable for payroll and audits.",
+            "Integration with existing HR and payroll systems through API, CSV export or direct database bridge.",
+            "Alerting on tailgating, unauthorized access and missed check-outs, routed to the right supervisor."
+          ],
+          "whenYouNeedIt": "You need this when a paper system or Excel-based tracking is breaking down — either because of the number of people on site, compliance requirements, or a recent incident that made accountability matter. Also when you are preparing for an audit and cannot reconstruct who was on site last month.",
+          "howWeWork": "We walk the site before recommending hardware — a reader that lives in direct sun or a dusty corridor is not the same as one behind a reception desk. Rollout happens one zone at a time, with the paper system as a fallback until the digital one proves itself.",
+          "outcome": "A clear, queryable record of every site entry and exit, a payroll export that matches the timesheets, and supervisors who are alerted to exceptions instead of discovering them weeks later.",
+          "image": "https://images.unsplash.com/photo-1572177812156-58036aae439c?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "Video surveillance",
+        "desc": "CCTV, alarm notifications, security company integration, recording",
+        "detail": {
+          "summary": "We design and deploy CCTV systems — cameras, recording, storage and the alerting that makes them actually useful. Configured to integrate with Bulgarian SOT services and responsive to the events that matter, not every leaf blowing past a lens.",
+          "whatItIncludes": [
+            "Camera selection and placement based on field-of-view, lighting and purpose (identification, deterrence, overview).",
+            "NVR / DVR installation with appropriate storage retention — 7, 30 or 90 days depending on regulation and incident-review needs.",
+            "Motion and zone-based event alerts with push notifications, avoiding the usual storm of false positives from wind and shadows.",
+            "Integration with Bulgarian SOT (signal-response) providers so alarm events reach a monitored dispatch, not just a phone screen.",
+            "Remote viewing through web and mobile, with user roles so contractors and managers see different scopes.",
+            "Periodic health checks: disk usage, offline cameras, failed recordings — surfaced before a missing clip becomes a missed event."
+          ],
+          "whenYouNeedIt": "You need this when an existing system records but never triggers, when insurance requires documented coverage of specific areas, or when a new site needs a baseline surveillance setup without a three-letter integrator and a six-figure quote.",
+          "howWeWork": "We site-survey first, including a night visit under real lighting. Cameras are specified for their job, and the NVR is sized against retention, not marketing brochures. The system is handed over with written instructions the on-site team can actually follow.",
+          "outcome": "A surveillance setup that records reliably, alerts on events worth a response, and integrates with the security provider already on contract — so when something happens, the footage and the response are both there.",
+          "image": "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1200&q=80"
+        }
+      },
+      {
+        "title": "MVP development",
+        "desc": "From idea to working product — validate, iterate, scale",
+        "detail": {
+          "summary": "We take an idea from a rough sketch to a working product you can put in front of real users — with the pragmatism to cut scope and the engineering standards not to ship something that falls over in the first week. Done honestly, an MVP teaches you what to build next.",
+          "whatItIncludes": [
+            "Scope negotiation: separating the one or two hypotheses the MVP must test from everything else that can wait.",
+            "Technical architecture chosen for speed of iteration, not imagined Series A scale — a boring stack you can change later.",
+            "A working product end-to-end: signup, core flow, payment if relevant, admin view and analytics hooks.",
+            "Basic but real observability — logs, error tracking, a single dashboard — so the team can see what is happening in the first weeks.",
+            "A public deployment on real infrastructure, with domain, SSL, backups and a deployment pipeline that lets you ship fixes same-day.",
+            "A written handover: what was built, what was intentionally skipped and what the right next move is based on what was learned."
+          ],
+          "whenYouNeedIt": "You need this when you have an idea clear enough to describe in two paragraphs, a first set of potential users you can actually reach, and a budget measured in weeks rather than quarters. It is the wrong tool when the idea has no customer contact yet — paper and conversations are cheaper.",
+          "howWeWork": "We spend the first week narrowing scope, not coding — removing features is how an MVP stays an MVP. From there we build in weekly increments against a public staging URL, with a real user trying the flow by the end of week two.",
+          "outcome": "A product in real users' hands within weeks, data and feedback to guide the next round of work, and a codebase that a future team can either keep building on or honestly retire — decided on evidence, not hope.",
+          "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80"
+        }
+      }
+    ],
+    "support_title": "Ongoing support & development",
+    "support_desc": "Every product can be continuously maintained and developed through monthly subscription plans. Fixes, new features, updates and monitoring — all covered."
+  },
+  "products": {
+    "page_title": "Our products",
+    "subtitle": "Built in-house. Battle-tested. Ready to work.",
+    "viewAll": "View all products",
+    "status": {
+      "live": "Live",
+      "testnet": "Testnet",
+      "in-progress": "In Progress",
+      "in-development": "In Development"
+    },
+    "gembapay": {
+      "tagline": "One API for crypto and fiat payments — funds never leave the merchant.",
+      "cardDescription": "A non-custodial gateway that unifies Ethereum, BSC, Polygon, Stripe and PayPal in a single checkout. Merchants keep 99% of every transaction with automatic on-chain and platform-level fee splits.",
+      "heroIntro": "GembaPay lets merchants price in 86+ currencies and accept crypto or cards through one API. Every payment routes directly from customer to merchant — the platform never holds funds. Chainlink oracles handle pricing, Slither-audited contracts handle settlement, and merchants wake up to funds already in their wallet.",
+      "problem": {
+        "title": "The payments trilemma",
+        "body": "Merchants who want to accept both crypto and cards usually end up juggling three or four separate gateways, each with its own dashboard, fee structure and settlement schedule. Custodial crypto processors hold funds for days and charge 2–4% before anyone sees the balance; traditional processors don't speak blockchain at all. The result is fragmented accounting, slow settlement and a dependency on platforms that can freeze or reverse payments at any time."
+      },
+      "solution": {
+        "title": "One non-custodial gateway",
+        "body": "GembaPay sits in front of Ethereum, BSC, Polygon, Stripe and PayPal as a single integration. Crypto payments flow directly from customer to merchant through a verified smart contract that keeps 1%; card payments ride Stripe Connect and PayPal Partner rails with the same automated split. No wallet is provisioned for the merchant, no balance is held on the platform, and settlement happens in the same transaction as the payment."
+      },
+      "whatWeAre": {
+        "title": "What GembaPay is",
+        "items": [
+          "A non-custodial payment router that connects customer wallets and cards directly to merchant wallets and merchant Stripe or PayPal accounts.",
+          "A verified set of on-chain contracts that enforce the 1%/99% split atomically, with source code published on Etherscan, BSCScan and PolygonScan.",
+          "A pricing engine that quotes 86+ currencies in real time using Chainlink oracles and lets customers pay in the asset they already hold.",
+          "A merchant dashboard with transaction history, invoice generation, webhooks and Stripe Connect or PayPal Partner onboarding in one place."
+        ]
+      },
+      "whatWeAreNot": {
+        "title": "What GembaPay is not",
+        "items": [
+          "Not a custodial wallet — we never hold merchant or customer funds, not even for a block.",
+          "Not a crypto exchange — we don't convert currencies, we only route payments to the destination the merchant chose.",
+          "Not a reversible card processor — on-chain payments settle final; Stripe and PayPal disputes are handled by Stripe and PayPal.",
+          "Not KYC-free for fiat rails — Stripe Connect and PayPal Partner require the same compliance you'd meet anywhere else."
+        ]
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "Everything a merchant needs to go from \"my shop doesn't accept crypto\" to \"I was paid in USDT at 3 a.m. and the money was already there.\"",
+        "items": [
+          {
+            "title": "Unified checkout",
+            "desc": "A single embedded flow offers crypto, cards and PayPal. Customers pick the method they use; merchants don't configure a different integration for each."
+          },
+          {
+            "title": "Direct wallet-to-wallet settlement",
+            "desc": "Crypto payments land in the merchant's own wallet in the same block the contract is called. No sweeping, no batch settlement, no holding account."
+          },
+          {
+            "title": "Chainlink-backed pricing",
+            "desc": "Invoice amounts are quoted in the merchant's display currency and converted to the chosen crypto using Chainlink price feeds at the moment of payment."
+          },
+          {
+            "title": "Stripe Connect + PayPal Partner",
+            "desc": "Certified integrations that handle onboarding, split settlement and payouts, so merchants keep their existing card acceptance."
+          },
+          {
+            "title": "WooCommerce plugin",
+            "desc": "A drop-in WordPress plugin adds GembaPay as a checkout option in minutes, with configurable chains and currency display."
+          },
+          {
+            "title": "Webhooks and invoices",
+            "desc": "Every confirmed payment triggers a signed webhook; invoices can be generated with a customer email, amount and expiry for pay-by-link use."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "GembaPay is split into three layers that never share custody of funds. The smart-contract layer handles settlement on Ethereum, BSC and Polygon — one PaymentGateway contract per chain, verified on-chain and deployed once without proxy upgradability. The API layer, written in Node.js and Express on PostgreSQL with Prisma, stores invoices, merchants and transaction history but never holds balances or signing keys. The React frontend is a stateless client that reads the merchant dashboard and guides customers through payment.",
+          "Every transaction path is settlement-in-one-step. A crypto payment calls PaymentGateway.pay() with the invoice ID and amount; the contract pulls the Chainlink price, verifies the amount against the invoice, deducts the 1% platform share and forwards 99% to the merchant — all inside a single call with ReentrancyGuard active. A card payment goes through Stripe Connect in the same logical shape, where Stripe handles the destination transfer and application fee.",
+          "The resulting system has no \"platform wallet\" balance to drain. A full compromise of the GembaPay servers cannot move merchant funds, because the merchant's address is fixed on-chain in the invoice and Stripe settles directly into the merchant's connected account."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "E-commerce stores",
+            "desc": "WooCommerce and custom storefronts accept ETH, BNB, MATIC, USDT and USDC alongside cards without building a separate crypto stack."
+          },
+          {
+            "title": "SaaS subscriptions",
+            "desc": "Monthly subscription links issued through the API, with recurring card billing via Stripe and one-off crypto renewals."
+          },
+          {
+            "title": "Freelancers and agencies",
+            "desc": "International invoices sent in the client's currency, settled to a wallet or bank account in one click."
+          },
+          {
+            "title": "Donations and memberships",
+            "desc": "Non-profits and creator platforms accept multi-currency donations and route them straight to their wallet with no platform skim beyond the 1% fee."
+          }
+        ]
+      },
+      "security": {
+        "title": "Security",
+        "body": "Security is a property of the architecture, not a checklist added at the end. The guiding principle is that GembaPay should fail safely: if the platform goes down, in-flight payments are either confirmed on-chain or they simply never happened, and no merchant balance is at risk either way.",
+        "items": [
+          {
+            "label": "Non-custodial by construction",
+            "value": "The platform never takes possession of merchant or customer funds. Smart contracts enforce the 1%/99% split atomically."
+          },
+          {
+            "label": "Audit posture",
+            "value": "Slither static analysis returns zero high-severity findings across all three PaymentGateway deployments; source is verified on all three block explorers."
+          },
+          {
+            "label": "Access control",
+            "value": "OpenZeppelin Ownable governs admin functions (fee recipient, paused state); ReentrancyGuard protects all value transfers."
+          },
+          {
+            "label": "No upgradeability",
+            "value": "Contracts are not proxies. What you verify on Etherscan is what executes — there is no admin switch that changes contract behavior later."
+          },
+          {
+            "label": "Operational monitoring",
+            "value": "Signed webhooks, request logging and Stripe/PayPal dispute handling give merchants the same visibility they'd have with a traditional gateway."
+          }
+        ]
+      }
+    },
+    "gembatools": {
+      "tagline": "Deploy tokens, NFTs, presales and DEX — no code, no proxies, no gatekeepers.",
+      "cardDescription": "A browser-based platform for launching independent ERC20, ERC721, ERC721A and ERC1155 contracts with verified source code. Each deployment is standalone, immutable where it matters, and yours forever.",
+      "heroIntro": "GembaTools turns smart-contract deployment into a form you can fill in. Connect a wallet, pick a contract type, pay a flat fee and receive a standalone, verified contract you fully own. Built-in presale pages, Uniswap V3 trading, liquidity management and NFT galleries let projects ship without touching a line of Solidity.",
+      "problem": {
+        "title": "No-code crypto tools that still gatekeep",
+        "body": "Most platforms that advertise \"create your own token\" hide a shared proxy contract under the hood. Every project they launch shares an upgrade path, an admin key and the platform's reputation, so if the platform disappears or flips a switch, every project inherits the fallout. Independent developers who don't want that dependency are forced back to hand-written Solidity, CLI deployments and manual verification."
+      },
+      "solution": {
+        "title": "Your contract, your keys",
+        "body": "GembaTools deploys a brand-new, standalone contract for every project — ERC20, ERC721, ERC721A or ERC1155 — with source verified automatically after deployment. There is no proxy, no master contract, no delegatecall and no admin role for us to retain. Once deployed, the contract belongs entirely to the wallet that paid the flat creation fee."
+      },
+      "whatWeAre": {
+        "title": "What GembaTools is",
+        "items": [
+          "A form-based deployer for independent token and NFT contracts on Ethereum, BSC, Polygon and Base.",
+          "A presale page generator that binds a sale to a specific token and deposits raised funds directly to the project wallet.",
+          "A Uniswap V3 integration for creating pools, adding liquidity and trading tokens launched through the platform.",
+          "A gallery and minting page generator for NFT collections with reveal logic, royalties and phased sales."
+        ]
+      },
+      "whatWeAreNot": {
+        "title": "What GembaTools is not",
+        "items": [
+          "Not a multi-sig or custodial vault — the platform never holds project funds, token supply or admin keys.",
+          "Not a shared-proxy factory — every deployment is its own independent contract with no upgrade path controlled by us.",
+          "Not a token incubator or marketplace — we deploy infrastructure; projects decide how and where to sell.",
+          "Not a bridge — tokens launched on one chain stay on that chain; cross-chain deployment means a separate contract per network."
+        ]
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "Seven verified factory contracts cover the standards most projects actually use — plus a DEX router for projects that want to trade immediately.",
+        "items": [
+          {
+            "title": "Seven factory contracts",
+            "desc": "GembaERC20, GembaERC20Tax, GembaERC20Advanced, GembaERC721, GembaERC721A, GembaERC1155 and GembaSwapRouter — all Solidity 0.8.27 on OpenZeppelin v5."
+          },
+          {
+            "title": "Automatic verification",
+            "desc": "Every deployment submits its source to the block explorer right after creation, so the contract is readable and trustable within minutes."
+          },
+          {
+            "title": "Presale pages",
+            "desc": "Generate a hosted presale for any deployed token with configurable price, allocation limits, start/end times and automatic finalization."
+          },
+          {
+            "title": "Uniswap V3 liquidity",
+            "desc": "Create a pool, seed initial liquidity and manage concentrated positions from the same dashboard that deployed the token."
+          },
+          {
+            "title": "ERC721A efficiency",
+            "desc": "Bulk NFT mints use Azuki's ERC721A for up to 70% gas savings on large drops compared to vanilla ERC721."
+          },
+          {
+            "title": "Form-based UX",
+            "desc": "Fill in name, symbol, supply, tax rules or royalty percentage — no Solidity, no Hardhat, no private key pasted into a terminal."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "The contract layer is deliberately boring. Seven independent factory contracts live on each supported network; each factory takes constructor arguments from the UI, deploys a standalone child contract and emits a Created event with the new address. Children are not proxies — they are fully self-contained, immutable binaries with their own storage, ownership and ABI.",
+          "The frontend is a wagmi/viem React app that reads factory events to populate a user's dashboard, so a wallet always sees the contracts it created even if our backend disappears. Presale, liquidity and trading flows write directly to the child contracts or to Uniswap V3 — the GembaTools backend is a convenience layer, not a custody layer.",
+          "Security reviews are part of the development loop. Each factory passes through Slither with zero high-severity findings before it reaches mainnet, and all addresses are published so projects and their auditors can read the exact source before deploying."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "New token projects",
+            "desc": "Launch a standard or tax-aware ERC20 in minutes, seed a Uniswap V3 pool and run a presale — all under the project's own wallet."
+          },
+          {
+            "title": "NFT collections",
+            "desc": "Deploy ERC721A for large generative drops or ERC1155 for multi-edition art, with ERC2981 royalties and phased minting built in."
+          },
+          {
+            "title": "DAO and gaming teams",
+            "desc": "Mint governance or in-game utility tokens without waiting on a deploy engineer, then manage supply from a straightforward admin panel."
+          },
+          {
+            "title": "Independent developers",
+            "desc": "Prototype contracts on Sepolia, iterate on parameters and promote the working combination to mainnet without rewriting deploy scripts."
+          }
+        ]
+      },
+      "security": {
+        "title": "Security",
+        "body": "Every deployed contract is standalone and verified. There is no shared proxy for us to upgrade, no admin key that lets GembaTools touch a project's supply or royalties after deployment, and no delegatecall that could change behavior after the fact.",
+        "items": [
+          {
+            "label": "Contract independence",
+            "value": "Each deployment is a fresh, self-contained contract — no proxy, no delegatecall, no shared logic that the platform can alter later."
+          },
+          {
+            "label": "Audit posture",
+            "value": "Slither static analysis returns zero high-severity findings across all seven factories; the Solidity is OpenZeppelin v5 and Azuki ERC721A under the hood."
+          },
+          {
+            "label": "Source verification",
+            "value": "All seven factory contracts are verified on Sepolia Etherscan; each child deployment submits its source for verification automatically."
+          },
+          {
+            "label": "No admin retention",
+            "value": "Ownership transfers to the deploying wallet at creation. GembaTools holds no admin role on any child contract once the transaction is mined."
+          },
+          {
+            "label": "Transparent fees",
+            "value": "The platform's flat creation fee is the only amount collected. All token and sale proceeds go to the project wallet; there is no per-trade skim."
+          }
+        ]
+      }
+    },
+    "gembaticket": {
+      "tagline": "A modern web3 ticket-sales platform",
+      "cardDescription": "GembaTicket is a completely free, next-generation online ticketing platform built on web3, blockchain and smart-contract technology, that lets organizers sell tickets online and receive the proceeds in their own balances the moment a purchase is made.",
+      "heroIntro": "GembaTicket is a completely free, next-generation online ticketing platform built on web3, blockchain and smart-contract technology, that lets organizers sell tickets online and receive the proceeds in their own balances the moment a purchase is made — removing the need for printed paper tickets and box-office queues, giving full control over access to the event's different entrances, and leaving a permanent NFT keepsake in the hands of attendees.",
+      "problem": {
+        "title": "Ticketing built on custody and friction",
+        "body": "Traditional ticketing platforms hold the buyer's money for weeks and release it long after the event, taking 10–15% along the way. GembaTicket is non-custodial and holds zero custody, charging no fees of its own. The only fees come from the payment providers, and they can be brought down to 1%. So organizers can have fresh funds — up to 99% of total turnover — available even during pre-sales."
+      },
+      "solution": {
+        "title": "Payment in, ticket out, no custody and no fees in between",
+        "body": "GembaTicket sells every ticket through GembaPay — fiat or crypto, the organizer's choice. The ticket itself is a database record protected by an HMAC-signed QR code that rotates every 30 seconds and is sent to the buyer's email address. End users access their tickets without needing to create an account on the platform. Those who want a collectible keepsake of the event can mint a multi-page NFT token to their own web3 wallet."
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "Designed so organizers run events the way they always did — and Web3 shows up only when someone actively asks for it.",
+        "items": [
+          {
+            "title": "Dual ticket modes",
+            "desc": "Standard tickets work like any Web2 system — email delivery, rotating QR. The Web3 mode is optional and mints an NFT collectible token directly to the buyer's wallet."
+          },
+          {
+            "title": "QR rotation",
+            "desc": "Ticket QR codes are HMAC-signed with a TTL and valid for 30 seconds. A shared screenshot stops validating the moment the 30-second timer rolls over."
+          },
+          {
+            "title": "GembaPay-powered checkout",
+            "desc": "Buyers pay in EUR, USD and 51 more fiat currencies, or ETH, BNB, POL, EURC, USDC or USDT. Funds route directly to the organizer's wallet or Stripe/PayPal account, with no platform custody and no platform fees."
+          },
+          {
+            "title": "Multi-organizer marketplace",
+            "desc": "A single platform hosts multiple organizers, each with their own events, branding and payout rails. Revenue splits are configured per event."
+          },
+          {
+            "title": "Clone-factory contracts",
+            "desc": "Each event deploys a minimal EIP-1167 clone of the ticket template on GembaBlockchain, giving every end user access to take a keepsake of the event."
+          },
+          {
+            "title": "Scanner app",
+            "desc": "Door staff use a phone, tablet or any internet-connected scanning device that validates QR codes in real time."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "GembaTicket splits into three cleanly separated layers. The payments layer is GembaPay, which handles fiat and crypto checkout and settles funds directly to the organizer. The ticketing layer is a Node.js and Express API on PostgreSQL and Redis that stores events, ticket records and rotating QR secrets — it never holds customer funds or private keys.",
+          "The on-chain layer runs on GembaBlockchain. Events offer their own smart contract and NFT collectibles — a clone of the ticket contract is deployed via EIP-1167 minimal proxy, keeping deployment cost ~0. Organizers can set up different ticket price tiers (Early Bird, Regular, VIP, Stage — max 10) and timers for when a tier becomes active — by date, when the previous tier sells out, or a combination of both. Different access zones can be set per ticket tier, so attendees enter through different gates. Buyers who mint an NFT pay their own gas ~0 and get a completely free keepsake of their favorite concert; the contract stores the ticket metadata on IPFS and, on mint, transfers ownership directly to the buyer's wallet.",
+          "At the door, scanning is entirely Web2. The scanner app sends a signed QR payload and a timestamp to the API; the API validates the signature, checks the ticket is active and returns pass (green) or fail (red) in under 200 ms. Organizers have full control over access to their event — they can have different scanning devices per zone, each scanner knowing exactly which ticket tier to admit and which not. For example: the Regular scanner admits all zones, the VIP scanner only VIP and Stage, the Stage scanner only Stage. Scanners can also be configured for multi-day festivals and conferences — it's all in the organizer's hands.",
+          "The organizer has an intuitive interface to manage everything: see stats for sold/remaining tickets and collected revenue, add new tiers or increase the supply of existing ones, and watch in real time how many attendees have passed through the entrance scanners.",
+          "Anyone can register as an organizer completely free of charge. The only requirement to start creating events and accepting direct payments to their own balances is to register with the payment provider GembaPay — from there they get an API key and webhook secret, which they add to their account, and the \"Create event\" button becomes active."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "Concerts and festivals",
+            "desc": "Music events with ticket tiers or without, session tracks, and optional VIP NFT collectibles for attendees who want a lasting keepsake."
+          },
+          {
+            "title": "Sports, venues and conferences",
+            "desc": "Recurring events that benefit from rotating QR codes against screenshot fraud and from direct settlement to the organizer's own account."
+          },
+          {
+            "title": "Clubs and small parties",
+            "desc": "Organizers who want a pay-link workflow with multi-currency acceptance and minimal fees compared to mainstream platforms."
+          },
+          {
+            "title": "Token-gated events",
+            "desc": "Events that restrict entry to holders of a specific NFT, combining on-chain eligibility checks with off-chain ticket delivery."
+          }
+        ]
+      },
+      "security": {
+        "title": "Security",
+        "body": "Two categories of risk: funds and tickets. We address funds by never holding them — GembaPay settles every purchase directly to the organizer. No administrative or other hidden fees are charged, no unwanted insurance is added — the customer pays the price they see, and the organizer has access to up to 99% of that amount within seconds! We address tickets by having users receive their ticket seconds after purchase, straight to their pre-verified email — with no risk of loss or an undelivered courier package — and by tying ticket validity to QR codes that rotate, so leaked screenshots lose value within seconds. Tickets are not tied to a name, and you can always gift or resell the ticket you bought.",
+        "items": [
+          {
+            "label": "Zero custody",
+            "value": "No private keys stored for users, no escrow balance held on the platform. Funds route through GembaPay straight to the organizer."
+          },
+          {
+            "label": "QR rotation",
+            "value": "Ticket QR codes are HMAC-signed with a short TTL. A shared screenshot stops validating as soon as the timer rolls."
+          },
+          {
+            "label": "Audit posture",
+            "value": "Slither and Mythril audits completed on v2 contracts; no critical findings. All contracts use OpenZeppelin v5 primitives."
+          },
+          {
+            "label": "Clone-factory pattern",
+            "value": "EIP-1167 minimal proxies keep the cost of deploying an event at =0 thanks to GembaBlockchain. Organizers and end users never know about it, yet can always inspect the smart-contract code."
+          }
+        ]
+      }
+    },
+    "educhain": {
+      "tagline": "A safe Web3 sandbox where teachers learn before students do.",
+      "cardDescription": "An EU-focused educational platform with role-based access, live leaderboards, an NFT gallery and a structured 16-hour student curriculum plus a 3-day teacher training program.",
+      "heroIntro": "EduChain prepares European classrooms for Web3 without putting anyone at financial risk. Everything runs on GembaBlockchain testnet, so students can deploy tokens, mint NFTs and trade safely while teachers manage the whitelist. A dedicated training track certifies educators before they step into the classroom.",
+      "problem": {
+        "title": "Web3 curriculum without a safe playground",
+        "body": "Schools that want to teach blockchain run into two walls. Mainnet is too risky — students can't experiment with real assets, and regulators won't allow minors to touch them anyway. Existing sandboxes are either too abstract, with no real wallets or real deploys, or too technical — Hardhat CLI, testnet faucets and MetaMask for eleven-year-olds — and neither form teaches teachers anything at all."
+      },
+      "solution": {
+        "title": "A guided GembaBlockchain testnet classroom",
+        "body": "EduChain is a full-stack learning environment running on GembaBlockchain testnet, where every student has a real wallet, real gas and real transactions — just without real financial consequences. A teacher-administered whitelist gates access, a built-in faucet funds exercises, and the curriculum walks teachers through a 3-day training program before students touch anything. Structured lessons, live leaderboards and an NFT gallery give educators the instructional scaffolding that general-purpose testnets lack."
+      },
+      "whatWeAre": {
+        "title": "What EduChain is",
+        "items": [
+          "A classroom-grade Web3 sandbox running end-to-end on GembaBlockchain testnet, including ERC20 token deployment, ERC721 NFTs and a peer-to-peer marketplace.",
+          "A role-based platform with distinct dashboards for students, teachers and administrators, including whitelist management and progress tracking.",
+          "A 16-hour structured student curriculum paired with a 3-day teacher training track that certifies educators before they lead students.",
+          "A GDPR-aware product designed for European schools, with data minimization and a pedagogical flow reviewed against EU classroom norms."
+        ]
+      },
+      "whatWeAreNot": {
+        "title": "What EduChain is not",
+        "items": [
+          "Not a mainnet platform — nothing students do has financial value, and that is the point.",
+          "Not an investment simulator or trading game — the goal is understanding the mechanics, not speculating.",
+          "Not a replacement for a teacher — materials guide, but a trained educator runs the session.",
+          "Not a general-purpose developer tool — the UX is tuned for a 14-year-old, not for a Solidity engineer."
+        ]
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "Everything a classroom needs to move through a Web3 unit in one semester, with enough structure that a teacher without a CS background can still lead confidently.",
+        "items": [
+          {
+            "title": "Role-based dashboards",
+            "desc": "Students, teachers and administrators each get a tailored view with the tools and data appropriate to their role."
+          },
+          {
+            "title": "Built-in GMB faucet",
+            "desc": "Teachers fund student wallets with GembaBlockchain testnet GMB from a shared pool — no external faucet queues, no lesson interrupted by empty gas tanks."
+          },
+          {
+            "title": "ERC20 and NFT workshops",
+            "desc": "Structured exercises that walk students through deploying a token, minting an NFT collection and listing items on a marketplace."
+          },
+          {
+            "title": "Live leaderboards",
+            "desc": "Classroom-wide scoreboards reward task completion and quiz performance — useful for gamified units without adding real-money incentives."
+          },
+          {
+            "title": "Teacher training track",
+            "desc": "A 3-day program certifies teachers in the platform's pedagogy, the underlying Web3 concepts and classroom-management specifics."
+          },
+          {
+            "title": "Moralis + Pinata",
+            "desc": "NFT metadata and images store on IPFS through Pinata; Moralis indexes student activity across the testnet for dashboards and analytics."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "The platform runs on six GembaBlockchain testnet contracts written in Solidity 0.8.19 with OpenZeppelin primitives: a Whitelist, a GameToken ERC20, two NFT contracts (one predefined, one custom), a TokenMarketplace and an ETHFaucet. Every contract is a real, deployed artifact on a real network, so students see transaction hashes, gas fees and block confirmations exactly as they would on mainnet.",
+          "The frontend is React 18 with ethers.js v5, designed to be usable without previous blockchain exposure. Wallet onboarding is guided step by step, and most classroom actions are wrapped in UI that explains what's happening on-chain in plain language before sending the transaction.",
+          "Teachers administer the environment through a dedicated dashboard that controls whitelist entries, faucet allocations, curriculum progress and student reports. EduChain deliberately doesn't integrate with student identity systems or gradebooks — the school retains that data under its own policies, and EduChain only tracks what it needs to teach."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "Secondary schools",
+            "desc": "A semester-long technology unit that gives 14–18-year-olds practical exposure to blockchain mechanics in a controlled environment."
+          },
+          {
+            "title": "Vocational and technical colleges",
+            "desc": "Foundation-level Web3 training for students moving toward fintech, software and emerging-tech careers."
+          },
+          {
+            "title": "Teacher professional development",
+            "desc": "Continuing-education programs for educators who need to teach blockchain but haven't worked with it themselves."
+          },
+          {
+            "title": "EU-funded pilots",
+            "desc": "Research projects on digital literacy and emerging technology in classrooms that need a GDPR-aware sandbox to demo in."
+          }
+        ]
+      }
+    },
+    "atlas": {
+      "tagline": "Unify shift planning, check-in, permits and inventory for industrial teams.",
+      "cardDescription": "A modular SaaS platform for refineries, plants and workforce-heavy operations. Swap fragmented spreadsheets and standalone tools for one system, with an optional self-hosted Docker edition.",
+      "heroIntro": "Atlas brings shift planning, digital check-in and check-out, inventory, digital permits, an integrated office suite and an AI assistant into one platform built for industrial work. Designed alongside refinery operators, it replaces the usual patchwork of spreadsheets and vendor tools with something teams can actually run end-to-end.",
+      "problem": {
+        "title": "Industrial operations stitched together by spreadsheets",
+        "body": "Walk into a refinery turnaround, a large construction site or a busy plant and you'll see the same thing — shift rosters on a whiteboard, permits on paper, inventory in Excel, check-in on a clipboard. Each vendor tool covers one slice and none of them talk to each other. The people who actually run the work spend more time reconciling spreadsheets than planning the work itself."
+      },
+      "solution": {
+        "title": "One modular platform",
+        "body": "Atlas puts shift planning, check-in and check-out, inventory, digital permits, an integrated office suite and an AI assistant under one roof. Modules activate independently, so an operator can start with scheduling and check-in and add permits, inventory and documents as the team is ready. For clients with strict data-residency requirements, the entire platform runs as a self-hosted Docker deployment on their own infrastructure."
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "Designed alongside refinery and plant operators — not in a design studio in a different city — so each module solves a problem somebody has actually been paid to solve.",
+        "items": [
+          {
+            "title": "Shift planning",
+            "desc": "Rosters with skills, certifications and rest rules. Changes propagate instantly to crew members on mobile."
+          },
+          {
+            "title": "Check-in and check-out",
+            "desc": "Badge, QR or biometric entry with timestamps, location and shift context. Attendance rolls up to payroll and access control."
+          },
+          {
+            "title": "Digital permits",
+            "desc": "Permit-to-work, hot-work and confined-space permits issued, reviewed and archived on the platform with full audit trail."
+          },
+          {
+            "title": "Inventory and parts",
+            "desc": "Tool and consumable tracking, low-stock alerts and issue/return workflows tied to work orders."
+          },
+          {
+            "title": "Integrated office",
+            "desc": "Documents, tasks and messaging inside the same platform, so day-to-day coordination doesn't need a separate SaaS stack."
+          },
+          {
+            "title": "AI assistant",
+            "desc": "A contextual assistant that answers procedural questions, drafts reports and finds information across the platform's own data."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "Atlas is a classic modular monolith — React on the frontend, Node.js and PostgreSQL on the backend — packaged so that every module is independently deployable. A client who only needs shift planning and check-in runs a slim subset; a refinery that wants permits, inventory, documents and the AI assistant turns the rest on without migrating data.",
+          "Deployment comes in two shapes. The hosted SaaS runs on GEMBA's Hetzner infrastructure with failover and database replication, which is the fastest way for most teams to start. The self-hosted Docker edition bundles the same stack into containers that run on the client's own servers — useful for sites with strict data-residency, offline or security requirements.",
+          "The AI assistant is layered on top rather than baked in. It reads what the platform already knows — shift logs, permit history, inventory movements, documents — and answers in context. It doesn't retrain on client data, and it doesn't leave the boundary of the client's installation when self-hosted."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "Refineries and chemical plants",
+            "desc": "Turnaround planning, crew logistics and permit management during high-intensity shutdown and commissioning windows."
+          },
+          {
+            "title": "Construction and industrial services",
+            "desc": "Site attendance, tool tracking and document control across distributed crews and subcontractors."
+          },
+          {
+            "title": "Workforce-heavy operations",
+            "desc": "Any business where shift-based crews, badges and permits matter more than conference-room software."
+          },
+          {
+            "title": "Regulated sites",
+            "desc": "Facilities that require auditable permit history, attendance records and controlled access, with the option to host everything internally."
+          }
+        ]
+      }
+    },
+    "kotkata": {
+      "tagline": "A hand-drawn NFT collectible gifted to every GembaPay customer.",
+      "cardDescription": "10,000 unique Sphynx-cat NFTs deployed on Ethereum, BSC and Polygon. Gas-optimized ERC721A contracts, 5% ERC2981 royalties, IPFS-backed metadata, and minting gas as low as $0.001 on Polygon.",
+      "heroIntro": "Kotkata is a generative collection of 10,000 hand-drawn Sphynx cats that doubles as a loyalty program for GembaPay merchants. Each customer who completes a payment can claim a free NFT across three networks. The contract is ERC721A with on-chain royalties, signature-based minting and Slither-clean audits.",
+      "problem": {
+        "title": "NFT loyalty without the loyalty",
+        "body": "Most \"free NFT with every purchase\" campaigns either charge the user gas on mainnet — which feels like a fee, not a gift — or settle for a giveaway on a chain nobody uses. Gas-heavy mints on Ethereum can cost more than the NFT itself; cheaper chains look disposable. Neither outcome actually makes a customer feel they got something."
+      },
+      "solution": {
+        "title": "A gift across three chains",
+        "body": "Kotkata is a hand-drawn NFT gifted to every GembaPay customer who completes a payment. The same 10,000-piece collection lives on Ethereum, BSC and Polygon, and each merchant's customer can claim on whichever chain makes sense for them. On Polygon, gas for minting is roughly a tenth of a cent — closer to a sticker than an invoice."
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "An ERC721A collection designed so the gift experience scales without burning gas, and the art is worth keeping.",
+        "items": [
+          {
+            "title": "10,000 hand-drawn pieces",
+            "desc": "A Sphynx-cat collection illustrated in-house, not generated by script. Each piece is an original artwork with its own attributes."
+          },
+          {
+            "title": "ERC721A efficiency",
+            "desc": "Azuki's ERC721A reduces bulk-mint gas by up to 70%, keeping claim costs low even when demand spikes."
+          },
+          {
+            "title": "Multi-chain deployment",
+            "desc": "The same collection on Ethereum, BSC and Polygon. Customers claim where they already hold assets; the experience is identical on each."
+          },
+          {
+            "title": "ERC2981 royalties",
+            "desc": "5% secondary-sale royalties enforced on-chain through the standard. OpenSea and other marketplaces honor ERC2981 royalty routing."
+          },
+          {
+            "title": "Signature-gated minting",
+            "desc": "EIP-712 signed claim tickets let GembaPay distribute NFTs free of charge without exposing a public mint function."
+          },
+          {
+            "title": "IPFS-backed metadata",
+            "desc": "Images and metadata store permanently on IPFS through Filebase, so the collection outlives any single frontend or hosting provider."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "Kotkata is a straightforward ERC721A contract written in Solidity 0.8.27, with 5% royalties via ERC2981 and OpenZeppelin access control. The same source code compiles to three identical deployments on Ethereum, BSC and Polygon; each deployment independently tracks its own supply, so there is no cross-chain state to synchronize.",
+          "Claims are signature-gated. When a GembaPay customer qualifies, the backend issues an EIP-712 signature authorizing a specific wallet to mint a specific token ID on a specific chain. The contract verifies the signature, checks the nonce and mints directly to the customer — the platform never holds NFTs in an intermediate wallet.",
+          "Media is generated once and served from IPFS through Filebase, with a Sharp-based pipeline producing the fixed image sizes each marketplace expects. All 33 contract tests passed and Slither returned no findings before mainnet deployment across the three networks."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "GembaPay merchant loyalty",
+            "desc": "Every merchant's customers automatically qualify for a Kotkata NFT after completing a GembaPay-processed payment."
+          },
+          {
+            "title": "NFT collectors",
+            "desc": "Collectors who value hand-drawn, small-cap Sphynx-cat art with on-chain provenance across three chains."
+          },
+          {
+            "title": "First-time NFT recipients",
+            "desc": "Customers who have never held an NFT before get a free one with no gas friction on Polygon — a low-risk introduction."
+          },
+          {
+            "title": "Marketing and loyalty campaigns",
+            "desc": "Merchants that use the Kotkata gift as part of seasonal campaigns or customer-milestone rewards."
+          }
+        ]
+      }
+    },
+    "gembaescrow": {
+      "tagline": "Trustless escrow for property, vehicles and high-value assets — settled in minutes.",
+      "cardDescription": "A multi-party escrow platform with buyer, seller, notary and optional agent roles. Funds lock in a dedicated contract deployed via clone factory, released only on notary approval or after the deadline.",
+      "heroIntro": "Gemba Escrow replaces traditional escrow accounts with smart contracts you can audit. Buyers deposit once; a licensed notary verifies off-chain, then approves on-chain to distribute funds to seller, agent and notary in a single transaction. If the deadline passes without approval, the buyer reclaims their full deposit.",
+      "problem": {
+        "title": "Escrow that takes weeks and costs thousands",
+        "body": "Traditional escrow for property and high-value assets routes through a bank or specialized escrow agent, costs 1–3% of the transaction value, and takes days or weeks to settle. Smart-contract escrow exists but usually skips the one thing that makes escrow meaningful — the licensed professional who verifies off-chain facts. The result is either slow and expensive, or fast and missing the trust anchor."
+      },
+      "solution": {
+        "title": "On-chain settlement, off-chain expertise",
+        "body": "Gemba Escrow models the full transaction: buyer, seller, licensed notary and optional agent each with a role in the contract. The buyer deposits once; the notary performs the real-world checks they would in any traditional closing, then approves on-chain to release funds in a single transaction. If the deadline passes without approval, the contract automatically returns the buyer's deposit — no court, no paperwork, no custodian in between."
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "Every transaction spawns its own contract. Terms, parties and deadlines are fixed at creation and cannot be changed later by anyone — which is the whole point.",
+        "items": [
+          {
+            "title": "Per-transaction contract",
+            "desc": "A clone-factory pattern deploys a fresh escrow contract for each deal, with buyer, seller, notary and agent addresses fixed at creation."
+          },
+          {
+            "title": "Multi-party roles",
+            "desc": "Buyer deposits, seller receives, notary approves, and an optional agent can participate — with capped total fees of 20% across notary and agent."
+          },
+          {
+            "title": "Deadline-based refund",
+            "desc": "If approval doesn't happen before the deadline, the buyer reclaims their full deposit automatically on the next transaction. No dispute process required."
+          },
+          {
+            "title": "IPFS-linked documents",
+            "desc": "Contracts, identity verifications and property documentation anchor on IPFS, with hashes stored on-chain for provable audit trails."
+          },
+          {
+            "title": "Clone-factory efficiency",
+            "desc": "Minimal-proxy deployment keeps per-transaction gas cost low enough to be economically viable even for mid-value deals."
+          },
+          {
+            "title": "React 18 + ethers v6",
+            "desc": "A buyer-friendly frontend walks parties through deposit, document signing and approval with full wallet integration."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "Gemba Escrow uses a factory plus per-deal contract design. The factory contract, written in Solidity 0.8.20 with OpenZeppelin Ownable, deploys a new Escrow clone for every transaction. Each clone locks funds against specific buyer, seller, notary and agent addresses set at construction — those addresses are immutable for the lifetime of the deal.",
+          "Settlement is a single function call. Once the notary approves, the contract distributes principal to the seller, capped fees to notary and optional agent, and emits a Settled event. Before approval, only the buyer can trigger a reclaim — and only after the deadline has passed. No party, including GEMBA, has override rights.",
+          "Supporting documents live on IPFS. Parties upload identity, property or vehicle paperwork through the frontend; the system stores the hash on-chain and the content on IPFS, so anyone with the hash can verify they have the exact document that was agreed to."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "Real estate",
+            "desc": "Property purchases where buyer, seller and notary need a neutral, auditable settlement path without involving a bank escrow desk."
+          },
+          {
+            "title": "Vehicle and high-value asset sales",
+            "desc": "Cars, boats and other registered goods where buyer protection matters but traditional escrow is overkill."
+          },
+          {
+            "title": "Cross-border transactions",
+            "desc": "International deals that would otherwise need correspondent banking, moved onto a transparent smart contract instead."
+          },
+          {
+            "title": "Commercial agreements",
+            "desc": "Licenses, intellectual property transfers and other deals where a notary's role is about verification, not money movement."
+          }
+        ]
+      }
+    },
+    "gembawin": {
+      "tagline": "Time-locked bounty payouts with on-chain guarantees for organizers and winners.",
+      "cardDescription": "A bounty and rewards smart contract that locks prize pools in ETH, BNB, USDT or USDC, enforces a 30-day claim window, then returns any unclaimed funds to the organizer.",
+      "heroIntro": "GembaWin takes the trust out of running contests, hackathons and bug bounties. Organizers deposit prizes on-chain across technical and marketing categories, assign winners, and let the contract handle payouts when the deadline hits. Winners have 30 days to claim; anything unclaimed returns cleanly to the organizer.",
+      "problem": {
+        "title": "Bounty programs that rely on trust",
+        "body": "Contests, hackathons and bug bounties usually run on good faith — the organizer promises a prize, the winner delivers, and payment arrives days or weeks later (or not at all). For winners, that lag is frustrating; for organizers, unclaimed prizes are hard to recover without lawyers or paperwork. Both sides want the same thing — a guarantee that doesn't depend on either party showing up at the right time."
+      },
+      "solution": {
+        "title": "Prize pools on-chain, rules enforced by contract",
+        "body": "GembaWin locks a contest's entire prize pool in a smart contract before the contest opens — ETH, BNB, USDT or USDC — and enforces the payout rules automatically. Organizers assign winners across technical and marketing categories; winners claim within a fixed 30-day window and the contract pays out directly to their wallet. Anything still unclaimed after the window returns cleanly to the organizer, no dispute required."
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "A small contract doing one thing well — holding prize money honestly until the right moment and returning the remainder cleanly afterward.",
+        "items": [
+          {
+            "title": "Multi-asset prize pools",
+            "desc": "Prizes funded in native ETH and BNB or in ERC20 stablecoins USDT and USDC, using SafeERC20 for reliable transfers."
+          },
+          {
+            "title": "Category-based payouts",
+            "desc": "Organizers split awards across technical and marketing (or other custom) categories, with independent winner lists per category."
+          },
+          {
+            "title": "30-day claim window",
+            "desc": "Winners have exactly 30 days from assignment to claim. The deadline is on-chain — no opaque internal deadline decided by the organizer."
+          },
+          {
+            "title": "Automatic reclaim",
+            "desc": "After the window expires, the organizer can recover any unclaimed prize funds in a single transaction, no support ticket or intervention required."
+          },
+          {
+            "title": "ReentrancyGuard protected",
+            "desc": "OpenZeppelin ReentrancyGuard wraps all value transfers; claim and reclaim functions are isolated from cross-call attacks."
+          },
+          {
+            "title": "Testnet-tested",
+            "desc": "Deployed across Sepolia, BSC Testnet and Polygon Amoy with a clean Slither audit before a mainnet cut."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "GembaWin is a single, focused Solidity contract — the kind of codebase a security reviewer can read end to end in an afternoon. It tracks prize pools as a mapping of contest identifier to category to funded amount, and it tracks winners as a mapping of contest and category to a list of addresses with claim deadlines attached.",
+          "The organizer's flow is deposit, assign, wait. Funds deposit into the contract at contest creation; winner assignments lock payout obligations and start the 30-day timer; the contract pays or returns funds based solely on the timer and recorded assignments. There is no admin override, no pausable mechanism that changes outcomes after the fact.",
+          "Multi-chain deployment means organizers can run contests in the asset and network most appropriate for their community. The same contract compiles identically on Sepolia, BSC Testnet and Polygon Amoy during testing, and can promote to any of those mainnets without code changes."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "Hackathons",
+            "desc": "Event organizers lock prize money up front and commit to on-chain payouts, giving contestants a visible guarantee before they invest weekends of work."
+          },
+          {
+            "title": "Contests and giveaways",
+            "desc": "Marketing teams can run campaigns where prize delivery is provably automatic, reducing disputes and support load."
+          },
+          {
+            "title": "Bug bounty programs",
+            "desc": "Security programs pay researchers directly in USDC or native tokens, with a predictable on-chain payout path."
+          },
+          {
+            "title": "Community rewards",
+            "desc": "DAOs and online communities reward contributions with stablecoin or native-token prize pools that can't be quietly withdrawn later."
+          }
+        ]
+      }
+    },
+    "nftviewer": {
+      "tagline": "A multi-chain NFT gallery that reads the blockchain when indexers fall short.",
+      "cardDescription": "A full-stack viewer for wallets and contracts across Ethereum, Polygon, BSC and Sepolia. Moralis-backed with automatic RPC fallback, IPFS gateway resolution and support for interactive HTML NFTs.",
+      "heroIntro": "NFT Viewer shows what's in a wallet, a contract, or both at once — across four EVM chains. When Moralis is missing data for freshly minted contracts, the backend reads tokenURI directly from the contract and enriches metadata on the fly. A dedicated HTML proxy lets legacy animated NFTs render cleanly inside the gallery.",
+      "problem": {
+        "title": "Blockchain gaps where indexers meet reality",
+        "body": "Every NFT gallery is only as good as its data source. Indexers like Moralis work well for established collections but lag on freshly minted contracts, and IPFS gateways frequently time out or serve stale content. When a user wants to see what's actually in their wallet right now, a missing token or a broken image is the common failure mode."
+      },
+      "solution": {
+        "title": "A viewer that reads the chain when the indexer can't",
+        "body": "NFT Viewer queries Moralis first for speed, then falls back to direct RPC reads against the contract for anything the indexer missed. Metadata and images resolve through redundant IPFS gateways with automatic failover. Interactive HTML NFTs route through a dedicated proxy so on-chain HTML renders cleanly inside the gallery instead of breaking the page."
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "Four chains, two data paths and an HTML proxy — enough coverage that the viewer usually shows something even when the obvious path fails.",
+        "items": [
+          {
+            "title": "Four EVM chains",
+            "desc": "Ethereum mainnet, Sepolia testnet, Polygon and BNB Smart Chain — from one search box, in one gallery."
+          },
+          {
+            "title": "Wallet or contract view",
+            "desc": "Search by wallet address to see holdings, or by contract address to see a full collection, or combine both for filtered views."
+          },
+          {
+            "title": "RPC fallback",
+            "desc": "When Moralis lacks data, the backend reads tokenURI directly from the contract with ethers.js and enriches the metadata on the fly."
+          },
+          {
+            "title": "IPFS gateway rotation",
+            "desc": "Redundant gateway resolution handles slow or unavailable IPFS hosts without user-visible errors."
+          },
+          {
+            "title": "Interactive HTML proxy",
+            "desc": "On-chain and IPFS-hosted HTML NFTs render through a sandboxed proxy that strips dangerous references and serves them inline."
+          },
+          {
+            "title": "Live Moralis SDK",
+            "desc": "Moralis SDK v2 provides the fast path for popular collections, with the fallback path catching everything the indexer missed."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "Collectors",
+            "desc": "Check wallet holdings across four chains from one page without switching between block explorers or installing multiple wallet tools."
+          },
+          {
+            "title": "Ticket and membership holders",
+            "desc": "View NFT tickets, memberships and receipts issued by platforms like GembaTicket, GembaTools and partner projects."
+          },
+          {
+            "title": "Developers and project teams",
+            "desc": "Sanity-check newly deployed collections before indexers catch up, or verify that metadata and media render correctly in a real gallery."
+          },
+          {
+            "title": "Auditors and researchers",
+            "desc": "Inspect specific wallets or contracts quickly when investigating provenance or working on a review."
+          }
+        ]
+      }
+    },
+    "gembasniper": {
+      "tagline": "Snipe new tokens. Skip every honeypot.",
+      "cardDescription": "Non-custodial Uniswap V3/V4 sniper for Ethereum, Base and Sepolia. Every new pool runs through a 10-stage honeypot pipeline and a real $0.03 sellability micro-test before a real buy fires.",
+      "heroIntro": "Gemba Sniper Bot is GembaIT's professional on-chain sniper for Uniswap V3 and V4. It subscribes directly to factory events over WebSockets, so it detects new pools the moment they exist on-chain, runs each one through a 10-stage honeypot pipeline — including a real $0.03 round-trip on the live pool — and only buys when the token has already proven it can be sold. Positions are then managed with take-profit, stop-loss, timeout and partial-sell exits, plus a 30-minute auto-unstuck recovery loop. Fully non-custodial: the bot never holds your funds or your private keys.",
+      "problem": {
+        "title": "Most snipers buy the honeypot",
+        "body": "\"Buy the first token you see\" sniper bots happily snipe honeypots and lose on the very first sell. Worse, most managed bots take custody of user funds — you hand over your money and your keys and hope. New-token launches move in seconds, so traders are forced to choose between reacting too slowly by hand or trusting a black-box bot that can rug them just as easily as the token can."
+      },
+      "solution": {
+        "title": "Prove sellability before risking size",
+        "body": "Gemba runs static heuristics, dynamic probes, V4 hook analysis and transfer simulation, and then a real $0.03 buy followed by an immediate sell on the live pool. If the dust can't sell, the real buy never fires. Throughout, the bot is 100% non-custodial: the wallet is generated or imported by the user, the private key is AES-256 encrypted in the browser before it ever leaves the device, and every transaction settles back into the user's own wallet."
+      },
+      "whatWeAre": {
+        "title": "What Gemba Sniper Bot is",
+        "items": [
+          "A non-custodial SaaS sniper for newly-launched ERC-20 tokens on Uniswap V3 and V4.",
+          "A 10-stage deterministic honeypot pipeline that cannot be skipped — every stage runs in order and streams its verdict to the dashboard in real time.",
+          "A per-network engine: independent bot instances on Ethereum, Base and Sepolia, each with its own wallet, position book and WebSocket subscription.",
+          "An open-source pipeline you can read end-to-end before trusting it with capital."
+        ]
+      },
+      "whatWeAreNot": {
+        "title": "What Gemba Sniper Bot is not",
+        "items": [
+          "Not custodial — there is no custodial mode anywhere in the service, and there never will be.",
+          "Not a fund that holds your money or your keys — the server only ever sees AES-256 ciphertext.",
+          "Not a shared treasury or pooled capital — each user has their own wallet and their own position book.",
+          "Not a guarantee — sniping new tokens is high-risk; the pipeline reduces but does not eliminate risk, and we publish no win-rates or PnL figures."
+        ]
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "Sub-second detection, a 10-stage screen that ends in a real on-chain sellability test, and full position management — all visible live in the dashboard.",
+        "items": [
+          {
+            "title": "Sub-second detection",
+            "desc": "Direct WebSocket subscription to Uniswap V3 PoolCreated and V4 Initialize events — no public mempool dependency, no third-party indexer lag, automatic reconnect."
+          },
+          {
+            "title": "10-stage honeypot pipeline",
+            "desc": "Clanker-pattern guard (Base), fee-tier cap, liquidity floor, V4 hook analysis, delayed-tax and gas-trap probes, bytecode fingerprint, transfer simulation, micro-test and a real-size quote — each stage scored, any stage can veto."
+          },
+          {
+            "title": "$0.03 micro-test",
+            "desc": "A real round-trip on the live pool, not a simulation. The bot buys a dust amount through the same router the real buy will use and immediately attempts the matching sell — if any leg fails, the real trade aborts."
+          },
+          {
+            "title": "Position management",
+            "desc": "Take-profit, stop-loss, timeout and partial-sell exits driven by continuous on-chain price polling, with network-aware gas multipliers on exit."
+          },
+          {
+            "title": "Auto-unstuck recovery",
+            "desc": "A separate 30-minute timer closes positions stalled past their timeout, with a graceful sell → force-close → manual-resolve fallback path."
+          },
+          {
+            "title": "Analyzer, manual trade & watch-only",
+            "desc": "Paste any token to dry-run the full pipeline, run a confirmed manual buy through the same safety net, or let the engine screen without ever signing a buy."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "The product is a detect → screen → micro-test → buy → manage → recover pipeline. Detection subscribes over WebSockets to Uniswap V3 PoolCreated and V4 Initialize events on Ethereum, Base and Sepolia; each detection is decoded, screened with static bytecode and proxy/owner/admin checks, probed for delayed-tax and gas-trap behaviour, simulated buy-then-sell against forked state, and finally micro-tested with a real $0.03 round-trip before any real buy is signed.",
+          "Three long-running Node processes plus the dashboard make up the system. The engine handles detection, the pipeline and position management with no HTTP listener; the Express API (JWT auth via single-use email OTPs gated by Cloudflare Turnstile) serves the dashboard; the React dashboard streams every pipeline stage over server-sent events. The engine and API never call each other directly — their only contract is a bot_instances Postgres row carrying an is_running flag and a last_heartbeat.",
+          "The bot is non-custodial by construction. The wallet is generated or imported by the user, the private key is AES-256 encrypted in the browser before transmission and the server only ever stores ciphertext. Every transaction the bot signs is a transaction by the user's wallet, paid from the user's wallet, settling back into the user's wallet — users can export the encrypted key and withdraw at any time with no involvement from GembaIT."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "DeFi traders",
+            "desc": "Traders who already snipe new launches by hand and want a tireless, deterministic engine doing it at machine speed — with a honeypot screen they can't replicate manually."
+          },
+          {
+            "title": "Crypto-native developers",
+            "desc": "Developers who want a transparent, open-source sniper they can read end-to-end and run against a free Sepolia trial before trusting it with mainnet capital."
+          },
+          {
+            "title": "Researchers & red-teamers",
+            "desc": "Honeypot-defense researchers who use the watch-only mode and the Foundry test-hook-sepolia rig to study how the pipeline reacts to controlled malicious hooks."
+          },
+          {
+            "title": "Multi-network operators",
+            "desc": "Operators running independent instances on Ethereum and Base in parallel, each with its own wallet, analytics and start/stop controls, billed per network with no auto-renew."
+          }
+        ]
+      },
+      "security": {
+        "title": "Security & custody",
+        "body": "Gemba Sniper Bot is 100% non-custodial. It does not hold user funds, it does not hold user private keys, and all funds at every step remain the property of the user in a wallet the user controls. There is no custodial mode in the service, and there never will be.",
+        "items": [
+          {
+            "label": "Non-custodial by design",
+            "value": "GembaIT never takes title to user assets, never pools capital and is technically and legally incapable of holding user funds."
+          },
+          {
+            "label": "Client-side key encryption",
+            "value": "The bot wallet is generated or imported by the user; the private key is AES-256 encrypted in the browser before transmission, and the server only ever stores ciphertext."
+          },
+          {
+            "label": "Sellability micro-test",
+            "value": "A real $0.03 buy-then-sell on the live pool is the ultimate proof a token can be exited; if the dust can't sell, the real buy never fires."
+          },
+          {
+            "label": "Open source & red-teamed",
+            "value": "The pipeline is open source on GitHub and validated in-house against controlled honeypot hooks in a separate Foundry rig; no third-party audit firm is currently named publicly."
+          },
+          {
+            "label": "Withdraw any time",
+            "value": "Export the encrypted key and import it into any standards-compliant wallet to move funds — no withdrawal queue, no approval step, no GembaIT involvement."
+          }
+        ]
+      }
+    },
+    "gembablockchain": {
+      "tagline": "Bulgaria's first blockchain — a public, permissionless Proof-of-Stake L1.",
+      "cardDescription": "A sovereign Cosmos EVM chain with the native coin GMB: fixed 100M supply, 0% inflation, ~instant finality and full EVM compatibility. Built for public institutions and organizations to deliver real services — owned and run by its participants.",
+      "heroIntro": "GembaBlockchain is a fully transparent, decentralized, permissionless Proof-of-Stake Layer 1 built on Cosmos SDK + Cosmos EVM and CometBFT. Its native coin, Gemba (GMB), is a utility coin — staking, gas and access — not a speculative asset. Anyone with enough stake can validate; anyone can hold and send GMB. The founder holds no special power: reserves never vote and the founder never validates with privilege.",
+      "problem": {
+        "title": "Public infrastructure shouldn't depend on one operator",
+        "body": "Institutions that want to put services on-chain usually face a choice between permissioned chains run by a single vendor — who can decide who participates — and public chains whose economics are driven by speculation and unpredictable fees. Neither is a neutral, durable foundation for public-interest services. Validator sets are capped, governance concentrates, and the token's value detaches from its actual use."
+      },
+      "solution": {
+        "title": "A neutral chain owned by its participants",
+        "body": "GembaBlockchain uses CometBFT BFT Proof-of-Stake for permissionless entry into a large active validator set, EVM compatibility for the entire Solidity/MetaMask ecosystem, and a fixed pre-minted supply so there is zero inflation. Validator rewards come from a pre-minted reserve and real transaction fees, never from new issuance. The result is a sovereign chain whose security budget is tied to adoption, not to printing money."
+      },
+      "whatWeAre": {
+        "title": "What GembaBlockchain is",
+        "items": [
+          "A permissionless PoS Layer 1 — bond GMB above the threshold and you validate; no KYC, no whitelist, no privileged validators.",
+          "Fully EVM-compatible — Solidity, 0x addresses, MetaMask, Foundry, ethers/viem and standard JSON-RPC all work out of the box.",
+          "Fixed-supply and zero-inflation — 100,000,000 GMB minted once at genesis, never again.",
+          "A utility chain for institutions and organizations to deliver services — cheaper access, workplace access control, tickets and perks."
+        ]
+      },
+      "whatWeAreNot": {
+        "title": "What GembaBlockchain is not",
+        "items": [
+          "Not built for speculation — the project seeds no liquidity, runs no exchange or DEX, and makes no public token sale.",
+          "Not operator-controlled — no central party can decide who participates or change the rules unilaterally.",
+          "Not inflationary — there is no minting after genesis and no dynamic-issuance lever.",
+          "Not a closed system — it is a public, sovereign chain anyone can build on and validate."
+        ]
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "Everything a public-interest L1 needs: permissionless validation, EVM tooling, instant finality and a fixed, honest supply.",
+        "items": [
+          {
+            "title": "Permissionless validation",
+            "desc": "Stake-only entry into a large active set (CometBFT). Power is bought with locked GMB, so no one can flood the validator set cheaply."
+          },
+          {
+            "title": "Full EVM compatibility",
+            "desc": "Deploy Solidity contracts, connect MetaMask and use Foundry/Hardhat against the chain's JSON-RPC — chainId 821207."
+          },
+          {
+            "title": "Zero inflation",
+            "desc": "Fixed 100M GMB; validator rewards stream from a pre-minted reserve and fees, never from new issuance."
+          },
+          {
+            "title": "Instant finality",
+            "desc": "CometBFT BFT consensus gives fast, final blocks with no reorgs."
+          },
+          {
+            "title": "Self-hosted explorer",
+            "desc": "GembaScan (Blockscout) provides an Etherscan-compatible API, contract verification and full transaction history."
+          },
+          {
+            "title": "On-chain governance",
+            "desc": "Chain parameters via the Cosmos gov module; treasuries via a Solidity Governor + Timelock, with reserves excluded from voting."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "GembaBlockchain is Cosmos EVM (an off-the-shelf, production-used permissionless PoS + EVM stack) plus a thin Gemba layer: two small Go modules — a zero-inflation validator-reward streamer that pays from a pre-minted reserve, and a fee-split that routes part of every fee back into a public reserve — together with the Solidity treasury, governance and application contracts.",
+          "Consensus is CometBFT BFT Proof-of-Stake: validators bond GMB, produce blocks with instant finality, and are slashed for objectively-provable faults (double-signing, downtime). The EVM execution layer makes the chain a drop-in target for the entire Ethereum toolchain, while the native coin and staking live in Cosmos modules.",
+          "Reserves (public/municipal, foundation, DAO, contingency, validator) are held in non-voting accounts and released only through governance + timelock — there is no admin key that can drain them and no privileged validator that outranks the rest."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "Public institutions",
+            "desc": "Municipalities and agencies delivering citizen services on a neutral chain they help run — under the same rules as everyone else."
+          },
+          {
+            "title": "Organizations & enterprises",
+            "desc": "Companies integrating access control, tickets, perks and payments on a low-cost, EVM-compatible chain."
+          },
+          {
+            "title": "Validators",
+            "desc": "Anyone with enough GMB to bond can join the active set permissionlessly and earn from fees and the reserve."
+          },
+          {
+            "title": "Developers",
+            "desc": "Web3 builders deploying Solidity dApps with familiar tooling (MetaMask, Foundry, ethers) against a sovereign chain."
+          }
+        ]
+      },
+      "security": {
+        "title": "Security & decentralization",
+        "body": "Decentralization is the goal the design binds to mechanisms, not promises: permissionless entry from block zero, no lever to re-close it, and an economic model where attacking the chain costs more than it secures.",
+        "items": [
+          {
+            "label": "BFT Proof-of-Stake",
+            "value": "CometBFT needs >1/3 of bonded stake to halt and ≥2/3 to forge — and that stake is slashed. The target is cost-to-attack ≥ 3× value secured."
+          },
+          {
+            "label": "Fixed supply",
+            "value": "100M GMB minted once at genesis; 0% inflation. The mint module is disabled."
+          },
+          {
+            "label": "No privileged power",
+            "value": "Reserves never vote, the founder never validates with privilege, and funds leave reserves only via governance + timelock."
+          },
+          {
+            "label": "Pre-v1 upstream",
+            "value": "Cosmos EVM is pinned to a known-good version; custom modules are isolated, and a public launch waits on the upstream audit and our own review."
+          }
+        ]
+      }
+    },
+    "gembapass": {
+      "tagline": "Workplace access passes for companies — with the blockchain made invisible.",
+      "cardDescription": "A subscription SaaS that issues soulbound access-pass NFTs on GembaBlockchain. Employees get a normal account; the backend custodies wallets and signs invisibly. Fire someone and their pass force-burns in one click. No wallets for staff, no PII on-chain.",
+      "heroIntro": "GembaPass is the first dApp built on GembaBlockchain: a multi-tenant access-control SaaS where a company subscribes, adds employees and issues access passes in a few clicks. Each pass is an anonymous, soulbound capability NFT — but nobody using the system ever sees a wallet, a seed phrase or gas. The contract is deliberately minimal; zones, hours, rights and logs all live off-chain.",
+      "problem": {
+        "title": "Blockchain access control that no one can actually use",
+        "body": "On-chain credentials are tamper-evident and auditable, but real workplaces can't ask every employee to install a wallet, guard a seed phrase and pay gas. Meanwhile, putting identities and movement logs on an immutable ledger collides head-on with GDPR. So most 'blockchain access' projects either stay demos or quietly become databases with a logo."
+      },
+      "solution": {
+        "title": "Custodial by design, invisible by default",
+        "body": "GembaPass makes the chain invisible: the backend silently creates and encrypts a wallet per employee and signs every on-chain action through the platform issuer. Employees just get an email + password. Because GMB is not a financial instrument and no funds are ever held, custody carries no money-transmitter or licensing burden. Passes are soulbound; issuing is a mint, firing is an issuer-only force-burn — and PII never touches the chain."
+      },
+      "whatWeAre": {
+        "title": "What GembaPass is",
+        "items": [
+          "A multi-tenant SaaS that issues soulbound access-pass NFTs (one per employee) on GembaBlockchain.",
+          "A custodial system that makes the blockchain invisible — staff use a normal email + password, never a wallet.",
+          "A dumb on-chain contract plus a smart off-chain backend: zones, hours, rights, PINs and logs live in PostgreSQL, never on-chain.",
+          "Both a cloud multi-tenant product and an on-prem single-tenant deployment for organizations that want autonomy."
+        ]
+      },
+      "whatWeAreNot": {
+        "title": "What GembaPass is not",
+        "items": [
+          "Not a wallet your employees have to manage — they never see keys, seeds or gas.",
+          "Not a place where personal data goes on-chain — identity, movement logs and PINs stay off-chain and GDPR-erasable.",
+          "Not a transferable token — passes are soulbound and can only be minted or force-burned by the issuer.",
+          "Not a financial product — no funds are held, so there is no exchange, custody-license or AML surface."
+        ]
+      },
+      "features": {
+        "title": "Key features",
+        "intro": "Everything an organization needs to hand out and revoke physical access — without anyone realizing they're using a blockchain.",
+        "items": [
+          {
+            "title": "One-click issue & revoke",
+            "desc": "Granting a pass mints a soulbound NFT; firing someone force-burns it (issuer-only, no approval) so every door closes at once."
+          },
+          {
+            "title": "Invisible custodial wallets",
+            "desc": "The backend creates and AES-256-GCM-encrypts a wallet per employee and signs on their behalf; the access path never even decrypts it."
+          },
+          {
+            "title": "Offline-first door scanner",
+            "desc": "A phone-based PWA reads the pass QR, verifies on-chain validity plus zone rights, hours and an optional PIN, and toggles entry/exit."
+          },
+          {
+            "title": "Zones, hours & PINs",
+            "desc": "Define zones with access windows and mark sensitive ones PIN-protected — all enforced by the backend, not the contract."
+          },
+          {
+            "title": "Operator onboarding",
+            "desc": "An operator panel onboards partner companies with an optional free grace period; companies can also self-register."
+          },
+          {
+            "title": "Subscription billing",
+            "desc": "Monthly billing through GembaPay; lapsed subscriptions hit a grace period before access stops — never a silent burn."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "GembaPass pairs a deliberately minimal ERC-1155 contract — GembaAccessPass, soulbound, issuer-only mint and force-burn, one token id per person — with a Node.js + Express + Prisma backend on PostgreSQL and Redis. The contract answers only 'is this credential alive?'; everything human (identity, zones, hours, rights, logs, PINs) lives off-chain, behind row-level tenant isolation.",
+          "Issuing a pass generates a branded QR, pins the image and metadata to IPFS, and mints the NFT to the employee's custodial wallet with that metadata as its token URI. At a door, the scanner checks the on-chain isActive state together with off-chain zone rights, access hours, subscription status and an optional PIN, then logs the entry or exit.",
+          "Five React frontends (landing, company dashboard, operator dashboard, employee app and scanner PWA) sit behind an Apache reverse proxy with Cloudflare TLS. The platform issuer wallet — the only privileged key — signs all mints and burns; employee keys are never needed for the access flow."
+        ]
+      },
+      "useCases": {
+        "title": "Who uses it",
+        "items": [
+          {
+            "title": "Companies & SMEs",
+            "desc": "Issue, manage and revoke employee access passes from a single dashboard, with per-zone rights and access hours."
+          },
+          {
+            "title": "Public institutions",
+            "desc": "Workplace and facility access on a public, auditable chain, with personal data kept off-chain for GDPR compliance."
+          },
+          {
+            "title": "Multi-site organizations",
+            "desc": "Operators onboard many companies (cloud multi-tenant) or deploy a dedicated single-tenant instance on-prem."
+          },
+          {
+            "title": "Employees",
+            "desc": "A simple app shows the access pass, lets them set a PIN, and — for the technical — export the wallet to self-custody."
+          }
+        ]
+      },
+      "security": {
+        "title": "Security & privacy",
+        "body": "GembaPass is secure by construction: the on-chain layer is anonymous and minimal, the privileged surface is a single issuer key, and all personal data stays off-chain where it can be deleted.",
+        "items": [
+          {
+            "label": "No PII on-chain",
+            "value": "The chain holds only an address-to-id capability. Identity, movement logs and PINs live in PostgreSQL with per-company row-level security."
+          },
+          {
+            "label": "Soulbound passes",
+            "value": "Non-transferable by construction — the only way out of a wallet is an issuer force-burn, so passes can't be shared or sold as tokens."
+          },
+          {
+            "label": "Encrypted custody",
+            "value": "Employee private keys are AES-256-GCM encrypted at rest and never decrypted on the access path; the issuer key is the only privileged secret."
+          },
+          {
+            "label": "GDPR erasure",
+            "value": "Deleting an employee revokes (burns) the pass on-chain and deletes their identity and logs off-chain."
+          },
+          {
+            "label": "Verified contract",
+            "value": "GembaAccessPass follows the GembaBlockchain security standards and is verified on GembaScan."
+          }
+        ]
+      }
+    }
+  },
+  "productDetail": {
+    "viewGithub": "View on GitHub",
+    "metrics": "Metrics",
+    "technology": "Technology",
+    "techStack": "Tech stack",
+    "networks": "Networks",
+    "ready": "ready",
+    "contracts": "Deployed contracts",
+    "partners": "Partners & integrations",
+    "audits": "Audits & certifications",
+    "caseStudy": "Case study",
+    "caseStudySoon": "Full case study coming soon.",
+    "related": "Related products",
+    "cta": {
+      "title": "Want something similar built for your business?",
+      "description": "We design, deploy and support production-grade systems like the ones above. Let's talk about yours.",
+      "primary": "Book a technical call",
+      "secondary": "Get in touch"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "message": "The page you're looking for doesn't exist or has moved.",
+    "cta": "Back to home"
+  },
+  "about": {
+    "page_title": "About us",
+    "title": "Not a typical software house",
+    "p1": "GEMBA IT is the technology division of GEMBA EOOD — a company built on the rare foundation of combined industrial and digital expertise.",
+    "p2": "Our roots are in both server rooms and reactor vessels. This dual perspective shapes everything we build — from the reliability standards we set (because in a refinery, downtime isn't an option) to the practical, no-nonsense approach we take to every project.",
+    "p3": "Founded in 2026, GEMBA IT brings together over 20 years of self-taught IT experience spanning DevOps, full-stack development, blockchain technology, and payment system architecture.",
+    "p4": "We are expanding our fintech capabilities with new payment processor partnerships and banking-as-a-service integrations, enabling our clients to access multi-currency accounts and digital and physical card solutions.",
+    "p5": "Our infrastructure runs on dedicated Hetzner servers in Germany with failover and database replication — because we practice what we preach about uptime and reliability.",
+    "stats": {
+      "years_it": "Years in IT",
+      "networks": "Blockchain networks",
+      "service_areas": "Service areas",
+      "uptime": "Uptime target"
+    }
+  },
+  "tech": {
+    "title": "Technology stack"
+  },
+  "blog": {
+    "page_title": "Insights & updates",
+    "viewAll": "View all posts"
+  },
+  "privacy": {
+    "page_title": "Privacy Policy",
+    "lastUpdated": "Last updated: April 2026",
+    "intro": "This Privacy Policy explains how GEMBA EOOD (\"GEMBA IT\", \"we\", \"us\") collects, uses and protects personal data when you visit gembait.com or engage our services. We operate from Varna, Bulgaria, and comply with the EU General Data Protection Regulation (GDPR).",
+    "sections": [
+      {
+        "heading": "Who we are",
+        "body": "GEMBA EOOD is a Bulgarian company (EIK 208656371) registered in Varna, Bulgaria. GEMBA IT is our technology division. For any privacy-related request, contact us at contacts@gembait.com."
+      },
+      {
+        "heading": "What data we collect",
+        "body": "We only collect what we need to answer you or deliver the service you asked for. That includes: contact details you submit through our forms (name, email, subject, message); data required to fulfil a contract if you become a client; standard server logs for security and abuse prevention (IP address, user agent, timestamps); and Cloudflare Turnstile challenge tokens used to block automated abuse. We do not run third-party advertising cookies or behavioural trackers."
+      },
+      {
+        "heading": "How we use your data",
+        "body": "We use the data to respond to your inquiries, deliver the services you contracted, maintain the security and integrity of our infrastructure, and meet legal and accounting obligations. The legal bases under GDPR are: your consent (when you submit a form), performance of a contract (for active engagements), legitimate interests (security and abuse prevention), and legal obligations (tax and accounting records)."
+      },
+      {
+        "heading": "Data sharing",
+        "body": "We do not sell personal data. We share data only with processors we need to operate the service: Cloudflare (DNS, Turnstile, edge protection), Hetzner (hosting in Germany), and email providers for transactional delivery. For client engagements, we may share data with payment processors (Stripe, PayPal) or blockchain networks strictly as required to execute the transaction you initiated."
+      },
+      {
+        "heading": "Retention",
+        "body": "Contact-form messages are kept for up to 24 months unless a contractual relationship extends that period. Server logs are kept for up to 90 days. Accounting records are kept for the period required by Bulgarian law. Once a retention period ends, we delete or anonymise the data."
+      },
+      {
+        "heading": "Your rights (GDPR)",
+        "body": "You have the right to access, correct, erase, restrict or port your personal data, and the right to object to processing based on legitimate interests. You can withdraw consent at any time. To exercise any of these rights, email contacts@gembait.com and we will respond within 30 days. You also have the right to lodge a complaint with the Bulgarian Commission for Personal Data Protection (CPDP)."
+      },
+      {
+        "heading": "International transfers",
+        "body": "Our infrastructure is hosted in the European Union (Hetzner, Germany). Some processors (e.g. Cloudflare) may process data outside the EU under standard contractual clauses approved by the European Commission. We only use processors that provide GDPR-equivalent guarantees."
+      },
+      {
+        "heading": "Cookies",
+        "body": "gembait.com uses only functional cookies required to remember your language preference and to run Cloudflare Turnstile. We do not use analytics or advertising cookies. Your browser stores the selected interface language locally; no identifier is transmitted back to us."
+      },
+      {
+        "heading": "Contact",
+        "body": "For any privacy question or request, email contacts@gembait.com. We aim to reply within a few business days."
+      }
+    ]
+  },
+  "terms": {
+    "page_title": "Terms of Service",
+    "lastUpdated": "Last updated: April 2026",
+    "intro": "These Terms of Service (\"Terms\") govern your use of gembait.com and any services delivered by GEMBA EOOD (\"GEMBA IT\", \"we\", \"us\"). By using the site or engaging our services, you agree to these Terms.",
+    "sections": [
+      {
+        "heading": "Acceptance of terms",
+        "body": "By accessing gembait.com or ordering any service, you confirm that you have read, understood and agree to be bound by these Terms. If you do not agree, please stop using the site."
+      },
+      {
+        "heading": "About GEMBA IT",
+        "body": "GEMBA IT is the technology division of GEMBA EOOD, a company registered in Varna, Bulgaria (EIK 208656371). We deliver software engineering, DevOps, payment integration, Web3, physical security and ongoing support services."
+      },
+      {
+        "heading": "Services",
+        "body": "Scope, deliverables, timelines and pricing for any engagement are defined in a separate written agreement or offer. This website is a showcase of our work and a way to contact us; it does not, on its own, create a service contract. All public-facing products listed on gembait.com are subject to their own terms on the respective product websites."
+      },
+      {
+        "heading": "Intellectual property",
+        "body": "All content on gembait.com — text, images, logos, code samples, illustrations — is owned by GEMBA EOOD or licensed to us. You may read and share links to our pages, but you may not reproduce, republish or adapt the content without written permission. Code and materials we produce under a client engagement are licensed according to the terms of that engagement."
+      },
+      {
+        "heading": "Acceptable use",
+        "body": "You agree not to use gembait.com or our services to: violate any applicable law; infringe intellectual property or privacy rights; attack, probe or disrupt our infrastructure or that of our clients; submit false or misleading information; or upload malicious code. We reserve the right to refuse or terminate access for misuse."
+      },
+      {
+        "heading": "Disclaimer",
+        "body": "The website and its content are provided \"as is\". We do our best to keep information accurate, but we do not warrant that every detail is current or fit for a particular purpose. Services we deliver under a contract carry the warranties set out in that contract — not on this page."
+      },
+      {
+        "heading": "Limitation of liability",
+        "body": "To the maximum extent permitted by Bulgarian law, GEMBA EOOD is not liable for indirect or consequential damages arising from your use of gembait.com. Our liability for any service engagement is limited to the terms of the written agreement governing it."
+      },
+      {
+        "heading": "Changes to these terms",
+        "body": "We may update these Terms from time to time to reflect changes in our services or legal obligations. When we do, we update the \"Last updated\" date at the top. Significant changes will be highlighted on the site for a reasonable period."
+      },
+      {
+        "heading": "Governing law",
+        "body": "These Terms are governed by the laws of the Republic of Bulgaria. Any dispute that cannot be resolved informally will be submitted to the competent Bulgarian courts in Varna, subject to applicable consumer-protection rules."
+      },
+      {
+        "heading": "Contact",
+        "body": "Questions about these Terms: contacts@gembait.com."
+      }
+    ]
+  },
+  "team": {
+    "page_title": "Team",
+    "leadership": "Leadership",
+    "name": "Slavcho Ivanov",
+    "role": "Managing Director & Founder",
+    "bio": "Over 10 years of experience in catalyst changeout operations and reactor servicing at major European refineries including Shell, ExxonMobil, BP, Neste, and ORLEN. Simultaneously, 20+ years of self-taught expertise in IT infrastructure, DevOps, full-stack development, and blockchain technology.",
+    "tagline": "The rare professional who can service a reactor on Monday and deploy a payment gateway on Tuesday."
+  },
+  "careers": {
+    "page_title": "Careers",
+    "intro_title": "Join GEMBA IT",
+    "intro": "We're a small team doing big things. Every person here has direct impact on real products used by real businesses. If you want to work somewhere your contributions matter from day one — let's talk.",
+    "open_positions": "Open positions",
+    "marketing_title": "Marketing Specialist",
+    "marketing_desc": "We're looking for a Marketing Specialist to drive the growth of our IT division. You'll be responsible for building our brand presence, creating content strategies, managing digital campaigns, and helping us reach clients across Europe and beyond.",
+    "we_need": "What we need",
+    "needs": [
+      "Experience in B2B marketing, preferably in tech",
+      "Strong content creation skills",
+      "Understanding of SEO, social media, and digital advertising",
+      "Ability to work independently",
+      "English fluency required"
+    ],
+    "we_offer": "What we offer",
+    "offers": [
+      "Remote-friendly work",
+      "Direct collaboration with the founder",
+      "Shape marketing strategy from day one",
+      "Competitive compensation"
+    ],
+    "no_role_title": "Don't see your role?",
+    "no_role": "We're always looking for talented people. Send us your CV and tell us what you can bring to GEMBA IT.",
+    "send_cv": "Send your CV",
+    "apply": "Apply now",
+    "cvLabel": "CV / Resume (optional)",
+    "cvPrompt": "Choose file or drag here",
+    "cvAccept": "PDF, DOC, DOCX, TXT, ODT up to 8MB",
+    "fileTooLarge": "File is too large (max 8MB)",
+    "fileTypeInvalid": "File type not accepted",
+    "fileAttached": "Attached:"
+  },
+  "contact": {
+    "page_title": "Contact",
+    "title": "Let's build something",
+    "subtitle": "MVP, enterprise system, or ongoing support — we're ready.",
+    "email_label": "Email",
+    "email": "contacts@gembait.com",
+    "location_label": "Location",
+    "location": "Varna, Bulgaria",
+    "operating": "Serving clients across Europe and beyond",
+    "form": {
+      "name": "Your name",
+      "email": "Your email",
+      "subject": "Subject",
+      "message": "Your message",
+      "send": "Send message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Something went wrong. Please try again."
+    }
+  },
+  "footer": {
+    "company": "GEMBA IT",
+    "parent": "Technology division of GEMBA EOOD",
+    "location": "Varna, Bulgaria",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "rights": "All rights reserved"
+  }
+}
