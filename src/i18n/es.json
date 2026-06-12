@@ -1273,9 +1273,9 @@
       }
     },
     "gembapass": {
-      "tagline": "Pases de acceso al lugar de trabajo — con el blockchain hecho invisible.",
-      "cardDescription": "Un SaaS por suscripción que emite pases de acceso NFT soulbound en GembaBlockchain. El empleado obtiene una cuenta normal; el backend custodia las carteras y firma de forma invisible. Despide a alguien y su pase se quema en un clic. Sin carteras para el personal, sin datos personales on-chain.",
-      "heroIntro": "GembaPass es la primera dApp construida sobre GembaBlockchain: un SaaS de control de acceso multi-tenant donde una empresa se suscribe, añade empleados y emite pases de acceso en unos clics. Cada pase es un NFT de capacidad anónimo y soulbound — pero nadie que use el sistema ve jamás una cartera, una frase semilla o gas. El contrato es deliberadamente mínimo; zonas, horarios, permisos y registros viven off-chain.",
+      "tagline": "Pases de acceso y tarjetas de socio — para trabajo, clubes y gimnasios, con el blockchain hecho invisible.",
+      "cardDescription": "Un SaaS por suscripción que emite pases de acceso NFT soulbound en GembaBlockchain — para acceso al trabajo o tarjetas de socio con periodo (clubes, gimnasios, pases de temporada). El usuario obtiene una cuenta normal; el backend custodia las carteras y firma de forma invisible. Elimina a alguien, o deja que caduque una membresía, y su pase se quema en un clic. Sin carteras para los usuarios, sin datos personales on-chain.",
+      "heroIntro": "GembaPass es la primera dApp construida sobre GembaBlockchain: un SaaS de control de acceso multi-tenant donde una organización se suscribe, añade usuarios y emite pases en unos clics — para acceso al trabajo o tarjetas de socio con periodo (clubes, gimnasios, pases de temporada). Cada pase es un NFT de capacidad anónimo y soulbound — pero nadie que use el sistema ve jamás una cartera, una frase semilla o gas. El contrato es deliberadamente mínimo; zonas, horarios, permisos, validez y registros viven off-chain.",
       "problem": {
         "title": "Control de acceso blockchain que nadie puede usar de verdad",
         "body": "Las credenciales on-chain son a prueba de manipulación y auditables, pero los lugares de trabajo reales no pueden pedir a cada empleado que instale una cartera, guarde una frase semilla y pague gas. Y poner identidades y registros de movimiento en un libro inmutable choca de frente con el RGPD. Por eso la mayoría de proyectos de 'acceso blockchain' se quedan en demos o se convierten en silencio en bases de datos con un logo."

@@ -1273,9 +1273,9 @@
       }
     },
     "gembapass": {
-      "tagline": "Workplace access passes for companies — with the blockchain made invisible.",
-      "cardDescription": "A subscription SaaS that issues soulbound access-pass NFTs on GembaBlockchain. Employees get a normal account; the backend custodies wallets and signs invisibly. Fire someone and their pass force-burns in one click. No wallets for staff, no PII on-chain.",
-      "heroIntro": "GembaPass is the first dApp built on GembaBlockchain: a multi-tenant access-control SaaS where a company subscribes, adds employees and issues access passes in a few clicks. Each pass is an anonymous, soulbound capability NFT — but nobody using the system ever sees a wallet, a seed phrase or gas. The contract is deliberately minimal; zones, hours, rights and logs all live off-chain.",
+      "tagline": "Access passes & membership cards — for workplaces, clubs and gyms, with the blockchain made invisible.",
+      "cardDescription": "A subscription SaaS that issues soulbound access-pass NFTs on GembaBlockchain — for workplace access or time-bound membership cards (clubs, gyms, season passes). Members get a normal account; the backend custodies wallets and signs invisibly. Remove someone, or let a membership expire, and their pass dies in one click. No wallets for users, no PII on-chain.",
+      "heroIntro": "GembaPass is the first dApp built on GembaBlockchain: a multi-tenant access-control SaaS where an organisation subscribes, adds users and issues passes in a few clicks — for workplace access or time-bound membership cards (clubs, gyms, season passes). Each pass is an anonymous, soulbound capability NFT — but nobody using the system ever sees a wallet, a seed phrase or gas. The contract is deliberately minimal; zones, hours, rights, validity and logs all live off-chain.",
       "problem": {
         "title": "Blockchain access control that no one can actually use",
         "body": "On-chain credentials are tamper-evident and auditable, but real workplaces can't ask every employee to install a wallet, guard a seed phrase and pay gas. Meanwhile, putting identities and movement logs on an immutable ledger collides head-on with GDPR. So most 'blockchain access' projects either stay demos or quietly become databases with a logo."
