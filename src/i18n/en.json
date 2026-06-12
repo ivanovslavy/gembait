@@ -946,7 +946,7 @@
           },
           {
             "title": "Testnet-tested",
-            "desc": "Deployed across Sepolia, BSC Testnet and Polygon Amoy with a clean Slither audit before a mainnet cut."
+            "desc": "Deployed across GembaBlockchain Testnet with a clean Slither audit before a mainnet cut."
           }
         ]
       },
@@ -955,7 +955,7 @@
         "paragraphs": [
           "GembaWin is a single, focused Solidity contract — the kind of codebase a security reviewer can read end to end in an afternoon. It tracks prize pools as a mapping of contest identifier to category to funded amount, and it tracks winners as a mapping of contest and category to a list of addresses with claim deadlines attached.",
           "The organizer's flow is deposit, assign, wait. Funds deposit into the contract at contest creation; winner assignments lock payout obligations and start the 30-day timer; the contract pays or returns funds based solely on the timer and recorded assignments. There is no admin override, no pausable mechanism that changes outcomes after the fact.",
-          "Multi-chain deployment means organizers can run contests in the asset and network most appropriate for their community. The same contract compiles identically on Sepolia, BSC Testnet and Polygon Amoy during testing, and can promote to any of those mainnets without code changes."
+          "Multi-chain deployment means organizers can run contests in the asset and network most appropriate for their community. The same contract compiles identically on GembaBlockchain Testnet during testing, and can promote to the GembaBlockchain mainnet without code changes."
         ]
       },
       "useCases": {

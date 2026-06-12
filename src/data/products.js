@@ -253,7 +253,8 @@ export const products = [
     slug: 'gembaescrow',
     name: 'Gemba Escrow',
     status: 'testnet',
-    statusNote: null,
+    statusNote: 'GembaBlockchain Testnet',
+    statusGreen: true,
     featured: false,
     order: 7,
     category: 'web3',
@@ -264,12 +265,12 @@ export const products = [
     githubNote: null,
     tech: ['Solidity 0.8.20', 'OpenZeppelin', 'Hardhat', 'Clone factory', 'React 18', 'ethers.js v6', 'IPFS'],
     networks: [
-      { name: 'Ethereum Sepolia', chainId: 11155111, ready: ['Ethereum', 'Polygon', 'BSC'] }
+      { name: 'GembaBlockchain Testnet', chainId: 821207, ready: ['GembaBlockchain Mainnet'] }
     ],
     contracts: [],
     metrics: [
       { value: '5', label: 'Contracts deployed' },
-      { value: '121 ETH', label: 'Total settled' }
+      { value: '121 GMB', label: 'Total settled' }
     ],
     tags: ['Escrow', 'Real estate', 'Multi-party', 'IPFS', 'Clone factory'],
     partners: [
@@ -288,24 +289,22 @@ export const products = [
     slug: 'gembawin',
     name: 'GembaWin',
     status: 'testnet',
-    statusNote: null,
+    statusNote: 'GembaBlockchain Testnet',
     featured: false,
     order: 8,
     category: 'web3',
     audience: ['contest organizers', 'hackathon hosts', 'bounty programs'],
-    appUrl: null,
-    appLabel: 'Request demo',
-    githubUrl: 'https://github.com/ivanovslavy/brscpp-rewards',
-    githubNote: 'Repository historically named brscpp-rewards',
+    appUrl: 'https://win.gembait.com',
+    appLabel: 'Visit GembaWin',
+    githubUrl: 'https://github.com/ivanovslavy/gembawin',
+    githubNote: null,
     tech: ['Solidity', 'Hardhat', 'OpenZeppelin', 'ReentrancyGuard', 'SafeERC20'],
     networks: [
-      { name: 'Ethereum Sepolia', chainId: 11155111, ready: ['Ethereum', 'BSC', 'Polygon'] },
-      { name: 'BSC Testnet', chainId: 97, ready: [] },
-      { name: 'Polygon Amoy', chainId: 80002, ready: [] }
+      { name: 'GembaBlockchain Testnet', chainId: 821207, ready: ['Ethereum', 'BSC', 'Polygon'] }
     ],
     contracts: [],
     metrics: [],
-    tags: ['Bounty', 'Contests', 'ETH', 'BNB', 'USDT', 'USDC', 'Time-locked'],
+    tags: ['Bounty', 'Contests', 'GMB', 'USDT', 'USDC', 'Time-locked'],
     partners: [
       { name: 'OpenZeppelin', type: 'security' },
       { name: 'SafeERC20', type: 'standard' }
