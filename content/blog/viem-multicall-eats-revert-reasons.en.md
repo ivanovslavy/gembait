@@ -1,25 +1,3 @@
----
-title: "Why viem Multicall Eats Revert Reasons"
-slug: "viem-multicall-eats-revert-reasons"
-date: "2026-05-25"
-lastUpdated: "2026-05-25"
-author: "GEMBA IT team"
-cluster: "web3-engineering"
-tags:
-  - viem
-  - multicall
-  - error-handling
-  - ethereum
-  - typescript
-  - wagmi
-readingTime: 9
-excerpt: "Enable batch.multicall in viem and contract reverts stop telling you why. The revert bytes are still there on the error chain — just never decoded. Here is the trap and the three ways out."
-hero: "/images/blog/viem-multicall-eats-revert-reasons/hero.webp"
-heroRetina: "/images/blog/viem-multicall-eats-revert-reasons/hero@2x.webp"
-midImage: "/images/blog/viem-multicall-eats-revert-reasons/mid.webp"
-midImageRetina: "/images/blog/viem-multicall-eats-revert-reasons/mid@2x.webp"
----
-
 A user opens MetaMask, clicks "claim NFT", and the dashboard surfaces a single sentence: `Execution reverted for an unknown reason.` Helpful. Nothing in the logs after it. Just that.
 
 The contract has a perfectly clear custom error — `ERC721NonexistentToken(uint256 tokenId)`. Tests catch it. A direct `cast call` on the same RPC returns the bytes with the expected selector. But the same call, routed through the app's viem client, dies with a sentence that tells you nothing.

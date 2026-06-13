@@ -1,23 +1,3 @@
----
-title: "Race condition de idempotencia en webhooks de Stripe"
-slug: "stripe-webhook-idempotency-race-condition"
-date: "2026-04-24"
-lastUpdated: "2026-04-24"
-author: "GEMBA IT team"
-cluster: "payment-integrations"
-tags:
-  - stripe
-  - webhooks
-  - idempotency
-  - postgresql
-  - node-js
-  - payments
-readingTime: 9
-excerpt: "Una verificación de idempotencia con SELECT-luego-INSERT pasa todos los tests y aún así cobra doble en producción. Aquí está la race condition y el patrón Postgres de una línea que la soluciona."
-hero: "/images/blog/stripe-webhook-idempotency-race-condition/hero.webp"
-heroRetina: "/images/blog/stripe-webhook-idempotency-race-condition/hero@2x.webp"
----
-
 Tu handler de webhook tiene buena pinta. Logueas el `event.id` de Stripe, compruebas si lo has visto antes y, si no, procesas el pago. Cada test local pasa. Cada test de integración pasa. Entonces, un martes por la tarde, un donante en Melbourne es cobrado dos veces por la misma donación de $50, y pasas las siguientes tres horas tratando de convencerte a ti mismo de que Stripe está roto.
 
 Stripe no está roto. Tu comprobación lo está.

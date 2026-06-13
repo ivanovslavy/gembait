@@ -1,23 +1,3 @@
----
-title: "Race condition в идемпотентността на Stripe webhook-овете"
-slug: "stripe-webhook-idempotency-race-condition"
-date: "2026-04-24"
-lastUpdated: "2026-04-24"
-author: "GEMBA IT team"
-cluster: "payment-integrations"
-tags:
-  - stripe
-  - webhooks
-  - idempotency
-  - postgresql
-  - node-js
-  - payments
-readingTime: 9
-excerpt: "Проверка за идемпотентност чрез SELECT-после-INSERT минава всеки тест и въпреки това удвоява таксуването в production. Ето я race condition-а и едноредовия Postgres pattern, който я решава."
-hero: "/images/blog/stripe-webhook-idempotency-race-condition/hero.webp"
-heroRetina: "/images/blog/stripe-webhook-idempotency-race-condition/hero@2x.webp"
----
-
 Webhook handler-ът ви изглежда наред. Логвате Stripe `event.id`, проверявате дали сте го виждали преди, и ако не — обработвате плащането. Всеки локален тест минава. Всеки интеграционен тест минава. После, един вторник следобед, дарител в Мелбърн е таксуван два пъти за същото дарение от $50, и прекарвате следващите три часа в опити да убедите себе си, че Stripe е счупен.
 
 Stripe не е счупен. Проверката ви е.

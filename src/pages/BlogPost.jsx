@@ -5,6 +5,10 @@ import { Helmet } from 'react-helmet-async';
 import { marked } from 'marked';
 import posts from '../../content/blog/posts.json';
 
+// Strip a leading YAML frontmatter block (--- ... ---) so it never renders as text.
+// Post metadata comes from posts.json, so the .md frontmatter is redundant.
+const stripFrontmatter = (md) => (md || '').replace(/^﻿?\s*---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
+
 // Configure marked for safe rendering
 marked.setOptions({
   breaks: true,
@@ -49,7 +53,7 @@ export default function BlogPost() {
           md = await modules[fallbackPath]();
         }
 
-        setContent(md);
+        setContent(stripFrontmatter(md));
       } catch (err) {
         console.error('Failed to load blog post:', err);
         setContent('');

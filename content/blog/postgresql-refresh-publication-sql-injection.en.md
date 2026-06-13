@@ -1,25 +1,3 @@
----
-title: "PostgreSQL REFRESH PUBLICATION SQL Injection"
-slug: "postgresql-refresh-publication-sql-injection"
-date: "2026-05-18"
-lastUpdated: "2026-05-18"
-author: "GEMBA IT team"
-cluster: "backend-infrastructure"
-tags:
-  - postgresql
-  - logical-replication
-  - cve-2026-6638
-  - sql-injection
-  - security
-  - alter-subscription
-readingTime: 9
-excerpt: "CVE-2026-6638: until PostgreSQL 18.4, REFRESH PUBLICATION built SQL from subscriber table names without quoting them. Here is how the trust boundary slipped, and what to do."
-hero: "/images/blog/postgresql-refresh-publication-sql-injection/hero.webp"
-heroRetina: "/images/blog/postgresql-refresh-publication-sql-injection/hero@2x.webp"
-midImage: "/images/blog/postgresql-refresh-publication-sql-injection/mid.webp"
-midImageRetina: "/images/blog/postgresql-refresh-publication-sql-injection/mid@2x.webp"
----
-
 You set up logical replication six months ago. Publisher on the reporting cluster, subscriber on the analytics warehouse. It just works. Every few weeks an engineer adds a table to the publication, runs `ALTER SUBSCRIPTION my_sub REFRESH PUBLICATION` on the analytics side, and life moves on.
 
 Then on May 14th, 2026, the PostgreSQL release announcement landed in your inbox. Eleven CVEs. Among the eight "smaller" ones, this line:

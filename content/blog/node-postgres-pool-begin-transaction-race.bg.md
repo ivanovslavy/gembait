@@ -1,25 +1,3 @@
----
-title: "Защо pool.query('BEGIN') поврежда данните ви"
-slug: "node-postgres-pool-begin-transaction-race"
-date: "2026-04-27"
-lastUpdated: "2026-04-27"
-author: "GEMBA IT team"
-cluster: "backend-infrastructure"
-tags:
-  - node-js
-  - postgresql
-  - node-postgres
-  - transactions
-  - race-conditions
-  - connection-pool
-readingTime: 9
-excerpt: "Транзакция с pool.query('BEGIN') / pool.query('COMMIT') минава всеки тест и тихо се разпростира между два клиента в production. Ето я race condition-а и едноредовия fix, който документацията на node-postgres крие в едно изречение."
-hero: "/images/blog/node-postgres-pool-begin-transaction-race/hero.webp"
-heroRetina: "/images/blog/node-postgres-pool-begin-transaction-race/hero@2x.webp"
-midImage: "/images/blog/node-postgres-pool-begin-transaction-race/mid.webp"
-midImageRetina: "/images/blog/node-postgres-pool-begin-transaction-race/mid@2x.webp"
----
-
 Написахте транзакция. Изглежда точно като всяко обучение за транзакции, което някога сте чели. `BEGIN`, две `UPDATE`-та, `COMMIT`. Тестовете минават. Staging минава. Два месеца в production, една сметка получава дебит без съответстващ кредит — пари липсват, счетоводството не сходи, отворен support тикет. Препрочитате кода три пъти. Логиката е правилна. SQL-ът е правилен. Транзакцията *съществува*.
 
 Транзакцията съществува. Просто не прави това, което мислите, че прави.

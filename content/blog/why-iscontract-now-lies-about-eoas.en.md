@@ -1,19 +1,3 @@
----
-title: "Why isContract() Now Lies About EOAs"
-slug: "why-iscontract-now-lies-about-eoas"
-date: "2026-05-11"
-lastUpdated: "2026-05-11"
-author: "GEMBA IT team"
-cluster: "web3-engineering"
-tags: ["solidity", "eip-7702", "pectra", "openzeppelin", "eoa-detection", "smart-contracts"]
-readingTime: 17
-excerpt: "After EIP-7702, a delegated EOA has 23 bytes of code starting with 0xef0100. Every Solidity contract still using isContract() now lies about humans."
-hero: "/images/blog/why-iscontract-now-lies-about-eoas/hero.webp"
-heroRetina: "/images/blog/why-iscontract-now-lies-about-eoas/hero@2x.webp"
-midImage: "/images/blog/why-iscontract-now-lies-about-eoas/mid.webp"
-midImageRetina: "/images/blog/why-iscontract-now-lies-about-eoas/mid@2x.webp"
----
-
 You wrote a smart-contract guard six months ago that looks like this:
 
 ```solidity

@@ -1,25 +1,3 @@
----
-title: "Stop Hand-Computing ERC-7201 Storage Slots"
-slug: "stop-hand-computing-erc-7201-storage-slots"
-date: "2026-05-04"
-lastUpdated: "2026-05-04"
-author: "GEMBA IT team"
-cluster: "web3-engineering"
-tags:
-  - solidity
-  - erc-7201
-  - upgradeable-contracts
-  - namespaced-storage
-  - openzeppelin
-  - storage-collision
-readingTime: 9
-excerpt: "Solidity 0.8.35 added an erc7201 comptime builtin that ends a real footgun: hand-typed namespace slot constants in upgradeable contracts. Here is what was breaking, and the new one-liner that fixes it."
-hero: "/images/blog/stop-hand-computing-erc-7201-storage-slots/hero.webp"
-heroRetina: "/images/blog/stop-hand-computing-erc-7201-storage-slots/hero@2x.webp"
-midImage: "/images/blog/stop-hand-computing-erc-7201-storage-slots/mid.webp"
-midImageRetina: "/images/blog/stop-hand-computing-erc-7201-storage-slots/mid@2x.webp"
----
-
 You upgrade a vault contract on Tuesday. Tests pass. Storage layout report: clean. The proxy points at the new implementation, and the first user deposit comes in. Their balance is correct. Two days later, a different user withdraws — and gets the wrong number back. Not zero. A *different non-zero number*. There is no error in the logs. The transaction succeeded. Etherscan shows the call data exactly as the frontend sent it.
 
 That sinking feeling? It's the one you get when you realize the bug is in storage, not in code. Specifically, in a hex constant that one of your contracts uses to anchor its namespaced storage struct — a constant that was supposed to be `0x9016d09d72d40fdae2fd8ceac6b6234c7706214fd39c1cd1e609a0528c199300` but is actually `0x9016d09d72d40fdae2fd8ceac6b6234c7706214fd39c1cd1e609a0528c199301`.

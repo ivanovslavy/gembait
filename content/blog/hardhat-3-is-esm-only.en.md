@@ -1,25 +1,3 @@
----
-title: "Hardhat 3 Is ESM-Only Now"
-slug: "hardhat-3-is-esm-only"
-date: "2026-06-01"
-lastUpdated: "2026-06-01"
-author: "GEMBA IT team"
-cluster: "web3-engineering"
-tags:
-  - hardhat
-  - hardhat-3
-  - esm
-  - migration
-  - ethereum
-  - smart-contracts
-readingTime: 9
-excerpt: "Upgrade to Hardhat 3 and your CommonJS config dies with HHE13. Hardhat 3 is ESM-only — here is the cascade that breaks, and how to migrate cleanly."
-hero: "/images/blog/hardhat-3-is-esm-only/hero.webp"
-heroRetina: "/images/blog/hardhat-3-is-esm-only/hero@2x.webp"
-midImage: "/images/blog/hardhat-3-is-esm-only/mid.webp"
-midImageRetina: "/images/blog/hardhat-3-is-esm-only/mid@2x.webp"
----
-
 You typed `npm install hardhat@3`, expecting a version bump. A few patched bugs, maybe a faster compile. You committed it on a Friday because what could a minor-sounding upgrade possibly break.
 
 Then you ran `npx hardhat compile` and the terminal answered with this:

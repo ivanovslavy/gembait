@@ -1,25 +1,3 @@
----
-title: "Why pool.query('BEGIN') Corrupts Your Data"
-slug: "node-postgres-pool-begin-transaction-race"
-date: "2026-04-27"
-lastUpdated: "2026-04-27"
-author: "GEMBA IT team"
-cluster: "backend-infrastructure"
-tags:
-  - node-js
-  - postgresql
-  - node-postgres
-  - transactions
-  - race-conditions
-  - connection-pool
-readingTime: 9
-excerpt: "A pool.query('BEGIN') / pool.query('COMMIT') transaction passes every test and silently spreads across two clients in production. Here is the race, and the one-pattern fix the node-postgres docs hide in a single sentence."
-hero: "/images/blog/node-postgres-pool-begin-transaction-race/hero.webp"
-heroRetina: "/images/blog/node-postgres-pool-begin-transaction-race/hero@2x.webp"
-midImage: "/images/blog/node-postgres-pool-begin-transaction-race/mid.webp"
-midImageRetina: "/images/blog/node-postgres-pool-begin-transaction-race/mid@2x.webp"
----
-
 You wrote a transaction. It looks like every transaction tutorial you've ever read. `BEGIN`, two `UPDATE`s, `COMMIT`. Tests pass. Staging passes. Two months in production, an account ends up with a debit and no matching credit — money missing, books unbalanced, support ticket open. You read the code three times. The logic is correct. The SQL is correct. The transaction *exists*.
 
 The transaction exists. It just isn't doing what you think it's doing.
