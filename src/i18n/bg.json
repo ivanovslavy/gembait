@@ -270,7 +270,7 @@
     "viewAll": "Всички продукти",
     "status": {
       "live": "Активен",
-      "testnet": "Тестнет",
+      "testnet": "В тестов режим",
       "in-progress": "В разработка",
       "in-development": "В разработка"
     },

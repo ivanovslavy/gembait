@@ -270,7 +270,7 @@
     "viewAll": "Ver todos los productos",
     "status": {
       "live": "En vivo",
-      "testnet": "Testnet",
+      "testnet": "En modo de prueba",
       "in-progress": "En progreso",
       "in-development": "En desarrollo"
     },
