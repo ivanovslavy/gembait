@@ -1,34 +1,34 @@
 # Construyendo infraestructura failover con bajo presupuesto
 
-La mayoría de los negocios asumen que la alta disponibilidad es cara. Se imaginan hardware dedicado, SLAs corporativos y grandes equipos de operaciones. La realidad es que con la arquitectura correcta y un proveedor como Hetzner, puedes lograr uptime empresarial a una fracción del coste.
+Mucha gente cree que la alta disponibilidad es cara. Se imaginan hardware dedicado, contratos corporativos caros y un equipo entero vigilándolo todo. La realidad es más amable: con la arquitectura adecuada y un proveedor como Hetzner, consigues uptime de nivel empresarial por una fracción del precio.
 
-En GEMBA IT, toda nuestra infraestructura — incluyendo GembaPay — corre en servidores Hetzner en Alemania. Así es como logramos failover resiliente y automatizado sin pagar precios de empresa.
+En GEMBA IT, toda nuestra infraestructura — incluido GembaPay — corre en servidores Hetzner en Alemania. Así es como logramos un failover sólido y automático sin pagar precios de empresa.
 
 ## Qué significa "failover" en la práctica
 
-**Failover** es el cambio automático o manual de un componente fallido a uno de respaldo funcional. Se aplica en cada capa: servidor, base de datos, red y aplicación. Un sistema de failover bien diseñado significa que cuando algo falla — y fallará — el sistema detecta el problema y se recupera antes de que la mayoría de los usuarios lo noten.
+Cuando un componente falla, queremos que otro sano ocupe su lugar de inmediato. Eso es el **failover**: el cambio del componente roto a uno de respaldo que sí funciona, ya sea de forma automática o manual. Se aplica en cada capa: servidor, base de datos, red y aplicación.
 
-El objetivo no es prevenir los fallos. El objetivo es reducir el tiempo entre el fallo y la recuperación.
+El objetivo no es evitar todos los fallos — eso es imposible. Los fallos van a pasar. El objetivo es acortar el tiempo entre el momento en que algo se rompe y el momento en que el sistema se recupera, tanto que la mayoría de los usuarios ni se enteren.
 
 ## El stack de infraestructura
 
-Nuestra configuración utiliza tres capas de redundancia:
+Nuestra configuración se apoya en tres capas de redundancia:
 
 1. **Dos servidores de aplicación** en configuración active-passive detrás de una **floating IP**
 2. **Replicación streaming de PostgreSQL** con un hot standby
 3. **Health checks automatizados** que disparan la reasignación de IP
 
-Todo corre en Hetzner Cloud y servidores dedicados Hetzner. Para la mayoría de las cargas de trabajo, dos instancias CX32 ofrecen capacidad suficiente para manejar un fallo del primario con margen.
+Todo corre en Hetzner Cloud y servidores dedicados de Hetzner. Para la mayoría de las cargas de trabajo, dos instancias CX32 absorben de sobra un fallo del primario.
 
 ### Por qué Hetzner
 
-Hetzner ofrece precios competitivos, buen rendimiento de red y — crucialmente — una funcionalidad de floating IP controlada por API. Una **floating IP** es una dirección IP que posees y puedes reasignar entre servidores via API en menos de un segundo. Este es el mecanismo central de nuestro failover: cuando el primario cae, un script reasigna la floating IP al standby, y el tráfico le sigue.
+Hetzner ofrece buenos precios, buena red y — lo más importante para nosotros — una floating IP que se controla por API. Una **floating IP** es una dirección IP que es tuya y que puedes mover de un servidor a otro vía API en menos de un segundo. Ese es el corazón de nuestro failover: cuando el primario cae, un script mueve la floating IP al standby, y el tráfico se va con ella.
 
 ## Failover a nivel de servidor
 
-Los servidores primario y standby ejecutan el mismo stack de aplicación. Usamos **Ansible** para mantenerlos sincronizados — cualquier cambio de configuración aplicado al primario se aplica automáticamente al standby.
+Los servidores primario y standby ejecutan el mismo stack de aplicación. Los mantenemos sincronizados con **Ansible**, una herramienta que aplica la misma configuración a varias máquinas a la vez. Cualquier cambio que hagas en el primario se aplica solo también al standby.
 
-Un script ligero de health check se ejecuta en el standby cada 30 segundos. Intenta una conexión TCP y un endpoint HTTP de salud contra el primario. Si ambos fallan en dos comprobaciones consecutivas, el script llama a la API de Hetzner para reasignar la floating IP:
+En el standby corre un script ligero de health check, cada 30 segundos. Comprueba si el primario sigue vivo: intenta una conexión TCP y consulta un endpoint HTTP de salud. Si ambas cosas fallan en dos comprobaciones seguidas, el script llama a la API de Hetzner para mover la floating IP:
 
 ```bash
 #!/bin/bash
@@ -43,29 +43,29 @@ curl -s -X POST \
   "https://api.hetzner.cloud/v1/floating_ips/$FLOATING_IP_ID/actions/assign"
 ```
 
-Todo el cambio transparente a DNS tarda menos de tres segundos. Las aplicaciones conectadas a la floating IP se reconectan automáticamente.
+Todo el cambio, sin tocar el DNS, tarda menos de tres segundos. Las aplicaciones conectadas a la floating IP se reconectan solas.
 
 ## Failover de base de datos con PostgreSQL
 
-La capa de base de datos usa **replicación streaming de PostgreSQL** en modo síncrono. El primario transmite registros WAL al standby en tiempo real. Cuando el primario falla, promovemos el standby:
+La base de datos usa **replicación streaming de PostgreSQL** en modo síncrono. El primario transmite los registros WAL al standby en tiempo real — es decir, cada cambio se copia al instante. Cuando el primario falla, promovemos el standby:
 
 ```bash
 sudo -u postgres pg_ctl promote -D /var/lib/postgresql/16/main
 ```
 
-Cubrimos la configuración completa de replicación en nuestro [artículo sobre replicación streaming de PostgreSQL](/blog/postgresql-streaming-replication-high-availability). Para la capa de failover específicamente, el script de health check gestiona la promoción automáticamente antes de reasignar la floating IP — la aplicación ve un breve restablecimiento de conexión, se reconecta a la misma IP y continúa escribiendo al nuevo primario.
+La configuración completa de la replicación la explicamos en nuestro [artículo sobre replicación streaming de PostgreSQL](/blog/postgresql-streaming-replication-high-availability). Aquí, centrándonos en la capa de failover: el script de health check hace la promoción de forma automática antes de mover la floating IP. La aplicación ve un corte breve, se reconecta a la misma IP y sigue escribiendo, ahora en el nuevo primario.
 
 ### Monitorización del retraso de replicación
 
-El standby solo es útil como objetivo de failover si realmente está sincronizado. Monitorizamos `pg_stat_replication.replay_lag` vía Prometheus y alertamos si el retraso supera los cinco segundos. En la práctica, en una red privada de Hetzner, el retraso de replicación síncrona es inferior a 10ms.
+El standby solo sirve como respaldo si de verdad va al día con el primario. Por eso vigilamos `pg_stat_replication.replay_lag` con Prometheus y saltamos una alerta si el retraso pasa de cinco segundos. En la práctica, en la red privada de Hetzner, el retraso de replicación síncrona se queda por debajo de 10ms.
 
 ## Resiliencia a nivel de aplicación
 
-El failover a nivel de infraestructura gestiona los fallos de hardware y del sistema operativo. Pero las aplicaciones necesitan manejar correctamente la breve ventana de reconexión. Algunas prácticas que aplicamos:
+El failover de infraestructura se ocupa de los fallos de hardware y del sistema operativo. Pero la propia aplicación tiene que sobrevivir al breve instante en que se reconecta. Estas son algunas cosas que hacemos:
 
-- **Lógica de reintentos** en conexiones a la base de datos — tres reintentos con 500ms de espera cubre la mayoría de los escenarios
-- **Connection pooling** mediante PgBouncer, que almacena en búfer las conexiones de cliente durante la ventana de promoción del standby
-- **Servidores de aplicación sin estado** — el estado de sesión vive en la base de datos, no en memoria, por lo que un cambio de primario no descarta las sesiones activas
+- **Lógica de reintentos** en las conexiones a la base de datos — tres reintentos con 500ms de espera cubren la mayoría de los casos
+- **Connection pooling** con PgBouncer, que retiene las conexiones de cliente mientras se promueve el standby
+- **Servidores de aplicación sin estado** — los datos de sesión viven en la base de datos, no en memoria, así que cambiar de primario no echa a los usuarios activos
 
 ## Cuánto cuesta
 
@@ -75,19 +75,19 @@ Como referencia, nuestra configuración de producción corre en:
 - Red privada — gratuito
 - Copias de seguridad — €4/mes por servidor
 
-Total: menos de €50/mes para una arquitectura que gestiona los fallos del primario automáticamente en segundos. Una configuración HA gestionada comparable de un proveedor cloud importante empieza en varios cientos de euros al mes.
+Total: menos de €50/mes para una arquitectura que gestiona los fallos del primario sola, en segundos. Una configuración HA gestionada comparable de un proveedor cloud grande empieza en varios cientos de euros al mes.
 
 ## Qué cubre y qué no
 
-Esta configuración gestiona los escenarios de fallo más comunes: caídas de servidor, fallos de hardware y problemas a nivel de sistema operativo. No reemplaza un plan completo de disaster recovery. Si ambos servidores están en el mismo datacenter de Hetzner y ese datacenter sufre una interrupción, la reasignación de floating IP no ayudará.
+Esta configuración resuelve los fallos más comunes: caídas de servidor, fallos de hardware y problemas a nivel de sistema operativo. No reemplaza un plan completo de disaster recovery. Si los dos servidores están en el mismo datacenter de Hetzner y ese datacenter se cae entero, mover la floating IP no te va a salvar.
 
-Para la mayoría de los negocios, el perfil de riesgo de una configuración HA en un solo datacenter es aceptable. Para cargas de trabajo que requieren redundancia geográfica, añadimos un cold standby en una segunda región — pero esa es una decisión arquitectónica independiente con diferentes compromisos de coste.
+Para la mayoría de los negocios, ese riesgo — HA en un solo datacenter — es perfectamente aceptable. Si tu carga de trabajo necesita redundancia geográfica, añadimos un cold standby en una segunda región. Pero esa ya es una decisión de arquitectura aparte, con otro compromiso de coste.
 
 ## Conclusiones clave
 
-El uptime empresarial no requiere gasto empresarial. Una floating IP, un servidor standby, replicación PostgreSQL y un script de health check de 50 líneas cubren los escenarios de fallo que ocurren con más frecuencia.
+El uptime de empresa no exige un gasto de empresa. Una floating IP, un servidor standby, replicación PostgreSQL y un script de health check de 50 líneas cubren los fallos que ocurren con más frecuencia.
 
-En GEMBA IT, esta arquitectura ha entregado más del 99,9% de uptime en nuestras cargas de trabajo de producción. La inversión está en el diseño, no en la factura.
+En GEMBA IT, esta arquitectura nos ha dado más del 99,9% de uptime en nuestras cargas de producción. La inversión está en el diseño, no en la factura.
 
 ---
 

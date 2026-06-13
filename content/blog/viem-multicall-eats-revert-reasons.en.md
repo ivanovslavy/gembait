@@ -1,16 +1,16 @@
-A user opens MetaMask, clicks "claim NFT", and the dashboard surfaces a single sentence: `Execution reverted for an unknown reason.` Helpful. Nothing in the logs after it. Just that.
+A user opens MetaMask, clicks "claim NFT", and your dashboard shows them a single sentence: `Execution reverted for an unknown reason.` Helpful. Nothing useful in the logs after it. Just that.
 
-The contract has a perfectly clear custom error — `ERC721NonexistentToken(uint256 tokenId)`. Tests catch it. A direct `cast call` on the same RPC returns the bytes with the expected selector. But the same call, routed through the app's viem client, dies with a sentence that tells you nothing.
+And the frustrating part? Your contract has a perfectly clear custom error — `ERC721NonexistentToken(uint256 tokenId)`. (A custom error is just a named error message your smart contract sends back when it refuses to do something.) Your tests catch it fine. A direct `cast call` on the very same RPC node returns the bytes with the exact selector you expect. But run that identical call through your app's viem client, and it dies with a sentence that tells you absolutely nothing.
 
-The kicker: flip one boolean in the viem config and the same call returns `Execution reverted with reason: ERC721: owner query for nonexistent token.` That boolean is `batch.multicall`.
+Here's the kicker. Flip one boolean in your viem config and the same call suddenly returns `Execution reverted with reason: ERC721: owner query for nonexistent token.` That one boolean? It's `batch.multicall`.
 
-This is the topic of [viem issue #4006](https://github.com/wevm/viem/issues/4006), opened in May 2026 and closed `not planned` — meaning it is not a bug, but a documented (well, *un*documented) consequence of how the multicall transport batches eth_call requests. If you have ever spent half an afternoon staring at "unknown reason" wondering whether your RPC is lying to you, this post is for you.
+This is the whole story behind [viem issue #4006](https://github.com/wevm/viem/issues/4006), opened in May 2026 and closed `not planned` — which is a polite way of saying "this isn't a bug, it's just how the thing works." It's a documented (well, *un*documented) side effect of how the multicall transport bundles your `eth_call` requests together. If you've ever burned half an afternoon staring at "unknown reason" and quietly wondering whether your RPC provider was lying to you, this one's for you.
 
 ## The Problem
 
-In viem, `createPublicClient` accepts a `batch.multicall` option on its HTTP transport. Enable it and every `readContract` / `eth_call` issued in a tight time window gets folded into a single multicall request through Multicall3. Performance win: one RPC call instead of twenty. The default is `false`, so most projects only turn it on when they start hitting rate limits on read-heavy pages.
+In viem, `createPublicClient` lets you pass a `batch.multicall` option to its HTTP transport. (The transport is just the piece that actually carries your requests to the blockchain node.) Turn that option on, and every `readContract` or `eth_call` you fire within a short window gets quietly folded into one single multicall request through a contract called Multicall3. The payoff is real: one round-trip to the RPC instead of twenty. The default is `false`, so most people only switch it on once a read-heavy page starts tripping rate limits.
 
-Here is the config from the issue, trimmed:
+Here's the config from the issue, trimmed down:
 
 ```ts
 const client = createPublicClient({
@@ -28,45 +28,45 @@ await client.readContract({
 });
 ```
 
-With `batch.multicall: true` the call throws:
+With `batch.multicall: true`, the call throws this:
 
 ```
 ContractFunctionExecutionError: The contract function "ownerOf" reverted.
 Details: Execution reverted for an unknown reason.
 ```
 
-With `batch.multicall: false` (or the option removed):
+With `batch.multicall: false` (or the option just removed entirely):
 
 ```
 ContractFunctionExecutionError: The contract function "ownerOf" reverted with the following reason:
 ERC721: owner query for nonexistent token.
 ```
 
-Same contract. Same calldata. Same RPC. The only thing that changed is which path the request took inside viem. The reporter on issue #4006 even confirmed it on the error object itself: `error.cause.cause.data` contains the same raw revert bytes in both cases. The bytes survive the round-trip. They just never make it through the formatter that turns them into human-readable text.
+Same contract. Same calldata. Same RPC. The only thing that changed is which path the request took inside viem. The person who reported issue #4006 even proved it by digging into the error object itself: `error.cause.cause.data` holds the exact same raw revert bytes in both cases. The bytes survive the whole round-trip just fine. They just never make it through the part of viem that turns those bytes into a sentence a human can read.
 
-This is not a rare edge case. Search the wevm discussions for "multicall revert reason" and a handful of developers can be found mid-conversation, mostly convinced their RPC provider is broken. As one developer put it on the original issue, *"I was about to file a support ticket with Alchemy."*
+And this isn't some freak one-in-a-million case. Search the wevm discussions for "multicall revert reason" and you'll find a handful of developers mid-conversation, most of them convinced their RPC provider had gone rogue. As one of them put it on the original issue: *"I was about to file a support ticket with Alchemy."*
 
 ## The Debugging Dance
 
-Picture the room. Sentry is firing `Execution reverted for an unknown reason.` First instinct: the RPC is being weird. Switch from Alchemy to Infura. Same result. Switch to a self-hosted node. Same result. Curse.
+Picture the scene. Sentry is lighting up with `Execution reverted for an unknown reason.` Your first instinct: the RPC is acting up. So you switch from Alchemy to Infura. Same result. You switch to a self-hosted node. Same result. You curse.
 
-Second guess: the ABI does not match the deployment. But the success path works — `ownerOf` for a real token returns the correct address. If the ABI were wrong, every call would fail, not just the revert path. Curse again.
+Next theory: the ABI doesn't match what's actually deployed. (The ABI is the contract's instruction manual — it tells your code what functions and errors exist.) But the happy path works fine — calling `ownerOf` for a real token returns the right address. If the ABI were wrong, *every* call would break, not just the ones that revert. You curse again.
 
-Third guess: it is a custom error and the team forgot to include the error fragment in the ABI. So they add it. Nothing changes. The custom error data is in the response — `error.cause.cause.data` is something like `0x7e273289...` — but viem is not decoding it into a name. At this point Stack Overflow is open in eight tabs and the multicall docs in a ninth.
+Third theory: it's a custom error and somebody forgot to put the error fragment in the ABI. So you add it. Nothing changes. The custom error data is sitting right there in the response — `error.cause.cause.data` is something like `0x7e273289...` — but viem just isn't decoding it into a name. By now you've got Stack Overflow open in eight tabs and the multicall docs in a ninth.
 
-The accidental discovery: someone on the team needs to debug a slow page load, comments out the `batch: { multicall: true }` line for a minute, and posts in Slack: *"weird, your error is way more readable on my branch."* Two branches go side by side. The only diff is six characters: `true` becomes `false`. The error message goes from one sentence to two. The second sentence is the one the team has been trying to surface for three days.
+Then comes the accidental discovery. Someone on the team is off chasing a slow page load, comments out the `batch: { multicall: true }` line for a minute, and drops a message in Slack: *"weird, your error is way more readable on my branch."* You put the two branches side by side. The only difference is six characters: `true` became `false`. The error message went from one sentence to two. And that second sentence is exactly the one you've been hunting for three days.
 
-That is the moment it clicks. The multicall transport wraps individual `eth_call` requests inside a Multicall3 `aggregate3` call. The Multicall3 contract returns `(bool success, bytes returnData)[]` — when an inner call reverts, its revert bytes get tucked into `returnData` and the outer eth_call succeeds. Viem unpacks the outer array fine. But the decode path that turns inner revert bytes into "Execution reverted with reason: ..." is the one written for direct `eth_call` errors, where the revert sits in the JSON-RPC error envelope. In the multicall path the bytes live in a different place on the response, the formatter never reaches them, and the user-facing message defaults to the generic fallback.
+That's the moment it all clicks. The multicall transport wraps your individual `eth_call` requests inside a Multicall3 call named `aggregate3`. The Multicall3 contract hands back `(bool success, bytes returnData)[]` — so when one of the inner calls reverts, its revert bytes get tucked into `returnData` and the *outer* eth_call still succeeds. Viem unpacks that outer array just fine. But the code that turns inner revert bytes into "Execution reverted with reason: ..." was written for plain, direct `eth_call` errors — where the revert sits in the JSON-RPC error envelope. In the multicall path, those bytes live somewhere else on the response, the formatter never reaches them, and the message you show the user falls back to the generic default.
 
-So the data is preserved. The bug is in the *narration*.
+So the data is all there. The bug is in the *narration*.
 
 ![Abstract isometric illustration of structured error data flowing through a branching pipeline — one branch keeps a detailed payload while the other reduces it to a generic glyph](/images/blog/viem-multicall-eats-revert-reasons/mid.webp)
 
 ## The Solution
 
-There are three real options. Pick by trade-off.
+You've got three real options. Pick based on the trade-off that fits you.
 
-**Option 1 — Decode the bytes yourself.** The revert data is preserved on the error chain. Walk it and decode.
+**Option 1 — Decode the bytes yourself.** The revert data is sitting right there on the error chain. Walk it and decode it.
 
 ```ts
 import {
@@ -108,9 +108,9 @@ try {
 }
 ```
 
-`walk()` is the documented way to traverse viem's error chain. The new bit is the `decodeErrorResult` fallback for the multicall case, where the walker did not find a pre-decoded revert and the raw bytes have to be turned into a name manually.
+`walk()` is the documented way to climb through viem's error chain. The new piece here is the `decodeErrorResult` fallback for the multicall case — the one where the walker came up empty and you have to turn the raw bytes into a name by hand.
 
-**Option 2 — Two clients, one per use case.** A surprisingly common production pattern: keep `batch.multicall: true` for high-volume read endpoints (NFT galleries, leaderboards, token lists) where reverts are rare and the generic error is acceptable, and create a second client with batching off for code paths that drive UX, where a clear revert reason matters more than 50ms of latency.
+**Option 2 — Two clients, one per job.** This is a surprisingly common production pattern. Keep `batch.multicall: true` for your high-volume read endpoints (NFT galleries, leaderboards, token lists) where reverts are rare and a generic error is fine. Then spin up a second client with batching off for the code paths that drive your UX, where a clear revert reason matters more than shaving off 50ms.
 
 ```ts
 const fastClient = createPublicClient({
@@ -124,19 +124,19 @@ const clearClient = createPublicClient({
 });
 ```
 
-Use `fastClient` for the gallery page. Use `clearClient` for the mint button. The wallet provider stays the same; only the read transport differs.
+Use `fastClient` for the gallery page. Use `clearClient` for the mint button. The wallet provider stays exactly the same — only the read transport changes.
 
-**Option 3 — Simulate first.** `simulateContract` always uses a direct `eth_call`, so it gets the full revert reason regardless of the transport setting. Add it as a preflight for any write you are about to broadcast. It is the pattern the viem docs already recommend for `writeContract`, and it incidentally fixes this too.
+**Option 3 — Simulate first.** `simulateContract` always uses a direct `eth_call`, so it gets the full revert reason no matter what your transport setting is. Drop it in as a preflight check before any write you're about to broadcast. It's already the pattern the viem docs recommend for `writeContract`, and it happens to fix this too.
 
-What is non-obvious: the explicit `multicall()` function (the one called by name with `contracts: [...]`) is **not** what is biting you. That function defaults `allowFailure: true` and returns `{ status: 'failure', error }` per call, with the error correctly decoded against the ABI. The trap is only the *implicit* batching — the silent kind enabled by the transport option.
+Here's the part that isn't obvious: the explicit `multicall()` function — the one you call by name with `contracts: [...]` — is **not** the thing biting you. That function defaults `allowFailure: true` and returns `{ status: 'failure', error }` for each call, with the error correctly decoded against your ABI. The trap is only the *implicit* batching — the silent kind you switch on with the transport option.
 
 ## The Lesson
 
-Performance optimizations that silently degrade observability are the worst kind of leaky abstraction, because they are invisible exactly when you need them most: 11pm, production traffic, a user yelling on Discord, and "execution reverted for an unknown reason" in the logs.
+Performance optimizations that quietly wreck your observability are the worst kind of leaky abstraction, because they vanish exactly when you need them most: 11pm, production traffic, a user yelling on Discord, and "execution reverted for an unknown reason" staring back at you from the logs.
 
-When a library exposes an optimization flag like `batch.multicall`, ask two questions before turning it on: *what does it cost when something fails?* and *will I be able to tell?* The answers should be in the docs. When they are not, find out before production traffic does it for you. A 50ms saving on a gallery page is not worth a three-day investigation when a single mint button starts throwing nonsense errors.
+When a library hands you an optimization flag like `batch.multicall`, ask two questions before you flip it on: *what does it cost me when something fails?* and *will I even be able to tell?* The answers should be in the docs. When they aren't, go find out — before production traffic finds out for you. Saving 50ms on a gallery page is not worth a three-day investigation when a single mint button starts spitting out nonsense.
 
-The wider principle: any layer between your code and the wire that is allowed to *rewrite* errors needs to round-trip them losslessly. If it cannot, it should at least warn you in the type signature or the docs that error fidelity changes when the layer is enabled. Until then, two clients is a tiny price for a debugging session you do not have to live through.
+The bigger principle: any layer that sits between your code and the wire, and is allowed to *rewrite* your errors, needs to pass them back through losslessly. If it can't, it should at least warn you — in the type signature or the docs — that error fidelity changes the moment you turn it on. Until that day comes, running two clients is a tiny price to pay to skip a debugging session you really don't want to live through.
 
 ## Credit & Further Reading
 
@@ -146,20 +146,20 @@ This article is based on the problem discussed in [viem issue #4006](https://git
 
 ### Does this affect the explicit multicall() function too?
 
-No — and this is the important distinction. The explicit `multicall()` action, called with a `contracts: [...]` array, returns a result array where failed calls show up as `{ status: 'failure', error }` when `allowFailure: true` (the default). The `error` object there is properly decoded against the ABI you passed. The issue only affects the **implicit** batching that happens when `batch.multicall: true` is set on the HTTP transport — that path runs through a different formatter that does not reach into the inner Multicall3 `returnData` when wrapping the error. So you can keep using `multicall()` directly without changing anything; the trap is only the silent kind.
+No — and this is the distinction that matters. The explicit `multicall()` action, called with a `contracts: [...]` array, hands you back a result array where failed calls show up as `{ status: 'failure', error }` when `allowFailure: true` (the default). The `error` object there is properly decoded against the ABI you passed in. The issue only hits the **implicit** batching that kicks in when you set `batch.multicall: true` on the HTTP transport — that path runs through a different formatter that never reaches into the inner Multicall3 `returnData` when it wraps the error. So you can keep using `multicall()` directly without changing a thing; the trap is only the silent kind.
 
 ### Will turning off batch.multicall kill read performance?
 
-In most production apps, no. The win from `batch.multicall` is real for pages that fire twenty or more reads on mount — NFT galleries, multi-token balance fetches, vault dashboards — but most user-facing flows fire one to three reads at a time, where the wait window adds latency without saving an RPC call. Measure before optimizing. A pragmatic split is the one suggested above: a fast client for batch-heavy reads, a clear client for UX-critical paths where the revert reason matters. Most teams running this pattern report the same: gallery pages stay snappy, mint flows stay debuggable.
+In most production apps, no. The win from `batch.multicall` is real for pages that fire off twenty or more reads the moment they load — NFT galleries, multi-token balance fetches, vault dashboards — but most user-facing flows fire just one to three reads at a time, where the batching window only adds latency without saving you an RPC call. Measure before you optimize. A pragmatic split is the one above: a fast client for batch-heavy reads, a clear client for the UX-critical paths where the revert reason actually matters. Most teams running this pattern report the same thing: gallery pages stay snappy, mint flows stay debuggable.
 
 ### Why was the issue closed as not planned?
 
-The maintainers did not comment publicly, but the likely reason is architectural. Viem's error formatting layer is built around a one-call, one-response model, and the multicall path returns N responses inside a single RPC reply. Threading inner revert data back through the error formatter touches a lot of code and introduces ambiguity when multiple calls revert in a single batch — which error wins, which gets logged, which is shown to the user? Saying "decode it yourself with `walk()` and `decodeErrorResult`" is the lower-risk answer for a library that prizes type safety and predictable error shapes, even if it is frustrating in the moment.
+The maintainers didn't explain publicly, but the likely reason is architectural. Viem's error formatting is built around a one-call, one-response model, and the multicall path returns N responses tucked inside a single RPC reply. Threading inner revert data back through the error formatter touches a lot of code and creates ambiguity when several calls revert in one batch — which error wins? Which gets logged? Which one does the user see? Telling people "decode it yourself with `walk()` and `decodeErrorResult`" is the lower-risk answer for a library that prizes type safety and predictable error shapes, even if it stings in the moment.
 
 ### What about OpenZeppelin v5 custom errors like ERC721NonexistentToken?
 
-Same problem, slightly different decode. Custom errors are encoded as the 4-byte selector plus ABI-encoded arguments. If your contract uses OpenZeppelin v5 custom errors, they live in your contract's ABI as `error` fragments. As long as those fragments are in the ABI you pass to `decodeErrorResult`, the function returns `{ errorName: 'ERC721NonexistentToken', args: [tokenId] }` cleanly. If they are missing from the ABI, the call returns the raw bytes and you have to add the error fragments — viem does not (and cannot) infer custom errors that are not in your ABI. A common mistake here is using a hand-trimmed ABI that includes the function signatures but drops the error fragments to save bytes. Keep the errors in.
+Same problem, just a slightly different decode. Custom errors are encoded as a 4-byte selector plus ABI-encoded arguments. If your contract uses OpenZeppelin v5 custom errors, they live in your contract's ABI as `error` fragments. As long as those fragments are in the ABI you hand to `decodeErrorResult`, the function returns `{ errorName: 'ERC721NonexistentToken', args: [tokenId] }` cleanly. If they're missing from the ABI, you just get raw bytes back and you'll have to add the error fragments — viem can't (and won't) guess at custom errors that aren't in your ABI. A common slip-up here is using a hand-trimmed ABI that keeps the function signatures but drops the error fragments to save a few bytes. Keep the errors in.
 
 ### Is there a way to opt out of multicall just for a single read?
 
-Not directly — `batch.multicall` is a transport-level setting, not a per-call one. The cleanest workaround is to maintain two clients, as in Option 2. A more involved option is to set `batch.multicall.wait` to a very high value (it is the debounce window — calls without siblings inside `wait` ms fly solo), but that defeats the purpose. Two clients is cleaner, costs almost nothing, and makes the intent of each call obvious at the import site. If you are using wagmi on top of viem, the same pattern applies: create two configs and pick the right one per component.
+Not directly — `batch.multicall` is a transport-level setting, not a per-call one. The cleanest workaround is keeping two clients, like in Option 2. There's a more involved option where you set `batch.multicall.wait` to a really high value (that's the debounce window — calls with no siblings inside `wait` ms fly solo), but that defeats the whole purpose. Two clients is cleaner, costs almost nothing, and makes the intent of each call obvious right at the import site. And if you're running wagmi on top of viem, the same pattern applies: create two configs and pick the right one per component.

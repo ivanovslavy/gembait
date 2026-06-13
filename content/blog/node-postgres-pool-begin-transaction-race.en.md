@@ -1,40 +1,40 @@
-You wrote a transaction. It looks like every transaction tutorial you've ever read. `BEGIN`, two `UPDATE`s, `COMMIT`. Tests pass. Staging passes. Two months in production, an account ends up with a debit and no matching credit — money missing, books unbalanced, support ticket open. You read the code three times. The logic is correct. The SQL is correct. The transaction *exists*.
+You wrote a transaction. It looks like every transaction tutorial you've ever read. `BEGIN`, two `UPDATE`s, `COMMIT`. Tests pass. Staging passes. Two months into production, an account ends up with money taken out and nothing put back — books unbalanced, support ticket open, someone's actual money missing. You read the code three times. The logic is right. The SQL is right. The transaction *is there*.
 
-The transaction exists. It just isn't doing what you think it's doing.
+The transaction is there. It just isn't doing what you think it's doing.
 
-Here's the part the node-postgres docs warn about in a single sentence — *do not use transactions with the pool.query method* — and the part nobody internalizes until it bites them: when you call `pool.query('BEGIN')`, then `pool.query('UPDATE …')`, then `pool.query('COMMIT')`, you are not running a transaction. You are running three independent queries that may or may not land on the same database connection. Under low load they happen to. Under real load they don't. And then your money goes missing.
+Here's the warning the node-postgres docs give in a single sentence — *do not use transactions with the pool.query method* — and the part nobody really takes in until it bites them. (A transaction is a group of database changes that should all succeed together or all undo together — like a bank transfer where the withdrawal and the deposit must both happen, or neither.) When you call `pool.query('BEGIN')`, then `pool.query('UPDATE …')`, then `pool.query('COMMIT')`, you are not running a transaction. You're running three separate queries that may or may not land on the same database connection. When traffic is light, they happen to. When traffic is real, they don't. And then your money goes missing.
 
-This post is the long version of that one-sentence warning. Why it happens, what the failure looks like in the logs (it usually leaves none), and the four-line pattern that is the only correct way to do this.
+This post is the long version of that one-sentence warning. Why it happens, what the failure looks like in the logs (usually it leaves none), and the four-line pattern that's the only correct way to do this.
 
 ## The problem, stated precisely
 
-Open the official node-postgres documentation and find the [transactions page](https://node-postgres.com/features/transactions). Halfway down, in plain prose: *"You **must** use the same client instance for all statements within a transaction. PostgreSQL isolates a transaction to individual clients."* And then the bolded warning: *"This means if you initialize or use transactions with the pool.query method you **will** have problems. Do not use transactions with the pool.query method."*
+Open the official node-postgres documentation and find the [transactions page](https://node-postgres.com/features/transactions). Halfway down, in plain words: *"You **must** use the same client instance for all statements within a transaction. PostgreSQL isolates a transaction to individual clients."* And then the bold warning: *"This means if you initialize or use transactions with the pool.query method you **will** have problems. Do not use transactions with the pool.query method."*
 
-That `must` and that `will` are doing a lot of work. Postgres' transaction state — the open `BEGIN`, the locks held, the rows visible only to this transaction — is bound to a single TCP connection on the server. If you start a transaction on one connection and run an `UPDATE` on a different one, the `UPDATE` happens in autocommit mode against the bare table. Postgres has no idea your application *thinks* the two statements are related.
+That `must` and that `will` are carrying a lot of weight. Postgres' transaction state — the open `BEGIN`, the locks it's holding, the rows only this transaction can see — is tied to a single connection to the server. (A connection here is one open line between your app and the database.) If you start a transaction on one connection and run an `UPDATE` on a different one, that `UPDATE` runs on its own, against the plain table, with no transaction wrapped around it. Postgres has no idea your app *thinks* the two statements belong together.
 
-Now layer in pg-pool. Every `pool.query()` call asks the pool for any free client. Under no concurrency, the pool hands you the same client every time, because there's only one and the previous query just released it. Your tests pass. Under concurrency, the pool hands you whatever is free. The `BEGIN` lands on Client A. By the time the next `await` resolves, Client A has been released and grabbed by another request, and your `UPDATE` lands on Client B.
+Now bring in the pool. A pool is a small set of ready-made connections your app shares, so it doesn't pay to open a fresh one for every query. Every `pool.query()` call asks the pool for any free connection. When nothing else is happening, the pool hands you the same one every time — there's only one, and the last query just freed it. So your tests pass. Under real load, the pool hands you whatever happens to be free. The `BEGIN` lands on Connection A. By the time your next `await` finishes, Connection A has been handed off to another request, and your `UPDATE` lands on Connection B.
 
-The brutal part: nothing errors. Postgres doesn't care. Your `BEGIN` opens a transaction on Client A and that transaction sits open until Client A is reused for something else (which silently `ROLLBACK`s by reset, or just keeps idling). Your `UPDATE` runs in autocommit on Client B and is permanently committed. Your `COMMIT` runs on Client C against no open transaction and is a no-op.
+Here's the cruel part: nothing errors. Postgres doesn't mind. Your `BEGIN` opens a transaction on Connection A, and that transaction just sits there open until Connection A gets reused for something else (which quietly throws it away or keeps it idling). Your `UPDATE` runs on Connection B with no transaction around it, and it's saved for good. Your `COMMIT` runs on Connection C, where there's no open transaction at all, so it does nothing.
 
-Three statements. Three clients. Zero atomicity. One angry CFO.
+Three statements. Three connections. Zero safety. One angry CFO.
 
 ## The Debugging Dance
 
-You don't reach the right answer first. Nobody does. The first instinct, when you see a half-applied transaction in production, is to assume your `try/catch` is wrong. You re-read the error path. You add a `console.log` before the `ROLLBACK`. You reproduce locally — and of course it works locally, because `npm test` runs one request at a time and the pool dutifully hands you the same client over and over.
+You don't land on the right answer first. Nobody does. The first instinct, when you see a half-finished transaction in production, is to blame your `try/catch`. You re-read the error path. You add a `console.log` before the `ROLLBACK`. You try to reproduce it locally — and of course it works locally, because `npm test` runs one request at a time and the pool keeps handing you the same connection.
 
-So the second instinct is "concurrency bug somewhere upstream." You check whether two requests can race on the same row. You add a `SELECT … FOR UPDATE`. You add a unique index to be safe. The bug doesn't go away, because the bug isn't on the row — it's on the connection. You're locking with one client and updating with another, and the lock you took is on a connection that gets released before you ever use it.
+So the second instinct is "there's a concurrency bug somewhere upstream." (Concurrency just means several requests running at the same time.) You check whether two requests can collide on the same row. You add a `SELECT … FOR UPDATE`. You add a unique index to be safe. The bug doesn't go away, because the bug isn't on the row — it's on the connection. You're locking with one connection and updating with another, and the lock you took is on a connection that gets freed before you ever use it.
 
-Third instinct: blame the pool sizing. *"The pool must be too small. We're getting weird reuse."* You bump `max` from 10 to 50. The bug gets less frequent — because there are now more clients, the chance two consecutive `pool.query` calls land on the same one is higher — and you ship that and call it solved. It comes back the next time traffic doubles.
+Third instinct: blame the pool size. *"The pool must be too small. We're getting weird reuse."* You bump `max` from 10 to 50. The bug gets rarer — because with more connections around, two back-to-back `pool.query` calls are more likely to land on the same one — so you ship that and call it fixed. It comes back the next time traffic doubles.
 
-At this point Stack Overflow is open in eight tabs, all variants of *"node-postgres transaction not rolling back"*, and you're starting to suspect the library. You open the [issues tracker on brianc/node-postgres](https://github.com/brianc/node-postgres/issues/35) and find a question from 2011 — *"Long-running transaction within a pooled client"* — that asks essentially what you're asking now: when I use a pool, am I guaranteed to keep the same connection between queries? The answer, scattered across that thread and a dozen others, is *no, never, you must hold the client yourself*.
+By now Stack Overflow is open in eight tabs, all versions of *"node-postgres transaction not rolling back"*, and you're starting to suspect the library itself. You open the [issues tracker on brianc/node-postgres](https://github.com/brianc/node-postgres/issues/35) and find a question from 2011 — *"Long-running transaction within a pooled client"* — asking basically what you're asking now: when I use a pool, am I guaranteed to keep the same connection between queries? The answer, scattered across that thread and a dozen others, is *no, never — you have to hold the connection yourself*.
 
-The aha moment is small and embarrassing. You weren't holding the client. You were calling `pool.query` three times and the pool was doing what it advertises: giving you any free client, every time, with no memory of what you ran a millisecond ago. Your transaction was an illusion built on top of three unrelated round-trips to the database.
+The aha moment is small and a little embarrassing. You weren't holding the connection. You were calling `pool.query` three times, and the pool was doing exactly what it says on the tin: handing you any free connection, every time, with no memory of what you ran a millisecond ago. Your transaction was an illusion stitched together from three unrelated trips to the database.
 
 ![Abstract isometric visualization of one transaction fragmenting across three different connection slots, with broken arcs and a dashed lock symbol on the wrong slot.](/images/blog/node-postgres-pool-begin-transaction-race/mid.webp)
 
 ## The Solution
 
-There is exactly one correct pattern. Burn it into muscle memory. Acquire a client, use that *same* client variable for `BEGIN`, every query inside the transaction, and `COMMIT` or `ROLLBACK`, then release it in `finally`. Anything else is a footgun.
+There's exactly one correct pattern, and it's worth committing to memory. Grab one connection, use that *same* connection for `BEGIN`, for every query inside the transaction, and for `COMMIT` or `ROLLBACK`, then hand it back in `finally`. Anything else is a trap waiting to spring.
 
 ```js
 // ✅ CORRECT — one client, held for the whole transaction
@@ -60,17 +60,17 @@ async function transferFunds(pool, fromId, toId, amount) {
 }
 ```
 
-Why this works is exactly why the broken version doesn't. `pool.connect()` checks one client out of the pool and *promises* it to you for as long as you hold it. While you hold it, no other request can be handed the same client. When you call `client.query`, you go to that one TCP connection. `BEGIN` opens a transaction on the server side of that connection. Every subsequent `client.query` is on the same connection, in the same transaction. `COMMIT` closes it. `client.release()` returns the connection to the pool — clean, ready, no transaction state left behind.
+Why this works is exactly why the broken version doesn't. `pool.connect()` checks one client out of the pool and *promises* it to you for as long as you hold it. While you hold it, no other request can be handed that same client. When you call `client.query`, you go straight to that one connection. `BEGIN` opens a transaction on that connection. Every later `client.query` runs on the same connection, in the same transaction. `COMMIT` closes it. `client.release()` hands the connection back to the pool — clean, ready, with no leftover transaction state.
 
 The non-obvious bits worth pinning to the wall:
 
-**`finally` is non-negotiable.** If `client.release()` doesn't run on every code path, that client is leaked from the pool's perspective. After `max` leaks, the next `pool.connect()` waits forever (or hits `connectionTimeoutMillis` and surfaces a misleading error). The `try / catch / finally` shape above is correct; resist the urge to "simplify" by moving release into the `try`.
+**`finally` is non-negotiable.** If `client.release()` doesn't run on every path through the code, that client is, as far as the pool is concerned, lost. After `max` of them are lost, the next `pool.connect()` waits forever (or hits `connectionTimeoutMillis` and throws a misleading error). The `try / catch / finally` shape above is correct; resist the urge to "tidy it up" by moving release into the `try`.
 
-**`ROLLBACK` itself can throw.** If the connection died mid-transaction, the `ROLLBACK` will fail with `"Client was closed and is not queryable"` or similar. Swallowing that with `.catch(() => {})` is intentional — the transaction is gone either way, and you want the *original* error to bubble up to your caller, not the rollback's secondary error. This pattern shows up in the brianc/node-postgres issue tracker repeatedly because people get confused about which error to surface.
+**`ROLLBACK` itself can throw.** If the connection died mid-transaction, the `ROLLBACK` will fail with `"Client was closed and is not queryable"` or something like it. Swallowing that with `.catch(() => {})` is on purpose — the transaction is gone either way, and you want the *original* error to reach your caller, not the rollback's secondary error. This pattern shows up in the brianc/node-postgres issue tracker again and again, because people get confused about which error to surface.
 
-**Don't reuse the variable name.** A common variant of this bug is having both `pool` and `client` in scope and accidentally writing `pool.query('UPDATE …')` instead of `client.query('UPDATE …')` inside the transaction body. The single-letter difference compiles, runs, and silently breaks the transaction. Linting won't catch it. Code review barely catches it. The only defence is a wrapper function that hides the pool entirely.
+**Don't reuse the variable name.** A common version of this bug is having both `pool` and `client` in scope and accidentally writing `pool.query('UPDATE …')` instead of `client.query('UPDATE …')` inside the transaction body. That one-letter difference compiles, runs, and quietly breaks the transaction. Linting won't catch it. Code review barely catches it. The only real defence is a wrapper function that hides the pool entirely.
 
-The wrapper is worth writing once and using everywhere:
+That wrapper is worth writing once and using everywhere:
 
 ```js
 async function withTransaction(pool, fn) {
@@ -95,13 +95,13 @@ await withTransaction(pool, async (client) => {
 });
 ```
 
-Once `pool` isn't in scope inside the callback, the `pool.query` typo is impossible. Every transaction in your codebase looks identical. New hires can't get this wrong on day one because there's only one shape to copy.
+Once `pool` isn't in scope inside the callback, the `pool.query` typo is impossible. Every transaction in your codebase looks the same. New hires can't get this wrong on day one, because there's only one shape to copy.
 
 ## The Lesson
 
-Connection pools are convenience for stateless work. Transactions are state. The two only meet at one specific API call — `pool.connect()` — and any code that takes a shortcut around that call is, by construction, broken under concurrency. It will pass tests. It will pass code review by people who haven't been bitten yet. It will run for months in staging. And then, on the busiest day of your year, two requests will race for the same client and your invariants will quietly come apart.
+Connection pools are a convenience for work that doesn't carry state. Transactions are state. The two only meet at one specific call — `pool.connect()` — and any code that takes a shortcut around that call is, by its very design, broken under concurrency. It'll pass tests. It'll pass code review by people who haven't been burned yet. It'll run for months in staging. And then, on the busiest day of your year, two requests will race for the same connection and the rules you counted on will quietly fall apart.
 
-The general principle: when an API hands you "any available worker" and another part of your system needs "the same worker for the next N calls," you cannot bridge those two semantics with hope. You need a primitive that pins one to the other, and you need to wrap the pin in a function that makes it impossible to skip. `pool.connect()` plus a `withTransaction` helper is that wrap. Anything looser is a future incident waiting on a calendar.
+The bigger principle: when one part of your system hands you "any free worker" and another part needs "the same worker for the next few calls," you can't bridge that gap with hope. You need something that pins one to the other, and you need to wrap that pin in a function that makes it impossible to skip. `pool.connect()` plus a `withTransaction` helper is that wrap. Anything looser is a future incident with a date already on the calendar.
 
 ## Credit & Further Reading
 

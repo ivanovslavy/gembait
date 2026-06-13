@@ -1,51 +1,51 @@
 # El bug de delete en transient storage de Solidity
 
-Desplegaste un contrato vault el trimestre pasado. La auditoría pasó. Los tests en verde. Lleva meses guardando TVL sin incidentes. Entonces, un martes tranquilo, un usuario llama a `deposit()` — un punto de entrada rutinario que incrementa un reentrancy guard en transient storage y retorna. La transacción confirma. El gas es normal. Sin revert.
+Imagina la escena. El trimestre pasado desplegaste un contrato vault — una bóveda que custodia los fondos de tus usuarios. La auditoría pasó. Los tests, todos en verde. Lleva meses guardando dinero sin un solo incidente. Y entonces, un martes cualquiera, un usuario llama a `deposit()`. Es una función rutinaria: incrementa un *reentrancy guard* (un pequeño cerrojo que impide que alguien vuelva a entrar en mitad de una operación) que vive en *transient storage* (una memoria temporal que se borra sola al acabar la transacción) y retorna. La transacción confirma. El gas, normal. Ningún error.
 
-Tres bloques después, una dirección distinta llama a `initialize()`. Una función que debería haber hecho revert hace cuatro meses porque el vault ya estaba inicializado. Esta vez, tiene éxito. El atacante es ahora el owner. El vault se vacía en minutos.
+Tres bloques más tarde, una dirección distinta llama a `initialize()`. Esa función tendría que haber fallado hace cuatro meses, porque el vault ya estaba inicializado. Pero esta vez no falla. Funciona. Y ahora el atacante es el dueño del vault. En cuestión de minutos, lo vacía.
 
-¿Qué pasó? Tu compilador escribió `sstore` donde debió escribir `tstore`, y puso a cero el slot `_owner` en lugar de tu reentrancy guard transient. Los tests no lo pillaron. La auditoría no lo pilló. El bytecode verificado en Etherscan sigue pareciendo correcto. Y hasta **febrero de 2026**, nadie sabía que esta clase de bug existía en Solidity.
+¿Qué ha pasado aquí? Pues que tu compilador escribió `sstore` donde tenía que escribir `tstore`, y eso puso a cero el slot `_owner` — el que guarda quién es el dueño — en lugar de tu reentrancy guard temporal. Los tests no lo vieron. La auditoría tampoco. El bytecode verificado en Etherscan sigue pareciendo perfecto. Y hasta **febrero de 2026**, nadie en el mundo sabía siquiera que este tipo de bug existía en Solidity.
 
-Este es **SOL-2026-1**, la Transient Storage Clearing Helper Collision. Afecta a contratos compilados con `--via-ir` en versiones de solc **0.8.28 hasta 0.8.33** que usan `delete` sobre una variable de estado transient junto a un clear correspondiente de persistent storage. Si eres tú, actualiza a 0.8.34 y sigue leyendo — el mecanismo merece la pena entenderlo.
+Esto es **SOL-2026-1**, la Transient Storage Clearing Helper Collision. Afecta a contratos compilados con `--via-ir` en versiones de solc **0.8.28 hasta 0.8.33** que usan `delete` sobre una variable de estado transient junto a un clear correspondiente de persistent storage. Si ese eres tú, actualiza a 0.8.34 y sigue leyendo — porque entender cómo ocurre vale mucho la pena.
 
 ## El problema
 
-El bug es una colisión de cache-key dentro del generador de código Yul IR de Solidity.
+En el fondo, el bug es una colisión de claves de caché dentro del generador de código Yul IR de Solidity. Vamos por partes.
 
-- El compilador genera un helper Yul reutilizable para cada operación distinta de "pon a cero este tipo".
-- El helper se indexa por nombre de tipo — p. ej. `storage_set_to_zero_t_address`.
-- La clave **no incluye** el dominio de almacenamiento. Persistent (`sstore`) y transient (`tstore`) comparten el mismo nombre de función.
-- El primer clear path que el compilador procese gana la caché. Cada clear posterior de ese tipo reutiliza el cuerpo cacheado — con el opcode equivocado.
+- El compilador, para no repetir trabajo, crea una pequeña función auxiliar (un *helper*) reutilizable por cada operación distinta de "pon a cero este tipo de dato".
+- Ese helper se guarda y se busca por el nombre del tipo — por ejemplo, `storage_set_to_zero_t_address`.
+- Y aquí está el fallo: esa clave **no incluye** de qué tipo de almacenamiento hablamos. Persistent (`sstore`) y transient (`tstore`) acaban compartiendo el mismo nombre de función.
+- ¿Quién gana? El primer clear que el compilador procesa se queda con la caché. Y a partir de ahí, cada clear posterior de ese mismo tipo reutiliza el cuerpo cacheado — con el opcode equivocado.
 
-La solución en 0.8.34 es un parche de una línea: prefija la clave con `transient_` cuando la ubicación es transient, igualando lo que el `updateStorageValueFunction` hermano ya hacía.
+La solución en 0.8.34 es un parche de una sola línea: añade el prefijo `transient_` a la clave cuando el dato es transient, justo lo que el helper hermano `updateStorageValueFunction` ya hacía.
 
-Del propio post de release del equipo de Solidity:
+Lo dice el propio post de release del equipo de Solidity:
 
 > "Fixed a bug in Yul IR Code Generation that could result in clearing a storage variable instead of a transient storage variable at the same position in the layout (and vice-versa)."
 
-En palabras llanas: **tu código dijo "borra el guard temporal" y el compilador emitió "borra el slot 0 de persistent storage."** Sin advertencia. Sin revert. El bytecode parece correcto.
+Traducido al lenguaje de andar por casa: **tu código dijo "borra el cerrojo temporal" y el compilador entendió "borra el slot 0 de persistent storage".** Sin avisar. Sin fallar. Y con un bytecode que parece correcto.
 
-Un contrato sólo está expuesto si se cumplen las tres condiciones:
+Tu contrato solo está en peligro si se cumplen las tres cosas a la vez:
 
 1. Está compilado con `--via-ir` (o `settings.viaIR: true` en Standard JSON)
-2. Usa `delete` sobre una variable de estado transient (la palabra clave `transient` de EIP-1153, llegada en solc 0.8.28)
+2. Usa `delete` sobre una variable de estado transient (la palabra clave `transient` de EIP-1153, que llegó en solc 0.8.28)
 3. La misma unidad de compilación también borra persistent storage de un **value type coincidente**
 
-Esa tercera condición es la traicionera. "Value type coincidente" incluye colapsos cross-type — cuando el compilador limpia arrays de storage, encamina cada elemento sub-32-bytes a través de `uint256`. Así que un `bool[]` que se acorta vía `.pop()` puede colisionar con el `delete` de una variable `uint256 transient`, aunque a nivel de fuente las dos no se parezcan en nada.
+Esa tercera condición es la traicionera, la que se cuela por sorpresa. "Value type coincidente" incluye casos en los que dos tipos distintos terminan tratándose igual — cuando el compilador limpia arrays de storage, encamina cada elemento de menos de 32 bytes a través de `uint256`. Así que un `bool[]` que se acorta con `.pop()` puede colisionar con el `delete` de una variable `uint256 transient`, aunque mirando el código fuente las dos cosas no tengan absolutamente nada que ver.
 
 ## La danza del debugging
 
-Imagina que eres el ingeniero cuyo vault acaba de ser drenado. Sacas el trace. El primer instinto es el obvio: **el reentrancy guard está roto.** Relees el modificador. La lógica es correcta. `require(_txSender == address(0), "reentrant");`, establece el sender, ejecuta el cuerpo, `delete _txSender;`. Limpio.
+Ponte en la piel del ingeniero al que le acaban de vaciar el vault. Sacas el trace de la transacción. El primer pensamiento es el más lógico: **el reentrancy guard está roto.** Relees el modificador línea a línea. La lógica es impecable. `require(_txSender == address(0), "reentrant");`, fija el sender, ejecuta el cuerpo, `delete _txSender;`. Limpio como una patena.
 
-Segunda hipótesis: **drift de storage layout por upgrade del proxy.** Comparas las implementaciones. Los layouts coinciden. `_owner` está en slot 0 en ambas versiones. `_txSender` es una variable transient — ni siquiera está en el persistent layout. No pueden colisionar. Excepto… espera.
+Segunda teoría: **algo se desalineó en el storage layout al actualizar el proxy.** Comparas las dos implementaciones. Los layouts coinciden. `_owner` está en el slot 0 en ambas versiones. Y `_txSender` es una variable transient — ni siquiera aparece en el layout persistent. Es imposible que choquen. Excepto que… espera un momento.
 
-Tercera hipótesis, porque ya son las 2 de la madrugada y Stack Overflow está abierto en 8 pestañas: **un reorg se comió un state root.** No. El state root en ese bloque es el que dice el archive node. `_owner` realmente era cero cuando se llamó a `initialize()`.
+Tercera teoría, porque ya son las 2 de la madrugada y tienes Stack Overflow abierto en 8 pestañas: **un reorg se ha comido un state root.** No. El state root de ese bloque es exactamente el que dice el archive node. `_owner` era cero de verdad cuando se llamó a `initialize()`.
 
-Aquí va la parte que hace que la gente cierre los portátiles de golpe: ninguna de tus herramientas estándar puede ver esto. Tus tests unitarios probablemente ni siquiera se ejecutan a través de `--via-ir` — la mayoría de repos van por defecto al pipeline legacy de evmasm en CI, y ese pipeline no está afectado. Tu herramienta de verificación formal trata al compilador como una capa de transformación confiable; demuestra que tu Solidity es seguro y asume que el compilador lo traduce correctamente. Tu monitorización on-chain busca cambios de estado anómalos — pero un `delete` legítimo sobre un slot de storage parece completamente legítimo. El atacante nunca escribió en `_owner`. El compilador sí.
+Y aquí viene la parte que hace que la gente cierre el portátil de golpe: ninguna de tus herramientas de siempre puede ver esto. Tus tests unitarios probablemente ni siquiera se ejecutan con `--via-ir` — la mayoría de repos usan por defecto el pipeline legacy de evmasm en CI, y ese pipeline no está afectado. Tu herramienta de verificación formal se fía del compilador como si fuera una capa de traducción de confianza; demuestra que tu Solidity es seguro y da por hecho que el compilador lo traduce bien. Y tu monitorización on-chain busca cambios de estado raros — pero un `delete` legítimo sobre un slot de storage parece de lo más normal. Es que el atacante nunca tocó `_owner`. Lo tocó el compilador.
 
-El momento de iluminación llega cuando alguien — en este caso, el equipo de Hexens durante una auditoría del compiler-source el 11 de febrero de 2026 — abre el Yul IR generado y hace grep por `storage_set_to_zero_`. Ven **un** helper donde debería haber dos: una única función, usando `sstore`, llamada tanto desde el path de `delete` persistent **como** desde el de transient.
+El momento "¡ajá!" llega cuando alguien — en este caso, el equipo de Hexens, durante una auditoría del propio código del compilador el 11 de febrero de 2026 — abre el Yul IR generado y hace grep por `storage_set_to_zero_`. Y ven **un** helper donde tendría que haber dos: una única función, que usa `sstore`, llamada tanto desde el path del `delete` persistent **como** desde el del transient.
 
-A partir de ahí son 30 minutos de leer `storageSetToZeroFunction` en el código del compilador y darse cuenta de que la cache key es `"storage_set_to_zero_" + _type.identifier()` — sin sufijo de dominio de almacenamiento. Compáralo con el `updateStorageValueFunction` vecino, que sí lo hace bien:
+A partir de ahí son 30 minutos de leer `storageSetToZeroFunction` en el código del compilador y caer en la cuenta de que la cache key es `"storage_set_to_zero_" + _type.identifier()` — sin ningún sufijo que indique el tipo de almacenamiento. Compáralo con el `updateStorageValueFunction` de al lado, que sí lo hace bien:
 
 ```cpp
 std::string const functionName =
@@ -54,24 +54,24 @@ std::string const functionName =
     "storage_value_" + ...;
 ```
 
-Un helper en el compilador recuerda su dominio de almacenamiento. El de al lado, no. Eso es el bug entero — dieciocho caracteres de concatenación de string que faltan.
+Un helper del compilador se acuerda de su tipo de almacenamiento. El de al lado, no. Y eso es el bug entero — dieciocho caracteres de concatenación de string que faltan.
 
 ## La solución
 
-Tres acciones, en orden de urgencia.
+Tres pasos, en orden de urgencia.
 
-**1. Actualiza.** solc 0.8.34 es un release de bugfix de un solo issue. Sube tu `pragma` o la versión de compilador de tu toolchain, recompila, redespliega. En Foundry: actualiza `solc_version = "0.8.34"` en `foundry.toml` y ejecuta `forge build --via-ir`. En Hardhat: actualiza `solc.version` en `hardhat.config.ts` y recompila.
+**1. Actualiza.** solc 0.8.34 es un release de bugfix que arregla un único problema. Sube tu `pragma` o la versión del compilador de tu toolchain, recompila y vuelve a desplegar. En Foundry: actualiza `solc_version = "0.8.34"` en `foundry.toml` y ejecuta `forge build --via-ir`. En Hardhat: actualiza `solc.version` en `hardhat.config.ts` y recompila.
 
-**2. Demuestra que tu recompilación es limpia.** Diffea el Yul IR antes y después:
+**2. Comprueba que tu recompilación está limpia.** Compara el Yul IR antes y después:
 
 ```bash
 solc --ir --via-ir MyContract.sol > after.yul
 diff before.yul after.yul | grep -E "storage_set_to_zero|transient_storage"
 ```
 
-Si el nuevo IR contiene dos helpers distintos — `storage_set_to_zero_t_address` usando `sstore` y `transient_storage_set_to_zero_t_address` usando `tstore` — estás a salvo. Si el viejo IR sólo tenía el primero, y se llamaba desde ambos paths, estabas envenenado.
+Si el nuevo IR tiene dos helpers distintos — `storage_set_to_zero_t_address` usando `sstore` y `transient_storage_set_to_zero_t_address` usando `tstore` — estás a salvo. Si el IR viejo solo tenía el primero, y se llamaba desde los dos paths, estabas envenenado.
 
-**3. Si todavía no puedes actualizar, neutraliza el disparador.** Una sola línea de inline assembly reemplaza el helper envenenado:
+**3. Si todavía no puedes actualizar, desactiva el disparador.** Una sola línea de inline assembly reemplaza al helper envenenado:
 
 ```solidity
 address transient _txSender;
@@ -81,19 +81,19 @@ function _clearGuard() internal {
 }
 ```
 
-Esto bypassa el pipeline de helper Yul por completo y emite `tstore` directamente. El compilador no puede miscachear lo que escribes a mano. Aplica el mismo patrón en el lado persistent si es el path transient el que se compila mal — en cualquier dirección que vaya la colisión, un lado puede escribirse a mano para sacarlo del peligro.
+Esto se salta por completo el sistema de helpers de Yul y emite `tstore` directamente. El compilador no puede cachear mal lo que tú escribes a mano. Aplica el mismo truco en el lado persistent si resulta que es el path transient el que se compila mal — vaya en la dirección que vaya la colisión, siempre puedes escribir un lado a mano para sacarlo del peligro.
 
-Una cosa que **no** debes hacer: no intentes "arreglarlo" renombrando tu variable transient o moviéndola a otro slot. El bug no es sobre slots. Es sobre el helper Yul compartido. Dos variables distintas del mismo value type bastan para colisionar, independientemente del storage layout.
+Una cosa que **no** debes hacer: no intentes "arreglarlo" renombrando tu variable transient o moviéndola a otro slot. El bug no va de slots. Va del helper Yul compartido. Con dos variables distintas del mismo value type ya basta para que colisionen, sin importar el storage layout.
 
-Para contratos detrás de un proxy upgradable, intercambiar la implementación es suficiente. Para contratos no upgradables ya en vivo con la vulnerabilidad, necesitas un plan de migración — y probablemente una pausa en los retiros mientras lo ejecutas.
+Si tu contrato está detrás de un proxy actualizable, basta con intercambiar la implementación. Si es un contrato no actualizable que ya está en vivo con la vulnerabilidad, necesitas un plan de migración — y probablemente pausar los retiros mientras lo llevas a cabo.
 
 ## La lección
 
-El transient storage tiene dieciocho meses. EIP-1153 llegó en Dencun (marzo 2024); Solidity añadió la palabra clave `transient` en 0.8.28 (octubre 2024). La feature era estable, el opcode era estable — pero el path del compilador que pegaba ambos era código nuevo de cero, compartiendo una función helper con un codepath de dieciocho años (persistent storage clearing) que nunca fue diseñado para dos dominios de almacenamiento.
+El transient storage tiene apenas dieciocho meses de vida. EIP-1153 llegó con Dencun (marzo de 2024); Solidity añadió la palabra clave `transient` en 0.8.28 (octubre de 2024). La feature era estable, el opcode era estable — pero el trozo del compilador que unía las dos cosas era código recién escrito, y compartía una función helper con un codepath de dieciocho años (el de borrar persistent storage) que nunca se pensó para manejar dos tipos de almacenamiento.
 
-Esa es la lección generalizable: **una nueva feature de lenguaje es una nueva superficie de compilador.** Si eres uno de los primeros equipos usando `transient`, `tstore`, `tload` o cualquier cosa que recientemente haya ganado una abstracción a nivel Solidity, tu modelo de amenazas tiene que incluir bugs de compilador de esta clase. Eso significa pin-ar una versión exacta de solc, ejecutar CI con el mismo pipeline que despliegas a producción (`--via-ir` si eso es lo que despliega), guardar la lista de bugs conocidos de Solidity y el blog de security-alerts, y suscribirte al canal de releases del compilador. Mejor que lo leas ahí a que un investigador como Hexens lo lea en tu base de código.
+Y esa es la lección que sirve para todo: **una nueva feature de lenguaje es también una nueva superficie de ataque en el compilador.** Si eres de los primeros equipos en usar `transient`, `tstore`, `tload` o cualquier cosa que acabe de estrenar una abstracción a nivel de Solidity, tu modelo de amenazas tiene que contar con bugs de compilador de este estilo. Eso significa: fijar una versión exacta de solc, ejecutar el CI con el mismo pipeline que despliegas en producción (`--via-ir` si es eso lo que despliegas), seguir la lista de bugs conocidos de Solidity y el blog de security-alerts, y suscribirte al canal de releases del compilador. Más vale que lo leas ahí tú primero a que un investigador como Hexens lo lea en tu propio código.
 
-La corrección es un stack. El compilador se sienta debajo de tu auditoría.
+La seguridad es un stack, una pila de capas. Y el compilador está justo debajo de tu auditoría.
 
 ## Crédito y lectura adicional
 
