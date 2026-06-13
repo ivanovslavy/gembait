@@ -30,11 +30,11 @@
   <line x1="160" y1="124" x2="220" y2="124" stroke="#4F46E5" stroke-width="2"/>
 
   <g font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" fill="#e8e9ed">
-    <text x="88" y="340" font-size="92" font-weight="700" letter-spacing="-1">GembaTicket</text>
+    <text x="88" y="340" font-size="92" font-weight="700" letter-spacing="-1">GembaKitchen</text>
   </g>
 
   <g font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" fill="#9ba1b4">
-    <text x="88" y="410" font-size="32" font-weight="400">A modern web3 ticket-sales platform</text>
+    <text x="88" y="410" font-size="32" font-weight="400">AI-powered operations for professional kitchens — inventory, recipes, menu and food-cost, with an assistant…</text>
   </g>
 
   
@@ -48,6 +48,6 @@
   
 
   <g font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif" fill="#5e6472" font-size="22" font-weight="400">
-    <text x="1112" y="530" text-anchor="end">gembait.com/en/products/gembaticket</text>
+    <text x="1112" y="530" text-anchor="end">gembait.com/en/products/gembakitchen</text>
   </g>
 </svg>

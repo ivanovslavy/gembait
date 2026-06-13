@@ -1272,6 +1272,115 @@
         ]
       }
     },
+    "gembakitchen": {
+      "tagline": "AI-powered operations for professional kitchens — inventory, recipes, menu and food-cost, with an assistant you can talk to.",
+      "cardDescription": "A multi-tenant SaaS that runs a restaurant's back-of-house: live inventory, recipes with automatic food-cost, menu and sales, plus a built-in AI assistant you can chat with — or speak to in English or Bulgarian — to record sales, check stock or build recipes by voice. Ships with a 64-recipe professional cookbook teams can copy into their own kitchen. Billed through GembaPay with a 72-hour free trial.",
+      "heroIntro": "GembaKitchen is an AI kitchen-operations platform for restaurants, cafés and professional kitchens. Each business gets an isolated workspace where it manages products and stock, recipes and menu, sales and reports — and an assistant powered by Claude that reads its live data and acts on it through function-calling. Staff can type or talk to the kitchen in English or Bulgarian; it answers in natural voice, records a sale, flags low stock, or drafts a new recipe. A curated cookbook of professional recipes is one click away from any kitchen.",
+      "problem": {
+        "title": "Running a kitchen is spreadsheets, guesswork and shrinkage",
+        "body": "Most kitchens track stock on paper or in spreadsheets, never really know the food-cost of a dish, and discover shortages only when they run out mid-service. Recipe knowledge lives in one chef's head, sales aren't tied back to ingredient consumption, and nobody has time to keep it all current. The data exists — it's just scattered, stale and impossible to query in the middle of a busy shift."
+      },
+      "solution": {
+        "title": "One workspace, plus an assistant that does the typing",
+        "body": "GembaKitchen keeps inventory, recipes, menu and sales in one place and links them: selling a dish automatically deducts its recipe's ingredients and books the revenue and cost. On top of that sits an AI assistant that can read every number and change it for you — by chat or by voice, in English or Bulgarian. Ask it what's low, tell it you sold ten cheeseburgers, or have it build a recipe and put it on the menu; it calls the right tools and confirms exactly what changed."
+      },
+      "whatWeAre": {
+        "title": "What GembaKitchen is",
+        "items": [
+          "A multi-tenant SaaS for professional and home kitchens — each restaurant's data lives in an isolated workspace.",
+          "A linked back-of-house: products, recipes, menu and sales that stay in sync, with automatic food-cost and profit per dish.",
+          "An AI assistant powered by Claude that reads your live kitchen data and acts on it through function-calling.",
+          "A voice interface in English and Bulgarian — talk to your kitchen, and it talks back in natural speech.",
+          "A professional cookbook of 64+ curated recipes any kitchen can copy in one click."
+        ]
+      },
+      "whatWeAreNot": {
+        "title": "What GembaKitchen is not",
+        "items": [
+          "Not a generic POS — it's the back-of-house brain the POS never gives you.",
+          "Not another spreadsheet you have to update by hand; the assistant does the data entry.",
+          "Not a shared database — every kitchen is isolated in its own multi-tenant workspace.",
+          "Not locked to one language — the assistant reads, writes and speaks both English and Bulgarian."
+        ]
+      },
+      "features": {
+        "title": "Features",
+        "intro": "Everything a kitchen needs to know its numbers — and an assistant to keep them current.",
+        "items": [
+          {
+            "title": "Talk to your kitchen",
+            "desc": "Chat or speak to a Claude-powered assistant in English or Bulgarian; it records sales, checks stock and answers questions, then replies in natural voice."
+          },
+          {
+            "title": "Live inventory & alerts",
+            "desc": "Track stock in real units with reorder levels; selling a dish deducts its ingredients automatically and flags anything that drops too low."
+          },
+          {
+            "title": "Recipes with food-cost",
+            "desc": "Build a recipe once and watch the cost and margin of every dish update from your real ingredient prices."
+          },
+          {
+            "title": "Professional cookbook",
+            "desc": "Browse a curated library of 64+ recipes across eight cuisines and copy any into your own kitchen — it never touches your kitchen until you add it."
+          },
+          {
+            "title": "Sales & reports",
+            "desc": "Revenue, food-cost %, profit per dish, top sellers, low-stock and waste — charted over 7, 30 or 90 days."
+          },
+          {
+            "title": "AI builds it for you",
+            "desc": "Ask the assistant to create products, recipes or menu items and it drafts them from culinary knowledge, then puts them on the menu."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Architecture",
+        "paragraphs": [
+          "GembaKitchen is a Node.js + Express + Prisma backend on a dedicated PostgreSQL database, with three React/Vite front-ends — a customer dashboard, a marketing site and an owner console — behind Apache and Cloudflare. Every tenant table carries a restaurant id, so one kitchen can never see another's data.",
+          "The assistant uses Claude (Anthropic) with tool-use: a tenant-scoped tool loop where the model can read inventory, recipes and menu and act — record a sale, log a purchase, or create a recipe — always limited to the caller's own kitchen. Voice is handled by ElevenLabs for natural text-to-speech and speech-to-text, so the same assistant works by typing or by talking in English and Bulgarian.",
+          "Billing runs through GembaPay: a 72-hour free trial opens at signup, then monthly plans are paid via a GembaPay payment request, with the subscription extended by a signed webhook."
+        ]
+      },
+      "useCases": {
+        "title": "Use cases",
+        "items": [
+          {
+            "title": "Restaurants & cafés",
+            "desc": "Keep stock, recipes and menu in sync, know the food-cost of every dish, and let staff record sales by voice during service."
+          },
+          {
+            "title": "Professional kitchens",
+            "desc": "Standardise recipes across a team, copy proven recipes from the cookbook, and watch margins and waste in the reports."
+          },
+          {
+            "title": "Catering & cloud kitchens",
+            "desc": "Run multiple menus from one isolated workspace and cost each dish from real ingredient prices."
+          },
+          {
+            "title": "Home cooks",
+            "desc": "A simpler mode to manage a pantry, recipes and shopping — with the same assistant to talk to."
+          }
+        ]
+      },
+      "security": {
+        "title": "Security & privacy",
+        "body": "GembaKitchen isolates every kitchen and stores only what it needs: business data, not card numbers.",
+        "items": [
+          {
+            "label": "Tenant isolation",
+            "value": "Every record is scoped to a restaurant id in a dedicated database that is never shared with other apps."
+          },
+          {
+            "label": "No card data",
+            "value": "Payments run through GembaPay; GembaKitchen never stores card numbers and verifies billing webhooks by HMAC signature."
+          },
+          {
+            "label": "Account security",
+            "value": "Email-verified signup, JWT sessions and optional two-factor authentication (email code or authenticator app)."
+          }
+        ]
+      }
+    },
     "gembapass": {
       "tagline": "Access passes & membership cards — for workplaces, clubs and gyms, with the blockchain made invisible.",
       "cardDescription": "A subscription SaaS that issues soulbound access-pass NFTs on GembaBlockchain — for workplace access or time-bound membership cards (clubs, gyms, season passes). Members get a normal account; the backend custodies wallets and signs invisibly. Remove someone, or let a membership expire, and their pass dies in one click. No wallets for users, no PII on-chain.",

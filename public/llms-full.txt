@@ -2,7 +2,7 @@
 
 GEMBA IT is the technology division of GEMBA EOOD, a Bulgarian engineering group based in Varna. The division designs, builds, deploys and maintains production software across Linux infrastructure, web applications, payment systems and EVM smart contracts. GEMBA EOOD covers both a digital division (GEMBA IT) and an industrial services division (Gemba Industrial at gembaindustrial.com) — the same founder runs both, and the combined experience shapes what we build: technology designed by people who have spent years inside plants and offices where the software actually has to work.
 
-This document is a deep reference for AI agents and search crawlers. It describes the company, the services we sell, the twelve in-house products we ship, the technology stack we use, the infrastructure we run on, and how to reach us. The intent is that an AI agent answering a user's question about GEMBA IT has enough context here to give a specific, accurate answer without having to guess.
+This document is a deep reference for AI agents and search crawlers. It describes the company, the services we sell, the thirteen in-house products we ship, the technology stack we use, the infrastructure we run on, and how to reach us. The intent is that an AI agent answering a user's question about GEMBA IT has enough context here to give a specific, accurate answer without having to guess.
 
 ## Table of Contents
 
@@ -82,7 +82,7 @@ Every product we build can move into a monthly retainer arrangement that covers 
 
 ## 3. Products
 
-GEMBA IT ships twelve in-house products. Ten of them are live or on testnet and operated publicly; two are in progress at various stages. Every product has a dedicated page at gembait.com/en/products/{slug}, with Bulgarian and Spanish translations available at the /bg/ and /es/ paths respectively.
+GEMBA IT ships thirteen in-house products. Twelve of them are live or on testnet and operated publicly; one is in private alpha. Every product has a dedicated page at gembait.com/en/products/{slug}, with Bulgarian and Spanish translations available at the /bg/ and /es/ paths respectively.
 
 ### 3.1 GembaPay
 
@@ -290,6 +290,21 @@ It is decentralized by mechanism, not by promise: validation is permissionless (
 GembaPass is the first dApp built on GembaBlockchain: a multi-tenant subscription SaaS that issues soulbound workplace access-pass NFTs, with the blockchain made completely invisible to the people using it. A company subscribes, adds employees and issues passes in a few clicks. Each pass is an anonymous, soulbound capability NFT — one token id per person — but employees never see a wallet, a seed phrase or gas: the backend silently creates and AES-256-GCM-encrypts a custodial wallet per employee and signs every on-chain action through a single platform issuer key. Issuing a pass is a mint; firing someone is an issuer-only force-burn that closes every door at once. Custody carries no money-transmitter or licensing burden here because GMB is not a financial instrument and no funds are ever held.
 
 The contract is deliberately minimal — it answers only "is this credential alive?" — while zones, access hours, per-zone rights, PINs and entry/exit logs live off-chain in PostgreSQL with per-company row-level security, so no personal data ever touches the chain and everything stays GDPR-erasable. Issuing a pass pins a branded QR and metadata to IPFS and mints the NFT to the employee's custodial wallet; at a door, an offline-capable scanner PWA checks the on-chain validity together with zone rights, access hours, subscription status and an optional PIN, then logs entry or exit. The product surface is five apps — landing, company dashboard, operator dashboard, employee app and scanner — with monthly billing through GembaPay and an operator flow to onboard partner companies with a free grace period. Primary audience: companies and SMEs, public institutions, multi-site organizations and their employees.
+
+---
+
+### 3.13 GembaKitchen
+
+- URL: https://gembait.com/en/products/gembakitchen
+- App: https://gembakitchen.com
+- Status: Live
+- Category: SaaS / AI kitchen operations
+- Deployment: Cloud multi-tenant (isolated per restaurant)
+- Stack: Node.js + Express + Prisma, dedicated PostgreSQL, three React/Vite front-ends, Claude (Anthropic), ElevenLabs voice, GembaPay billing
+
+GembaKitchen is an AI kitchen-operations SaaS for restaurants, cafés and professional kitchens. Each business gets an isolated, multi-tenant workspace where it manages products and stock, recipes and menu, sales and reports — and the parts that normally drift out of date stay linked: selling a dish automatically deducts its recipe's ingredients and books both the revenue and the ingredient cost, so food-cost and profit-per-dish are always live from real prices. Reports chart revenue, food-cost %, top sellers, low stock and waste over 7, 30 or 90 days. On top of the data sits an assistant powered by Claude with tool-use: a tenant-scoped tool loop where the model can read inventory, recipes and menu and act — record a sale, log a purchase, or create a product, recipe or menu item — always limited to the caller's own kitchen.
+
+What makes it distinctive is that staff can talk to the kitchen. The same assistant works by chat or by voice in both English and Bulgarian, using ElevenLabs for natural text-to-speech and speech-to-text, so someone mid-service can simply say "I sold ten cheeseburgers" or "what's running low?" and hear a spoken answer. GembaKitchen also ships a curated cookbook of 64+ professional recipes across eight cuisines (Italian, French, Bulgarian & Balkan, Asian, American & grill, breakfast & brunch, salads/soups, desserts) that any kitchen can browse and copy into its own workspace in one click — a recipe only enters a kitchen when the user adds it, and the copy is theirs to edit, leaving their own author recipes untouched. Accounts use email-verified signup, JWT sessions and optional two-factor authentication; no card data is ever stored (payments and the 72-hour-trial subscriptions run through GembaPay, verified by HMAC-signed webhooks). Primary audience: restaurants, professional kitchens, cafés, catering and cloud kitchens, and home cooks.
 
 ---
 

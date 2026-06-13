@@ -1272,6 +1272,115 @@
         ]
       }
     },
+    "gembakitchen": {
+      "tagline": "Operaciones con IA para cocinas profesionales — inventario, recetas, menú y coste de comida, con un asistente con el que puedes hablar.",
+      "cardDescription": "Un SaaS multiinquilino que gestiona la trastienda de un restaurante: inventario en tiempo real, recetas con coste de comida automático, menú y ventas, además de un asistente de IA integrado con el que chateas — o hablas en inglés o búlgaro — para registrar ventas, consultar el stock o crear recetas por voz. Incluye un recetario profesional de 64 recetas que los equipos copian a su propia cocina. Se factura mediante GembaPay con una prueba gratuita de 72 horas.",
+      "heroIntro": "GembaKitchen es una plataforma de operaciones de cocina con IA para restaurantes, cafeterías y cocinas profesionales. Cada negocio obtiene un espacio aislado donde gestiona productos y stock, recetas y menú, ventas e informes — y un asistente basado en Claude que lee sus datos en vivo y actúa sobre ellos mediante function-calling. El personal puede escribir o hablar a la cocina en inglés o búlgaro; ella responde con voz natural, registra una venta, avisa de stock bajo o redacta una receta nueva. Un recetario curado de recetas profesionales está a un clic de cualquier cocina.",
+      "problem": {
+        "title": "Llevar una cocina es hojas de cálculo, conjeturas y mermas",
+        "body": "La mayoría de las cocinas anotan el stock en papel o en hojas de cálculo, nunca saben realmente el coste de comida de un plato y descubren la falta solo cuando se acaba a mitad de servicio. El conocimiento de las recetas vive en la cabeza de un solo cocinero, las ventas no se vinculan al consumo de ingredientes y nadie tiene tiempo de mantenerlo todo al día. Los datos existen — solo que están dispersos, obsoletos e imposibles de consultar en plena hora punta."
+      },
+      "solution": {
+        "title": "Un espacio, más un asistente que teclea por ti",
+        "body": "GembaKitchen mantiene inventario, recetas, menú y ventas en un solo lugar y los vincula: vender un plato descuenta automáticamente los ingredientes de su receta y contabiliza ingreso y coste. Encima hay un asistente de IA que puede leer cada cifra y cambiarla por ti — por chat o por voz, en inglés o búlgaro. Pregúntale qué está bajo, dile que vendiste diez hamburguesas, o haz que cree una receta y la ponga en el menú; llama a las herramientas correctas y confirma exactamente qué cambió."
+      },
+      "whatWeAre": {
+        "title": "Qué es GembaKitchen",
+        "items": [
+          "Un SaaS multiinquilino para cocinas profesionales y domésticas — los datos de cada restaurante viven en un espacio aislado.",
+          "Una trastienda vinculada: productos, recetas, menú y ventas que se mantienen sincronizados, con coste de comida y beneficio por plato automáticos.",
+          "Un asistente de IA basado en Claude que lee los datos en vivo de tu cocina y actúa sobre ellos mediante function-calling.",
+          "Una interfaz de voz en inglés y búlgaro — habla a tu cocina y ella te responde con voz natural.",
+          "Un recetario profesional de más de 64 recetas curadas que cualquier cocina copia con un clic."
+        ]
+      },
+      "whatWeAreNot": {
+        "title": "Qué no es GembaKitchen",
+        "items": [
+          "No es un TPV genérico — es el cerebro de la trastienda que el TPV nunca te da.",
+          "No es otra hoja de cálculo que tienes que actualizar a mano; el asistente introduce los datos por ti.",
+          "No es una base compartida — cada cocina está aislada en su propio espacio multiinquilino.",
+          "No está atado a un idioma — el asistente lee, escribe y habla en inglés y búlgaro."
+        ]
+      },
+      "features": {
+        "title": "Funciones",
+        "intro": "Todo lo que una cocina necesita saber de sus cifras — y un asistente que las mantiene al día.",
+        "items": [
+          {
+            "title": "Habla a tu cocina",
+            "desc": "Escribe o habla a un asistente basado en Claude en inglés o búlgaro; registra ventas, consulta el stock y responde preguntas, luego contesta con voz natural."
+          },
+          {
+            "title": "Inventario en vivo y alertas",
+            "desc": "Controla el stock en unidades reales con niveles de reposición; vender un plato descuenta sus ingredientes automáticamente y avisa de todo lo que baje demasiado."
+          },
+          {
+            "title": "Recetas con coste de comida",
+            "desc": "Crea una receta una vez y ve cómo el coste y el margen de cada plato se calculan a partir de tus precios reales de ingredientes."
+          },
+          {
+            "title": "Recetario profesional",
+            "desc": "Explora una biblioteca curada de más de 64 recetas en ocho cocinas y copia cualquiera a tu propia cocina — no entra en ella hasta que tú la añades."
+          },
+          {
+            "title": "Ventas e informes",
+            "desc": "Ingresos, coste de comida %, beneficio por plato, más vendidos, stock bajo y mermas — en gráficos de 7, 30 o 90 días."
+          },
+          {
+            "title": "La IA lo crea por ti",
+            "desc": "Pide al asistente que cree productos, recetas o artículos del menú y los redacta con conocimiento culinario, luego los pone en el menú."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Arquitectura",
+        "paragraphs": [
+          "GembaKitchen es un backend Node.js + Express + Prisma sobre una base de datos PostgreSQL dedicada, con tres frontends React/Vite — un panel de cliente, un sitio de marketing y una consola de propietario — tras Apache y Cloudflare. Cada tabla de inquilino lleva un id de restaurante, de modo que una cocina nunca puede ver los datos de otra.",
+          "El asistente usa Claude (Anthropic) con tool-use: un bucle de herramientas limitado al inquilino en el que el modelo lee inventario, recetas y menú y actúa — registra una venta, anota una compra o crea una receta — siempre limitado a la propia cocina de quien llama. La voz la gestiona ElevenLabs para text-to-speech y speech-to-text naturales, así que el mismo asistente funciona escribiendo o hablando en inglés y búlgaro.",
+          "La facturación se hace mediante GembaPay: al registrarse se abre una prueba gratuita de 72 horas, luego los planes mensuales se pagan con una solicitud de pago de GembaPay, y la suscripción se extiende con un webhook firmado."
+        ]
+      },
+      "useCases": {
+        "title": "Casos de uso",
+        "items": [
+          {
+            "title": "Restaurantes y cafeterías",
+            "desc": "Mantén stock, recetas y menú sincronizados, conoce el coste de comida de cada plato y deja que el personal registre ventas por voz durante el servicio."
+          },
+          {
+            "title": "Cocinas profesionales",
+            "desc": "Estandariza recetas en el equipo, copia recetas probadas del recetario y vigila márgenes y mermas en los informes."
+          },
+          {
+            "title": "Catering y cocinas fantasma",
+            "desc": "Gestiona varios menús desde un espacio aislado y calcula el coste de cada plato a partir de precios reales de ingredientes."
+          },
+          {
+            "title": "Cocineros caseros",
+            "desc": "Un modo más sencillo para gestionar despensa, recetas y compras — con el mismo asistente al que hablar."
+          }
+        ]
+      },
+      "security": {
+        "title": "Seguridad y privacidad",
+        "body": "GembaKitchen aísla cada cocina y almacena solo lo necesario: datos de negocio, no números de tarjeta.",
+        "items": [
+          {
+            "label": "Aislamiento de inquilino",
+            "value": "Cada registro está vinculado a un id de restaurante en una base de datos dedicada que nunca se comparte con otras apps."
+          },
+          {
+            "label": "Sin datos de tarjeta",
+            "value": "Los pagos se hacen mediante GembaPay; GembaKitchen nunca almacena números de tarjeta y verifica los webhooks de facturación con firma HMAC."
+          },
+          {
+            "label": "Seguridad de la cuenta",
+            "value": "Registro con email verificado, sesiones JWT y autenticación de dos factores opcional (código por email o app autenticadora)."
+          }
+        ]
+      }
+    },
     "gembapass": {
       "tagline": "Pases de acceso y tarjetas de socio — para trabajo, clubes y gimnasios, con el blockchain hecho invisible.",
       "cardDescription": "Un SaaS por suscripción que emite pases de acceso NFT soulbound en GembaBlockchain — para acceso al trabajo o tarjetas de socio con periodo (clubes, gimnasios, pases de temporada). El usuario obtiene una cuenta normal; el backend custodia las carteras y firma de forma invisible. Elimina a alguien, o deja que caduque una membresía, y su pase se quema en un clic. Sin carteras para los usuarios, sin datos personales on-chain.",

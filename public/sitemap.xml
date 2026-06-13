@@ -599,142 +599,69 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://gembait.com/en/products/gembakitchen</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/products/gembakitchen"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/products/gembakitchen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/products/gembakitchen"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/products/gembakitchen"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/products/gembakitchen</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/products/gembakitchen"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/products/gembakitchen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/products/gembakitchen"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/products/gembakitchen"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/products/gembakitchen</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/products/gembakitchen"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/products/gembakitchen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/products/gembakitchen"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/products/gembakitchen"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-  <!-- Blog posts -->
+  <!-- Blog posts (only the languages each post is translated into) -->
   <url>
     <loc>https://gembait.com/en/blog/hardhat-3-is-esm-only</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/hardhat-3-is-esm-only"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/hardhat-3-is-esm-only"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/hardhat-3-is-esm-only"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/hardhat-3-is-esm-only"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://gembait.com/bg/blog/hardhat-3-is-esm-only</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/hardhat-3-is-esm-only"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/hardhat-3-is-esm-only"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/hardhat-3-is-esm-only"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/hardhat-3-is-esm-only"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://gembait.com/es/blog/hardhat-3-is-esm-only</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/hardhat-3-is-esm-only"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/hardhat-3-is-esm-only"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/hardhat-3-is-esm-only"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/hardhat-3-is-esm-only"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://gembait.com/en/blog/viem-multicall-eats-revert-reasons</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/viem-multicall-eats-revert-reasons"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/viem-multicall-eats-revert-reasons"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/viem-multicall-eats-revert-reasons"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/viem-multicall-eats-revert-reasons"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://gembait.com/bg/blog/viem-multicall-eats-revert-reasons</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/viem-multicall-eats-revert-reasons"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/viem-multicall-eats-revert-reasons"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/viem-multicall-eats-revert-reasons"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/viem-multicall-eats-revert-reasons"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://gembait.com/es/blog/viem-multicall-eats-revert-reasons</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/viem-multicall-eats-revert-reasons"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/viem-multicall-eats-revert-reasons"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/viem-multicall-eats-revert-reasons"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/viem-multicall-eats-revert-reasons"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://gembait.com/en/blog/postgresql-refresh-publication-sql-injection</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/postgresql-refresh-publication-sql-injection"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/postgresql-refresh-publication-sql-injection"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/postgresql-refresh-publication-sql-injection"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/postgresql-refresh-publication-sql-injection"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://gembait.com/bg/blog/postgresql-refresh-publication-sql-injection</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/postgresql-refresh-publication-sql-injection"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/postgresql-refresh-publication-sql-injection"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/postgresql-refresh-publication-sql-injection"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/postgresql-refresh-publication-sql-injection"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://gembait.com/es/blog/postgresql-refresh-publication-sql-injection</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/postgresql-refresh-publication-sql-injection"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/postgresql-refresh-publication-sql-injection"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/postgresql-refresh-publication-sql-injection"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/postgresql-refresh-publication-sql-injection"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://gembait.com/en/blog/why-iscontract-now-lies-about-eoas</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/why-iscontract-now-lies-about-eoas"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/why-iscontract-now-lies-about-eoas"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/why-iscontract-now-lies-about-eoas"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/why-iscontract-now-lies-about-eoas"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://gembait.com/bg/blog/why-iscontract-now-lies-about-eoas</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/why-iscontract-now-lies-about-eoas"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/why-iscontract-now-lies-about-eoas"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/why-iscontract-now-lies-about-eoas"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/why-iscontract-now-lies-about-eoas"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://gembait.com/es/blog/why-iscontract-now-lies-about-eoas</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/why-iscontract-now-lies-about-eoas"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/why-iscontract-now-lies-about-eoas"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/why-iscontract-now-lies-about-eoas"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/why-iscontract-now-lies-about-eoas"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://gembait.com/en/blog/stop-hand-computing-erc-7201-storage-slots</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/stop-hand-computing-erc-7201-storage-slots"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/stop-hand-computing-erc-7201-storage-slots"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/stop-hand-computing-erc-7201-storage-slots"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/stop-hand-computing-erc-7201-storage-slots"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://gembait.com/bg/blog/stop-hand-computing-erc-7201-storage-slots</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/stop-hand-computing-erc-7201-storage-slots"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/stop-hand-computing-erc-7201-storage-slots"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/stop-hand-computing-erc-7201-storage-slots"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/stop-hand-computing-erc-7201-storage-slots"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://gembait.com/es/blog/stop-hand-computing-erc-7201-storage-slots</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/stop-hand-computing-erc-7201-storage-slots"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/stop-hand-computing-erc-7201-storage-slots"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/stop-hand-computing-erc-7201-storage-slots"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/stop-hand-computing-erc-7201-storage-slots"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://gembait.com/en/blog/node-postgres-pool-begin-transaction-race</loc>

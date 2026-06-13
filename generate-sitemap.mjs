@@ -40,21 +40,36 @@ function bumpDown(priority) {
   return n.toFixed(1);
 }
 
-function urlBlock(pathSuffix, changefreq, priority) {
+function urlBlock(pathSuffix, changefreq, priority, langs = LANGS) {
   let xml = '';
-  for (const lang of LANGS) {
+  for (const lang of langs) {
     const loc = `${BASE_URL}/${lang}${pathSuffix}`;
     xml += '  <url>\n';
     xml += `    <loc>${loc}</loc>\n`;
-    for (const altLang of LANGS) {
+    for (const altLang of langs) {
       xml += `    <xhtml:link rel="alternate" hreflang="${altLang}" href="${BASE_URL}/${altLang}${pathSuffix}"/>\n`;
     }
-    xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}/en${pathSuffix}"/>\n`;
+    if (langs.includes('en')) {
+      xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}/en${pathSuffix}"/>\n`;
+    }
     xml += `    <changefreq>${changefreq}</changefreq>\n`;
     xml += `    <priority>${lang === 'en' ? priority : bumpDown(priority)}</priority>\n`;
     xml += '  </url>\n';
   }
   return xml;
+}
+
+// Languages a blog post is actually translated into — mirrors prerender.cjs, which
+// only emits a page per language that has content. Without this the sitemap lists
+// phantom /bg and /es URLs for English-only posts, which Search Console then reports
+// as Soft 404 / duplicate (no prerendered page exists for them).
+function postLangs(post) {
+  const t = post.title;
+  if (t && typeof t === 'object') {
+    const langs = LANGS.filter((l) => t[l]);
+    return langs.length ? langs : ['en'];
+  }
+  return ['en'];
 }
 
 let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -72,9 +87,9 @@ for (const product of [...products].sort((a, b) => a.order - b.order)) {
 }
 
 if (blogPosts.length > 0) {
-  sitemap += '\n  <!-- Blog posts -->\n';
+  sitemap += '\n  <!-- Blog posts (only the languages each post is translated into) -->\n';
   for (const post of blogPosts) {
-    sitemap += urlBlock(`/blog/${post.slug}`, 'monthly', '0.7');
+    sitemap += urlBlock(`/blog/${post.slug}`, 'monthly', '0.7', postLangs(post));
   }
 }
 
@@ -85,9 +100,10 @@ const distOutputPath = path.join(__dirname, 'dist', 'sitemap.xml');
 fs.writeFileSync(outputPath, sitemap);
 
 const urlCount = (sitemap.match(/<url>/g) || []).length;
+const blogUrlCount = blogPosts.reduce((n, p) => n + postLangs(p).length, 0);
 console.log(
   `Sitemap generated: ${outputPath} — ${urlCount} URLs ` +
-    `(${staticPages.length} static × 3 + ${products.length} products × 3 + ${blogPosts.length} posts × 3)`
+    `(${staticPages.length} static × 3 + ${products.length} products × 3 + ${blogUrlCount} blog URLs across ${blogPosts.length} posts)`
 );
 
 if (fs.existsSync(path.join(__dirname, 'dist'))) {

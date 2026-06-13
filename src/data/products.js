@@ -474,6 +474,44 @@ export const products = [
     caseStudy: { hasWhatWeAre: true, hasSecurity: true, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
     screenshots: [],
     i18nKey: 'gembapass'
+  },
+  {
+    slug: 'gembakitchen',
+    name: 'GembaKitchen',
+    status: 'live',
+    statusNote: 'AI assistant + voice',
+    featured: true,
+    order: 13,
+    category: 'saas',
+    audience: ['restaurants', 'professional kitchens', 'cafés', 'catering businesses', 'home cooks'],
+    appUrl: 'https://gembakitchen.com',
+    appLabel: 'Visit gembakitchen.com',
+    githubUrl: null,
+    githubNote: 'Private repository',
+    tech: ['Node.js', 'Express', 'Prisma', 'PostgreSQL', 'React', 'Vite', 'Claude AI', 'ElevenLabs', 'GembaPay'],
+    networks: [],
+    contracts: [],
+    metrics: [
+      { value: 'AI', label: 'Voice assistant (EN/BG)' },
+      { value: '64+', label: 'Cookbook recipes' },
+      { value: 'Multi-tenant', label: 'Isolated per kitchen' },
+      { value: '72h', label: 'Free trial' }
+    ],
+    tags: ['SaaS', 'AI assistant', 'Voice', 'Inventory', 'Recipes', 'Food-cost', 'Multi-tenant', 'GembaPay'],
+    partners: [
+      { name: 'Claude (Anthropic)', type: 'ai' },
+      { name: 'ElevenLabs', type: 'voice' },
+      { name: 'GembaPay', type: 'payments', url: 'https://gembapay.com' },
+      { name: 'PostgreSQL', type: 'database' }
+    ],
+    certifications: [
+      { label: 'Tenant isolation', result: 'Per-restaurant data separation in a dedicated database' },
+      { label: 'AI assistant', result: 'Claude function-calling over your own kitchen data; voice in EN + BG' },
+      { label: 'Billing', result: 'GembaPay subscriptions — 72h free trial, no card data stored' }
+    ],
+    caseStudy: { hasWhatWeAre: true, hasSecurity: true, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
+    screenshots: [],
+    i18nKey: 'gembakitchen'
   }
 ];
 

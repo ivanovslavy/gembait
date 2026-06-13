@@ -36,7 +36,7 @@ Access control (digital check-in/check-out, attendance tracking) and CCTV survei
 ### Ongoing support
 Monthly retainer plans for maintenance, monitoring, feature work and security updates on products we built — or that clients bring to us.
 
-## Products (12 total)
+## Products (13 total)
 
 ### GembaPay — https://gembait.com/en/products/gembapay — https://gembapay.com
 Status: Live. A non-custodial payment gateway that unifies crypto and card payments behind a single API. Merchants keep 99% of every transaction; on-chain contracts split the 1% platform fee atomically. Certified Stripe Connect marketplace and PayPal PPCP partner. Live on Ethereum, BSC and Polygon with Chainlink-backed pricing across 86+ currencies.
@@ -74,6 +74,9 @@ Status: Testnet (public). Bulgaria's first blockchain — a public, permissionle
 ### GembaPass — https://gembait.com/en/products/gembapass — https://gembapass.com
 Status: Testnet (live on GembaBlockchain). The first dApp on GembaBlockchain: a subscription SaaS that issues soulbound workplace access-pass NFTs, with the blockchain made invisible. The backend custodies an encrypted wallet per employee and signs on-chain actions through a single issuer key; staff just get an email and password. Issuing a pass is a mint, firing someone is an issuer-only force-burn that closes every door at once. Zones, hours, rights, PINs and logs stay off-chain in PostgreSQL with per-company row-level security, so no PII ever touches the chain (GDPR-erasable). Cloud multi-tenant and on-prem single-tenant; monthly billing via GembaPay.
 
+### GembaKitchen — https://gembait.com/en/products/gembakitchen — https://gembakitchen.com
+Status: Live. An AI kitchen-operations SaaS for restaurants, cafés and professional kitchens. Each business gets an isolated, multi-tenant workspace to manage products and stock, recipes and menu, sales and reports — selling a dish automatically deducts its recipe's ingredients and books the revenue and cost. A built-in assistant powered by Claude reads the kitchen's live data and acts on it through function-calling: record a sale, log a purchase, or create a product, recipe or menu item. The assistant works by chat or by voice in both English and Bulgarian (ElevenLabs text-to-speech and speech-to-text), so staff can literally talk to the kitchen and hear it answer. Ships with a curated cookbook of 64+ professional recipes across eight cuisines that any kitchen can copy into its own workspace in one click — a recipe only enters a kitchen when the user adds it. Recipes carry automatic food-cost and profit-per-dish from real ingredient prices; reports chart revenue, food-cost %, top sellers, low stock and waste. Node.js + Express + Prisma on a dedicated PostgreSQL database with three React/Vite front-ends (customer dashboard, marketing site, owner console); per-restaurant data isolation; no card data stored. Billing via GembaPay with a 72-hour free trial.
+
 ## Technology stack
 
 - Languages: JavaScript, TypeScript, Solidity, Bash
@@ -83,6 +86,7 @@ Status: Testnet (live on GembaBlockchain). The first dApp on GembaBlockchain: a 
 - Blockchain: Solidity 0.8.x, Hardhat, OpenZeppelin v5, ERC721A, ethers.js, wagmi, viem, Chainlink, Uniswap V3
 - Storage: IPFS, Pinata, Filebase
 - Infrastructure: Linux, Docker, systemd, Apache, Cloudflare, Hetzner Cloud
+- AI: Claude (Anthropic) function-calling, ElevenLabs text-to-speech & speech-to-text
 - Third-party: Stripe Connect, PayPal PPCP, Moralis
 
 ## Languages
