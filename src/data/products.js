@@ -474,8 +474,8 @@ export const products = [
   {
     slug: 'gembakitchen',
     name: 'GembaKitchen',
-    status: 'testnet',
-    statusNote: null,
+    status: 'live',
+    statusNote: 'in production',
     featured: true,
     order: 5,
     category: 'saas',
