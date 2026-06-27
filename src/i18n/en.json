@@ -267,6 +267,12 @@
   "products": {
     "page_title": "Our products",
     "subtitle": "Built in-house. Battle-tested. Ready to work.",
+    "gmb": {
+      "title": "Pay 20% less with GMB",
+      "body": "GMB is the native utility coin of GembaBlockchain. Pay for Gemba ecosystem services in GMB and get 20% off the standard price. GMB is a utility coin for use — no buyback, no fiat redemption, not an investment.",
+      "apps": "Live with GMB: Gemba Escrow, GembaWin and GembaTools (20% off the service fee), and GembaTicket (20% off the event-creation fee only — not ticket purchases). Coming with GembaBlockchain mainnet: GembaKitchen and GembaSniperBot.",
+      "cta": "Learn about GMB →"
+    },
     "viewAll": "View all products",
     "status": {
       "live": "Live",

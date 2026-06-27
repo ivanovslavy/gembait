@@ -267,6 +267,12 @@
   "products": {
     "page_title": "Нашите продукти",
     "subtitle": "Изградени вътрешно. Тествани в реална среда. Готови за работа.",
+    "gmb": {
+      "title": "Плати 20% по-малко с GMB",
+      "body": "GMB е нативният utility коин на GembaBlockchain. Плати услугите в Gemba екосистемата с GMB и получи 20% отстъпка от стандартната цена. GMB е utility коин за ползване — без обратно изкупуване, без осребряване във фиат, не е инвестиция.",
+      "apps": "Активно с GMB: Gemba Escrow, GembaWin и GembaTools (20% от таксата за услугата) и GembaTicket (20% само от таксата за създаване на събитие — не за покупка на билети). Скоро с mainnet на GembaBlockchain: GembaKitchen и GembaSniperBot.",
+      "cta": "Научи за GMB →"
+    },
     "viewAll": "Всички продукти",
     "status": {
       "live": "Активен",

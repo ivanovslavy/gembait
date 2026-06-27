@@ -267,6 +267,12 @@
   "products": {
     "page_title": "Nuestros productos",
     "subtitle": "Construidos internamente. Probados en batalla. Listos para trabajar.",
+    "gmb": {
+      "title": "Paga un 20% menos con GMB",
+      "body": "GMB es la moneda de utilidad nativa de GembaBlockchain. Paga los servicios del ecosistema Gemba en GMB y obtén un 20% de descuento sobre el precio estándar. GMB es una moneda de utilidad para usar — sin recompra, sin reembolso en fiat, no es una inversión.",
+      "apps": "Activo con GMB: Gemba Escrow, GembaWin y GembaTools (20% de la tarifa del servicio), y GembaTicket (20% solo de la tarifa de creación de evento — no en la compra de entradas). Próximamente con el mainnet de GembaBlockchain: GembaKitchen y GembaSniperBot.",
+      "cta": "Conoce GMB →"
+    },
     "viewAll": "Ver todos los productos",
     "status": {
       "live": "En vivo",

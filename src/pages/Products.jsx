@@ -23,6 +23,33 @@ export default function Products() {
       >
         {t('products.subtitle')}
       </p>
+      <a
+        href="https://gmb.gembachain.io"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block mb-10 rounded-2xl p-6 animate-fade-up delay-100 transition-transform hover:-translate-y-0.5"
+        style={{
+          background: 'linear-gradient(120deg, rgba(99,102,241,0.12), rgba(6,182,212,0.08))',
+          border: '1px solid rgba(99,102,241,0.35)',
+          textDecoration: 'none',
+        }}
+      >
+        <div
+          className="text-xl font-bold mb-2"
+          style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
+        >
+          {t('products.gmb.title')}
+        </div>
+        <p className="text-sm mb-2" style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+          {t('products.gmb.body')}
+        </p>
+        <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+          {t('products.gmb.apps')}
+        </p>
+        <span className="text-sm font-semibold" style={{ color: '#06B6D4' }}>
+          {t('products.gmb.cta')}
+        </span>
+      </a>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 animate-fade-up delay-200">
         {sorted.map(product => (
           <ProductCard key={product.slug} product={product} lang={lang} />
