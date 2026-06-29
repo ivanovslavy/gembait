@@ -223,7 +223,7 @@ Primary audience: GembaPay merchants' customer loyalty programs; NFT collectors 
 ### 3.8 NFT Viewer
 
 - URL: https://gembait.com/en/products/nftviewer
-- Live app: https://nftviewer.slavy.space
+- Live app: https://nftviewer.gembait.com
 - Status: Live
 - Category: Web3
 - Networks: Ethereum, Sepolia, Polygon, BSC
@@ -419,7 +419,7 @@ Security defaults: SSH keys only, non-standard SSH ports, firewall rules that on
 - GembaPay live app: https://gembapay.com
 - GembaTools live app: https://gembatools.io
 - EduChain demo: https://school.slavy.space
-- NFT Viewer: https://nftviewer.slavy.space
+- NFT Viewer: https://nftviewer.gembait.com
 
 ### Source and social
 

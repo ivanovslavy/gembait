@@ -323,7 +323,7 @@ export const products = [
     order: 8,
     category: 'web3',
     audience: ['NFT collectors', 'ticket holders', 'developers'],
-    appUrl: 'https://nftviewer.slavy.space',
+    appUrl: 'https://nftviewer.gembait.com/',
     appLabel: 'Open viewer',
     githubUrl: null,
     githubNote: null,

@@ -59,7 +59,7 @@ Status: Testnet. Time-locked bounty and contest payouts. Organizers deposit priz
 ### Kotkata NFT — https://gembait.com/en/products/kotkata — https://gembapay.com/nft-gift
 Status: Live. A generative collection of hand-drawn Sphynx cats that doubles as a loyalty program for GembaPay merchants. Every customer who completes a payment can claim a free NFT across Ethereum, BSC and Polygon. ERC721A contract with on-chain royalties, signature-based minting and Slither-clean audits.
 
-### NFT Viewer — https://gembait.com/en/products/nftviewer — https://nftviewer.slavy.space
+### NFT Viewer — https://gembait.com/en/products/nftviewer — https://nftviewer.gembait.com
 Status: Live. A multi-chain NFT gallery that reads the blockchain when indexers fall short. Displays wallets or contracts across four EVM chains; when Moralis is missing data for freshly minted collections, the backend reads tokenURI directly and enriches metadata on the fly. A dedicated HTML proxy renders legacy animated NFTs inside the gallery.
 
 ### Atlas — https://gembait.com/en/products/atlas
