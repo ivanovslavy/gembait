@@ -270,7 +270,7 @@
     "gmb": {
       "title": "Paga un 20% menos con GMB",
       "body": "GMB es la moneda de utilidad nativa de GembaBlockchain. Paga los servicios del ecosistema Gemba en GMB y obtén un 20% de descuento sobre el precio estándar. GMB es una moneda de utilidad para usar — sin recompra, sin reembolso en fiat, no es una inversión.",
-      "apps": "Activo con GMB: Gemba Escrow, GembaWin y GembaTools (20% de la tarifa del servicio), y GembaTicket (20% solo de la tarifa de creación de evento — no en la compra de entradas). Próximamente con el mainnet de GembaBlockchain: GembaKitchen y GembaSniperBot.",
+      "apps": "Activo con GMB: Gemba Escrow, GembaWin y GembaTools (20% de la tarifa del servicio). Próximamente con el mainnet de GembaBlockchain: GembaKitchen y GembaSniperBot.",
       "cta": "Conoce GMB →"
     },
     "viewAll": "Ver todos los productos",
@@ -1383,6 +1383,100 @@
           {
             "label": "Seguridad de la cuenta",
             "value": "Registro con email verificado, sesiones JWT y autenticación de dos factores opcional (código por email o app autenticadora)."
+          }
+        ]
+      }
+    },
+    "gembarecords": {
+      "tagline": "Radio en directo gratuita 24/7 — tres emisoras seleccionadas de la música favorita del equipo de GembaIT, para mantener el buen ánimo en el trabajo y fuera de él.",
+      "cardDescription": "Una radio en directo pública, gratuita y siempre activa con tres emisoras — Electronic, Hip-Hop y Classic — elegidas a mano de las listas del propio equipo de GembaIT. Escúchala en cualquier navegador, instálala como app directamente desde la página (PWA) o descarga la app de Android. Próximamente en Google Play. Creada y diseñada por GembaIT.",
+      "heroIntro": "GEMBA RECORDS Radio es nuestro pequeño regalo para quien le gusta la buena música: una emisión en directo gratuita 24/7 con tres emisoras — Electronic, Hip-Hop y Classic — seleccionadas de las canciones favoritas del equipo de GembaIT. La creamos para aportar algo de frescura y buen ánimo, durante el proceso de trabajo y fuera de él :) Ábrela en cualquier navegador, instálala como app directamente desde la página (PWA) o consigue el archivo de la app de Android (APK). También llegará pronto a Google Play, para que puedas instalarla directamente desde la tienda.",
+      "extraLinks": [
+        "Descargar para Android (APK)",
+        "Google Play — próximamente"
+      ],
+      "problem": {
+        "title": "El trabajo necesita banda sonora — sin fricciones",
+        "body": "La buena música mantiene al equipo fresco y de buen ánimo, pero las opciones habituales vienen con condiciones: cuentas e inicios de sesión, anuncios que cortan el ritmo, planes de pago o una selección que se aleja de lo que realmente quieres escuchar. La mayoría de las radios «gratis» no son ni verdaderamente gratuitas ni realmente seleccionadas."
+      },
+      "solution": {
+        "title": "Solo dale a play — eso es todo",
+        "body": "GEMBA RECORDS Radio es gratuita, siempre activa, sin cuenta y sin anuncios. Tres emisoras — Electronic, Hip-Hop y Classic — están seleccionadas de la música favorita del equipo de GembaIT, así que el ambiente se mantiene constante. Ábrela en cualquier navegador, instálala como app desde la página (PWA) o descarga la app de Android. Sin configuración, sin registro: le das a play y ya estás escuchando."
+      },
+      "whatWeAre": {
+        "title": "Qué es GEMBA RECORDS Radio",
+        "items": [
+          "Una radio en directo gratuita, pública y 24/7 que cualquiera puede escuchar en cualquier navegador.",
+          "Tres emisoras seleccionadas — Electronic, Hip-Hop y Classic — elegidas de la música favorita del equipo de GembaIT.",
+          "Instalable como app: añádela a tu teléfono o escritorio directamente desde el navegador (PWA), o descarga el archivo de la app de Android (APK).",
+          "Creada y diseñada por GembaIT — pensada para aportar frescura y buen ánimo, durante el proceso de trabajo y fuera de él."
+        ]
+      },
+      "whatWeAreNot": {
+        "title": "Qué no es",
+        "items": [
+          "No es un muro de pago — es totalmente gratuita, sin suscripción ni plan premium.",
+          "No es un servicio con cuenta obligatoria — sin registro, sin inicio de sesión, sin datos personales.",
+          "No se financia con anuncios — sin interrupciones, solo la música.",
+          "No es una biblioteca a la carta — es radio en directo que sintonizas, no una lista de canciones que controlas pista a pista."
+        ]
+      },
+      "features": {
+        "title": "Qué consigues",
+        "intro": "Todo lo que necesitas para poner buena música y volver al trabajo — y nada que no necesites.",
+        "items": [
+          {
+            "title": "Tres emisoras seleccionadas",
+            "desc": "Electronic, Hip-Hop y Classic — cada una elegida a mano de las canciones favoritas del equipo de GembaIT, conmutables con un toque."
+          },
+          {
+            "title": "Gratis y 24/7",
+            "desc": "Siempre activa, totalmente gratuita, sin cuenta y sin anuncios — solo dale a play en cualquier navegador."
+          },
+          {
+            "title": "Instálala como app (PWA)",
+            "desc": "Añádela a la pantalla de inicio de tu teléfono o a tu escritorio directamente desde el navegador — se abre como una app nativa, sin necesidad de tienda."
+          },
+          {
+            "title": "App de Android (APK)",
+            "desc": "Descarga el archivo firmado de la app de Android directamente desde esta página e instálalo en tu teléfono."
+          },
+          {
+            "title": "Próximamente en Google Play",
+            "desc": "La app de Android está en camino a Play Store, para que puedas instalarla y actualizarla directamente desde la tienda."
+          },
+          {
+            "title": "Funciona en todas partes",
+            "desc": "Reproducción fluida en teléfonos, tabletas y portátiles mediante HLS — incluidos los iPhone, donde las emisiones en directo simples suelen entrecortarse."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "Cómo está construida",
+        "paragraphs": [
+          "GEMBA RECORDS Radio es una app web ligera de React + Vite que reproduce tres emisoras en directo mediante HLS (hls.js en el navegador, HLS nativo en iOS) — elegido específicamente porque las emisiones MP3 en directo simples se cortaban en móvil, mientras que HLS se reproduce de forma robusta en todas partes, incluido el iPhone.",
+          "La misma app es una PWA, así que las personas pueden instalarla en la pantalla de inicio del teléfono o en el escritorio directamente desde el navegador, y está empaquetada como app de Android (Capacitor), distribuida tanto como APK descargable como, pronto, en Google Play.",
+          "El audio se transmite desde un servidor de emisora AzuraCast y se entrega tras un proxy inverso Apache con Cloudflare por delante, de modo que el reproductor habla con los puntos de acceso de gembarecords.com y la fuente original permanece oculta."
+        ]
+      },
+      "useCases": {
+        "title": "Para quién es",
+        "items": [
+          {
+            "title": "Equipos en el trabajo",
+            "desc": "Pon una emisora seleccionada en la oficina o de fondo en un día de teletrabajo para mantener el ánimo fresco — sin inicios de sesión ni anuncios que corten el ritmo."
+          },
+          {
+            "title": "Para cualquiera, en cualquier lugar",
+            "desc": "Radio pública y gratuita que puedes abrir en cualquier navegador en casa, de camino o en el gimnasio — elige Electronic, Hip-Hop o Classic según el momento."
+          },
+          {
+            "title": "Quien escucha desde el móvil",
+            "desc": "Instala la app de Android desde el APK (y pronto desde Google Play), o añade la PWA a tu pantalla de inicio para escuchar con un toque."
+          },
+          {
+            "title": "Amantes de la música",
+            "desc": "Descubre lo que realmente escucha el equipo de GembaIT — tres emisoras seleccionadas de nuestras propias canciones favoritas."
           }
         ]
       }

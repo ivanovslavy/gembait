@@ -150,6 +150,31 @@ export default function ProductDetail() {
               {t('productDetail.viewGithub')} ↗
             </a>
           ) : null}
+          {(product.extraLinks || []).map((l, i) => {
+            const label = t(`products.${key}.extraLinks.${i}`, { defaultValue: l.label });
+            if (l.disabled || !l.url) {
+              return (
+                <span
+                  key={i}
+                  className="btn-flat"
+                  style={{ opacity: 0.55, cursor: 'default' }}
+                  aria-disabled="true"
+                >
+                  {label}
+                </span>
+              );
+            }
+            return (
+              <a
+                key={i}
+                href={l.url}
+                {...(l.download ? { download: '' } : { target: '_blank', rel: 'noopener noreferrer' })}
+                className="btn-flat"
+              >
+                {label}{l.external ? ' ↗' : ''}
+              </a>
+            );
+          })}
         </div>
         {product.githubNote ? (
           <p className="text-xs mt-3" style={{ color: 'var(--text-tertiary)' }}>

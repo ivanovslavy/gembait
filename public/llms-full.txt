@@ -306,6 +306,19 @@ GembaKitchen is an AI kitchen-operations SaaS for restaurants, cafés and profes
 
 What makes it distinctive is that staff can talk to the kitchen. The same assistant works by chat or by voice in both English and Bulgarian, using ElevenLabs for natural text-to-speech and speech-to-text, so someone mid-service can simply say "I sold ten cheeseburgers" or "what's running low?" and hear a spoken answer. GembaKitchen also ships a curated cookbook of 64+ professional recipes across eight cuisines (Italian, French, Bulgarian & Balkan, Asian, American & grill, breakfast & brunch, salads/soups, desserts) that any kitchen can browse and copy into its own workspace in one click — a recipe only enters a kitchen when the user adds it, and the copy is theirs to edit, leaving their own author recipes untouched. Accounts use email-verified signup, JWT sessions and optional two-factor authentication; no card data is ever stored (payments and the 72-hour-trial subscriptions run through GembaPay, verified by HMAC-signed webhooks). Primary audience: restaurants, professional kitchens, cafés, catering and cloud kitchens, and home cooks.
 
+### 3.14 GEMBA RECORDS Radio
+
+- URL: https://gembait.com/en/products/gembarecords
+- App: https://radio.gembarecords.com
+- Status: Live
+- Category: Media / live radio
+- Platforms: Web (any browser), installable PWA, Android app (APK download today; Google Play coming soon)
+- Stack: React + Vite, HLS (hls.js + native iOS HLS), PWA, Capacitor (Android), AzuraCast streaming, Apache reverse proxy, Cloudflare
+
+GEMBA RECORDS Radio is a free, public, 24/7 live radio with three stations — Electronic, Hip-Hop and Classic — curated from the GembaIT team's own favourite music. It was built simply to bring freshness and a good mood, during and outside the work process. It is completely free, with no account and no ads: you open it and press play. Listeners can tune in from any browser, install it as an app straight from the page (PWA) on phone or desktop, or download the signed Android app file (APK) directly from the product page; it is also coming soon to Google Play so it will be installable from the store.
+
+Technically it is a lightweight React + Vite app that plays the three live stations over HLS — hls.js in the browser and native HLS on iOS — a choice made specifically because plain live MP3 streams stalled on mobile while HLS plays robustly everywhere, including iPhone. The same app is a PWA and is packaged for Android with Capacitor. The audio is streamed from an AzuraCast station server delivered behind an Apache reverse proxy with Cloudflare in front, so the player talks to gembarecords.com endpoints while the upstream source stays hidden. Built and designed by GembaIT. Primary audience: the GembaIT team and anyone who wants a free, good-mood soundtrack at work or at home.
+
 ---
 
 ## 4. Technology Stack

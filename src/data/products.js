@@ -472,6 +472,44 @@ export const products = [
     i18nKey: 'gembapass'
   },
   {
+    slug: 'gembarecords',
+    name: 'GEMBA RECORDS Radio',
+    status: 'live',
+    statusNote: 'in production',
+    featured: true,
+    order: 14,
+    category: 'saas',
+    audience: ['the GembaIT team', 'music lovers', 'anyone who wants a good-mood soundtrack at work'],
+    appUrl: 'https://radio.gembarecords.com',
+    appLabel: 'Listen live',
+    githubUrl: null,
+    githubNote: null,
+    // Extra hero CTAs beyond the live app + GitHub (download / store links).
+    extraLinks: [
+      { label: 'Download for Android (APK)', url: '/downloads/GembaRadio.apk', external: false, download: true },
+      { label: 'Google Play — coming soon', url: null, disabled: true }
+    ],
+    tech: ['React', 'Vite', 'HLS / hls.js', 'PWA', 'Capacitor (Android)', 'AzuraCast', 'Apache', 'Cloudflare'],
+    networks: [],
+    contracts: [],
+    metrics: [
+      { value: '3', label: 'Live stations' },
+      { value: '24/7', label: 'Always on' },
+      { value: 'Free', label: 'No account, no ads' },
+      { value: 'PWA', label: 'Installable in-browser' }
+    ],
+    tags: ['Radio', 'Live', 'Free', '24/7', 'Electronic', 'Hip-Hop', 'Classic', 'PWA', 'Android'],
+    partners: [
+      { name: 'AzuraCast', type: 'streaming' },
+      { name: 'Cloudflare', type: 'cdn' },
+      { name: 'GembaIT', type: 'maker', url: 'https://gembait.com' }
+    ],
+    certifications: [],
+    caseStudy: { hasWhatWeAre: true, hasSecurity: false, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
+    screenshots: [],
+    i18nKey: 'gembarecords'
+  },
+  {
     slug: 'gembakitchen',
     name: 'GembaKitchen',
     status: 'live',

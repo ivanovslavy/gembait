@@ -270,7 +270,7 @@
     "gmb": {
       "title": "Pay 20% less with GMB",
       "body": "GMB is the native utility coin of GembaBlockchain. Pay for Gemba ecosystem services in GMB and get 20% off the standard price. GMB is a utility coin for use — no buyback, no fiat redemption, not an investment.",
-      "apps": "Live with GMB: Gemba Escrow, GembaWin and GembaTools (20% off the service fee), and GembaTicket (20% off the event-creation fee only — not ticket purchases). Coming with GembaBlockchain mainnet: GembaKitchen and GembaSniperBot.",
+      "apps": "Live with GMB: Gemba Escrow, GembaWin and GembaTools (20% off the service fee). Coming with GembaBlockchain mainnet: GembaKitchen and GembaSniperBot.",
       "cta": "Learn about GMB →"
     },
     "viewAll": "View all products",
@@ -1383,6 +1383,100 @@
           {
             "label": "Account security",
             "value": "Email-verified signup, JWT sessions and optional two-factor authentication (email code or authenticator app)."
+          }
+        ]
+      }
+    },
+    "gembarecords": {
+      "tagline": "Free, 24/7 live radio — three stations curated from the GembaIT team's own favourite music, to keep the good mood going at work and beyond.",
+      "cardDescription": "A public, free, always-on live radio with three stations — Electronic, Hip-Hop and Classic — hand-picked from the GembaIT team's own playlists. Listen in any browser, install it as an app straight from the page (PWA), or download the Android app. Coming soon to Google Play. Built and designed by GembaIT.",
+      "heroIntro": "GEMBA RECORDS Radio is our little gift to anyone who likes good music: a free, 24/7 live stream with three stations — Electronic, Hip-Hop and Classic — curated from the GembaIT team's own favourite tracks. We built it to bring a bit of freshness and a good mood, during and outside the work process :) Open it in any browser, install it as an app directly from the page (PWA), or grab the Android app file (APK). It's also coming soon to Google Play, so you'll be able to install it straight from the store.",
+      "extraLinks": [
+        "Download for Android (APK)",
+        "Google Play — coming soon"
+      ],
+      "problem": {
+        "title": "Work needs a soundtrack — without the friction",
+        "body": "Good music keeps a team fresh and in a good mood, but the usual options come with strings attached: accounts and logins, ads breaking the flow, paid tiers, or curation that drifts away from what you actually want to hear. Most 'free' radio is neither truly free nor genuinely curated."
+      },
+      "solution": {
+        "title": "Just press play — that's it",
+        "body": "GEMBA RECORDS Radio is free, always on, and has no account and no ads. Three stations — Electronic, Hip-Hop and Classic — are curated from the GembaIT team's own favourite music, so the vibe stays consistent. Open it in any browser, install it as an app from the page (PWA), or download the Android app. No setup, no sign-up — you press play and you're listening."
+      },
+      "whatWeAre": {
+        "title": "What GEMBA RECORDS Radio is",
+        "items": [
+          "A free, public, 24/7 live radio anyone can listen to in any browser.",
+          "Three curated stations — Electronic, Hip-Hop and Classic — picked from the GembaIT team's own favourite music.",
+          "Installable as an app: add it to your phone or desktop straight from the browser (PWA), or download the Android app file (APK).",
+          "Built and designed by GembaIT — made to bring freshness and a good mood, during and outside the work process."
+        ]
+      },
+      "whatWeAreNot": {
+        "title": "What it is not",
+        "items": [
+          "Not a paywall — it's completely free, with no subscription and no premium tier.",
+          "Not an account-walled service — no sign-up, no login, no personal data required.",
+          "Not ad-supported — no interruptions, just the music.",
+          "Not an on-demand library — it's live radio you tune into, not a track-by-track playlist you control."
+        ]
+      },
+      "features": {
+        "title": "What you get",
+        "intro": "Everything you need to put on good music and get back to work — nothing you don't.",
+        "items": [
+          {
+            "title": "Three curated stations",
+            "desc": "Electronic, Hip-Hop and Classic — each hand-picked from the GembaIT team's own favourite tracks, switchable in one tap."
+          },
+          {
+            "title": "Free & 24/7",
+            "desc": "Always on, completely free, no account and no ads — just press play in any browser."
+          },
+          {
+            "title": "Install as an app (PWA)",
+            "desc": "Add it to your phone's home screen or your desktop straight from the browser — it opens like a native app, no store needed."
+          },
+          {
+            "title": "Android app (APK)",
+            "desc": "Download the signed Android app file directly from this page and install it on your phone."
+          },
+          {
+            "title": "Coming to Google Play",
+            "desc": "The Android app is on its way to the Play Store, so you'll be able to install and update it straight from the store."
+          },
+          {
+            "title": "Works everywhere",
+            "desc": "Smooth playback on phones, tablets and laptops via HLS — including iPhones, where plain live streams usually stutter."
+          }
+        ]
+      },
+      "architecture": {
+        "title": "How it's built",
+        "paragraphs": [
+          "GEMBA RECORDS Radio is a lightweight React + Vite web app that plays three live stations over HLS (hls.js in the browser, native HLS on iOS) — chosen specifically because plain live MP3 streams stalled on mobile, while HLS plays robustly everywhere, including iPhone.",
+          "The same app is a PWA, so visitors can install it to a phone home screen or desktop directly from the browser, and it is packaged as an Android app (Capacitor) distributed both as a downloadable APK and, soon, on Google Play.",
+          "The audio is streamed from an AzuraCast station server and delivered behind an Apache reverse proxy with Cloudflare in front, so the player talks to gembarecords.com endpoints and the upstream source stays hidden."
+        ]
+      },
+      "useCases": {
+        "title": "Who it's for",
+        "items": [
+          {
+            "title": "Teams at work",
+            "desc": "Put on a curated station in the office or the background of a remote day to keep the mood fresh — no logins, no ads breaking the flow."
+          },
+          {
+            "title": "Anyone, anywhere",
+            "desc": "Free, public radio you can open in any browser at home, on the move, or in the gym — pick Electronic, Hip-Hop or Classic to fit the moment."
+          },
+          {
+            "title": "Phone listeners",
+            "desc": "Install the Android app from the APK (and soon Google Play), or add the PWA to your home screen for one-tap listening."
+          },
+          {
+            "title": "Music lovers",
+            "desc": "Discover what the GembaIT team actually listens to — three stations curated from our own favourite tracks."
           }
         ]
       }
