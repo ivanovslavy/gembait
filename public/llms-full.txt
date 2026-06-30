@@ -312,10 +312,10 @@ What makes it distinctive is that staff can talk to the kitchen. The same assist
 - App: https://radio.gembarecords.com
 - Status: Live
 - Category: Media / live radio
-- Platforms: Web (any browser), installable PWA, Android app (APK download today; Google Play coming soon)
+- Platforms: Web (any browser), installable PWA, Android apps for phone and Android TV (Sony Bravia / Google TV) as APK download
 - Stack: React + Vite, HLS (hls.js + native iOS HLS), PWA, Capacitor (Android), AzuraCast streaming, Apache reverse proxy, Cloudflare
 
-GEMBA RECORDS Radio is a free, public, 24/7 live radio with three stations — Electronic, Hip-Hop and Classic — curated from the GembaIT team's own favourite music. It was built simply to bring freshness and a good mood, during and outside the work process. It is completely free, with no account and no ads: you open it and press play. Listeners can tune in from any browser, install it as an app straight from the page (PWA) on phone or desktop, or download the signed Android app file (APK) directly from the product page; it is also coming soon to Google Play so it will be installable from the store.
+GEMBA RECORDS Radio is a free, public, 24/7 live radio with three stations — Electronic, Hip-Hop and Classic — curated from the GembaIT team's own favourite music. It was built simply to bring freshness and a good mood, during and outside the work process. It is completely free, with no account and no ads: you open it and press play. Listeners can tune in from any browser, install it as an app straight from the page (PWA) on phone or desktop, or download the free Android apps (APK) directly from the product page. Free Android apps available as APK — phone: https://gembait.com/downloads/GembaRadio.apk and Android TV (Sony Bravia / Google TV): https://gembait.com/downloads/GembaRadioTV.apk
 
 Technically it is a lightweight React + Vite app that plays the three live stations over HLS — hls.js in the browser and native HLS on iOS — a choice made specifically because plain live MP3 streams stalled on mobile while HLS plays robustly everywhere, including iPhone. The same app is a PWA and is packaged for Android with Capacitor. The audio is streamed from an AzuraCast station server delivered behind an Apache reverse proxy with Cloudflare in front, so the player talks to gembarecords.com endpoints while the upstream source stays hidden. Built and designed by GembaIT. Primary audience: the GembaIT team and anyone who wants a free, good-mood soundtrack at work or at home.
 
