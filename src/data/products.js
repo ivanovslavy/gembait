@@ -487,6 +487,7 @@ export const products = [
     // Extra hero CTAs beyond the live app + GitHub (download / store links).
     extraLinks: [
       { label: 'Download for Android (APK)', url: '/downloads/GembaRadio.apk', external: false, download: true },
+      { label: 'Download for Android TV (APK)', url: '/downloads/GembaRadioTV.apk', external: false, download: true },
       { label: 'Google Play — coming soon', url: null, disabled: true }
     ],
     tech: ['React', 'Vite', 'HLS / hls.js', 'PWA', 'Capacitor (Android)', 'AzuraCast', 'Apache', 'Cloudflare'],
