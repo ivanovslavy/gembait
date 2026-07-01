@@ -1,0 +1,66 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Stripe Idempotency Keys Break After Login",
+    "description": "Stripe checkout works for guests but fails with a 400 idempotency_error the moment a customer logs in. Here is why a static key built from orderCode + amount breaks, and the one-line fix.",
+    "image": "https://gembait.com/images/blog/stripe-idempotency-key-breaks-after-login/hero.webp",
+    "datePublished": "2026-06-15",
+    "dateModified": "2026-06-15",
+    "author": { "@type": "Organization", "name": "GEMBA IT team", "url": "https://gembait.com/about" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": { "@type": "ImageObject", "url": "https://gembait.com/favicon.svg" }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/stripe-idempotency-key-breaks-after-login",
+    "articleSection": "Payment Integrations Technical Guide",
+    "keywords": "stripe, idempotency, payment-intents, checkout, node-js, payments"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does \"Keys for idempotent requests can only be used with the same parameters\" actually mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It means you sent Stripe a request with an idempotency key it has seen before, but the parameters of this request don't match the parameters of the first request that used that key. Stripe stores the first request's inputs and compares every later request that reuses the key. If anything differs — a new customer, a different amount, changed metadata — it refuses with a 400 rather than guess which request you meant. The card is never touched, so it's a blocked request, not a failed charge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I just generate a fresh random key on every request to make the error go away?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — that's the trap. A brand-new key per click does silence the error, but it also throws away the protection the key existed for. If a customer double-clicks pay, or the network retries the request under the hood, each attempt now carries a different key and Stripe will create a separate charge for each. You've turned a visible 400 into an invisible double-charge. The key should be stable for one logical payment and change only when the payment's real inputs change."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does Stripe remember an idempotency key?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "At least 24 hours. Stripe saves the status code and body of the first request under that key and replays it for any matching retry within the window. After roughly a day the key is pruned; reusing it after that starts a fresh request. So in practice this is a within-session concern — long enough to cover retries during one checkout, short enough that yesterday's keys won't haunt you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which parameters trigger the mismatch — does changing metadata count?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Any parameter Stripe receives is part of the comparison, including metadata. The login case is the famous one because it adds a customer field without changing the order code or amount, so a naive key misses it. But changing the amount (coupon, shipping), the currency, the description, or a metadata value all count as different parameters. If a field can change between attempts and you want those attempts treated as the same request, either keep that field constant or fold it into the key."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this bug double-charge customers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not by itself. The idempotency error blocks the request before any charge happens, so the symptom is a customer who can't pay, not one who pays twice. The double-charge risk comes from the wrong fix — a random key per click — which removes the safety net. Fix it properly by folding the changing fields into the key and you get both: no spurious 400, and no duplicate charges."
+        }
+      }
+    ]
+  }
+}

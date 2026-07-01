@@ -656,6 +656,20 @@
 
   <!-- Blog posts (only the languages each post is translated into) -->
   <url>
+    <loc>https://gembait.com/en/blog/node-postgres-connection-pool-exhaustion</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/node-postgres-connection-pool-exhaustion"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/node-postgres-connection-pool-exhaustion"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/blog/stripe-idempotency-key-breaks-after-login</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/stripe-idempotency-key-breaks-after-login"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/stripe-idempotency-key-breaks-after-login"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://gembait.com/en/blog/hardhat-3-is-esm-only</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/hardhat-3-is-esm-only"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/hardhat-3-is-esm-only"/>

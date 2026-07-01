@@ -1,5 +1,71 @@
 [
   {
+    "slug": "node-postgres-connection-pool-exhaustion",
+    "date": "2026-06-22",
+    "lastUpdated": "2026-06-22",
+    "author": "GEMBA IT team",
+    "cluster": "backend-infrastructure",
+    "tags": [
+      "node-js",
+      "postgresql",
+      "connection-pool",
+      "node-postgres",
+      "pgbouncer",
+      "scaling"
+    ],
+    "image": "/images/blog/node-postgres-connection-pool-exhaustion/hero.webp",
+    "hero": "/images/blog/node-postgres-connection-pool-exhaustion/hero.webp",
+    "heroRetina": "/images/blog/node-postgres-connection-pool-exhaustion/hero@2x.webp",
+    "midImage": "/images/blog/node-postgres-connection-pool-exhaustion/mid.webp",
+    "midImageRetina": "/images/blog/node-postgres-connection-pool-exhaustion/mid@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Why Your Postgres Pool Runs Out"
+    },
+    "excerpt": {
+      "en": "Everyone says add a connection pool to protect Postgres. The default node-postgres pool, multiplied across your instances, is what takes Postgres down. Here is the whole class of failures and the fixes."
+    },
+    "word_count": 2650,
+    "source_url": "https://node-postgres.com/features/pooling",
+    "source_type": "industry_publication",
+    "source_date": "2026-06-10",
+    "emotional_hook": "everyone_says_a",
+    "first_hand_story_used": false
+  },
+  {
+    "slug": "stripe-idempotency-key-breaks-after-login",
+    "date": "2026-06-15",
+    "lastUpdated": "2026-06-15",
+    "author": "GEMBA IT team",
+    "cluster": "payment-integrations",
+    "tags": [
+      "stripe",
+      "idempotency",
+      "payment-intents",
+      "checkout",
+      "node-js",
+      "payments"
+    ],
+    "image": "/images/blog/stripe-idempotency-key-breaks-after-login/hero.webp",
+    "hero": "/images/blog/stripe-idempotency-key-breaks-after-login/hero.webp",
+    "heroRetina": "/images/blog/stripe-idempotency-key-breaks-after-login/hero@2x.webp",
+    "midImage": "/images/blog/stripe-idempotency-key-breaks-after-login/mid.webp",
+    "midImageRetina": "/images/blog/stripe-idempotency-key-breaks-after-login/mid@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Stripe Idempotency Keys Break After Login"
+    },
+    "excerpt": {
+      "en": "Your Stripe checkout works for guests, then fails with a 400 idempotency_error the moment someone logs in. Here is why a static key breaks — and the one-line fix."
+    },
+    "word_count": 2235,
+    "source_url": "https://github.com/vendurehq/vendure/issues/3903",
+    "source_type": "github_issue",
+    "source_date": "2025-10-25",
+    "emotional_hook": "assumed_vs_reality",
+    "first_hand_story_used": false
+  },
+  {
     "slug": "hardhat-3-is-esm-only",
     "date": "2026-06-01",
     "lastUpdated": "2026-06-01",

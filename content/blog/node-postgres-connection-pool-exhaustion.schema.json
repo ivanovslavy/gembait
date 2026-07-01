@@ -1,0 +1,68 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Why Your Postgres Pool Runs Out",
+    "description": "Everyone says add a connection pool to protect Postgres. The default node-postgres pool, multiplied across your instances, is what takes Postgres down. Here is the whole class of failures and the fixes.",
+    "image": "https://gembait.com/images/blog/node-postgres-connection-pool-exhaustion/hero.webp",
+    "datePublished": "2026-06-22",
+    "dateModified": "2026-06-22",
+    "author": { "@type": "Organization", "name": "GEMBA IT team", "url": "https://gembait.com/about" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": { "@type": "ImageObject", "url": "https://gembait.com/favicon.svg" }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/node-postgres-connection-pool-exhaustion",
+    "articleSection": "Backend & Infrastructure Lessons",
+    "keywords": "node-js, postgresql, connection-pool, node-postgres, pgbouncer, scaling",
+    "proficiencyLevel": "Expert",
+    "dependencies": "Node.js, node-postgres (pg), PostgreSQL, PgBouncer"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What's a good value for pool max?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There's no universal number, because the right value depends on how many copies of your app run. Start from the database: take max_connections, subtract superuser_reserved_connections (default 3) and a buffer for migrations, cron jobs, and admin access, then divide what's left by the number of app instances you'll have at peak, not on average. If autoscaling can quadruple your instance count, your pool size has to assume that peak or you'll hit the wall the moment it scales. For many small apps, a max of 10 to 20 per instance with a handful of instances is plenty. The number matters far less than doing the multiplication."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my pool work in tests but fail in production?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tests run one process, one request at a time, and tear down cleanly, so a leaked client or an undersized pool never has a chance to pile up. Production runs many instances, concurrently, for days. Two things only show up there: leaks accumulate, because each error path that skips release() permanently shrinks the pool until it's empty, and the per-process pool size gets multiplied by every instance until the total crosses the database ceiling. Load-test with concurrency against a real Postgres, and deliberately throw errors inside checked-out clients to confirm they're still released. If a forced error doesn't return the connection, you've found a leak."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I create a new Pool per request?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. A Pool is meant to be long-lived and shared: create one when your app starts and reuse it for the whole process lifetime. Creating a pool per request or per function call is the opposite of pooling: you pay the 20 to 30ms connection handshake every time and you can open an unbounded number of connections, which is exactly how you exhaust Postgres. The guidance from the node-postgres docs is to keep a single pool, or a small fixed number, per process. The one exception is short-lived serverless instances, and even there the answer isn't more pools, it's a shared external pooler like PgBouncer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I find a connection leak?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Watch pg_stat_activity while your app runs: SELECT count(*), state FROM pg_stat_activity WHERE datname = 'yourdb' GROUP BY state. If idle in transaction keeps climbing and never falls, you have transactions that start but never commit or roll back, a classic leak. You can also log pool.totalCount, pool.idleCount, and pool.waitingCount on an interval: if waitingCount grows while idleCount stays at zero, the pool is starved. Then audit every pool.connect() in your code and confirm each one has a matching release() in a finally block. The error path is almost always where the leak hides."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does raising max_connections fix it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rarely, and usually it makes things worse. Each PostgreSQL connection is a separate OS process that reserves memory, so a high max_connections full of mostly-idle connections trades a crash for sustained memory pressure and slower performance. Raise it only after you've right-sized your pools and confirmed you genuinely need more concurrent work than the current ceiling allows, and even then, prefer putting a pooler like PgBouncer in front so a large number of app connections share a small number of real database connections. The goal is fewer, busier connections, not more idle ones."
+        }
+      }
+    ]
+  }
+}
