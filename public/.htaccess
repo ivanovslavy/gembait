@@ -20,6 +20,7 @@ RewriteRule ^(?:en/|bg/|es/)?blog/postgres-streaming-replication-high-availabili
 RewriteRule ^(?:en/|bg/|es/)?blog/scaling-failover-infrastructure-on-a-budget/?$ /en/blog/building-failover-infrastructure-on-a-budget/ [R=301,L]
 # Untranslated bg/es blog variants (no prerendered page exists) -> the English original
 RewriteCond %{DOCUMENT_ROOT}/$1/blog/$2/index.html !-f
+RewriteCond $2 !^index\.html$
 RewriteRule ^(bg|es)/blog/([^/]+)/?$ /en/blog/$2/ [R=301,L]
 # Bare root -> default language home (one canonical homepage)
 RewriteRule ^$ /en/ [R=301,L]
