@@ -270,7 +270,7 @@
     "gmb": {
       "title": "Paga un 20% menos con GMB",
       "body": "GMB es la moneda de utilidad nativa de GembaBlockchain. Paga los servicios del ecosistema Gemba en GMB y obtén un 20% de descuento sobre el precio estándar. GMB es una moneda de utilidad para usar — sin recompra, sin reembolso en fiat, no es una inversión.",
-      "apps": "Activo con GMB: Gemba Escrow, GembaWin y GembaTools (20% de la tarifa del servicio). Próximamente con el mainnet de GembaBlockchain: GembaKitchen y GembaSniperBot.",
+      "apps": "Activo con GMB: Gemba Escrow, GembaWin y GembaTools (20% de la tarifa del servicio), y GembaTicket (20% solo de la tarifa de creación de evento — no en la compra de entradas). Próximamente con el mainnet de GembaBlockchain: GembaKitchen y GembaSniperBot.",
       "cta": "Conoce GMB →"
     },
     "viewAll": "Ver todos los productos",
@@ -698,17 +698,17 @@
         ]
       }
     },
-    "atlas": {
+    "permitiv": {
       "tagline": "Unifica turnos, check-in, permisos e inventario para equipos industriales.",
       "cardDescription": "Plataforma SaaS modular para refinerías, plantas y operaciones intensivas en personal. Sustituye hojas de cálculo fragmentadas y herramientas separadas, con opción de self-hosting en Docker.",
-      "heroIntro": "Atlas reúne planificación de turnos, check-in y check-out digital, inventario, permisos digitales, paquete de oficina y un asistente de IA en una sola plataforma construida para el trabajo industrial. Diseñada junto a operadores de refinería, reemplaza el habitual collage de hojas y herramientas externas por algo que los equipos realmente pueden ejecutar de principio a fin.",
+      "heroIntro": "Permitiv reúne planificación de turnos, check-in y check-out digital, inventario, permisos digitales, paquete de oficina y un asistente de IA en una sola plataforma construida para el trabajo industrial. Diseñada junto a operadores de refinería, reemplaza el habitual collage de hojas y herramientas externas por algo que los equipos realmente pueden ejecutar de principio a fin.",
       "problem": {
         "title": "Operaciones industriales cosidas con hojas de cálculo",
         "body": "Entre en una parada de refinería, en una obra grande o en una planta activa y verá siempre lo mismo — turnos en una pizarra, permisos en papel, inventario en Excel, check-in en un portapapeles. Cada herramienta externa cubre una porción y ninguna se comunica con las demás. Las personas que realmente dirigen el trabajo gastan más tiempo reconciliando hojas que planificando la operación."
       },
       "solution": {
         "title": "Una sola plataforma modular",
-        "body": "Atlas pone bajo un mismo techo la planificación de turnos, el check-in y check-out, el inventario, los permisos digitales, una suite ofimática integrada y un asistente de IA. Los módulos se activan de forma independiente, de modo que un operador puede empezar por turnos y check-in y añadir permisos, inventario y documentos cuando el equipo esté listo. Para clientes con requisitos estrictos de residencia de datos, la plataforma completa puede ejecutarse como despliegue Docker auto-hospedado en su propia infraestructura."
+        "body": "Permitiv pone bajo un mismo techo la planificación de turnos, el check-in y check-out, el inventario, los permisos digitales, una suite ofimática integrada y un asistente de IA. Los módulos se activan de forma independiente, de modo que un operador puede empezar por turnos y check-in y añadir permisos, inventario y documentos cuando el equipo esté listo. Para clientes con requisitos estrictos de residencia de datos, la plataforma completa puede ejecutarse como despliegue Docker auto-hospedado en su propia infraestructura."
       },
       "features": {
         "title": "Funciones principales",
@@ -743,7 +743,7 @@
       "architecture": {
         "title": "Arquitectura",
         "paragraphs": [
-          "Atlas es un monolito modular clásico — React en el frontend, Node.js y PostgreSQL en el backend — empaquetado de forma que cada módulo puede desplegarse de manera independiente. Un cliente que solo necesita turnos y check-in ejecuta un subconjunto ligero; una refinería que quiere permisos, inventario, documentos y el asistente de IA enciende el resto sin migrar datos.",
+          "Permitiv es un monolito modular clásico — React en el frontend, Node.js y PostgreSQL en el backend — empaquetado de forma que cada módulo puede desplegarse de manera independiente. Un cliente que solo necesita turnos y check-in ejecuta un subconjunto ligero; una refinería que quiere permisos, inventario, documentos y el asistente de IA enciende el resto sin migrar datos.",
           "El despliegue llega en dos formas. El SaaS gestionado corre en la infraestructura Hetzner de GEMBA con failover y replicación de base de datos, y es la forma más rápida para la mayoría de los equipos de empezar. La edición Docker auto-hospedada empaqueta el mismo stack en contenedores que corren en los servidores del propio cliente — útil para centros con requisitos estrictos de residencia de datos, trabajo offline o seguridad.",
           "El asistente de IA se superpone al sistema, no se incrusta en él. Lee lo que la plataforma ya conoce — registros de turnos, historial de permisos, movimientos de inventario, documentos — y responde en contexto. No se reentrena sobre datos del cliente y no sale del perímetro de la instalación del cliente cuando está auto-hospedado."
         ]

@@ -411,29 +411,29 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gembait.com/en/products/atlas</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/products/atlas"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/products/atlas"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/products/atlas"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/products/atlas"/>
+    <loc>https://gembait.com/en/products/permitiv</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/products/permitiv"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/products/permitiv"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/products/permitiv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/products/permitiv"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gembait.com/bg/products/atlas</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/products/atlas"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/products/atlas"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/products/atlas"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/products/atlas"/>
+    <loc>https://gembait.com/bg/products/permitiv</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/products/permitiv"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/products/permitiv"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/products/permitiv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/products/permitiv"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gembait.com/es/products/atlas</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/products/atlas"/>
-    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/products/atlas"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/products/atlas"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/products/atlas"/>
+    <loc>https://gembait.com/es/products/permitiv</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/products/permitiv"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/products/permitiv"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/products/permitiv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/products/permitiv"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

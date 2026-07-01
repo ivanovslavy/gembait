@@ -25,7 +25,7 @@ The technology division's scope is full-stack software engineering — from Linu
 
 ### Founder
 
-Slavcho Ivanov founded GEMBA and leads both divisions. His background pairs twenty-plus years of IT work — Linux administration, full-stack development, payment integration, blockchain engineering — with more than a decade on industrial sites, primarily in refinery catalyst and reactor services across Europe. That combination is unusual enough to shape both what we build and how we build it. Atlas, our industrial workforce SaaS, exists because the founder has lived on the sites where the software would be used; GembaPay's non-custodial architecture exists because the founder has watched closely how payment friction interacts with business reality.
+Slavcho Ivanov founded GEMBA and leads both divisions. His background pairs twenty-plus years of IT work — Linux administration, full-stack development, payment integration, blockchain engineering — with more than a decade on industrial sites, primarily in refinery catalyst and reactor services across Europe. That combination is unusual enough to shape both what we build and how we build it. Permitiv, our industrial workforce SaaS, exists because the founder has lived on the sites where the software would be used; GembaPay's non-custodial architecture exists because the founder has watched closely how payment friction interacts with business reality.
 
 Slavcho is publicly reachable on two LinkedIn profiles — one for the IT work (linkedin.com/in/slavy-ivanov) and one for the industrial work (linkedin.com/in/slavcho-ivanov) — and maintains the GEMBA IT open-source repositories at github.com/ivanovslavy.
 
@@ -234,18 +234,18 @@ The backend is Node.js and Express with ethers.js v6 and the Moralis SDK v2; the
 
 Primary audience: NFT collectors, ticket and collectible holders, and developers who need a viewer that works for newly deployed collections rather than only established projects.
 
-### 3.9 Atlas
+### 3.9 Permitiv
 
-- URL: https://gembait.com/en/products/atlas
+- URL: https://gembait.com/en/products/permitiv
 - Status: In development (private alpha)
 - Category: SaaS
 - Deployment: Hosted SaaS or self-hosted Docker
 
-Atlas is a modular SaaS for industrial workforce management. Refineries, plants and workforce-heavy operations typically run on a patchwork of spreadsheets, paper permits and siloed vendor tools. Atlas consolidates shift planning, check-in and check-out, inventory and parts tracking, digital permits (permit-to-work, hot-work, confined-space), an integrated office suite and a contextual AI assistant under one platform. Modules activate independently, so an operator can start with scheduling and check-in and add permits, inventory and documents as the team is ready.
+Permitiv is a modular SaaS for industrial workforce management. Refineries, plants and workforce-heavy operations typically run on a patchwork of spreadsheets, paper permits and siloed vendor tools. Permitiv consolidates shift planning, check-in and check-out, inventory and parts tracking, digital permits (permit-to-work, hot-work, confined-space), an integrated office suite and a contextual AI assistant under one platform. Modules activate independently, so an operator can start with scheduling and check-in and add permits, inventory and documents as the team is ready.
 
 The architecture is a modular monolith: React frontend, Node.js and PostgreSQL backend, packaged so that every module is independently deployable. Deployment comes in two shapes. The hosted SaaS runs on GEMBA's Hetzner infrastructure with failover and database replication, which is the fastest path for most teams. The self-hosted Docker edition bundles the same stack into containers that run on the client's own servers — useful for sites with strict data-residency, offline or security requirements. The AI assistant reads what the platform already knows (shift logs, permit history, inventory movements, documents) and answers in context; it does not retrain on client data and does not leave the client's installation when self-hosted.
 
-Atlas is designed alongside refinery and plant operators, not in a design studio in a different city. The product philosophy is that each module should solve a problem somebody has actually been paid to solve, which is why the initial module set looks the way it does — shift planning, check-in, permits, inventory, documents, AI assistant.
+Permitiv is designed alongside refinery and plant operators, not in a design studio in a different city. The product philosophy is that each module should solve a problem somebody has actually been paid to solve, which is why the initial module set looks the way it does — shift planning, check-in, permits, inventory, documents, AI assistant.
 
 Primary audience: refineries and chemical plants running turnarounds; construction and industrial services firms that manage site attendance and permits; workforce-heavy operations in general; regulated sites that require auditable permit history and the option to self-host.
 

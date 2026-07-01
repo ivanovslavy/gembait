@@ -1,0 +1,37 @@
+# .htaccess for gembait.com — deployed to dist/ from public/.htaccess by Vite.
+#
+# IMPORTANT: With AllowOverride All on <Directory /gembait.com/dist>, this file's
+# mod_rewrite ruleset REPLACES the equivalent ruleset in the Apache vhost
+# (/etc/apache2/sites-available/gembait.com.conf). It therefore mirrors the vhost's
+# SEO redirects + SPA fallback verbatim, and ADDS the Atlas -> Permitiv product rename
+# 301 (2026-07-01). Keep it in sync with the vhost if the vhost rules change.
+
+RewriteEngine On
+RewriteBase /
+
+# --- Atlas -> Permitiv product rename 301 (added 2026-07-01) ---
+# Old product URL must 301 to the new slug so /products/atlas never 404s or serves stale.
+RewriteRule ^(en|bg|es)/products/atlas/?$ /$1/products/permitiv/ [R=301,L]
+RewriteRule ^products/atlas/?$ /en/products/permitiv/ [R=301,L]
+
+# --- SEO canonical redirects (mirrored from vhost, added 2026-06-13) ---
+# Renamed / old blog slugs -> current canonical slug (with or without a lang prefix)
+RewriteRule ^(?:en/|bg/|es/)?blog/postgres-streaming-replication-high-availability/?$ /en/blog/postgresql-streaming-replication-high-availability/ [R=301,L]
+RewriteRule ^(?:en/|bg/|es/)?blog/scaling-failover-infrastructure-on-a-budget/?$ /en/blog/building-failover-infrastructure-on-a-budget/ [R=301,L]
+# Untranslated bg/es blog variants (no prerendered page exists) -> the English original
+RewriteCond %{DOCUMENT_ROOT}/$1/blog/$2/index.html !-f
+RewriteRule ^(bg|es)/blog/([^/]+)/?$ /en/blog/$2/ [R=301,L]
+# Bare root -> default language home (one canonical homepage)
+RewriteRule ^$ /en/ [R=301,L]
+# Non-language-prefixed section paths -> /en/<path> (kills duplicate/soft-404 of /blog/x, /products/x, ...)
+RewriteRule ^(blog|products|services|about|team|careers|contact|privacy|terms)(/.*)?$ /en/$1$2 [R=301,L]
+
+# --- SPA fallback + directory index (mirrored from vhost) ---
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+DirectorySlash Off
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.+[^/])$ /$1/index.html [L]

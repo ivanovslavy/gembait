@@ -270,7 +270,7 @@
     "gmb": {
       "title": "Pay 20% less with GMB",
       "body": "GMB is the native utility coin of GembaBlockchain. Pay for Gemba ecosystem services in GMB and get 20% off the standard price. GMB is a utility coin for use — no buyback, no fiat redemption, not an investment.",
-      "apps": "Live with GMB: Gemba Escrow, GembaWin and GembaTools (20% off the service fee). Coming with GembaBlockchain mainnet: GembaKitchen and GembaSniperBot.",
+      "apps": "Live with GMB: Gemba Escrow, GembaWin and GembaTools (20% off the service fee), and GembaTicket (20% off the event-creation fee only — not ticket purchases). Coming with GembaBlockchain mainnet: GembaKitchen and GembaSniperBot.",
       "cta": "Learn about GMB →"
     },
     "viewAll": "View all products",
@@ -698,17 +698,17 @@
         ]
       }
     },
-    "atlas": {
+    "permitiv": {
       "tagline": "Unify shift planning, check-in, permits and inventory for industrial teams.",
       "cardDescription": "A modular SaaS platform for refineries, plants and workforce-heavy operations. Swap fragmented spreadsheets and standalone tools for one system, with an optional self-hosted Docker edition.",
-      "heroIntro": "Atlas brings shift planning, digital check-in and check-out, inventory, digital permits, an integrated office suite and an AI assistant into one platform built for industrial work. Designed alongside refinery operators, it replaces the usual patchwork of spreadsheets and vendor tools with something teams can actually run end-to-end.",
+      "heroIntro": "Permitiv brings shift planning, digital check-in and check-out, inventory, digital permits, an integrated office suite and an AI assistant into one platform built for industrial work. Designed alongside refinery operators, it replaces the usual patchwork of spreadsheets and vendor tools with something teams can actually run end-to-end.",
       "problem": {
         "title": "Industrial operations stitched together by spreadsheets",
         "body": "Walk into a refinery turnaround, a large construction site or a busy plant and you'll see the same thing — shift rosters on a whiteboard, permits on paper, inventory in Excel, check-in on a clipboard. Each vendor tool covers one slice and none of them talk to each other. The people who actually run the work spend more time reconciling spreadsheets than planning the work itself."
       },
       "solution": {
         "title": "One modular platform",
-        "body": "Atlas puts shift planning, check-in and check-out, inventory, digital permits, an integrated office suite and an AI assistant under one roof. Modules activate independently, so an operator can start with scheduling and check-in and add permits, inventory and documents as the team is ready. For clients with strict data-residency requirements, the entire platform runs as a self-hosted Docker deployment on their own infrastructure."
+        "body": "Permitiv puts shift planning, check-in and check-out, inventory, digital permits, an integrated office suite and an AI assistant under one roof. Modules activate independently, so an operator can start with scheduling and check-in and add permits, inventory and documents as the team is ready. For clients with strict data-residency requirements, the entire platform runs as a self-hosted Docker deployment on their own infrastructure."
       },
       "features": {
         "title": "Key features",
@@ -743,7 +743,7 @@
       "architecture": {
         "title": "Architecture",
         "paragraphs": [
-          "Atlas is a classic modular monolith — React on the frontend, Node.js and PostgreSQL on the backend — packaged so that every module is independently deployable. A client who only needs shift planning and check-in runs a slim subset; a refinery that wants permits, inventory, documents and the AI assistant turns the rest on without migrating data.",
+          "Permitiv is a classic modular monolith — React on the frontend, Node.js and PostgreSQL on the backend — packaged so that every module is independently deployable. A client who only needs shift planning and check-in runs a slim subset; a refinery that wants permits, inventory, documents and the AI assistant turns the rest on without migrating data.",
           "Deployment comes in two shapes. The hosted SaaS runs on GEMBA's Hetzner infrastructure with failover and database replication, which is the fastest way for most teams to start. The self-hosted Docker edition bundles the same stack into containers that run on the client's own servers — useful for sites with strict data-residency, offline or security requirements.",
           "The AI assistant is layered on top rather than baked in. It reads what the platform already knows — shift logs, permit history, inventory movements, documents — and answers in context. It doesn't retrain on client data, and it doesn't leave the boundary of the client's installation when self-hosted."
         ]

@@ -62,7 +62,7 @@ Status: Live. A generative collection of hand-drawn Sphynx cats that doubles as 
 ### NFT Viewer — https://gembait.com/en/products/nftviewer — https://nftviewer.gembait.com
 Status: Live. A multi-chain NFT gallery that reads the blockchain when indexers fall short. Displays wallets or contracts across four EVM chains; when Moralis is missing data for freshly minted collections, the backend reads tokenURI directly and enriches metadata on the fly. A dedicated HTML proxy renders legacy animated NFTs inside the gallery.
 
-### Atlas — https://gembait.com/en/products/atlas
+### Permitiv — https://gembait.com/en/products/permitiv
 Status: In development (private alpha). Modular SaaS for industrial workforce management — shift planning, digital check-in/check-out, inventory, digital permits, an integrated office suite and an AI assistant. Designed alongside refinery operators to replace the patchwork of spreadsheets and vendor tools that industrial teams typically run.
 
 ### Gemba Sniper Bot — https://gembait.com/en/products/gembasniper

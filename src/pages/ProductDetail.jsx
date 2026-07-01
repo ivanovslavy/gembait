@@ -69,7 +69,7 @@ export default function ProductDetail() {
   const cs = product.caseStudy || {};
 
   const appHref = product.appUrl
-    || (product.slug === 'atlas' ? `/${resolvedLang}/contact?subject=Atlas%20early%20access` : null)
+    || (product.slug === 'permitiv' ? `/${resolvedLang}/contact?subject=Permitiv%20early%20access` : null)
     || (product.slug === 'gembaticket' ? `/${resolvedLang}/contact?subject=GembaTicket%20early%20access` : null)
     || (product.slug === 'gembaescrow' ? `/${resolvedLang}/contact?subject=Gemba%20Escrow%20demo` : null)
     || (product.slug === 'gembawin' ? `/${resolvedLang}/contact?subject=GembaWin%20demo` : null);

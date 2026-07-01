@@ -179,16 +179,15 @@ export const products = [
     i18nKey: 'educhain'
   },
   {
-    slug: 'atlas',
-    name: 'Atlas',
+    slug: 'permitiv',
+    name: 'Permitiv',
     status: 'in-development',
-    statusNote: 'private alpha',
     featured: false,
     order: 6,
     category: 'saas',
     audience: ['industrial companies', 'refinery operators', 'workforce managers'],
-    appUrl: null,
-    appLabel: 'Request early access',
+    appUrl: 'https://permitiv.com',
+    appLabel: 'Visit permitiv.com',
     githubUrl: null,
     githubNote: null,
     tech: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'AI assistant'],
@@ -200,7 +199,7 @@ export const products = [
     certifications: [],
     caseStudy: { hasWhatWeAre: false, hasSecurity: false, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
     screenshots: [],
-    i18nKey: 'atlas'
+    i18nKey: 'permitiv'
   },
   {
     slug: 'kotkata',
