@@ -701,7 +701,7 @@
     "permitiv": {
       "tagline": "Unify shift planning, check-in, permits and inventory for industrial teams.",
       "cardDescription": "A modular SaaS platform for refineries, plants and workforce-heavy operations. Swap fragmented spreadsheets and standalone tools for one system, with an optional self-hosted Docker edition.",
-      "heroIntro": "Permitiv brings shift planning, digital check-in and check-out, inventory, digital permits, an integrated office suite and an AI assistant into one platform built for industrial work. Designed alongside refinery operators, it replaces the usual patchwork of spreadsheets and vendor tools with something teams can actually run end-to-end.",
+      "heroIntro": "Permitiv — the platform at the foundation of project Atlas — brings shift planning, digital check-in and check-out, inventory, digital permits, an integrated office suite and an AI assistant into one platform built for industrial work. Designed alongside refinery operators, it replaces the usual patchwork of spreadsheets and vendor tools with something teams can actually run end-to-end.",
       "problem": {
         "title": "Industrial operations stitched together by spreadsheets",
         "body": "Walk into a refinery turnaround, a large construction site or a busy plant and you'll see the same thing — shift rosters on a whiteboard, permits on paper, inventory in Excel, check-in on a clipboard. Each vendor tool covers one slice and none of them talk to each other. The people who actually run the work spend more time reconciling spreadsheets than planning the work itself."

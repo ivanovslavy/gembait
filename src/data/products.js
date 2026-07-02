@@ -180,7 +180,7 @@ export const products = [
   },
   {
     slug: 'permitiv',
-    name: 'Permitiv',
+    name: 'Permitiv — foundation of project Atlas',
     status: 'in-development',
     featured: false,
     order: 6,
