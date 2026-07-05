@@ -1,5 +1,42 @@
 [
   {
+    "slug": "permitiv-permit-to-work-software",
+    "date": "2026-07-05",
+    "lastUpdated": "2026-07-05",
+    "author": "Slavcho Ivanov and the GEMBA IT team",
+    "cluster": "company-news",
+    "tags": [
+      "permitiv",
+      "permit-to-work",
+      "industrial-safety",
+      "confined-space",
+      "ai-copilot",
+      "federation"
+    ],
+    "image": "/images/blog/permitiv-permit-to-work-software/hero.webp",
+    "hero": "/images/blog/permitiv-permit-to-work-software/hero.webp",
+    "heroRetina": "/images/blog/permitiv-permit-to-work-software/hero@2x.webp",
+    "midImage": "/images/blog/permitiv-permit-to-work-software/mid.webp",
+    "midImageRetina": "/images/blog/permitiv-permit-to-work-software/mid@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "We're Building Permitiv",
+      "bg": "Строим Permitiv",
+      "es": "Estamos construyendo Permitiv"
+    },
+    "excerpt": {
+      "en": "After years on paper, Permitiv is in development: a permit-to-work and safety platform for refineries, shipyards and heavy industry, built with real crews.",
+      "bg": "След години на хартия Permitiv е в разработка: платформа за permit-to-work и безопасност за рафинерии, корабостроителници и тежка индустрия, създавана с реални екипи.",
+      "es": "Tras años en papel, Permitiv está en desarrollo: una plataforma de permisos de trabajo y seguridad para refinerías, astilleros e industria pesada, construida con cuadrillas reales."
+    },
+    "word_count": 1750,
+    "source_url": "https://permitiv.com",
+    "source_type": "company_announcement",
+    "source_date": "2026-07-04",
+    "emotional_hook": "confession",
+    "first_hand_story_used": true
+  },
+  {
     "slug": "node-postgres-connection-pool-exhaustion",
     "date": "2026-06-22",
     "lastUpdated": "2026-06-22",

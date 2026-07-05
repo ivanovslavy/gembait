@@ -52,3 +52,26 @@ Approx date: 2026-04
 This is a placeholder. Delete this section and add your own stories.
 Until a real story is added, Claude will not integrate any first-hand
 anecdote — all posts will publish under "GEMBA IT team".
+
+### permitiv-kickoff — the industrial software plan finally left the drawer
+
+Tags: permitiv, permit-to-work, industrial-safety, confined-space, federation, company-news
+Product: Permitiv (permitiv.com)
+Approx date: 2026-07
+
+The story (first person, from Slavcho, recorded 2026-07-05):
+For years I kept a private folder of plans for one big piece of software —
+a platform for permit-to-work, confined-space control, and compliance in
+high-risk industrial work. I kept reopening it and closing it because the
+scope scared me and the timing was never right. Gemba Industrial's crews
+kept feeding it: every turnaround they worked, they came back describing
+paper permits at shift-start windows, hand-collected signatures, gas
+readings copied off meter screens, audit evidence in binders. In early July
+2026 we officially started building it as Permitiv. Foundation first
+(multi-tenant isolation, cryptographically chained append-only audit log,
+security audits before features), wedge modules next (permits, confined
+space, bidding). Two decisions I won't compromise: the AI copilot never
+makes a safety call (deterministic rules + human signature, always), and
+the platform is federated so plants keep their operational data on their
+own instance. Landing: permitiv.com; investor/partner brief:
+permitiv.com/investors. We are at day one and saying so publicly.

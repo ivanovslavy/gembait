@@ -12,6 +12,10 @@ BLOG_DIR="$SITE_DIR/content/blog"
 LOG_PREFIX="[AUTO-BLOG-IT $(date '+%Y-%m-%d %H:%M')]"
 
 echo "$LOG_PREFIX Starting..."
+
+# Failure alert (owner-approved 2026-07-05): email Slavy if this run exits non-zero
+# (auth error, crash, skipped week). Sender: /home/slavy/bin/blog-alert.cjs.
+trap 'rc=$?; if [ "$rc" -ne 0 ]; then /usr/bin/node /home/slavy/bin/blog-alert.cjs "gembait.com" "exit=$rc; $(tail -c 900 /var/log/gembait-blog.log 2>/dev/null)" || true; fi' EXIT
 cd "$SITE_DIR"
 
 # Load FAL_KEY (and future API keys) into env for the image helper
@@ -64,7 +68,8 @@ in CLAUDE.md. Summary of steps (read CLAUDE.md for the full detail):
 
   4. WRITE -- 1500-2200 words, following the 7-section recipe in CLAUDE.md
      (Opening, Problem, Debugging Dance, Solution, Lesson, Credit, FAQ).
-     Target a long-tail H1 (3-6 words). English only, no BG/ES.
+     Target a long-tail H1 (3-6 words). Write the EN post first; translations
+     come in step 8b.
 
   5. SELF-REVIEW -- grep your draft for every banned phrase in CLAUDE.md's
      Forbidden Vocabulary list. On any hit, rewrite that paragraph.
@@ -105,6 +110,14 @@ in CLAUDE.md. Summary of steps (read CLAUDE.md for the full detail):
      If validation fails, FIX the sidecar before proceeding. DO NOT
      publish with an invalid schema -- Google's rich results will reject it.
 
+
+  8b. TRANSLATIONS (mandatory, owner rule 2026-07-05): after the EN post is
+     final, write FULL Bulgarian and Spanish translations as
+     /gembait.com/content/blog/<slug>.bg.md and <slug>.es.md — body-only
+     (NO frontmatter), starting with the translated H1. Translate image alt
+     text and Mermaid labels; keep code, commands and URLs as-is. In the
+     posts.json entry, make title and excerpt objects with en/bg/es keys.
+
   8. PUBLISH:
          cd /gembait.com
          node generate-sitemap.mjs
@@ -129,7 +142,7 @@ TODAY'S DATE: set it from `date -I` at the start, use that in frontmatter
 `date:` and `lastUpdated:`.
 
 Never modify files outside /gembait.com/content/blog/ and
-/gembait.com/public/blog/. Never write BG or ES translations. Never sign
+/gembait.com/public/blog/. Never sign
 "Slavcho Ivanov" on a post without a matching story_vault.md entry.
 PROMPT
 )" \

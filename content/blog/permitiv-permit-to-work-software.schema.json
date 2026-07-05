@@ -1,0 +1,58 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "We're Building Permitiv",
+    "description": "After years on paper, Permitiv is in development: a permit-to-work and safety platform for refineries, shipyards and heavy industry, built with real crews.",
+    "image": "https://gembait.com/images/blog/permitiv-permit-to-work-software/hero.webp",
+    "datePublished": "2026-07-05",
+    "dateModified": "2026-07-05",
+    "author": { "@type": "Person", "name": "Slavcho Ivanov", "url": "https://gembait.com/about" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": { "@type": "ImageObject", "url": "https://gembait.com/favicon.svg" }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/permitiv-permit-to-work-software",
+    "articleSection": "Company News",
+    "keywords": "permitiv, permit-to-work, industrial-safety, confined-space, ai-copilot, federation"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is permit-to-work software?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A permit-to-work is the formal authorization behind dangerous industrial jobs: it defines the work, the location, the hazards, the precautions, and who approved it. On most sites it's still a paper form filled in at shift start and signed by hand. Permit-to-work software digitizes that flow — creating the permit from templates, checking preconditions like gas tests and worker certifications automatically, collecting signatures electronically, and keeping a searchable, verifiable record. The point isn't just speed at the permit window; it's that a digital system can cross-check what paper never could, like whether the welder on the permit actually holds a valid confined-space certificate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will Permitiv's AI make safety decisions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — and this is a design law, not a disclaimer. The AI copilot assists: it drafts permits from history and regulations, summarizes shifts, surfaces conflicts, and answers questions. But whether a permit can activate, whether a gas reading passes, whether a certification is valid — those checks run through deterministic, human-readable rules, and every safety-critical step requires a named person's signature, which is recorded in a tamper-evident audit trail. If the AI is wrong in a draft, a human catches it at signing. The system is built so that the AI being wrong can be annoying, but never dangerous."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When can my plant or contracting company try Permitiv?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not yet — and we won't pretend otherwise. The foundation (multi-tenant core, authentication, verifiable audit log) is built and security-tested, and the first module, workforce and certifications, is in development now. The wedge — permits, confined-space control, and bidding — comes after that. What we're looking for today is a small group of early partners: plants and industrial contractors willing to share how their permit flow actually works and pressure-test ours against it. If that's you, reach us through the contact form at permitiv.com/investors and tell us about your site."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why announce something this unfinished?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the alternative — building in silence for two years and unveiling a 'finished' product no plant ever touched — is how industrial software ends up hated by the people forced to use it. Announcing early keeps us accountable to a public record, starts conversations with the operators and crews whose reality has to shape the product, and gives investors an honest entry point instead of a polished illusion. We build everything else in the open on this blog, down to our database mistakes. Permitiv gets the same treatment: this is day one, said out loud."
+        }
+      }
+    ]
+  }
+}
