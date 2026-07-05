@@ -150,3 +150,26 @@ PROMPT
   --max-turns 60
 
 echo "$LOG_PREFIX Done."
+
+# Auto commit+push of new blog content (owner rule 2026-07-05).
+# No-op if /gembait.com is not a git repo. Secret-scans staged diff; emails on push failure.
+(
+  cd /gembait.com || exit 0
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 || exit 0
+  git add content/blog public/images/blog public/sitemap.xml >/dev/null 2>&1 || true
+  git diff --cached --quiet && exit 0
+  if git diff --cached | grep -qiE "sk_live_|api[_-]?key *=|BEGIN (RSA |EC )?PRIVATE KEY|passwd|password *="; then
+    echo "[auto-blog] SECRET SUSPECT in staged diff - NOT committing" >&2
+    /usr/bin/node /home/slavy/bin/blog-alert.cjs "gembait.com" "auto-commit skipped: secret suspect in staged blog diff - review manually" || true
+    exit 0
+  fi
+  git commit -q -m "blog: weekly auto-post $(date -I)
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>" || exit 0
+  if git push -q origin main; then
+    echo "[auto-blog] blog content committed + pushed"
+  else
+    echo "[auto-blog] git push FAILED" >&2
+    /usr/bin/node /home/slavy/bin/blog-alert.cjs "gembait.com" "weekly post published OK but git push FAILED - push manually from /gembait.com" || true
+  fi
+) || true
