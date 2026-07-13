@@ -1,5 +1,42 @@
 [
   {
+    "slug": "node-fetch-err-stream-premature-close",
+    "date": "2026-07-13",
+    "lastUpdated": "2026-07-13",
+    "author": "GEMBA IT team",
+    "cluster": "backend-infrastructure",
+    "tags": [
+      "node-js",
+      "node-fetch",
+      "keep-alive",
+      "http-agent",
+      "security-release",
+      "googleapis"
+    ],
+    "image": "/images/blog/node-fetch-err-stream-premature-close/hero.webp",
+    "hero": "/images/blog/node-fetch-err-stream-premature-close/hero.webp",
+    "heroRetina": "/images/blog/node-fetch-err-stream-premature-close/hero@2x.webp",
+    "midImage": "/images/blog/node-fetch-err-stream-premature-close/mid.webp",
+    "midImageRetina": "/images/blog/node-fetch-err-stream-premature-close/mid@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Fixing ERR_STREAM_PREMATURE_CLOSE in node-fetch",
+      "bg": "Как да поправите ERR_STREAM_PREMATURE_CLOSE в node-fetch",
+      "es": "Cómo arreglar ERR_STREAM_PREMATURE_CLOSE en node-fetch"
+    },
+    "excerpt": {
+      "en": "Node's June 2026 security release made node-fetch throw ERR_STREAM_PREMATURE_CLOSE on keep-alive sockets. Here is the hidden trap and the fix.",
+      "bg": "Юнският security release на Node за 2026 г. накара node-fetch да хвърля ERR_STREAM_PREMATURE_CLOSE по keep-alive сокети. Ето го скрития капан и поправката.",
+      "es": "El security release de Node de junio de 2026 hizo que node-fetch lanzara ERR_STREAM_PREMATURE_CLOSE en sockets keep-alive. Aquí la trampa oculta y la solución."
+    },
+    "word_count": 2280,
+    "source_url": "https://github.com/nodejs/node/issues/63989",
+    "source_type": "github_issue",
+    "source_date": "2026-06-18",
+    "emotional_hook": "hidden_trap",
+    "first_hand_story_used": false
+  },
+  {
     "slug": "permitiv-permit-to-work-software",
     "date": "2026-07-05",
     "lastUpdated": "2026-07-05",

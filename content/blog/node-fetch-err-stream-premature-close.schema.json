@@ -1,0 +1,68 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Fixing ERR_STREAM_PREMATURE_CLOSE in node-fetch",
+    "description": "Node's June 2026 security release made node-fetch throw ERR_STREAM_PREMATURE_CLOSE on keep-alive sockets. Here is the hidden trap and the fix.",
+    "image": "https://gembait.com/images/blog/node-fetch-err-stream-premature-close/hero.webp",
+    "datePublished": "2026-07-13",
+    "dateModified": "2026-07-13",
+    "author": { "@type": "Organization", "name": "GEMBA IT team", "url": "https://gembait.com/about" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": { "@type": "ImageObject", "url": "https://gembait.com/favicon.svg" }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/node-fetch-err-stream-premature-close",
+    "articleSection": "Backend & Infrastructure Lessons",
+    "keywords": "node-js, node-fetch, keep-alive, http-agent, security-release, googleapis",
+    "proficiencyLevel": "Expert",
+    "dependencies": "Node.js, node-fetch, http.Agent, googleapis, gaxios, undici"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should I just downgrade to Node v24.16.0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Only as a stopgap measured in hours, not weeks. Downgrading does make ERR_STREAM_PREMATURE_CLOSE disappear, because v24.16.0 predates the idle-socket guard that trips node-fetch's heuristic. But it also strips out the entire June 2026 security release — twelve patched vulnerabilities, including two high-severity authentication bypasses and the response-queue-poisoning fix itself. The repaired releases (v24.18.0, v22.23.1, v26.4.0) shipped within a week of the regression report and contain both the security fixes and the compatibility fix. Upgrade forward, not backward. If your platform pins Node versions slowly, disabling keep-alive on the affected client is a safer temporary bridge than running unpatched."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this bug affect Node's built-in fetch too?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The built-in fetch that ships with Node 18 and later is powered by undici, a separate HTTP client with its own connection pooling. It never touches the legacy http.Agent free-socket pool where the guard listener was attached, and it doesn't use node-fetch's listener-counting heuristic. Both halves of the collision are absent. That's also why this incident is a good migration prompt: code using built-in fetch sailed through the June releases without noticing. The affected population was specifically code using node-fetch@2 together with a keep-alive http.Agent — which in practice means the Google API client chain (googleapis, gaxios, firebase-tools) and any project that wired up node-fetch with a custom agent for performance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why didn't node-fetch just fix it on their side?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Two reasons. First, node-fetch@2 is in maintenance mode — the false-positive heuristic was reported back in August 2023 (issue #1767) and stayed open for three years. A same-week coordinated release across node-fetch@2 and every downstream pin was never realistic. Second, the Node core fix is simply the better one: the guard's purpose doesn't require a publicly visible listener, and moving it to an internal onread hook fixes every consumer at once — including forks and copies of node-fetch's logic that no one would ever patch individually. Fixing the platform's observable-state regression beats asking a mostly-frozen ecosystem to update its assumptions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is response queue poisoning, in plain words?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HTTP on a reused connection is a strict take-a-number system: the client sends request 1, gets answer 1, sends request 2, gets answer 2. Response queue poisoning breaks the numbering. A malicious or buggy server sends bytes early — before the client has sent its next request on that pooled connection. Vulnerable client code then matches those stale bytes to the next request as if they were its real answer. You asked for your account balance; you got whatever the server pushed earlier. CVE-2026-48931 fixed exactly this race in Node's http.Agent: any data arriving on an idle pooled socket now destroys that socket immediately, so early bytes can never be mistaken for a legitimate response."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I check whether my project was in the blast radius?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Run npm ls node-fetch (or pnpm why node-fetch). If it shows node-fetch@2.x anywhere in the tree — most commonly under gaxios from the Google client libraries — and your production runtime moved through v24.17.0, v22.23.0, or v26.3.1 during the week of June 18, 2026, you were exposed. The failure signature is FetchError: Invalid response body … Premature close with code ERR_STREAM_PREMATURE_CLOSE on requests that reuse keep-alive connections, typically the second and later requests to the same host. One-off requests on fresh sockets often still succeeded, which is why the bug looked intermittent in low-traffic services but constant in busy ones."
+        }
+      }
+    ]
+  }
+}
