@@ -1,5 +1,42 @@
 [
   {
+    "slug": "gembaticket-web3-event-ticketing",
+    "date": "2026-07-16",
+    "lastUpdated": "2026-07-16",
+    "author": "Slavcho Ivanov and the GEMBA IT team",
+    "cluster": "company-news",
+    "tags": [
+      "gembaticket",
+      "event-ticketing",
+      "web3",
+      "nft-tickets",
+      "gembablockchain",
+      "invisible-blockchain"
+    ],
+    "image": "/images/blog/gembaticket-web3-event-ticketing/hero.webp",
+    "hero": "/images/blog/gembaticket-web3-event-ticketing/hero.webp",
+    "heroRetina": "/images/blog/gembaticket-web3-event-ticketing/hero@2x.webp",
+    "midImage": "/images/blog/gembaticket-web3-event-ticketing/mid.webp",
+    "midImageRetina": "/images/blog/gembaticket-web3-event-ticketing/mid@2x.webp",
+    "hero_status": "manual",
+    "title": {
+      "en": "We're Launching GembaTicket",
+      "bg": "Пускаме GembaTicket",
+      "es": "Lanzamos GembaTicket"
+    },
+    "excerpt": {
+      "en": "Fifteen months of building, rebuilding, and refusing to quit: GembaTicket is a modern web3 ticketing platform where the blockchain is invisible, the fees are zero, and organizers get paid the moment a ticket sells.",
+      "bg": "Петнайсет месеца строене, престрояване и отказ да се предам: GembaTicket е модерна web3 платформа за билети, където блокчейнът е невидим, таксите са нула, а организаторите получават парите в мига, в който се продаде билет.",
+      "es": "Quince meses construyendo, reconstruyendo y sin rendirme: GembaTicket es una plataforma web3 moderna de entradas donde el blockchain es invisible, las comisiones son cero y los organizadores cobran en el momento en que se vende una entrada."
+    },
+    "word_count": 1850,
+    "source_url": "https://gembaticket.com",
+    "source_type": "company_announcement",
+    "source_date": "2026-07-16",
+    "emotional_hook": "confession",
+    "first_hand_story_used": true
+  },
+  {
     "slug": "node-fetch-err-stream-premature-close",
     "date": "2026-07-13",
     "lastUpdated": "2026-07-13",

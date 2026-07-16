@@ -656,6 +656,33 @@
 
   <!-- Blog posts (only the languages each post is translated into) -->
   <url>
+    <loc>https://gembait.com/en/blog/gembaticket-web3-event-ticketing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/gembaticket-web3-event-ticketing"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/gembaticket-web3-event-ticketing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/gembaticket-web3-event-ticketing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/gembaticket-web3-event-ticketing"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/blog/gembaticket-web3-event-ticketing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/gembaticket-web3-event-ticketing"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/gembaticket-web3-event-ticketing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/gembaticket-web3-event-ticketing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/gembaticket-web3-event-ticketing"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/blog/gembaticket-web3-event-ticketing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/gembaticket-web3-event-ticketing"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/gembaticket-web3-event-ticketing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/gembaticket-web3-event-ticketing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/gembaticket-web3-event-ticketing"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gembait.com/en/blog/node-fetch-err-stream-premature-close</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/node-fetch-err-stream-premature-close"/>
     <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/node-fetch-err-stream-premature-close"/>
