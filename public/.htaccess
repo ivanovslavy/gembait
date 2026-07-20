@@ -31,7 +31,7 @@ RewriteRule ^(blog|products|services|about|team|careers|contact|privacy|terms)(/
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+RewriteRule . - [R=404,L]
 
 DirectorySlash Off
 RewriteCond %{REQUEST_FILENAME} -d
