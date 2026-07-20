@@ -1,5 +1,42 @@
 [
   {
+    "slug": "viem-parseunits-rounding-bug",
+    "date": "2026-07-20",
+    "lastUpdated": "2026-07-20",
+    "author": "GEMBA IT team",
+    "cluster": "web3-engineering",
+    "tags": [
+      "viem",
+      "parseunits",
+      "bigint",
+      "floating-point",
+      "ethereum",
+      "typescript"
+    ],
+    "image": "/images/blog/viem-parseunits-rounding-bug/hero.webp",
+    "hero": "/images/blog/viem-parseunits-rounding-bug/hero.webp",
+    "heroRetina": "/images/blog/viem-parseunits-rounding-bug/hero@2x.webp",
+    "midImage": "/images/blog/viem-parseunits-rounding-bug/mid.webp",
+    "midImageRetina": "/images/blog/viem-parseunits-rounding-bug/mid@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "The Float Hiding in viem's parseUnits",
+      "bg": "Float-ът, скрит в parseUnits на viem",
+      "es": "El float escondido en parseUnits de viem"
+    },
+    "excerpt": {
+      "en": "viem's parseUnits ran long token amounts through an IEEE-754 float before rounding, so some values came back off by one. Here's the trap and the fix.",
+      "bg": "parseUnits на viem прекарваше дълги суми в токени през IEEE-754 float преди закръгляне и някои стойности се връщаха с единица встрани. Ето капана и поправката.",
+      "es": "parseUnits de viem pasaba cantidades largas de tokens por un float IEEE-754 antes de redondear, y algunos valores volvían con un error de uno. Aquí la trampa y el arreglo."
+    },
+    "word_count": 2050,
+    "source_url": "https://github.com/wevm/viem/issues/4855",
+    "source_type": "github_issue",
+    "source_date": "2026-07-17",
+    "emotional_hook": "assumed_vs_reality",
+    "first_hand_story_used": false
+  },
+  {
     "slug": "gembaticket-web3-event-ticketing",
     "date": "2026-07-16",
     "lastUpdated": "2026-07-16",

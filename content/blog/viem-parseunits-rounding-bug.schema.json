@@ -1,0 +1,75 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "The Float Hiding in viem's parseUnits",
+    "description": "viem's parseUnits ran long token amounts through an IEEE-754 float before rounding, so some values came back off by one. Here's the trap and the fix.",
+    "image": "https://gembait.com/images/blog/viem-parseunits-rounding-bug/hero.webp",
+    "datePublished": "2026-07-20",
+    "dateModified": "2026-07-20",
+    "author": {
+      "@type": "Organization",
+      "name": "GEMBA IT team",
+      "url": "https://gembait.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gembait.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/viem-parseunits-rounding-bug",
+    "articleSection": "Web3 Engineering Deep Dives",
+    "keywords": "viem, parseunits, bigint, floating-point, ethereum, typescript",
+    "proficiencyLevel": "Expert",
+    "dependencies": "viem, TypeScript, Node.js, Ethereum"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this bug affect parseEther and parseGwei too?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. parseEther(value) is just parseUnits(value, 18) and parseGwei(value) is parseUnits(value, 9), so both shared the float path. In practice parseEther needed a fractional part longer than 18 digits and about sixteen or more significant digits to trigger the mis-round, which human-typed input basically never produces. parseGwei and low-decimal tokens (USDC and EURC have 6 decimals) sit closer to the edge: any higher-precision computed string — a price calculation, a rebalancing formula, an API response with full precision — enters the rounding branch, and sufficiently long tails could flip the result."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How likely was I to actually hit this in production?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If every amount in your app comes from a human typing into an input field, probably never — people don't type nineteen decimal places. The realistic path is machine-generated strings: a decimal library's full-precision output, price × quantity results serialized without trimming, or balances from an exchange API re-parsed into units. Those routinely carry more digits than the token's decimals, which sends them into the rounding branch on every call. The bug then needs the tail to land near a rounding boundary, so it's rare — but rare, silent, and off-by-one in money is exactly the class of bug you want to rule out rather than estimate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does formatUnits have the same problem in reverse?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. formatUnits (and formatEther) go the safe direction: bigint in, string out. That conversion is pure digit manipulation — turn the bigint into its decimal string, insert the decimal point at the right position, trim trailing zeros. There's nothing to round and no Number conversion anywhere on the path, so the output string is always exact. The asymmetry is the interesting part: the same module had one lossless direction and one lossy one, and the lossy one is the direction user input flows through."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does ethers.js do with too many decimals?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It refuses. Hand ethers.parseUnits(\"1.2345678\", 6) more fractional digits than the unit allows and it throws an error rather than rounding for you. That's a real design fork: viem chose to be forgiving and round, ethers chose to be strict and make the caller decide. After this bug, the strict choice looks better than it used to — an exception in your logs is annoying, but it's visible. For payment flows we'd argue for stricter still: truncate or reject at the input boundary, so the number that gets parsed is exactly the number the user confirmed on screen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I test my own code for this class of bug?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Stop testing parsers with friendly values. Add cases with: tails of nineteen-plus digits, values just below a rounding boundary (…449999…), values exactly on it (…45), negatives of all of those, and decimals: 0. If you have property-based testing (fast-check works well in TypeScript), generate random decimal strings, run them through your parse function, and check the result against a reference implementation built on BigInt string math. And in code review, treat any Number(x) where x can exceed 15 significant digits as a finding, the same way you'd treat unescaped SQL."
+        }
+      }
+    ]
+  }
+}
