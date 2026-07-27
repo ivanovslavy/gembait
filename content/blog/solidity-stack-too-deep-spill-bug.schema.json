@@ -1,0 +1,68 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Stack Too Deep's Fix Was Broken",
+    "description": "Solidity's via-ir escape hatch for Stack too deep silently corrupted mutually recursive functions for six years. 0.8.36 fixes it — and ships the real cure.",
+    "image": "https://gembait.com/images/blog/solidity-stack-too-deep-spill-bug/hero.webp",
+    "datePublished": "2026-07-27",
+    "dateModified": "2026-07-27",
+    "author": { "@type": "Organization", "name": "GEMBA IT team", "url": "https://gembait.com/about" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": { "@type": "ImageObject", "url": "https://gembait.com/favicon.svg" }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/solidity-stack-too-deep-spill-bug",
+    "articleSection": "Web3 Engineering Deep Dives",
+    "keywords": "solidity, stack-too-deep, via-ir, compiler-bugs, yul, evm",
+    "proficiencyLevel": "Expert",
+    "dependencies": "Solidity 0.8.36, solc, Yul IR pipeline, EVM, Hardhat, Foundry"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Am I affected if I never enabled via-ir?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The bug lives in the IR pipeline's stack-to-memory mover, and the legacy (evmasm) pipeline doesn't run it. viaIR is off by default in solc, Hardhat and Foundry alike, so if you never opted in — via --via-ir on the CLI or settings.viaIR: true in Standard JSON — this bug never touched your bytecode. To be sure in a Foundry project, check foundry.toml for via_ir = true; in Hardhat, look for viaIR under solidity.settings. Remember that some teams enable it only for production builds, so check your release configuration, not just the default profile."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "My contract compiled on 0.8.35 but 0.8.36 says \"Stack too deep\". Is 0.8.36 broken?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The opposite. If Tarjan's algorithm now classifies one of your functions as recursive, the compiler is no longer allowed to spill its variables to memory — because with recursion, that relocation produces silent value corruption. Your code compiled on 0.8.35 only because the compiler was making an unsound move. Treat the new error as a free audit finding: restructure the function so fewer variables are live at once, move logic into helper functions, use structs, or scope temporaries in blocks. Pinning back to 0.8.35 keeps the corruption risk, not just the convenience."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does disabling the optimizer protect me on affected versions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mostly no, and this surprises people. From Solidity 0.8.21 onward, the stack-to-memory relocation is a distinct stage of the IR pipeline that runs regardless of the optimizer setting — so --via-ir with the optimizer off still reaches the buggy code. Only on the older range (0.7.2–0.8.20) did the mover run solely as part of the Yul optimizer, meaning both --via-ir and --optimize were needed to be exposed. If your CI compiles with viaIR: true and no optimizer for faster builds, you were still in scope on modern versions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I know if my deployed contracts are affected?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Work through the conditions in order, cheapest first. Do any of your contracts contain mutually recursive internal functions — two or more functions calling each other in a loop? If no (the overwhelmingly common case), you're done. If yes, recompile with 0.8.36: if a previously-fine function now errors with Stack too deep, the old binary was relocating variables inside a recursive function and you should treat the deployed bytecode as suspect — test it hard and plan a redeploy. For wider peace of mind: the Solidity team scanned roughly 207,000 via-ir contracts on Sourcify and found zero deployed contracts where the unsound relocation actually happened."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use --experimental --via-ssa-cfg in production now?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not yet. The SSA CFG code generator with memory spilling is the first pipeline that can compile essentially any function without a stack-too-deep error, which makes it very tempting. But the Solidity team labels it experimental, it's not the default for --via-ir, and experimental backends by definition have had less real-world mileage — this very story shows what a subtle code-generation bug can cost. Use it today to unblock local experiments or to check whether your code would compile at all, and keep production builds on the stable pipeline. The team says stabilizing SSA CFG is the priority for the next six months, so the wait should be measured in months, not years."
+        }
+      }
+    ]
+  }
+}

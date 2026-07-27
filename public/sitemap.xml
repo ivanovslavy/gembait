@@ -656,6 +656,33 @@
 
   <!-- Blog posts (only the languages each post is translated into) -->
   <url>
+    <loc>https://gembait.com/en/blog/solidity-stack-too-deep-spill-bug</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/solidity-stack-too-deep-spill-bug"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/solidity-stack-too-deep-spill-bug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/solidity-stack-too-deep-spill-bug"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/solidity-stack-too-deep-spill-bug"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/blog/solidity-stack-too-deep-spill-bug</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/solidity-stack-too-deep-spill-bug"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/solidity-stack-too-deep-spill-bug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/solidity-stack-too-deep-spill-bug"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/solidity-stack-too-deep-spill-bug"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/blog/solidity-stack-too-deep-spill-bug</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/solidity-stack-too-deep-spill-bug"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/solidity-stack-too-deep-spill-bug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/blog/solidity-stack-too-deep-spill-bug"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/blog/solidity-stack-too-deep-spill-bug"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gembait.com/en/blog/viem-parseunits-rounding-bug</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/blog/viem-parseunits-rounding-bug"/>
     <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/blog/viem-parseunits-rounding-bug"/>

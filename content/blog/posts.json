@@ -1,5 +1,42 @@
 [
   {
+    "slug": "solidity-stack-too-deep-spill-bug",
+    "date": "2026-07-27",
+    "lastUpdated": "2026-07-27",
+    "author": "GEMBA IT team",
+    "cluster": "web3-engineering",
+    "tags": [
+      "solidity",
+      "stack-too-deep",
+      "via-ir",
+      "compiler-bugs",
+      "yul",
+      "evm"
+    ],
+    "image": "/images/blog/solidity-stack-too-deep-spill-bug/hero.webp",
+    "hero": "/images/blog/solidity-stack-too-deep-spill-bug/hero.webp",
+    "heroRetina": "/images/blog/solidity-stack-too-deep-spill-bug/hero@2x.webp",
+    "midImage": "/images/blog/solidity-stack-too-deep-spill-bug/mid.webp",
+    "midImageRetina": "/images/blog/solidity-stack-too-deep-spill-bug/mid@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Stack Too Deep's Fix Was Broken",
+      "bg": "Поправката на Stack Too Deep беше счупена",
+      "es": "La cura de Stack Too Deep estaba rota"
+    },
+    "excerpt": {
+      "en": "Solidity's via-ir escape hatch for Stack too deep silently corrupted mutually recursive functions for six years. 0.8.36 fixes it — and ships the real cure.",
+      "bg": "Аварийният изход via-ir на Solidity за Stack too deep тихо повреждаше взаимно рекурсивни функции шест години. 0.8.36 го поправя — и доставя истинския лек.",
+      "es": "La salida via-ir de Solidity para Stack too deep corrompió en silencio funciones mutuamente recursivas durante seis años. 0.8.36 lo corrige — y trae la cura real."
+    },
+    "word_count": 2244,
+    "source_url": "https://www.soliditylang.org/blog/2026/07/09/unsound-spill-in-mutual-recursion-bug/",
+    "source_type": "industry_publication",
+    "source_date": "2026-07-09",
+    "emotional_hook": "hidden_trap",
+    "first_hand_story_used": false
+  },
+  {
     "slug": "viem-parseunits-rounding-bug",
     "date": "2026-07-20",
     "lastUpdated": "2026-07-20",
