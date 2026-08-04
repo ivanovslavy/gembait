@@ -1,5 +1,42 @@
 [
   {
+    "slug": "prisma-timestamptz-timezone-offset-bug",
+    "date": "2026-08-04",
+    "lastUpdated": "2026-08-04",
+    "author": "GEMBA IT team",
+    "cluster": "backend-infrastructure",
+    "tags": [
+      "prisma",
+      "postgresql",
+      "timestamptz",
+      "timezones",
+      "node-js",
+      "driver-adapters"
+    ],
+    "image": "/images/blog/prisma-timestamptz-timezone-offset-bug/hero.webp",
+    "hero": "/images/blog/prisma-timestamptz-timezone-offset-bug/hero.webp",
+    "heroRetina": "/images/blog/prisma-timestamptz-timezone-offset-bug/hero@2x.webp",
+    "midImage": "/images/blog/prisma-timestamptz-timezone-offset-bug/mid.webp",
+    "midImageRetina": "/images/blog/prisma-timestamptz-timezone-offset-bug/mid@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Prisma Silently Drops Timezone Offsets",
+      "bg": "Prisma тихо изпуска timezone offset-ите",
+      "es": "Prisma pierde los offsets de zona horaria en silencio"
+    },
+    "excerpt": {
+      "en": "Prisma's Postgres driver adapter drops the timezone offset when writing to a timestamptz column — and rewrites it on reads. Here's the bug and the fix.",
+      "bg": "Postgres driver adapter-ът на Prisma маха timezone offset-а при запис в timestamptz колона — и го пренаписва при четене. Ето бъга и поправката.",
+      "es": "El driver adapter de Postgres de Prisma elimina el offset de zona horaria al escribir en una columna timestamptz — y lo reescribe al leer. Aquí el bug y la corrección."
+    },
+    "word_count": 2332,
+    "source_url": "https://github.com/prisma/prisma/issues/29662",
+    "source_type": "github_issue",
+    "source_date": "2026-06-26",
+    "emotional_hook": "assumed_vs_reality",
+    "first_hand_story_used": false
+  },
+  {
     "slug": "solidity-stack-too-deep-spill-bug",
     "date": "2026-07-27",
     "lastUpdated": "2026-07-27",

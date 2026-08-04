@@ -1,0 +1,68 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Prisma Silently Drops Timezone Offsets",
+    "description": "Prisma's Postgres driver adapter drops the timezone offset when writing to a timestamptz column — and rewrites it on reads. Here's the bug and the fix.",
+    "image": "https://gembait.com/images/blog/prisma-timestamptz-timezone-offset-bug/hero.webp",
+    "datePublished": "2026-08-04",
+    "dateModified": "2026-08-04",
+    "author": { "@type": "Organization", "name": "GEMBA IT team", "url": "https://gembait.com/about" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": { "@type": "ImageObject", "url": "https://gembait.com/favicon.svg" }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/prisma-timestamptz-timezone-offset-bug",
+    "articleSection": "Backend & Infrastructure Lessons",
+    "keywords": "prisma, postgresql, timestamptz, timezones, node-js, driver-adapters",
+    "proficiencyLevel": "Expert",
+    "dependencies": "Prisma, PostgreSQL, @prisma/adapter-pg, Node.js"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Am I affected if my database already runs in UTC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your stored instants are almost certainly fine. With the session timezone at UTC, the dropped offset changes nothing for UTC inputs, because Postgres's fallback assumption (interpret this in the session timezone) happens to match what your app meant. JavaScript Date objects serialize to UTC instants, so the common Node-plus-UTC-database setup masks both halves of the bug. You'd still hit trouble if you pass ISO strings carrying non-zero offsets and something other than Prisma reads the rows, or if any client session overrides the timezone with SET TIME ZONE. Cheap insurance: run one explicit round-trip check through psql with a +05:30-style input and confirm the stored instant is right."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why didn't my tests catch this?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the write bug and the read bug are mirror images, and your tests probably use Prisma for both directions. The insert shifts the stored instant by the session offset; the read shifts it back by the same amount; the value you assert on looks perfect. The corruption only becomes observable at a boundary Prisma doesn't own — a raw SQL query, a CHECK constraint comparing against CURRENT_TIMESTAMP, a BI dashboard, or a second service reading the same table. That's exactly how it surfaced in the original report: not as a wrong value, but as a constraint violation on a row that claimed to live in the future."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this a Prisma bug or just how Postgres works?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both halves matter. Postgres is behaving exactly as documented: it never retains your original timezone, and it interprets offset-less literals in the session timezone. That's well-defined, decades-old behavior — not a quirk. The bug is squarely in the adapter's conversion layer, which threw away information (the offset) on the way in and fabricated information (a +00:00 label) on the way out. A good mental model: Postgres kept its promises; the middleman edited the messages. That's also why the fix is so small — format the literal with the offset, preserve the offset when parsing — with no change needed in Postgres or your schema."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use timestamp or timestamptz in Postgres?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "timestamptz, in almost every case — and this bug doesn't change that. A timestamptz is an unambiguous point in time no matter who reads it or where; a plain timestamp is a wall-clock reading with no anchor, which pushes the what-timezone-was-this problem onto every future reader of your schema. Note that Prisma's default mapping for DateTime is timestamp(3) — without timezone — so you have to opt in explicitly with @db.Timestamptz() in your schema. Keep doing that. Just pair it with a UTC database timezone and an out-of-band round-trip check until the adapter fix ships."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I do with data written while the bug was live?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "First, work out whether it's actually shifted: it is only if the writing session's timezone wasn't UTC at insert time. If so, the good news is the corruption is deterministic — every stored instant is off by exactly the session offset in force when it was written (mind daylight-saving changes, which alter that offset across the year). You can repair with a targeted UPDATE that adds the inverse interval, scoped to rows created in the affected window. Do it in a transaction, verify a sample against a known-good source (application logs, event timestamps from another system), and re-check any CHECK constraints before committing."
+        }
+      }
+    ]
+  }
+}
