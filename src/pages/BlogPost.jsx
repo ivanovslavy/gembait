@@ -42,7 +42,7 @@ export default function BlogPost() {
       setLoading(true);
       try {
         // Dynamic import of markdown files
-        const modules = import.meta.glob('/content/blog/*.md', { query: '?raw', import: 'default' });
+        const modules = import.meta.glob('/content/blog/*.{en,bg,es}.md', { query: '?raw', import: 'default' });
         const path = `/content/blog/${slug}.${currentLang}.md`;
         const fallbackPath = `/content/blog/${slug}.en.md`;
 

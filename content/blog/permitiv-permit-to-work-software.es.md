@@ -66,7 +66,7 @@ Lo que aún no existe: el producto por el que hacer clic. El primer módulo func
 
 ## Quién lo construye
 
-GEMBA IT es la división tecnológica de GEMBA Team EOOD, en Varna, Bulgaria. Operamos [GembaPay](https://gembapay.com) (plataforma de pagos no custodial, socio de Stripe y PayPal), ticketing NFT y el resto del stack que este blog suele diseccionar. Gemba Industrial aporta la parte que la mayoría de las empresas de software finge: gente que de verdad ha estado en la ventanilla de permisos a las 6 de la mañana con una cuadrilla quemando dinero a su espalda.
+GEMBA IT es la división tecnológica de GEMBA Team EOOD, en Varna, Bulgaria. Operamos [GembaPay](https://gembapay.com) (plataforma de pagos con tarjeta y PayPal), ticketing de eventos y el resto del stack que este blog suele diseccionar. Gemba Industrial aporta la parte que la mayoría de las empresas de software finge: gente que de verdad ha estado en la ventanilla de permisos a las 6 de la mañana con una cuadrilla quemando dinero a su espalda.
 
 Esa combinación —una empresa que entrega sistemas en producción y otra que vive dentro del problema— es toda la apuesta.
 

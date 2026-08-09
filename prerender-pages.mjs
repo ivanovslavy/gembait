@@ -213,7 +213,7 @@ for (const lang of LANGS) {
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      provider: { '@type': 'Organization', name: SITE_NAME, url: BASE_URL },
+      creator: { '@type': 'Organization', name: SITE_NAME, url: BASE_URL },
       image: ogImage,
     };
 

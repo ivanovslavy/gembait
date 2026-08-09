@@ -31,6 +31,7 @@ const BRAND_B = '#06B6D4';
 const STATUS = {
   live:             { label: 'LIVE',            fill: '#059669' },
   testnet:          { label: 'TESTNET',         fill: '#D97706' },
+  'developer-preview': { label: 'TESTNET',      fill: '#D97706' },
   'in-progress':    { label: 'IN PROGRESS',     fill: '#7C3AED' },
   'in-development': { label: 'IN DEVELOPMENT',  fill: '#4B5563' },
 };

@@ -147,7 +147,7 @@ Never modify files outside /gembait.com/content/blog/ and
 PROMPT
 )" \
   --allowedTools "Read,Write,Edit,Bash,Glob,Grep,WebSearch,WebFetch" \
-  --max-turns 60
+  --max-turns 100
 
 echo "$LOG_PREFIX Done."
 

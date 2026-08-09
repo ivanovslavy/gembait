@@ -1,9 +1,9 @@
-export const products = [
+const allProducts = [
   {
     slug: 'gembapay',
     name: 'GembaPay',
-    status: 'live',
-    statusNote: 'in production',
+    status: 'developer-preview',
+    statusNote: 'test networks only',
     featured: true,
     order: 1,
     category: 'payments',
@@ -12,90 +12,23 @@ export const products = [
     appLabel: 'Visit gembapay.com',
     githubUrl: null,
     githubNote: null,
-    tech: ['Solidity', 'Node.js', 'Express', 'React', 'PostgreSQL', 'Prisma', 'Chainlink', 'Stripe Connect', 'PayPal'],
-    networks: [
-      { name: 'Ethereum Mainnet', chainId: 1, ready: ['Ethereum', 'BSC', 'Polygon'] },
-      { name: 'BNB Smart Chain', chainId: 56, ready: [] },
-      { name: 'Polygon', chainId: 137, ready: [] }
-    ],
-    contracts: [
-      { label: 'PaymentGateway', address: '0xD9c4169061B92970b86afBF32dad4Ecfd749179e', chain: 'Ethereum', explorerUrl: 'https://etherscan.io/address/0xD9c4169061B92970b86afBF32dad4Ecfd749179e' },
-      { label: 'PaymentGateway', address: '0xeE3d1CbD3cAF2D9194CbfC5B1bE8fdD5c3953eE1', chain: 'BSC', explorerUrl: 'https://bscscan.com/address/0xeE3d1CbD3cAF2D9194CbfC5B1bE8fdD5c3953eE1' },
-      { label: 'PaymentGateway', address: '0x7cceCb66E7Fa6255244035533E31791bD1Fff254', chain: 'Polygon', explorerUrl: 'https://polygonscan.com/address/0x7cceCb66E7Fa6255244035533E31791bD1Fff254' },
-      { label: 'GiftNFT', address: '0xD24a89dc1686C2F88d33A70250473495459C564a', chain: 'Ethereum', explorerUrl: 'https://etherscan.io/address/0xD24a89dc1686C2F88d33A70250473495459C564a' },
-      { label: 'GiftNFT', address: '0x8Fee75865E8D87cdB844Ef5676D2D6456262BA7A', chain: 'BSC', explorerUrl: 'https://bscscan.com/address/0x8Fee75865E8D87cdB844Ef5676D2D6456262BA7A' },
-      { label: 'GiftNFT', address: '0xD24a89dc1686C2F88d33A70250473495459C564a', chain: 'Polygon', explorerUrl: 'https://polygonscan.com/address/0xD24a89dc1686C2F88d33A70250473495459C564a' }
-    ],
-    metrics: [
-      { value: '5', label: 'Active merchants' },
-      { value: '256', label: 'Transactions processed' },
-      { value: '$1,118', label: 'Volume processed' },
-      { value: '3', label: 'Networks live' }
-    ],
-    tags: ['Non-custodial', 'Stripe', 'PayPal', 'Ethereum', 'BSC', 'Polygon', '86+ currencies'],
+    tech: ['Node.js', 'Express', 'React', 'PostgreSQL', 'Prisma', 'Stripe Connect', 'PayPal'],
+    networks: [],
+    contracts: [],
+    metrics: [],
+    tags: ['Stripe', 'PayPal', '86+ currencies'],
     partners: [
       { name: 'Stripe', type: 'payment' },
       { name: 'PayPal', type: 'payment' },
-      { name: 'Chainlink', type: 'oracle' },
       { name: 'WooCommerce', type: 'ecosystem' },
       { name: 'OpenZeppelin', type: 'security' }
     ],
     certifications: [
-      { label: 'Slither static analysis', result: 'Zero high-severity findings' },
-      { label: 'Access control', result: 'OpenZeppelin Ownable + ReentrancyGuard' },
-      { label: 'Source code', result: 'Verified on Etherscan, BSCScan, PolygonScan' }
+      { label: 'Payment partners', result: 'Stripe Connect platform and PayPal PPCP integration' }
     ],
     caseStudy: { hasWhatWeAre: true, hasSecurity: true, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
     screenshots: [],
     i18nKey: 'gembapay'
-  },
-  {
-    slug: 'gembatools',
-    name: 'GembaTools',
-    status: 'testnet',
-    statusNote: 'on Sepolia',
-    featured: true,
-    order: 11,
-    category: 'web3',
-    audience: ['token creators', 'NFT projects', 'DeFi teams', 'developers'],
-    appUrl: 'https://gembatools.io',
-    appLabel: 'Launch app',
-    githubUrl: 'https://github.com/ivanovslavy/GembaTools',
-    githubNote: null,
-    tech: ['Solidity 0.8.27', 'Hardhat', 'OpenZeppelin v5', 'ERC721A', 'React', 'Vite', 'wagmi', 'viem', 'Uniswap V3'],
-    networks: [
-      { name: 'Ethereum Sepolia', chainId: 11155111, ready: ['Ethereum', 'BSC', 'Polygon', 'Base'] }
-    ],
-    contracts: [
-      { label: 'GembaERC20Factory', address: '0xF3aB51315BbC26ea4e3a509d5bE139d1246a999E', chain: 'Sepolia', explorerUrl: 'https://sepolia.etherscan.io/address/0xF3aB51315BbC26ea4e3a509d5bE139d1246a999E' },
-      { label: 'GembaERC20TaxFactory', address: '0x722191FBef1960fa4e23771946D94A2051D5f2Ae', chain: 'Sepolia', explorerUrl: 'https://sepolia.etherscan.io/address/0x722191FBef1960fa4e23771946D94A2051D5f2Ae' },
-      { label: 'GembaERC20AdvancedFactory', address: '0x8D821d2440Be64D7de39188Aac4Af769F2538e4C', chain: 'Sepolia', explorerUrl: 'https://sepolia.etherscan.io/address/0x8D821d2440Be64D7de39188Aac4Af769F2538e4C' },
-      { label: 'GembaERC721Factory', address: '0xcC95A4A33C4b7e769CfB6841Ec92B922266Df26E', chain: 'Sepolia', explorerUrl: 'https://sepolia.etherscan.io/address/0xcC95A4A33C4b7e769CfB6841Ec92B922266Df26E' },
-      { label: 'GembaERC721AFactory', address: '0xe6acD89ac14667c95878A71F44c4233Dd0bEcf5f', chain: 'Sepolia', explorerUrl: 'https://sepolia.etherscan.io/address/0xe6acD89ac14667c95878A71F44c4233Dd0bEcf5f' },
-      { label: 'GembaERC1155Factory', address: '0xFA99A9EBc5b180f6538cD4959f8d9Fb20C26E4f0', chain: 'Sepolia', explorerUrl: 'https://sepolia.etherscan.io/address/0xFA99A9EBc5b180f6538cD4959f8d9Fb20C26E4f0' },
-      { label: 'GembaSwapRouter', address: '0x8405CEB8212a9e725162C78aBF5Adebab5820387', chain: 'Sepolia', explorerUrl: 'https://sepolia.etherscan.io/address/0x8405CEB8212a9e725162C78aBF5Adebab5820387' }
-    ],
-    metrics: [
-      { value: '22', label: 'Tokens deployed' },
-      { value: '7', label: 'Active LP positions' },
-      { value: '5', label: 'Unique wallets' },
-      { value: '6', label: 'Contract types' }
-    ],
-    tags: ['Token factory', 'DEX', 'Presale', 'NFT', 'Uniswap V3', 'No-code'],
-    partners: [
-      { name: 'Uniswap V3', type: 'dex' },
-      { name: 'OpenZeppelin', type: 'security' },
-      { name: 'Azuki ERC721A', type: 'standard' },
-      { name: 'wagmi / viem', type: 'tooling' }
-    ],
-    certifications: [
-      { label: 'Slither static analysis', result: 'Zero high-severity findings across all factories' },
-      { label: 'Contract architecture', result: 'No proxies, no delegatecall, no admin backdoors' },
-      { label: 'Source code', result: 'All 7 factories verified on Sepolia Etherscan' }
-    ],
-    caseStudy: { hasWhatWeAre: true, hasSecurity: true, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
-    screenshots: [],
-    i18nKey: 'gembatools'
   },
   {
     slug: 'gembaticket',
@@ -122,7 +55,7 @@ export const products = [
       { statKey: 'ticketsSold', value: '—', label: 'Tickets sold' },
       { statKey: 'revenue', prefix: '€', value: '—', label: 'Revenue' }
     ],
-    tags: ['Ticketing', 'NFT', 'GembaBlockchain', '0 fees', 'Invisible blockchain', 'GembaPay', 'Non-custodial', 'QR rotation'],
+    tags: ['Ticketing', 'NFT', 'GembaBlockchain', '0 fees', 'Invisible blockchain', 'GembaPay', 'Privacy-first', 'QR rotation'],
     partners: [
       { name: 'GembaPay', type: 'payments', url: 'https://gembapay.com' },
       { name: 'OpenZeppelin', type: 'security', url: 'https://openzeppelin.com' },
@@ -140,8 +73,8 @@ export const products = [
   {
     slug: 'educhain',
     name: 'EduChain',
-    status: 'live',
-    statusNote: 'on GembaBlockchain Testnet',
+    status: 'testnet',
+    statusNote: 'testnet only — no real funds',
     featured: true,
     order: 7,
     category: 'education',
@@ -152,7 +85,7 @@ export const products = [
     githubNote: 'Smart contracts (frontend private)',
     tech: ['Solidity 0.8.28', 'OpenZeppelin v5', 'Hardhat', 'React 19', 'ethers v6', 'wagmi', 'viem', 'IPFS', 'Pinata'],
     networks: [
-      { name: 'GembaBlockchain Testnet', chainId: 821207, ready: ['Mainnet'] }
+      { name: 'GembaBlockchain Testnet', chainId: 821207, ready: [] }
     ],
     contracts: [
       { label: 'Whitelist', address: '0x1e7D76fE34584df2d2029E5304AB575D79Dc8108', chain: 'GembaBlockchain', explorerUrl: 'https://testnet.gembascan.io/address/0x1e7D76fE34584df2d2029E5304AB575D79Dc8108' },
@@ -202,197 +135,10 @@ export const products = [
     i18nKey: 'permitiv'
   },
   {
-    slug: 'kotkata',
-    name: 'Kotkata',
-    status: 'live',
-    statusNote: 'in production',
-    featured: false,
-    order: 12,
-    category: 'nft',
-    audience: ['GembaPay customers', 'NFT collectors'],
-    appUrl: 'https://gembapay.com/nft-gift',
-    appLabel: 'View collection',
-    githubUrl: 'https://github.com/ivanovslavy/kotkata-nft',
-    githubNote: null,
-    tech: ['Solidity 0.8.27', 'ERC721A', 'ERC2981', 'OpenZeppelin', 'Node.js', 'Sharp', 'IPFS', 'Filebase'],
-    networks: [
-      { name: 'Ethereum', chainId: 1, ready: [] },
-      { name: 'BNB Smart Chain', chainId: 56, ready: [] },
-      { name: 'Polygon', chainId: 137, ready: [] }
-    ],
-    contracts: [
-      { label: 'Kotkata', address: '0xD24a89dc1686C2F88d33A70250473495459C564a', chain: 'Ethereum', explorerUrl: 'https://etherscan.io/address/0xD24a89dc1686C2F88d33A70250473495459C564a' },
-      { label: 'Kotkata', address: '0x8Fee75865E8D87cdB844Ef5676D2D6456262BA7A', chain: 'BSC', explorerUrl: 'https://bscscan.com/address/0x8Fee75865E8D87cdB844Ef5676D2D6456262BA7A' },
-      { label: 'Kotkata', address: '0xD24a89dc1686C2F88d33A70250473495459C564a', chain: 'Polygon', explorerUrl: 'https://polygonscan.com/address/0xD24a89dc1686C2F88d33A70250473495459C564a' }
-    ],
-    metrics: [
-      { value: '113', label: 'Total minted' },
-      { value: '12', label: 'Holders' },
-      { value: '3', label: 'Networks' },
-      { value: '$0.001', label: 'Gas on Polygon' }
-    ],
-    tags: ['NFT', 'ERC721A', 'Gift', 'Multi-chain', 'Hand-drawn'],
-    partners: [
-      { name: 'GembaPay', type: 'distribution' },
-      { name: 'Filebase', type: 'storage' },
-      { name: 'OpenZeppelin', type: 'security' }
-    ],
-    certifications: [
-      { label: 'Slither + Solhint', result: 'Zero vulnerabilities' },
-      { label: 'Test coverage', result: '33 tests passing' },
-      { label: 'Source code', result: 'Verified on Etherscan, BSCScan, PolygonScan' }
-    ],
-    caseStudy: { hasWhatWeAre: false, hasSecurity: false, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
-    screenshots: [],
-    i18nKey: 'kotkata'
-  },
-  {
-    slug: 'gembaescrow',
-    name: 'Gemba Escrow',
-    status: 'testnet',
-    statusNote: 'on GembaBlockchain Testnet',
-    featured: false,
-    order: 9,
-    category: 'web3',
-    audience: ['real estate agents', 'notaries', 'buyers and sellers', 'high-value asset traders'],
-    appUrl: 'https://escrow.gembait.com',
-    appLabel: 'Visit Escrow Dapp',
-    githubUrl: null,
-    githubNote: null,
-    tech: ['Solidity 0.8.20', 'OpenZeppelin', 'Hardhat', 'Clone factory', 'React 18', 'ethers.js v6', 'IPFS'],
-    networks: [
-      { name: 'GembaBlockchain Testnet', chainId: 821207, ready: ['GembaBlockchain Mainnet'] }
-    ],
-    contracts: [],
-    metrics: [
-      { value: '5', label: 'Contracts deployed' },
-      { value: '121 GMB', label: 'Total settled' }
-    ],
-    tags: ['Escrow', 'Real estate', 'Multi-party', 'IPFS', 'Clone factory'],
-    partners: [
-      { name: 'OpenZeppelin', type: 'security' },
-      { name: 'IPFS', type: 'storage' }
-    ],
-    certifications: [
-      { label: 'Slither audit', result: 'Zero high/medium findings; 2 low accepted by design' },
-      { label: 'Fee cap', result: 'Hard-coded 20% maximum across notary + agent' }
-    ],
-    caseStudy: { hasWhatWeAre: false, hasSecurity: false, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
-    screenshots: [],
-    i18nKey: 'gembaescrow'
-  },
-  {
-    slug: 'gembawin',
-    name: 'GembaWin',
-    status: 'testnet',
-    statusNote: 'on GembaBlockchain Testnet',
-    featured: false,
-    order: 10,
-    category: 'web3',
-    audience: ['contest organizers', 'hackathon hosts', 'bounty programs'],
-    appUrl: 'https://win.gembait.com',
-    appLabel: 'Visit GembaWin',
-    githubUrl: 'https://github.com/ivanovslavy/gembawin',
-    githubNote: null,
-    tech: ['Solidity', 'Hardhat', 'OpenZeppelin', 'ReentrancyGuard', 'SafeERC20'],
-    networks: [
-      { name: 'GembaBlockchain Testnet', chainId: 821207, ready: ['Ethereum', 'BSC', 'Polygon'] }
-    ],
-    contracts: [],
-    metrics: [],
-    tags: ['Bounty', 'Contests', 'GMB', 'USDT', 'USDC', 'Time-locked'],
-    partners: [
-      { name: 'OpenZeppelin', type: 'security' },
-      { name: 'SafeERC20', type: 'standard' }
-    ],
-    certifications: [
-      { label: 'Slither audit', result: 'Clean audit results' },
-      { label: 'Claim window', result: 'Enforced 30-day on-chain claim period' }
-    ],
-    caseStudy: { hasWhatWeAre: false, hasSecurity: false, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
-    screenshots: [],
-    i18nKey: 'gembawin'
-  },
-  {
-    slug: 'nftviewer',
-    name: 'NFT Viewer',
-    status: 'live',
-    statusNote: 'in production',
-    featured: false,
-    order: 8,
-    category: 'web3',
-    audience: ['NFT collectors', 'ticket holders', 'developers'],
-    appUrl: 'https://nftviewer.gembait.com/',
-    appLabel: 'Open viewer',
-    githubUrl: null,
-    githubNote: null,
-    tech: ['React 18', 'Vite 6', 'Node.js', 'Express', 'ethers.js v6', 'Moralis SDK v2', 'IPFS'],
-    networks: [
-      { name: 'Ethereum', chainId: 1, ready: [] },
-      { name: 'Sepolia', chainId: 11155111, ready: [] },
-      { name: 'Polygon', chainId: 137, ready: [] },
-      { name: 'BNB Smart Chain', chainId: 56, ready: [] }
-    ],
-    contracts: [],
-    metrics: [],
-    tags: ['Gallery', 'Moralis', 'IPFS', 'Multi-chain', 'Interactive NFTs'],
-    partners: [
-      { name: 'Moralis', type: 'indexer' },
-      { name: 'IPFS', type: 'storage' }
-    ],
-    certifications: [],
-    caseStudy: { hasWhatWeAre: false, hasSecurity: false, hasArchitecture: false, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
-    screenshots: [],
-    i18nKey: 'nftviewer'
-  },
-  {
-    slug: 'gembasniper',
-    name: 'Gemba Sniper Bot',
-    status: 'live',
-    statusNote: 'in production',
-    featured: true,
-    order: 13,
-    category: 'web3',
-    audience: ['DeFi traders', 'crypto-native developers', 'honeypot researchers', 'red-teamers'],
-    appUrl: 'https://gembabots.com',
-    appLabel: 'Visit gembabots.com',
-    githubUrl: 'https://github.com/ivanovslavy/gemba-sniper-bot',
-    githubNote: null,
-    tech: ['Node.js (ESM)', 'Express', 'viem', 'ethers', 'React 18', 'Vite 5', 'PostgreSQL', 'Uniswap V3', 'Uniswap V4', 'Hardhat', 'Foundry', 'systemd'],
-    networks: [
-      { name: 'Ethereum Mainnet', chainId: 1, ready: [] },
-      { name: 'Base Mainnet', chainId: 8453, ready: [] },
-      { name: 'Ethereum Sepolia', chainId: 11155111, ready: [] }
-    ],
-    contracts: [],
-    metrics: [
-      { value: '10', label: 'Honeypot pipeline stages' },
-      { value: '$0.03', label: 'Real sellability micro-test' },
-      { value: '3', label: 'Networks supported' },
-      { value: '100%', label: 'Non-custodial' }
-    ],
-    tags: ['Non-custodial', 'Sniper', 'Uniswap V3', 'Uniswap V4', 'Honeypot-aware', 'Open source', 'Ethereum', 'Base', 'Sepolia'],
-    partners: [
-      { name: 'Uniswap V3', type: 'dex' },
-      { name: 'Uniswap V4', type: 'dex' },
-      { name: 'GembaPay', type: 'payments' },
-      { name: 'Cloudflare Turnstile', type: 'security' },
-      { name: 'Telegram', type: 'notifications' }
-    ],
-    certifications: [
-      { label: 'Custody model', result: 'Non-custodial — private key AES-256 encrypted client-side; server stores ciphertext only' },
-      { label: 'Source code', result: 'Pipeline open source on GitHub' },
-      { label: 'Red-team rig', result: 'Foundry test-hook-sepolia honeypot hooks validate the defenses in-house' }
-    ],
-    caseStudy: { hasWhatWeAre: true, hasSecurity: true, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
-    screenshots: [],
-    i18nKey: 'gembasniper'
-  },
-  {
     slug: 'gembablockchain',
     name: 'GembaBlockchain',
     status: 'testnet',
-    statusNote: null,
+    statusNote: 'testnet only — no mainnet',
     featured: true,
     order: 2,
     category: 'web3',
@@ -403,11 +149,10 @@ export const products = [
     githubNote: null,
     tech: ['Cosmos SDK', 'Cosmos EVM', 'CometBFT', 'Go', 'Solidity', 'EVM', 'Blockscout'],
     networks: [
-      { name: 'GembaBlockchain Testnet', chainId: 821207, ready: ['Mainnet'] }
+      { name: 'GembaBlockchain Testnet', chainId: 821207, ready: [] }
     ],
     contracts: [],
     metrics: [
-      { value: '100M', label: 'Fixed GMB supply' },
       { value: '0%', label: 'Inflation' },
       { value: '821207', label: 'EVM chainId' },
       { value: '4', label: 'Validators live' }
@@ -443,7 +188,7 @@ export const products = [
     githubNote: 'Private repository',
     tech: ['Solidity 0.8.24', 'Foundry', 'OpenZeppelin v5', 'ERC-1155', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Redis', 'IPFS', 'React', 'Vite', 'ethers v6'],
     networks: [
-      { name: 'GembaBlockchain Testnet', chainId: 821207, ready: ['Mainnet'] }
+      { name: 'GembaBlockchain Testnet', chainId: 821207, ready: [] }
     ],
     contracts: [
       { label: 'GembaAccessPass', address: '0x1B72b95588B75925B59715d582504C9D42594899', chain: 'GembaBlockchain Testnet', explorerUrl: 'https://testnet.gembascan.io/address/0x1B72b95588B75925B59715d582504C9D42594899' }
@@ -454,7 +199,7 @@ export const products = [
       { value: 'Soulbound', label: 'Access NFT' },
       { value: 'Multi-tenant', label: 'Cloud + on-prem' }
     ],
-    tags: ['Access control', 'Soulbound NFT', 'Custodial', 'Invisible blockchain', 'GDPR', 'Subscription', 'GembaBlockchain'],
+    tags: ['Access control', 'Managed credentials', 'Invisible infrastructure', 'GDPR', 'Subscription', 'Testnet'],
     partners: [
       { name: 'GembaBlockchain', type: 'blockchain' },
       { name: 'GembaPay', type: 'payments' },
@@ -547,6 +292,13 @@ export const products = [
     i18nKey: 'gembakitchen'
   }
 ];
+
+// [crypto-blackout 2026-08-09]
+// Продуктите с `hidden: true` остават в този файл, в git и във всички преводи.
+// Те просто не се сервират: няма карта, няма страница, няма запис в sitemap, няма OG.
+// Връщат се с махане на един флаг.
+export const products = allProducts.filter(p => !p.hidden);
+export { allProducts };
 
 export const getProductBySlug = (slug) => products.find(p => p.slug === slug);
 export const getFeaturedProducts = () => products.filter(p => p.featured).sort((a, b) => a.order - b.order);

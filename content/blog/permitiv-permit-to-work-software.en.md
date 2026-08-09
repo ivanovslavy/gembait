@@ -88,7 +88,7 @@ So why announce now? Three reasons. Writing it publicly holds us accountable —
 
 ## Who's building it
 
-GEMBA IT is the technology division of GEMBA Team EOOD in Varna, Bulgaria. We run [GembaPay](https://gembapay.com) (a non-custodial payment platform, Stripe and PayPal partner), NFT ticketing, and the rest of the stack this blog usually dissects. Gemba Industrial brings the part most software companies fake: people who have actually stood at the permit window at 6 a.m. with a crew burning money behind them.
+GEMBA IT is the technology division of GEMBA Team EOOD in Varna, Bulgaria. We build [GembaPay](https://gembapay.com) (a card and PayPal payment platform), event ticketing, and the rest of the stack this blog usually dissects. Gemba Industrial brings the part most software companies fake: people who have actually stood at the permit window at 6 a.m. with a crew burning money behind them.
 
 That combination — one company that ships production systems, one that lives inside the problem — is the whole bet.
 

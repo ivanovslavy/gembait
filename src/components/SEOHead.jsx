@@ -89,7 +89,7 @@ export default function SEOHead() {
         applicationCategory: schemaType,
         operatingSystem: 'Web',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-        provider: {
+        creator: {
           '@type': 'Organization',
           name: 'GEMBA IT',
           url: BASE_URL,
