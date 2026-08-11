@@ -16,7 +16,7 @@ const allProducts = [
     networks: [],
     contracts: [],
     metrics: [],
-    tags: ['Stripe', 'PayPal', '86+ currencies'],
+    tags: ['Stripe', 'PayPal', '51+ currencies'],
     partners: [
       { name: 'Stripe', type: 'payment' },
       { name: 'PayPal', type: 'payment' },
@@ -24,7 +24,7 @@ const allProducts = [
       { name: 'OpenZeppelin', type: 'security' }
     ],
     certifications: [
-      { label: 'Payment partners', result: 'Stripe Connect platform and PayPal PPCP integration' }
+      { label: 'Payment rails', result: 'Card and PayPal payments executed by Stripe and PayPal' }
     ],
     caseStudy: { hasWhatWeAre: true, hasSecurity: true, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
     screenshots: [],

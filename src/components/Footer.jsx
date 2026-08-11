@@ -25,7 +25,6 @@ export default function Footer() {
             <h4 className="text-sm font-semibold mb-3" style={{ fontFamily: 'var(--font-display)' }}>{t('nav.products')}</h4>
             <div className="flex flex-col gap-2">
               <Link to={`/${lang}/products/gembapay`} className="text-sm no-underline" style={{ color: 'var(--text-secondary)' }}>GembaPay</Link>
-              <Link to={`/${lang}/products/gembatools`} className="text-sm no-underline" style={{ color: 'var(--text-secondary)' }}>GembaTools</Link>
               <Link to={`/${lang}/products/gembaticket`} className="text-sm no-underline" style={{ color: 'var(--text-secondary)' }}>GembaTicket</Link>
               <Link to={`/${lang}/products/educhain`} className="text-sm no-underline" style={{ color: 'var(--text-secondary)' }}>EduChain</Link>
             </div>

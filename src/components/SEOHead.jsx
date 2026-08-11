@@ -10,9 +10,9 @@ const LANGS = ['en', 'bg', 'es'];
 const LOCALE = { en: 'en_US', bg: 'bg_BG', es: 'es_ES' };
 
 const CATEGORY_TO_SCHEMA = {
-  web3:      'FinanceApplication',
-  payments:  'FinanceApplication',
-  nft:       'FinanceApplication',
+  web3:      'BusinessApplication',
+  payments:  'BusinessApplication',
+  nft:       'BusinessApplication',
   saas:      'BusinessApplication',
   education: 'EducationalApplication',
 };

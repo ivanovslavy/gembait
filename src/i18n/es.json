@@ -122,7 +122,7 @@
           ],
           "whenYouNeedIt": "Lo necesita cuando su producto debe cobrar a clientes y repartir entre varias partes, o cuando una configuración de pagos existente genera problemas de conciliación.",
           "howWeWork": "Primero mapeamos el flujo del dinero — quién paga, quién recibe, quién cobra comisión, qué pasa en un reembolso o chargeback. Sólo entonces elegimos proveedores. Las integraciones pasan por una matriz de pruebas en sandbox antes de tocar una tarjeta o billetera real.",
-          "outcome": "Un flujo de pago en el que los comerciantes reciben fondos directamente en su propia cuenta o billetera, la comisión de la plataforma se liquida atómicamente, y el equipo de operaciones tiene los informes y webhooks que necesitan para cerrar los libros cada mes.",
+          "outcome": "Un flujo de pago en el que los comerciantes reciben fondos directamente en su propia cuenta, la comisión de la plataforma se liquida atómicamente, y el equipo de operaciones tiene los informes y webhooks que necesitan para cerrar los libros cada mes.",
           "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80"
         }
       },
@@ -271,12 +271,13 @@
       "live": "En vivo",
       "testnet": "En modo de prueba",
       "in-progress": "En progreso",
-      "in-development": "En desarrollo"
+      "in-development": "En desarrollo",
+      "developer-preview": "Versión para desarrolladores"
     },
     "gembapay": {
       "tagline": "Una API para pagos con tarjeta y PayPal — los fondos nunca quedan en la plataforma.",
       "cardDescription": "Una pasarela de pago que unifica Stripe y PayPal tras un único checkout y una única API. Los comercios conservan el 99% de cada transacción, con reparto automático de comisiones y pagos directos a sus propias cuentas.",
-      "heroIntro": "GembaPay permite a los comercios fijar precios en más de 86 monedas y aceptar pagos con tarjeta o PayPal mediante una sola API. Cada pago va directamente del cliente al comercio — la plataforma nunca retiene fondos.",
+      "heroIntro": "GembaPay permite a los comercios fijar precios en más de 51 monedas y aceptar pagos con tarjeta o PayPal mediante una sola API. Cada pago va directamente del cliente al comercio — la plataforma nunca retiene fondos.",
       "problem": {
         "title": "El trilema de los pagos",
         "body": "Los comercios que venden en el extranjero suelen acabar gestionando tres o cuatro pasarelas distintas, cada una con su panel, estructura de comisiones y calendario de liquidación. El resultado es una contabilidad fragmentada, liquidaciones lentas y dependencia de plataformas que pueden congelar o revertir pagos."
@@ -290,7 +291,7 @@
         "items": [
           "Un enrutador de pagos que conecta las tarjetas de los clientes directamente con la propia cuenta de Stripe o PayPal del comercio.",
           "Un reparto automático 1%/99%, de modo que el comercio cobra directamente y la plataforma nunca retiene saldo.",
-          "Un motor de precios que cotiza más de 86 monedas en tiempo real y permite pagar en la moneda que el cliente ya usa.",
+          "Un motor de precios que cotiza más de 51 monedas en tiempo real y permite pagar en la moneda que el cliente ya usa.",
           "Un panel para comercios con historial de transacciones, emisión de facturas, webhooks y onboarding a Stripe Connect o PayPal Partner en un solo lugar."
         ]
       },
@@ -298,7 +299,7 @@
         "title": "Qué no es GembaPay",
         "items": [
           "No somos custodios de fondos — nunca tomamos posesión del dinero del comercio ni del cliente, ni siquiera brevemente.",
-          "No es un exchange de cripto — no convertimos divisas, solo encaminamos los pagos al destino que el comercio eligió.",
+          "No es una casa de cambio — no convertimos divisas, solo encaminamos los pagos al destino que el comercio eligió.",
           "No gestionamos disputas — las disputas de Stripe y PayPal las gestionan Stripe y PayPal.",
           "No es KYC-libre para los raíles fiat — Stripe Connect y PayPal Partner exigen el mismo cumplimiento que cualquier otra alternativa."
         ]
@@ -309,7 +310,7 @@
         "items": [
           {
             "title": "Checkout unificado",
-            "desc": "Un único flujo embebido ofrece cripto, tarjetas y PayPal. El cliente elige su método; el comercio no configura una integración distinta para cada uno."
+            "desc": "Un único flujo embebido ofrece tarjetas y PayPal. El cliente elige su método; el comercio no configura una integración distinta para cada uno."
           },
           {
             "title": "Liquidación directa al comercio",
@@ -320,12 +321,12 @@
             "desc": "Los importes de las facturas se cotizan en la moneda del comercio y se convierten en el momento del pago."
           },
           {
-            "title": "Stripe Connect + PayPal Partner",
-            "desc": "Integraciones certificadas que gestionan el onboarding, la liquidación dividida y los pagos, de modo que el comercio conserva la aceptación de tarjetas que ya tiene."
+            "title": "Stripe Connect + PayPal Commerce",
+            "desc": "Integraciones que gestionan el onboarding, la liquidación dividida y los pagos, de modo que el comercio conserva la aceptación de tarjetas que ya tiene."
           },
           {
             "title": "Plugin para WooCommerce",
-            "desc": "Un plugin para WordPress añade GembaPay como opción de checkout en minutos, con redes y divisas configurables."
+            "desc": "añade GembaPay como opción de pago en minutos, con métodos de pago y divisas configurables"
           },
           {
             "title": "Webhooks y facturas",
@@ -350,7 +351,7 @@
           },
           {
             "title": "Suscripciones SaaS",
-            "desc": "Enlaces de suscripción mensual emitidos por API, con cobro recurrente por tarjeta vía Stripe y renovaciones puntuales en cripto."
+            "desc": "Enlaces de suscripción mensual emitidos por API, con cobro recurrente por tarjeta vía Stripe y renovaciones puntuales con tarjeta o PayPal."
           },
           {
             "title": "Freelancers y agencias",
@@ -368,7 +369,7 @@
         "items": [
           {
             "label": "Sin saldo retenido por la plataforma",
-            "value": "La plataforma nunca toma posesión de los fondos del comercio ni del cliente. Los contratos inteligentes aplican de forma atómica el reparto 1%/99%."
+            "value": "La plataforma nunca toma posesión de los fondos del comercio ni del cliente. Stripe Connect y PayPal aplican la comisión en el momento del pago."
           },
           {
             "label": "Postura de auditoría",
@@ -434,7 +435,7 @@
       "architecture": {
         "title": "Arquitectura",
         "paragraphs": [
-          "GembaTicket se divide en tres capas bien separadas. La capa de pagos es GembaPay, que gestiona el checkout fiat y cripto y liquida directamente al organizador. La capa de ticketing es una API en Node.js y Express sobre PostgreSQL y Redis que almacena eventos, registros de entradas y secretos de QR rotatorios — nunca retiene fondos ni claves privadas.",
+          "GembaTicket se divide en tres capas bien separadas. La capa de pagos es GembaPay, que gestiona el checkout con tarjeta y PayPal y liquida directamente al organizador. La capa de ticketing es una API en Node.js y Express sobre PostgreSQL y Redis que almacena eventos, registros de entradas y secretos de QR rotatorios — nunca retiene fondos ni claves privadas.",
           "Los organizadores pueden configurar distintos niveles de precio (Early Bird, Regular, VIP, Stage — máx. 10) y temporizadores para cuándo se activa cada nivel — por fecha, al agotarse el anterior, o una combinación. Se pueden asignar zonas de acceso distintas por nivel.",
           "En la puerta, el escaneo es completamente Web2. La app de escaneo envía a la API un payload QR firmado y una marca de tiempo; la API valida la firma, comprueba que la entrada está activa y devuelve pase (verde) o rechazo (rojo) en menos de 200 ms. Los organizadores tienen control total del acceso a su evento — pueden tener distintos dispositivos de escaneo por zona, cada escáner sabiendo exactamente qué nivel de entrada admitir y cuál no. Por ejemplo: el escáner Regular admite todas las zonas, el escáner VIP solo VIP y Stage, el escáner Stage solo Stage. Los escáneres también se pueden configurar para festivales y congresos de varios días — todo está en manos del organizador.",
           "El organizador dispone de una interfaz intuitiva para gestionarlo todo: ver estadísticas de entradas vendidas/restantes e ingresos recaudados, añadir nuevos niveles o aumentar el suministro de los existentes, y observar en tiempo real cuántos asistentes han pasado por los escáneres de acceso.",
@@ -732,7 +733,7 @@
           },
           {
             "title": "Desarrolladores",
-            "desc": "Constructores Web3 que despliegan dApps Solidity con herramientas conocidas (MetaMask, Foundry, ethers) contra una cadena soberana."
+            "desc": "Empresas que integran control de acceso, entradas y beneficios en una cadena EVM de bajo coste."
           }
         ]
       },
@@ -1144,7 +1145,7 @@
       },
       {
         "heading": "Compartición de datos",
-        "body": "No vendemos datos personales. Solo compartimos datos con encargados necesarios para operar el servicio: Cloudflare (DNS, Turnstile, protección de borde), Hetzner (alojamiento en Alemania) y proveedores de correo transaccional. En encargos de cliente, podemos compartir datos con procesadores de pago (Stripe, PayPal) o redes blockchain estrictamente en lo necesario para ejecutar la transacción que usted inició."
+        "body": "No vendemos datos personales. Solo compartimos datos con encargados necesarios para operar el servicio: Cloudflare (DNS, Turnstile, protección de borde), Hetzner (alojamiento en Alemania) y proveedores de correo transaccional. En encargos de cliente, podemos compartir datos con procesadores de pago (Stripe, PayPal) estrictamente en lo necesario para ejecutar la transacción que usted inició."
       },
       {
         "heading": "Conservación",

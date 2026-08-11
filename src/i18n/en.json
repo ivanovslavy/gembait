@@ -122,7 +122,7 @@
           ],
           "whenYouNeedIt": "You need this when your product needs to take money from customers and split it between multiple parties, or when an existing payment setup is creating reconciliation problems.",
           "howWeWork": "We map the money flow first — who pays, who receives, who takes a fee, what happens on a refund or a chargeback. Only then do we pick providers. Integrations go through a sandbox test matrix before a single real card or wallet is involved.",
-          "outcome": "A payment flow where merchants receive funds directly to their own account or wallet, the platform fee settles atomically, and the operations team has the reports and webhooks they need to close the books every month.",
+          "outcome": "A payment flow where merchants receive funds directly to their own account, the platform fee settles atomically, and the operations team has the reports and webhooks they need to close the books every month.",
           "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80"
         }
       },
@@ -271,12 +271,13 @@
       "live": "Live",
       "testnet": "In test mode",
       "in-progress": "In Progress",
-      "in-development": "In Development"
+      "in-development": "In Development",
+      "developer-preview": "Developer preview"
     },
     "gembapay": {
       "tagline": "One API for card and PayPal payments — funds never sit with the platform.",
       "cardDescription": "A payment gateway that unifies Stripe and PayPal behind a single checkout and API. Merchants keep 99% of every transaction, with automatic fee splits and payouts straight to their own accounts.",
-      "heroIntro": "GembaPay lets merchants price in 86+ currencies and accept card or PayPal payments through one API. Every payment routes directly from customer to merchant — the platform never holds funds. Merchants wake up to money already in their own account.",
+      "heroIntro": "GembaPay lets merchants price in 51+ currencies and accept card or PayPal payments through one API. Every payment routes directly from customer to merchant — the platform never holds funds. Merchants wake up to money already in their own account.",
       "problem": {
         "title": "The payments trilemma",
         "body": "Merchants selling across borders usually end up juggling three or four separate gateways, each with its own dashboard, fee structure and settlement schedule. The result is fragmented accounting, slow settlement and a dependency on platforms that can freeze or reverse payments at any time."
@@ -290,7 +291,7 @@
         "items": [
           "A payment router that connects customer cards directly to the merchant's own Stripe or PayPal account.",
           "An automated 1%/99% split, so the merchant is paid directly and the platform never holds a balance.",
-          "A pricing engine that quotes 86+ currencies in real time and lets customers pay in the currency they already use.",
+          "A pricing engine that quotes 51+ currencies in real time and lets customers pay in the currency they already use.",
           "A merchant dashboard with transaction history, invoice generation, webhooks and Stripe Connect or PayPal Partner onboarding in one place."
         ]
       },
@@ -298,7 +299,7 @@
         "title": "What GembaPay is not",
         "items": [
           "Not a holder of funds — we never take possession of merchant or customer money, not even briefly.",
-          "Not a crypto exchange — we don't convert currencies, we only route payments to the destination the merchant chose.",
+          "Not an exchange — we don't convert currencies, we only route payments to the destination the merchant chose.",
           "Not a dispute handler — Stripe and PayPal disputes are handled by Stripe and PayPal.",
           "Not KYC-free for fiat rails — Stripe Connect and PayPal Partner require the same compliance you'd meet anywhere else."
         ]
@@ -309,7 +310,7 @@
         "items": [
           {
             "title": "Unified checkout",
-            "desc": "A single embedded flow offers crypto, cards and PayPal. Customers pick the method they use; merchants don't configure a different integration for each."
+            "desc": "A single embedded flow offers cards and PayPal. Customers pick the method they use; merchants don't configure a different integration for each."
           },
           {
             "title": "Direct settlement to the merchant",
@@ -320,12 +321,12 @@
             "desc": "Invoice amounts are quoted in the merchant's display currency and converted at the moment of payment."
           },
           {
-            "title": "Stripe Connect + PayPal Partner",
-            "desc": "Certified integrations that handle onboarding, split settlement and payouts, so merchants keep their existing card acceptance."
+            "title": "Stripe Connect + PayPal Commerce",
+            "desc": "Integrations that handle onboarding, split settlement and payouts, so merchants keep their existing card acceptance."
           },
           {
             "title": "WooCommerce plugin",
-            "desc": "A drop-in WordPress plugin adds GembaPay as a checkout option in minutes, with configurable chains and currency display."
+            "desc": "adds GembaPay as a checkout option in minutes, with configurable payment methods and currency display"
           },
           {
             "title": "Webhooks and invoices",
@@ -350,7 +351,7 @@
           },
           {
             "title": "SaaS subscriptions",
-            "desc": "Monthly subscription links issued through the API, with recurring card billing via Stripe and one-off crypto renewals."
+            "desc": "Monthly subscription links issued through the API, with recurring card billing via Stripe and one-off card or PayPal renewals."
           },
           {
             "title": "Freelancers and agencies",
@@ -368,7 +369,7 @@
         "items": [
           {
             "label": "No platform-held balance",
-            "value": "The platform never takes possession of merchant or customer funds. Smart contracts enforce the 1%/99% split atomically."
+            "value": "The platform never takes possession of merchant or customer funds. Stripe Connect and PayPal split the platform fee at the moment of payment."
           },
           {
             "label": "Audit posture",
@@ -434,7 +435,7 @@
       "architecture": {
         "title": "Architecture",
         "paragraphs": [
-          "GembaTicket splits into three cleanly separated layers. The payments layer is GembaPay, which handles fiat and crypto checkout and settles funds directly to the organizer. The ticketing layer is a Node.js and Express API on PostgreSQL and Redis that stores events, ticket records and rotating QR secrets — it never holds customer funds or private keys.",
+          "GembaTicket splits into three cleanly separated layers. The payments layer is GembaPay, which handles card and PayPal checkout and settles funds directly to the organizer. The ticketing layer is a Node.js and Express API on PostgreSQL and Redis that stores events, ticket records and rotating QR secrets — it never holds customer funds or private keys.",
           "Organizers can set up different ticket price tiers (Early Bird, Regular, VIP, Stage — max 10) and timers for when a tier becomes active — by date, when the previous tier sells out, or a combination of both. Different access zones can be set per ticket tier, so attendees enter through different gates.",
           "At the door, scanning is entirely Web2. The scanner app sends a signed QR payload and a timestamp to the API; the API validates the signature, checks the ticket is active and returns pass (green) or fail (red) in under 200 ms. Organizers have full control over access to their event — they can have different scanning devices per zone, each scanner knowing exactly which ticket tier to admit and which not. For example: the Regular scanner admits all zones, the VIP scanner only VIP and Stage, the Stage scanner only Stage. Scanners can also be configured for multi-day festivals and conferences — it's all in the organizer's hands.",
           "The organizer has an intuitive interface to manage everything: see stats for sold/remaining tickets and collected revenue, add new tiers or increase the supply of existing ones, and watch in real time how many attendees have passed through the entrance scanners.",
@@ -732,7 +733,7 @@
           },
           {
             "title": "Developers",
-            "desc": "Web3 builders deploying Solidity dApps with familiar tooling (MetaMask, Foundry, ethers) against a sovereign chain."
+            "desc": "Companies integrating access control, tickets and perks on a low-cost, EVM-compatible chain."
           }
         ]
       },
@@ -1145,7 +1146,7 @@
       },
       {
         "heading": "Data sharing",
-        "body": "We do not sell personal data. We share data only with processors we need to operate the service: Cloudflare (DNS, Turnstile, edge protection), Hetzner (hosting in Germany), and email providers for transactional delivery. For client engagements, we may share data with payment processors (Stripe, PayPal) or blockchain networks strictly as required to execute the transaction you initiated."
+        "body": "We do not sell personal data. We share data only with processors we need to operate the service: Cloudflare (DNS, Turnstile, edge protection), Hetzner (hosting in Germany), and email providers for transactional delivery. For client engagements, we may share data with payment processors (Stripe, PayPal) strictly as required to execute the transaction you initiated."
       },
       {
         "heading": "Retention",

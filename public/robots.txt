@@ -1,20 +1,13 @@
-# robots.txt — https://gembait.com
-# Last reviewed: 2026-08
+# gembait.com — open to search engines and AI crawlers.
+# Standardised 2026-08-11: one posture across every Gemba property.
 
-# ---------------------------------------------------------------
-# Default: everything is public. No disallow rules.
-# ---------------------------------------------------------------
 User-agent: *
 Allow: /
 
-# ---------------------------------------------------------------
-# Sitemap
-# ---------------------------------------------------------------
-Sitemap: https://gembait.com/sitemap.xml
+# Search, AI and assistant crawlers — named explicitly so access does not
+# depend on wildcard inheritance. Content is public and may be indexed,
+# summarised and used for retrieval.
 
-# ---------------------------------------------------------------
-# Search engine crawlers
-# ---------------------------------------------------------------
 User-agent: Googlebot
 Allow: /
 
@@ -26,3 +19,92 @@ Allow: /
 
 User-agent: Applebot
 Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: Timpibot
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+User-agent: Webzio-Extended
+Allow: /
+
+Sitemap: https://gembait.com/sitemap.xml
