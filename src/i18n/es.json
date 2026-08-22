@@ -973,7 +973,7 @@
       },
       "solution": {
         "title": "Claves gestionadas por diseño, invisibles por defecto",
-        "body": "GembaPass hace invisible la cadena: el backend crea y cifra en silencio una cartera por empleado y firma cada acción on-chain a través del emisor de la plataforma. Los empleados solo reciben un correo + contraseña. Como GMB no es un instrumento financiero y nunca se retienen fondos, la custodia no conlleva carga de licencia ni de transmisor de dinero. Los pases son soulbound; emitir es un mint, despedir es un force-burn solo del emisor — y los datos personales nunca tocan la cadena."
+        "body": "GembaPass hace invisible la cadena: el backend crea y cifra en silencio una cartera por empleado y firma cada acción on-chain a través del emisor de la plataforma. Los empleados solo reciben un correo + contraseña. Como la moneda de prueba no es un instrumento financiero y nunca se retienen fondos, la custodia no conlleva carga de licencia ni de transmisor de dinero. Los pases son soulbound; emitir es un mint, despedir es un force-burn solo del emisor — y los datos personales nunca tocan la cadena."
       },
       "whatWeAre": {
         "title": "Qué es GembaPass",

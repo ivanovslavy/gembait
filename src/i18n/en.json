@@ -973,7 +973,7 @@
       },
       "solution": {
         "title": "Managed keys by design, invisible by default",
-        "body": "GembaPass makes the chain invisible: the backend silently creates and encrypts a wallet per employee and signs every on-chain action through the platform issuer. Employees just get an email + password. Because GMB is not a financial instrument and no funds are ever held, custody carries no money-transmitter or licensing burden. Passes are soulbound; issuing is a mint, firing is an issuer-only force-burn — and PII never touches the chain."
+        "body": "GembaPass makes the chain invisible: the backend silently creates and encrypts a wallet per employee and signs every on-chain action through the platform issuer. Employees just get an email + password. Because the test coin is not a financial instrument and no funds are ever held, custody carries no money-transmitter or licensing burden. Passes are soulbound; issuing is a mint, firing is an issuer-only force-burn — and PII never touches the chain."
       },
       "whatWeAre": {
         "title": "What GembaPass is",
