@@ -82,7 +82,7 @@ export default function BlogPost() {
   return (
     <>
       <Helmet>
-        <title>{title} — GEMBA IT Blog</title>
+        <title>{`${title} — GEMBA IT Blog`}</title>
         <meta name="description" content={post.excerpt?.[currentLang] || post.excerpt?.en || ''} />
         <meta property="og:title" content={title} />
         <meta property="og:type" content="article" />
