@@ -49,7 +49,6 @@ const allProducts = [
     ],
     contracts: [],
     // Live, auto-updating stats from the GembaTicket public API (see ProductDetail).
-    statsUrl: 'https://api.gembaticket.com/api/stats',
     metrics: [
       { statKey: 'events', value: '—', label: 'Total events' },
       { statKey: 'ticketsSold', value: '—', label: 'Tickets sold' },
@@ -157,7 +156,7 @@ const allProducts = [
       { value: '821207', label: 'EVM chainId' },
       { value: '4', label: 'Validators live' }
     ],
-    tags: ['Cosmos SDK', 'EVM', 'Proof-of-Stake', 'Permissionless', 'Zero inflation', 'GMB', 'CometBFT'],
+    tags: ['Cosmos SDK', 'EVM', 'Proof-of-Stake', 'Permissionless', 'Zero inflation', 'Testnet', 'CometBFT'],
     partners: [
       { name: 'Cosmos EVM', type: 'framework' },
       { name: 'CometBFT', type: 'consensus' },
@@ -166,8 +165,8 @@ const allProducts = [
     ],
     certifications: [
       { label: 'Consensus', result: 'CometBFT BFT Proof-of-Stake, instant finality, no reorgs' },
-      { label: 'Supply', result: 'Fixed 100M GMB, 0% inflation — mint module disabled' },
-      { label: 'EVM', result: 'Full EVM compatibility (MetaMask, Foundry, ethers), chainId 821207' }
+      { label: 'Supply', result: 'Fixed test-coin supply, 0% inflation — mint module disabled' },
+      { label: 'EVM', result: 'Full EVM compatibility (standard Ethereum tooling), chainId 821207' }
     ],
     caseStudy: { hasWhatWeAre: true, hasSecurity: true, hasArchitecture: true, hasUseCases: true, hasFeatures: true, hasProblem: true, hasSolution: true },
     screenshots: [],

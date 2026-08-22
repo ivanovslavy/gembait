@@ -393,7 +393,7 @@
     "gembaticket": {
       "tagline": "A modern web3 ticket-sales platform",
       "cardDescription": "GembaTicket is a completely free, next-generation online ticketing platform built on web3, blockchain and smart-contract technology, that lets organizers sell tickets online and receive the proceeds in their own balances the moment a purchase is made.",
-      "heroIntro": "GembaTicket is a completely free, next-generation online ticketing platform built on web3, blockchain and smart-contract technology, that lets organizers sell tickets online and receive the proceeds in their own balances the moment a purchase is made — removing the need for printed paper tickets and box-office queues, giving full control over access to the event's different entrances, and leaving a permanent NFT keepsake in the hands of attendees.",
+      "heroIntro": "GembaTicket is a completely free, next-generation online ticketing platform built on web3, blockchain and smart-contract technology, that lets organizers sell tickets online and receive the proceeds in their own balances the moment a purchase is made — removing the need for printed paper tickets and box-office queues, giving full control over access to the event's different entrances, and leaving a permanent NFT keepsake in the hands of attendees. GembaTicket runs on the GembaBlockchain testnet — the blockchain is an invisible layer that neither organizers nor attendees ever touch.",
       "problem": {
         "title": "Ticketing built on held funds and friction",
         "body": "Traditional ticketing platforms hold the buyer's money for weeks and release it long after the event, taking 10-15% along the way. GembaTicket settles to the organizer directly and holds nothing."
@@ -651,20 +651,20 @@
     "gembablockchain": {
       "tagline": "A public testnet we built to earn trust in the web3 engineering community — not to raise money.",
       "cardDescription": "A testnet-only, EVM-compatible Proof-of-Stake research chain built in-house to prove our engineering in public. There is no mainnet, no coin sale and no financial product — the test coin has no monetary value and exists only to make the testnet usable.",
-      "heroIntro": "GembaBlockchain is a fully transparent, decentralized, permissionless Proof-of-Stake Layer 1 built on Cosmos SDK + Cosmos EVM and CometBFT. Its native coin, Gemba (GMB), is a utility coin — staking, gas and access — not a speculative asset. Anyone with enough stake can validate; anyone can hold and send GMB. The founder holds no special power: reserves never vote and the founder never validates with privilege.",
+      "heroIntro": "GembaBlockchain is a fully transparent, decentralized, permissionless Proof-of-Stake Layer 1 built on Cosmos SDK + Cosmos EVM and CometBFT, running as a public testnet. Its test coin has no monetary value and is never sold — it exists only to pay gas and exercise the network. The founder holds no special power: reserves never vote and the founder never validates with privilege.",
       "problem": {
         "title": "Public infrastructure shouldn't depend on one operator",
         "body": "Institutions that want to put services on-chain usually face a choice between permissioned chains run by a single vendor — who can decide who participates — and public chains whose economics are driven by speculation and unpredictable fees. Neither is a neutral, durable foundation for public-interest services. Validator sets are capped, governance concentrates, and the token's value detaches from its actual use."
       },
       "solution": {
         "title": "A neutral chain owned by its participants",
-        "body": "GembaBlockchain uses CometBFT Proof-of-Stake with permissionless validator entry and full EVM compatibility, so any Solidity or MetaMask workflow runs against it unchanged. It runs on testnet only: mainnet is not launched, the coin is not sold, not listed and has no monetary value. We built it as public proof of our engineering, not as a product to sell."
+        "body": "GembaBlockchain uses CometBFT Proof-of-Stake with permissionless validator entry and full EVM compatibility, so any standard Solidity/Ethereum workflow runs against it unchanged. It runs on testnet only: mainnet is not launched, the coin is not sold, not listed and has no monetary value. We built it as public proof of our engineering, not as a product to sell."
       },
       "whatWeAre": {
         "title": "What GembaBlockchain is",
         "items": [
-          "A permissionless PoS Layer 1 — bond GMB above the threshold and you validate; no KYC, no whitelist, no privileged validators.",
-          "Fully EVM-compatible — Solidity, 0x addresses, MetaMask, Foundry, ethers/viem and standard JSON-RPC all work out of the box.",
+          "A permissionless PoS Layer 1 — anyone can run a validator; no KYC, no whitelist, no privileged validators.",
+          "Fully EVM-compatible — Solidity, 0x addresses and the standard Ethereum tooling all work out of the box.",
           "Zero inflation by design — the test coin supply is fixed at genesis and never minted again.",
           "A utility chain for institutions and organizations to deliver services — cheaper access, workplace access control, tickets and perks."
         ]
@@ -684,15 +684,15 @@
         "items": [
           {
             "title": "Permissionless validation",
-            "desc": "Stake-only entry into a large active set (CometBFT). Power is bought with locked GMB, so no one can flood the validator set cheaply."
+            "desc": "Stake-based entry into a large active set (CometBFT) — no permission needed, no privileged validators."
           },
           {
             "title": "Full EVM compatibility",
-            "desc": "Deploy Solidity contracts, connect MetaMask and use Foundry/Hardhat against the chain's JSON-RPC — chainId 821207."
+            "desc": "Deploy Solidity contracts and use the standard Ethereum tooling against the chain's JSON-RPC — chainId 821207."
           },
           {
             "title": "Zero inflation",
-            "desc": "Fixed 100M GMB; validator rewards stream from a pre-minted reserve and fees, never from new issuance."
+            "desc": "The test-coin supply is fixed at genesis and nothing is ever minted again."
           },
           {
             "title": "Instant finality",
@@ -712,7 +712,7 @@
         "title": "Architecture",
         "paragraphs": [
           "GembaBlockchain is Cosmos EVM (an off-the-shelf, production-used permissionless PoS + EVM stack) plus a thin Gemba layer: two small Go modules — a zero-inflation validator-reward streamer that pays from a pre-minted reserve, and a fee-split that routes part of every fee back into a public reserve — together with the Solidity treasury, governance and application contracts.",
-          "Consensus is CometBFT BFT Proof-of-Stake: validators bond GMB, produce blocks with instant finality, and are slashed for objectively-provable faults (double-signing, downtime). The EVM execution layer makes the chain a drop-in target for the entire Ethereum toolchain, while the native coin and staking live in Cosmos modules.",
+          "Consensus is CometBFT BFT Proof-of-Stake: validators bond stake, produce blocks with instant finality, and are slashed for objectively-provable faults (double-signing, downtime). The EVM execution layer makes the chain a drop-in target for the entire Ethereum toolchain, while consensus and accounts live in Cosmos modules.",
           "Reserves (public/municipal, foundation, DAO, contingency, validator) are held in non-voting accounts and released only through governance + timelock — there is no admin key that can drain them and no privileged validator that outranks the rest."
         ]
       },
@@ -729,7 +729,7 @@
           },
           {
             "title": "Validators",
-            "desc": "Anyone with enough GMB to bond can join the active set permissionlessly and earn from fees and the reserve."
+            "desc": "Anyone can join the active set permissionlessly and help operate the network."
           },
           {
             "title": "Developers",
@@ -747,7 +747,7 @@
           },
           {
             "label": "Fixed supply",
-            "value": "100M GMB minted once at genesis; 0% inflation. The mint module is disabled."
+            "value": "The test-coin supply is minted once at genesis; 0% inflation — the mint module is disabled."
           },
           {
             "label": "No privileged power",

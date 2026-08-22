@@ -393,7 +393,7 @@
     "gembaticket": {
       "tagline": "Una plataforma web3 moderna para la venta de entradas",
       "cardDescription": "GembaTicket es una plataforma de venta de entradas en línea completamente gratuita y de nueva generación, basada en tecnología web3, blockchain y contratos inteligentes, que permite a los organizadores vender entradas en línea y recibir los ingresos en sus propios saldos en el momento de la compra.",
-      "heroIntro": "GembaTicket es una plataforma de venta de entradas en línea completamente gratuita y de nueva generación, basada en tecnología web3, blockchain y contratos inteligentes, que permite a los organizadores vender entradas en línea y recibir los ingresos en sus propios saldos en el momento de la compra — eliminando la necesidad de entradas impresas en papel y de colas en taquilla, ofreciendo control total del acceso a las distintas entradas del evento y dejando un recuerdo permanente tipo NFT en manos de los asistentes.",
+      "heroIntro": "GembaTicket es una plataforma de venta de entradas en línea completamente gratuita y de nueva generación, basada en tecnología web3, blockchain y contratos inteligentes, que permite a los organizadores vender entradas en línea y recibir los ingresos en sus propios saldos en el momento de la compra — eliminando la necesidad de entradas impresas en papel y de colas en taquilla, ofreciendo control total del acceso a las distintas entradas del evento y dejando un recuerdo permanente tipo NFT en manos de los asistentes. GembaTicket funciona sobre la red de prueba de GembaBlockchain — la blockchain es una capa invisible que ni los organizadores ni los asistentes llegan a tocar.",
       "problem": {
         "title": "Ticketing basado en fondos retenidos y fricción",
         "body": "Las plataformas tradicionales retienen el dinero del comprador durante semanas y lo liberan mucho después del evento, llevándose un 10-15%. GembaTicket liquida directamente al organizador y no retiene nada."
@@ -651,20 +651,20 @@
     "gembablockchain": {
       "tagline": "Un testnet público que construimos para ganar confianza en la comunidad de ingeniería web3 — no para recaudar dinero.",
       "cardDescription": "Una cadena de investigación Proof-of-Stake compatible con EVM, solo en testnet, construida internamente para demostrar nuestra ingeniería en público. No hay mainnet, ni venta de moneda, ni producto financiero — la moneda de prueba no tiene valor monetario y existe solo para que el testnet sea utilizable.",
-      "heroIntro": "GembaBlockchain es un Layer 1 Proof-of-Stake totalmente transparente, descentralizado y sin permisos, construido sobre Cosmos SDK + Cosmos EVM y CometBFT. Su moneda nativa, Gemba (GMB), es una moneda de utilidad — staking, gas y acceso — no un activo especulativo. Cualquiera con suficiente stake puede validar; cualquiera puede tener y enviar GMB. El fundador no tiene poder especial: las reservas no votan y el fundador no valida con privilegios.",
+      "heroIntro": "GembaBlockchain es un Layer 1 Proof-of-Stake totalmente transparente, descentralizado y sin permisos, construido sobre Cosmos SDK + Cosmos EVM y CometBFT, que funciona como una red de prueba pública. Su moneda de prueba no tiene valor monetario y nunca se vende — existe solo para pagar gas y ejercitar la red. El fundador no tiene poder especial: las reservas nunca votan y el fundador nunca valida con privilegio.",
       "problem": {
         "title": "La infraestructura pública no debería depender de un solo operador",
         "body": "Las instituciones que quieren llevar servicios on-chain suelen elegir entre cadenas con permisos gestionadas por un único proveedor — que decide quién participa — y cadenas públicas cuya economía se mueve por especulación y comisiones impredecibles. Ninguna es una base neutral y duradera para servicios de interés público. Los conjuntos de validadores están limitados, la gobernanza se concentra y el valor del token se desliga de su uso real."
       },
       "solution": {
         "title": "Una cadena neutral propiedad de sus participantes",
-        "body": "GembaBlockchain usa CometBFT Proof-of-Stake con entrada de validadores sin permisos y plena compatibilidad EVM, de modo que cualquier flujo de Solidity o MetaMask funciona sin cambios. Funciona solo en testnet: mainnet no está lanzado, la moneda no se vende, no está listada y no tiene valor monetario. La construimos como prueba pública de nuestra ingeniería, no como un producto a la venta."
+        "body": "GembaBlockchain usa CometBFT Proof-of-Stake con entrada de validadores sin permisos y plena compatibilidad EVM, de modo que cualquier flujo estándar de Solidity/Ethereum funciona sin cambios. Funciona solo en testnet: mainnet no está lanzado, la moneda no se vende, no está listada y no tiene valor monetario. La construimos como prueba pública de nuestra ingeniería, no como un producto a la venta."
       },
       "whatWeAre": {
         "title": "Qué es GembaBlockchain",
         "items": [
-          "Un Layer 1 PoS sin permisos — bloquea GMB por encima del umbral y validas; sin KYC, sin lista blanca, sin validadores privilegiados.",
-          "Totalmente compatible con EVM — Solidity, direcciones 0x, MetaMask, Foundry, ethers/viem y JSON-RPC estándar funcionan de inmediato.",
+          "Un Layer 1 PoS sin permisos — cualquiera puede operar un validador; sin KYC, sin lista blanca, sin validadores privilegiados.",
+          "Totalmente compatible con EVM — Solidity, direcciones 0x y las herramientas estándar de Ethereum funcionan de inmediato.",
           "Inflación cero por diseño — el suministro de la moneda de prueba se fija en el genesis y no se vuelve a acuñar.",
           "Una cadena de utilidad para que instituciones y organizaciones presten servicios — acceso más barato, control de acceso, entradas y beneficios."
         ]
@@ -684,15 +684,15 @@
         "items": [
           {
             "title": "Validación sin permisos",
-            "desc": "Entrada solo con stake a un gran conjunto activo (CometBFT). El poder se compra con GMB bloqueado, así nadie inunda el conjunto de validadores barato."
+            "desc": "Entrada con stake a un gran conjunto activo (CometBFT) — sin permisos, sin validadores privilegiados."
           },
           {
             "title": "Compatibilidad EVM total",
-            "desc": "Despliega contratos Solidity, conecta MetaMask y usa Foundry/Hardhat contra el JSON-RPC de la cadena — chainId 821207."
+            "desc": "Despliega contratos Solidity con las herramientas estándar de Ethereum contra el JSON-RPC de la cadena — chainId 821207."
           },
           {
             "title": "Cero inflación",
-            "desc": "100M GMB fijos; las recompensas fluyen de una reserva preacuñada y de comisiones, nunca de nueva emisión."
+            "desc": "El suministro de la moneda de prueba se fija en el génesis; nunca se acuña nada nuevo."
           },
           {
             "title": "Finalidad instantánea",
@@ -712,7 +712,7 @@
         "title": "Arquitectura",
         "paragraphs": [
           "GembaBlockchain es Cosmos EVM (un stack PoS + EVM sin permisos, listo y usado en producción) más una capa Gemba fina: dos pequeños módulos Go — un emisor de recompensas sin inflación que paga desde una reserva preacuñada, y un reparto de comisiones que devuelve parte de cada comisión a una reserva pública — junto con los contratos Solidity de tesorería, gobernanza y aplicaciones.",
-          "El consenso es CometBFT BFT Proof-of-Stake: los validadores bloquean GMB, producen bloques con finalidad instantánea y son penalizados por faltas objetivamente demostrables (doble firma, inactividad). La capa de ejecución EVM convierte la cadena en un destino directo para todo el herramental de Ethereum, mientras la moneda nativa y el staking viven en módulos Cosmos.",
+          "El consenso es CometBFT BFT Proof-of-Stake: los validadores bloquean stake, producen bloques con finalidad instantánea y son penalizados por faltas objetivamente demostrables (doble firma, inactividad). La capa de ejecución EVM convierte la cadena en un destino directo para todo el herramental de Ethereum, mientras el consenso y las cuentas viven en módulos Cosmos.",
           "Las reservas (pública/municipal, fundación, DAO, contingencia, validadores) se mantienen en cuentas sin voto y solo se liberan mediante gobernanza + timelock — no hay clave admin que las vacíe ni validador privilegiado por encima del resto."
         ]
       },
@@ -729,7 +729,7 @@
           },
           {
             "title": "Validadores",
-            "desc": "Cualquiera con suficiente GMB puede unirse al conjunto activo sin permisos y ganar de las comisiones y la reserva."
+            "desc": "Cualquiera puede unirse al conjunto activo sin permisos y ayudar a operar la red."
           },
           {
             "title": "Desarrolladores",
@@ -747,7 +747,7 @@
           },
           {
             "label": "Suministro fijo",
-            "value": "100M GMB acuñados una vez en el génesis; 0% de inflación. El módulo de acuñación está desactivado."
+            "value": "La moneda de prueba se acuña una vez en el génesis; 0% de inflación — el módulo de acuñación está desactivado."
           },
           {
             "label": "Sin poder privilegiado",
