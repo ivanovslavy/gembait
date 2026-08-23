@@ -5,6 +5,8 @@ export const staticMeta = {
   en: {
     home:     { title: 'GEMBA IT — Technology That Works',
                 desc: 'Full-stack software development, DevOps, payment gateways and Web3 smart contracts — built, deployed and maintained from Varna, Bulgaria.' },
+    pricing:  { title: 'Pricing — GEMBA IT',
+                desc: 'Transparent pricing for software development, DevOps, payment integrations, consulting and monthly support plans — written offers, invoiced in EUR, payable by card or bank transfer.' },
     services: { title: 'Services — GEMBA IT',
                 desc: 'Linux infrastructure, Node.js backends, React frontends, payment integrations, blockchain development, smart contract audits, monitoring and MVPs.' },
     products: { title: 'Products — GEMBA IT',
@@ -27,6 +29,8 @@ export const staticMeta = {
   bg: {
     home:     { title: 'ГЕМБА IT — Технология, която работи',
                 desc: 'Full-stack разработка, DevOps, платежни шлюзове и Web3 смарт контракти — изграждаме, внедряваме и поддържаме от Варна, България.' },
+    pricing:  { title: 'Цени — ГЕМБА IT',
+                desc: 'Прозрачни цени за разработка на софтуер, DevOps, платежни интеграции, консултации и месечни планове за поддръжка — писмени оферти, фактуриране в EUR, плащане с карта или по банков път.' },
     services: { title: 'Услуги — ГЕМБА IT',
                 desc: 'Linux инфраструктура, Node.js бекенд, React frontend, платежни интеграции, блокчейн, одит на смарт контракти, мониторинг и MVP разработка.' },
     products: { title: 'Продукти — ГЕМБА IT',
@@ -49,6 +53,8 @@ export const staticMeta = {
   es: {
     home:     { title: 'GEMBA IT — Tecnología que funciona',
                 desc: 'Desarrollo full-stack, DevOps, pasarelas de pago y contratos inteligentes Web3 — construidos, desplegados y mantenidos desde Varna, Bulgaria.' },
+    pricing:  { title: 'Precios — GEMBA IT',
+                desc: 'Precios transparentes para desarrollo de software, DevOps, integraciones de pago, consultoría y planes de soporte mensual — ofertas por escrito, facturación en EUR, pago con tarjeta o transferencia.' },
     services: { title: 'Servicios — GEMBA IT',
                 desc: 'Infraestructura Linux, backends Node.js, frontends React, integraciones de pago, blockchain, auditoría de contratos, monitorización y MVPs.' },
     products: { title: 'Productos — GEMBA IT',

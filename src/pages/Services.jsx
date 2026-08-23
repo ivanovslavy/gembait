@@ -85,6 +85,13 @@ export default function Services() {
         >
           {t('services.support_desc')}
         </p>
+        <Link
+          to={`/${i18n.language}/pricing`}
+          className="inline-block mt-3 text-sm font-medium"
+          style={{ color: '#4F46E5' }}
+        >
+          {t('nav.pricing')} →
+        </Link>
       </div>
       <div className="mt-8 text-center">
         <Link to={`/${i18n.language}/contact`} className="btn-flat primary">

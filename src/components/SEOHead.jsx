@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { products, getProductBySlug } from '../data/products';
+import { pricingServices, getServiceBySlug } from '../data/pricing';
 import { staticMeta } from '../data/seoMeta';
 import posts from '../../content/blog/posts.json';
 
@@ -39,6 +40,12 @@ function swapLang(pathname, targetLang) {
 function ogImageForPath({ section, subSlug, product, post }) {
   if (section === 'products' && subSlug && product) {
     return `${BASE_URL}/og/${product.slug}.png`;
+  }
+  if (section === 'pricing' && subSlug) {
+    return `${BASE_URL}/og/pricing-${subSlug}.png`;
+  }
+  if (section === 'pricing') {
+    return `${BASE_URL}/og/pricing.png`;
   }
   if (section === 'blog' && post && post.image) {
     // Fallback to per-post image when present — else default.
@@ -132,6 +139,66 @@ export default function SEOHead() {
             '@type': 'ListItem',
             position: i + 1,
             url: `${BASE_URL}/${lang}/products/${p.slug}`,
+            name: p.name,
+          })),
+      },
+    });
+  } else if (section === 'pricing' && subSlug) {
+    const svc = getServiceBySlug(subSlug);
+    if (svc) {
+      const svcTitle = t(`pricing.items.${svc.i18nKey}.title`, { defaultValue: svc.name });
+      const svcCard = t(`pricing.items.${svc.i18nKey}.card`, { defaultValue: '' });
+      const svcPrice = t(`pricing.items.${svc.i18nKey}.price`, { defaultValue: '' });
+      title = cap(`${svcTitle} — GEMBA IT`, 60);
+      description = cap(`${svcPrice ? svcPrice + ' — ' : ''}${svcCard}`, 160);
+      const canonical = absolute(location.pathname);
+      jsonLd.push({
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: svcTitle,
+        url: canonical,
+        description: cap(svcCard, 300),
+        provider: { '@type': 'Organization', name: 'GEMBA IT', url: BASE_URL },
+        areaServed: 'EU',
+        offers: {
+          '@type': 'Offer',
+          price: String(svc.basePrice),
+          priceCurrency: 'EUR',
+          description: 'Base price — full scope quoted per written offer.',
+        },
+      });
+      jsonLd.push({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: t('nav.home', { defaultValue: 'Home' }), item: `${BASE_URL}/${lang}` },
+          { '@type': 'ListItem', position: 2, name: t('nav.pricing', { defaultValue: 'Pricing' }), item: `${BASE_URL}/${lang}/pricing` },
+          { '@type': 'ListItem', position: 3, name: svcTitle, item: canonical },
+        ],
+      });
+    } else {
+      title = cap(baseStatic.pricing.title, 60);
+      description = cap(baseStatic.pricing.desc, 160);
+      robots = 'noindex,nofollow';
+    }
+  } else if (section === 'pricing') {
+    title = cap(baseStatic.pricing.title, 60);
+    description = cap(baseStatic.pricing.desc, 160);
+    jsonLd.push({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: baseStatic.pricing.title,
+      url: absolute(location.pathname),
+      description: baseStatic.pricing.desc,
+      hasPart: {
+        '@type': 'ItemList',
+        numberOfItems: pricingServices.length,
+        itemListElement: [...pricingServices]
+          .sort((a, b) => a.order - b.order)
+          .map((p, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            url: `${BASE_URL}/${lang}/pricing/${p.slug}`,
             name: p.name,
           })),
       },

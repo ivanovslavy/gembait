@@ -59,10 +59,17 @@ export default function Home() {
             <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: 'rgba(79,70,229,0.1)', color: '#4F46E5' }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
-            <div>
+            <div className="flex-1">
               <h4 className="text-sm font-semibold" style={{ fontFamily: 'var(--font-display)' }}>{t('services.support_title')}</h4>
               <p className="text-xs" style={{ color: 'var(--text-secondary)', lineHeight: 1.5 }}>{t('services.support_desc')}</p>
             </div>
+            <Link
+              to={`/${lang}/pricing`}
+              className="shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full"
+              style={{ backgroundColor: 'rgba(79,70,229,0.1)', color: '#4F46E5' }}
+            >
+              {t('nav.pricing')} →
+            </Link>
           </div>
         </div>
       </section>

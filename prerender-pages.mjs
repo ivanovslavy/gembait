@@ -21,6 +21,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { products } from './src/data/products.js';
+import { pricingServices } from './src/data/pricing.js';
 import { staticMeta } from './src/data/seoMeta.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -36,6 +37,7 @@ const LOCALE = { en: 'en_US', bg: 'bg_BG', es: 'es_ES' };
 const STATIC_ROUTES = [
   { key: 'home',     subPath: '' },
   { key: 'services', subPath: '/services' },
+  { key: 'pricing',  subPath: '/pricing' },
   { key: 'products', subPath: '/products' },
   { key: 'blog',     subPath: '/blog' },
   { key: 'about',    subPath: '/about' },
@@ -180,12 +182,15 @@ for (const lang of LANGS) {
     const m = meta[route.key];
     if (!m) continue;
 
+    const ogImage = route.key === 'pricing'
+      ? `${BASE_URL}/og/pricing.png`
+      : `${BASE_URL}/og/default.png`;
     const html = buildHtml({
       lang,
       subPath: route.subPath,
       title: m.title,
       description: m.desc,
-      ogImage: `${BASE_URL}/og/default.png`,
+      ogImage,
     });
     writePage(`/${lang}${route.subPath}`, html);
     written++;
@@ -225,6 +230,29 @@ for (const lang of LANGS) {
       ogImage,
       jsonLdExtra,
     });
+    writePage(`/${lang}${subPath}`, html);
+    written++;
+  }
+}
+
+// ---- Pricing detail pages (12 services) × 3 langs ----
+const sortedPricing = [...pricingServices].sort((a, b) => a.order - b.order);
+for (const lang of LANGS) {
+  for (const svc of sortedPricing) {
+    const subPath = `/pricing/${svc.slug}`;
+    const title = `${svc.name} — ${SITE_NAME}`;
+    const description = staticMeta[lang]?.pricing?.desc || staticMeta.en.pricing.desc;
+    const ogImage = `${BASE_URL}/og/pricing-${svc.slug}.png`;
+    const jsonLdExtra = {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: svc.name,
+      url: `${BASE_URL}/${lang}${subPath}`,
+      description,
+      provider: { '@type': 'Organization', name: SITE_NAME, url: BASE_URL },
+      offers: { '@type': 'Offer', price: String(svc.basePrice), priceCurrency: 'EUR', description: 'Base price — full scope quoted per written offer.' },
+    };
+    const html = buildHtml({ lang, subPath, title, description, ogImage, jsonLdExtra });
     writePage(`/${lang}${subPath}`, html);
     written++;
   }

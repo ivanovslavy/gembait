@@ -6,7 +6,8 @@
     "about": "Sobre nosotros",
     "blog": "Blog",
     "careers": "Carreras",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "pricing": "Precios"
   },
   "hero": {
     "badge": "División tecnológica de GEMBA",
@@ -1283,5 +1284,270 @@
     "privacy": "Privacidad",
     "terms": "Términos",
     "rights": "Todos los derechos reservados"
+  },
+  "pricing": {
+    "page_title": "Precios",
+    "subtitle": "Tarifas transparentes. Cada proyecto comienza con una oferta por escrito.",
+    "labels": {
+      "included": "Incluido en el precio base",
+      "extra": "Se presupuesta por separado",
+      "details": "Ver qué incluye",
+      "back": "Todos los precios",
+      "contactUs": "Escríbenos"
+    },
+    "how": {
+      "title": "Cómo trabajamos",
+      "body": "Cada proyecto comienza con una llamada de alcance gratuita y una oferta por escrito con precio fijo. Los proyectos grandes se facturan por hitos. Todo lo que quede fuera del alcance base se presupuesta por separado — después de entender exactamente lo que necesitas. Los precios no incluyen IVA, se facturan en EUR y se pagan con tarjeta o transferencia bancaria."
+    },
+    "note": "Cada proyecto comienza con una oferta por escrito con alcance fijo. Los proyectos grandes se facturan por hitos. Los precios no incluyen IVA, se facturan en EUR y se pagan con tarjeta o transferencia bancaria.",
+    "customNote": "Los servicios no incluidos en los paquetes estándar pueden acordarse tras una consulta previa.",
+    "rates": {
+      "title": "Consultoría",
+      "items": [
+        {
+          "label": "Consultoría — arquitectura, infraestructura, procesos",
+          "price": "€100/hora"
+        },
+        {
+          "label": "Consultoría blockchain",
+          "price": "€150/hora"
+        }
+      ]
+    },
+    "plans": {
+      "title": "Planes de soporte mensual",
+      "subtitle": "Mantenimiento y desarrollo continuo de todo lo que construimos — cancela cuando quieras.",
+      "perMonth": "/mes",
+      "items": [
+        {
+          "name": "Basic",
+          "price": "€199",
+          "featured": false,
+          "features": [
+            "Monitorización y comprobaciones de disponibilidad",
+            "Parches de seguridad y actualizaciones",
+            "Informe de estado mensual"
+          ]
+        },
+        {
+          "name": "Standard",
+          "price": "€499",
+          "featured": true,
+          "features": [
+            "Todo lo de Basic",
+            "Correcciones y cambios pequeños",
+            "Respuesta el siguiente día laborable"
+          ]
+        },
+        {
+          "name": "Priority",
+          "price": "€980",
+          "featured": false,
+          "features": [
+            "Todo lo de Standard",
+            "10 horas de desarrollo incluidas",
+            "Respuesta el mismo día"
+          ]
+        }
+      ]
+    },
+    "items": {
+      "linuxDevops": {
+        "title": "Servidores Linux y DevOps",
+        "price": "desde €490",
+        "card": "Un servidor Linux de producción — instalado, configurado y endurecido.",
+        "summary": "Montamos un servidor Linux listo para producción y lo endurecemos correctamente: tu aplicación empieza en una máquina segura, actualizada y documentada.",
+        "included": [
+          "Instalación y configuración de un servidor Linux (Ubuntu/Debian)",
+          "Endurecimiento de los servicios del sistema por defecto: acceso SSH solo con clave, cortafuegos UFW, fail2ban, actualizaciones de seguridad automáticas",
+          "Configuración base del sistema y un breve documento de entrega"
+        ],
+        "extra": [
+          "Cada servicio adicional se presupuesta por separado — servidor web, FTP, Samba, servidor de impresión, servidor de correo, servidor SQL y otros",
+          "Pipelines CI/CD y configuraciones de failover (según alcance)",
+          "Operación continua mediante un plan de soporte mensual"
+        ]
+      },
+      "backendApis": {
+        "title": "Backend y APIs",
+        "price": "desde €900",
+        "card": "Diseño de API más una API básica funcional — la base sobre la que construyes.",
+        "summary": "Diseñamos tu API y entregamos una implementación básica funcional: endpoints principales, conexión a base de datos y despliegue — una base limpia para crecer.",
+        "included": [
+          "Diseño de API: endpoints, modelo de datos, enfoque de autenticación",
+          "API básica funcional: endpoints principales, conexión a base de datos, despliegue",
+          "Breve documentación técnica"
+        ],
+        "extra": [
+          "Todo lo que va más allá de la API básica se acuerda y se presupuesta según complejidad y alcance — integraciones de terceros, lógica de negocio compleja, arquitectura de alta carga, desarrollo continuo"
+        ]
+      },
+      "databases": {
+        "title": "Arquitectura de bases de datos",
+        "price": "desde €600",
+        "card": "Una base de datos sólida — diseñada y desplegada correctamente.",
+        "summary": "Diseñamos y desplegamos una base de datos que encaja con tus datos — con permisos sensatos y copia de seguridad base, en lugar de un esquema accidental que duele después.",
+        "included": [
+          "Diseño y creación de una base de datos principal (PostgreSQL, MongoDB o MariaDB)",
+          "Esquema, usuarios y permisos",
+          "Configuración base de copias de seguridad"
+        ],
+        "extra": [
+          "Según alcance: replicación y alta disponibilidad",
+          "Migración desde sistemas heredados",
+          "Optimización de bases de datos existentes",
+          "Administración continua"
+        ]
+      },
+      "reactWebsites": {
+        "title": "Webs en React",
+        "price": "desde €490",
+        "card": "Webs rápidas y mobile-first en React — sin plantillas, sin WordPress.",
+        "summary": "Construimos webs exclusivamente en React — rápidas, mobile-first y desplegadas en vivo. El precio base cubre una web portfolio de una página con formulario de contacto; las webs corporativas empiezan en €900.",
+        "included": [
+          "Web portfolio de una página en React con formulario de contacto (desde €490)",
+          "Web corporativa en React (desde €900)",
+          "Mobile-first, desplegada y en vivo"
+        ],
+        "extra": [
+          "Páginas y secciones adicionales",
+          "Versiones multiidioma",
+          "Paquetes SEO",
+          "Gestión de contenidos / panel de administración"
+        ],
+        "note": "Trabajamos exclusivamente con React — no hacemos webs en PHP ni WordPress."
+      },
+      "paymentIntegrations": {
+        "title": "Integraciones de pago",
+        "price": "desde €700",
+        "card": "Checkout de Stripe y PayPal en tus propias cuentas — bien hecho.",
+        "summary": "Integramos pagos con tarjeta y PayPal en tu producto — en tus propias cuentas de Stripe y PayPal, con webhooks y configuración de test y producción.",
+        "included": [
+          "Integración de checkout y webhooks para Stripe y/o PayPal en tus propias cuentas",
+          "Configuración de test y producción",
+          "Documentación de entrega"
+        ],
+        "extra": [
+          "Comisiones de los procesadores (siempre a cargo del cliente)",
+          "Proveedores de pago adicionales",
+          "Flujos de suscripción y marketplace"
+        ],
+        "note": "Requisito: tienes — o abres — tu propia cuenta de Stripe/PayPal."
+      },
+      "monitoring": {
+        "title": "Sistemas de monitorización",
+        "price": "desde €600",
+        "card": "Sabe qué hacen tus servidores — antes que tus clientes.",
+        "summary": "Construimos monitorización que dice la verdad: paneles para tus servidores o infraestructura industrial, con alertas que llegan a las personas correctas.",
+        "included": [
+          "Paneles para servidores o infraestructura industrial",
+          "Reglas de alerta y canales de notificación (e-mail, Telegram)",
+          "Documentación"
+        ],
+        "extra": [
+          "Hardware y sensores",
+          "Licencias de SaaS de terceros",
+          "Respuesta 24/7 (mediante planes de soporte)"
+        ]
+      },
+      "adminPanels": {
+        "title": "Paneles de administración",
+        "price": "desde €1,200",
+        "card": "Un panel de control a medida que tu equipo querrá usar.",
+        "summary": "Construimos paneles de administración alrededor de tus datos y procesos — roles, permisos y registro de auditoría desde el primer día.",
+        "included": [
+          "Roles y permisos",
+          "Flujos CRUD para tus datos",
+          "Registro de auditoría",
+          "Despliegue"
+        ],
+        "extra": [
+          "BI e informes complejos",
+          "Aplicaciones móviles",
+          "Integraciones fuera del alcance acordado"
+        ]
+      },
+      "accessControl": {
+        "title": "Control de acceso",
+        "price": "desde €1,500",
+        "card": "Check-in, check-out y asistencia — visibles en tiempo real.",
+        "summary": "Entregamos software de control de acceso para oficinas y recintos: quién está dentro, quién salió, e informes de asistencia claros.",
+        "included": [
+          "Software de control de acceso: flujos de check-in/check-out",
+          "Informes de personal y asistencia",
+          "Formación del equipo"
+        ],
+        "extra": [
+          "Hardware (lectores, cerraduras — a precio de coste)",
+          "Cableado e instalación",
+          "Operación continua"
+        ],
+        "note": "El precio final depende de la complejidad del recinto."
+      },
+      "videoSurveillance": {
+        "title": "Videovigilancia",
+        "price": "desde €800",
+        "card": "CCTV que avisa a las personas correctas en el momento correcto.",
+        "summary": "Diseñamos y configuramos videovigilancia que funciona con tu empresa de seguridad — cámaras, grabación y notificaciones de alarma bien configuradas.",
+        "included": [
+          "Diseño del sistema",
+          "Configuración de NVR y cámaras",
+          "Notificaciones de alarma",
+          "Integración con tu empresa de seguridad"
+        ],
+        "extra": [
+          "Cámaras y hardware (a precio de coste)",
+          "Montaje y cableado",
+          "Almacenamiento"
+        ]
+      },
+      "mvpDevelopment": {
+        "title": "Desarrollo de MVP",
+        "price": "desde €1,900",
+        "card": "De la idea a un producto funcional que puedes poner ante usuarios.",
+        "summary": "Llevamos tu idea por un taller de alcance y entregamos un producto base desplegado más una ronda de iteración — suficiente para ponerlo ante usuarios reales.",
+        "included": [
+          "Taller de alcance",
+          "Conjunto de funcionalidades principales",
+          "Despliegue",
+          "Una ronda de iteración tras el primer feedback"
+        ],
+        "extra": [
+          "Desarrollo continuo (plan de soporte o por horas)",
+          "Contenido de marketing",
+          "Publicación en app stores"
+        ]
+      },
+      "web3Development": {
+        "title": "Desarrollo Web3 y blockchain",
+        "price": "desde €1,200",
+        "card": "Desarrollo de contratos inteligentes — con alcance personal para cada cliente.",
+        "summary": "El trabajo blockchain se acuerda personalmente con cada cliente. El precio base cubre un contrato EVM pequeño, probado y desplegado; todo lo demás se acuerda individualmente.",
+        "included": [
+          "Un contrato inteligente EVM de hasta 100 líneas",
+          "Suite de tests",
+          "Script de despliegue"
+        ],
+        "extra": [
+          "Todo lo demás se acuerda individualmente — contratos más grandes o múltiples, integraciones de backend y frontend, conectividad web3"
+        ],
+        "note": "Consultoría blockchain: €150/hora."
+      },
+      "smartContractAudit": {
+        "title": "Auditoría de contratos inteligentes",
+        "price": "desde €900",
+        "card": "Una auditoría automatizada con informe documentado.",
+        "summary": "Pasamos tu contrato por herramientas de análisis automatizado y entregamos un informe documentado de hallazgos. La revisión manual va más profundo — y se presupuesta aparte.",
+        "included": [
+          "Auditoría de un contrato de hasta 100 líneas con herramientas automatizadas",
+          "Informe documentado de hallazgos"
+        ],
+        "extra": [
+          "Auditoría manual línea por línea",
+          "Scripts de prueba a medida y fuzzing",
+          "Re-auditoría tras cambios"
+        ]
+      }
+    }
   }
 }

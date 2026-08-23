@@ -1,0 +1,53 @@
+# GEMBA IT — gembait.com
+
+> GEMBA IT is the technology division of GEMBA EOOD, a software company in Varna, Bulgaria
+> (VAT BG208656371). We build, deploy and maintain software for business clients: Linux
+> infrastructure, Node.js backends, React applications, payment integrations and monitoring.
+> Every engagement starts with a written offer; work is invoiced in EUR and payable by card
+> or bank transfer.
+
+## Services & pricing (https://gembait.com/en/pricing)
+
+- Linux Servers & DevOps — from €490: installation, configuration and hardening of a Linux
+  server (SSH key-only, UFW, fail2ban, unattended updates). Additional services (web, FTP,
+  Samba, print, e-mail, SQL servers) are priced separately.
+- Backend & APIs — from €900: API design plus a basic working API; everything beyond is
+  quoted by complexity and scope.
+- Database Architecture — from €600: design and creation of a core database (PostgreSQL,
+  MongoDB, MariaDB).
+- React Websites — personal from €490, corporate from €900. React only — no PHP/WordPress.
+- Payment Integrations — from €700: Stripe/PayPal checkout and webhooks on the client's own
+  processor accounts.
+- Monitoring Systems — from €600: dashboards, alert rules, notification channels.
+- Admin Panels — from €1,200: roles, permissions, CRUD workflows, audit logging.
+- Access Control — from €1,500: check-in/check-out software and attendance reporting.
+- Video Surveillance — from €800: NVR/camera configuration and alarm notifications.
+- MVP Development — from €1,900: scoping workshop, core features, deployment, one iteration.
+- Web3 & Blockchain Development — from €1,200: one EVM contract up to 100 lines with tests
+  and deploy script; larger scopes agreed individually.
+- Smart Contract Audit — from €900: automated analysis of one contract up to 100 lines with
+  a documented report; manual review quoted separately.
+
+Consulting: €100/hour. Blockchain consulting: €150/hour.
+Monthly support plans: Basic €199/mo, Standard €499/mo, Priority €980/mo.
+Services outside the standard packages are agreed after a preliminary consultation:
+https://gembait.com/en/contact
+
+## Products (https://gembait.com/en/products)
+
+- GembaKitchen — live SaaS: AI-assisted kitchen operations for restaurants (inventory,
+  recipes, food-cost). Billed by card via GembaPay.
+- GEMBA RECORDS Radio — free 24/7 web radio, three stations.
+- GembaPay — payment gateway unifying Stripe and PayPal behind one API (developer preview).
+- GembaTicket — free online ticketing platform (test mode).
+- GembaPass — access passes and memberships SaaS (test mode).
+- Permitiv — industrial permit-to-work platform (in development).
+- EduChain — educational platform for schools (test mode; runs on a test network only).
+- GembaBlockchain — a public research testnet; no mainnet, no coin sale, the test coin has
+  no monetary value.
+
+## Company
+
+- Corporate site: https://gembateam.com (two divisions: technology and industrial services)
+- Industrial division: https://gembaindustrial.com (invoiced separately, bank transfer only)
+- Contact: contacts@gembait.com · https://gembait.com/en/contact

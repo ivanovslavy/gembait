@@ -13,6 +13,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { products } from '../src/data/products.js';
+import { pricingServices } from '../src/data/pricing.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -78,8 +79,8 @@ function brandMark(x, y, size = 72) {
   `;
 }
 
-function buildSvg({ productName, tagline, url, status }) {
-  const st = STATUS[status] || null;
+function buildSvg({ productName, tagline, url, status, badge }) {
+  const st = badge || STATUS[status] || null;
   const mark = brandMark(60, 60, 80);
   const FONT = 'Inter, system-ui, -apple-system, \'Segoe UI\', sans-serif';
 
@@ -203,6 +204,42 @@ async function main() {
   }
 
   console.log(`SVG: ${writtenSvg.length} files`);
+  // ---- Pricing cards: one overview card + one per service ----
+  const pricingI18n = i18n.pricing || {};
+  const pricingItems = pricingI18n.items || {};
+  const pricingCards = [
+    {
+      file: 'pricing',
+      svg: buildSvg({
+        productName: 'Pricing',
+        tagline: 'Transparent rates. Every engagement starts with a written offer.',
+        url: 'gembait.com/en/pricing',
+        badge: { label: 'WRITTEN OFFERS', fill: '#4F46E5' },
+      }),
+    },
+    ...pricingServices.map((svc) => {
+      const it = pricingItems[svc.i18nKey] || {};
+      return {
+        file: `pricing-${svc.slug}`,
+        svg: buildSvg({
+          productName: truncate(it.title || svc.name, 26),
+          tagline: it.card || '',
+          url: `gembait.com/en/pricing/${svc.slug}`,
+          badge: { label: (it.price || `from €${svc.basePrice}`).toUpperCase(), fill: '#4F46E5' },
+        }),
+      };
+    }),
+  ];
+  for (const card of pricingCards) {
+    const svgPath = path.join(OUT_DIR, `${card.file}.svg`);
+    fs.writeFileSync(svgPath, card.svg);
+    if (sharp) {
+      const pngPath = path.join(OUT_DIR, `${card.file}.png`);
+      await sharp(Buffer.from(card.svg)).png().toFile(pngPath);
+      writtenPng.push(pngPath);
+    }
+  }
+
   console.log(`PNG: ${writtenPng.length} files (sharp ${sharp ? 'available' : 'not installed — SVG only'})`);
   console.log(`Out: ${OUT_DIR}`);
 }

@@ -10,6 +10,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { products } from './src/data/products.js';
+import { pricingServices } from './src/data/pricing.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +21,7 @@ const LANGS = ['en', 'bg', 'es'];
 const staticPages = [
   { path: '', changefreq: 'weekly', priority: '1.0' },
   { path: '/products', changefreq: 'monthly', priority: '0.9' },
+  { path: '/pricing', changefreq: 'monthly', priority: '0.9' },
   { path: '/services', changefreq: 'monthly', priority: '0.8' },
   { path: '/blog', changefreq: 'weekly', priority: '0.8' },
   { path: '/about', changefreq: 'monthly', priority: '0.8' },
@@ -86,6 +88,10 @@ for (const product of [...products].sort((a, b) => a.order - b.order)) {
   sitemap += urlBlock(`/products/${product.slug}`, 'monthly', '0.9');
 }
 
+for (const svc of [...pricingServices].sort((a, b) => a.order - b.order)) {
+  sitemap += urlBlock(`/pricing/${svc.slug}`, 'monthly', '0.8');
+}
+
 if (blogPosts.length > 0) {
   sitemap += '\n  <!-- Blog posts (only the languages each post is translated into) -->\n';
   for (const post of blogPosts) {
@@ -103,7 +109,7 @@ const urlCount = (sitemap.match(/<url>/g) || []).length;
 const blogUrlCount = blogPosts.reduce((n, p) => n + postLangs(p).length, 0);
 console.log(
   `Sitemap generated: ${outputPath} — ${urlCount} URLs ` +
-    `(${staticPages.length} static × 3 + ${products.length} products × 3 + ${blogUrlCount} blog URLs across ${blogPosts.length} posts)`
+    `(${staticPages.length} static × 3 + ${products.length} products × 3 + ${pricingServices.length} pricing × 3 + ${blogUrlCount} blog URLs across ${blogPosts.length} posts)`
 );
 
 if (fs.existsSync(path.join(__dirname, 'dist'))) {

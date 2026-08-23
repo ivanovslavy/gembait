@@ -6,7 +6,8 @@
     "about": "About",
     "blog": "Blog",
     "careers": "Careers",
-    "contact": "Contact"
+    "contact": "Contact",
+    "pricing": "Pricing"
   },
   "hero": {
     "badge": "Technology division of GEMBA",
@@ -1285,5 +1286,270 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "rights": "All rights reserved"
+  },
+  "pricing": {
+    "page_title": "Pricing",
+    "subtitle": "Transparent rates. Every engagement starts with a written offer.",
+    "labels": {
+      "included": "Included in the base price",
+      "extra": "Quoted separately",
+      "details": "See what's included",
+      "back": "All pricing",
+      "contactUs": "Contact us"
+    },
+    "how": {
+      "title": "How it works",
+      "body": "Every engagement starts with a free scoping call and a written offer with a fixed price. Larger projects are invoiced in milestones. Anything outside the base scope is quoted separately — after we understand exactly what you need. Prices exclude VAT, are invoiced in EUR and are payable by card or bank transfer."
+    },
+    "note": "Every project starts with a written offer with a fixed scope. Larger projects are invoiced in milestones. All prices exclude VAT, are invoiced in EUR and are payable by card or bank transfer.",
+    "customNote": "Services not covered by the standard packages can be agreed after a preliminary consultation.",
+    "rates": {
+      "title": "Consulting",
+      "items": [
+        {
+          "label": "Consulting — architecture, infrastructure, process",
+          "price": "€100/hour"
+        },
+        {
+          "label": "Blockchain consulting",
+          "price": "€150/hour"
+        }
+      ]
+    },
+    "plans": {
+      "title": "Monthly support plans",
+      "subtitle": "Ongoing maintenance and development for anything we build — cancel any time.",
+      "perMonth": "/mo",
+      "items": [
+        {
+          "name": "Basic",
+          "price": "€199",
+          "featured": false,
+          "features": [
+            "Monitoring and uptime checks",
+            "Security patches and updates",
+            "Monthly status report"
+          ]
+        },
+        {
+          "name": "Standard",
+          "price": "€499",
+          "featured": true,
+          "features": [
+            "Everything in Basic",
+            "Bug fixes and small changes",
+            "Next-business-day response"
+          ]
+        },
+        {
+          "name": "Priority",
+          "price": "€980",
+          "featured": false,
+          "features": [
+            "Everything in Standard",
+            "10 development hours included",
+            "Same-day response"
+          ]
+        }
+      ]
+    },
+    "items": {
+      "linuxDevops": {
+        "title": "Linux Servers & DevOps",
+        "price": "from €490",
+        "card": "A production Linux server — installed, configured and hardened.",
+        "summary": "We set up a production-ready Linux server and harden it properly, so your application starts life on a machine that is secure, updated and documented.",
+        "included": [
+          "Installation and configuration of a Linux server (Ubuntu/Debian)",
+          "Hardening of the default system services: SSH key-only access, UFW firewall, fail2ban, unattended security updates",
+          "Baseline system configuration and a short handover document"
+        ],
+        "extra": [
+          "Each additional service is priced on its own — web server, FTP, Samba, print server, e-mail server, SQL server and others",
+          "CI/CD pipelines and failover setups (per scope)",
+          "Ongoing operation via a monthly support plan"
+        ]
+      },
+      "backendApis": {
+        "title": "Backend & APIs",
+        "price": "from €900",
+        "card": "API design plus a working basic API — the foundation you build on.",
+        "summary": "We design your API and deliver a working basic implementation: core endpoints, a database connection and a deployment — a clean foundation to grow on.",
+        "included": [
+          "API design: endpoints, data model, authentication approach",
+          "A basic working API: core endpoints, database connection, deployment",
+          "Short technical documentation"
+        ],
+        "extra": [
+          "Everything beyond the basic API is agreed and priced by complexity and scope — third-party integrations, complex business logic, high-load architecture, continued development"
+        ]
+      },
+      "databases": {
+        "title": "Database Architecture",
+        "price": "from €600",
+        "card": "A solid core database — designed and deployed properly.",
+        "summary": "We design and deploy a core database that fits your data — with sane permissions and a baseline backup, instead of an accidental schema that hurts later.",
+        "included": [
+          "Design and creation of a core database (PostgreSQL, MongoDB or MariaDB)",
+          "Schema, users and permissions",
+          "Baseline backup setup"
+        ],
+        "extra": [
+          "Depending on scope: replication and high availability",
+          "Migration from legacy systems",
+          "Optimization of existing databases",
+          "Ongoing administration"
+        ]
+      },
+      "reactWebsites": {
+        "title": "React Websites",
+        "price": "from €490",
+        "card": "Fast, mobile-first React websites — no templates, no WordPress.",
+        "summary": "We build websites exclusively in React — fast, mobile-first and deployed live. The base price covers a one-page portfolio site with a contact form; corporate sites start at €900.",
+        "included": [
+          "One-page React portfolio site with a contact form (from €490)",
+          "Corporate React site (from €900)",
+          "Mobile-first, deployed and live"
+        ],
+        "extra": [
+          "Additional pages and sections",
+          "Multi-language versions",
+          "SEO packages",
+          "Content management / admin panel"
+        ],
+        "note": "We work exclusively in React — we do not build PHP or WordPress sites."
+      },
+      "paymentIntegrations": {
+        "title": "Payment Integrations",
+        "price": "from €700",
+        "card": "Stripe and PayPal checkout on your own accounts — done right.",
+        "summary": "We integrate card and PayPal payments into your product — on your own Stripe and PayPal accounts, with webhooks and both test and live configuration.",
+        "included": [
+          "Checkout and webhook integration for Stripe and/or PayPal on your own processor accounts",
+          "Test and live configuration",
+          "Handover documentation"
+        ],
+        "extra": [
+          "Processor fees (always the client's own)",
+          "Additional payment providers",
+          "Subscription and marketplace flows"
+        ],
+        "note": "Prerequisite: you have — or open — your own Stripe/PayPal account."
+      },
+      "monitoring": {
+        "title": "Monitoring Systems",
+        "price": "from €600",
+        "card": "Know what your servers are doing — before your customers do.",
+        "summary": "We build monitoring that tells the truth: dashboards for your servers or industrial infrastructure, with alerts that reach the right people.",
+        "included": [
+          "Dashboards for servers or industrial infrastructure",
+          "Alert rules and notification channels (e-mail, Telegram)",
+          "Documentation"
+        ],
+        "extra": [
+          "Hardware and sensors",
+          "Third-party SaaS licences",
+          "24/7 response (via support plans)"
+        ]
+      },
+      "adminPanels": {
+        "title": "Admin Panels",
+        "price": "from €1,200",
+        "card": "A custom control panel your team actually wants to use.",
+        "summary": "We build custom admin panels around your data and your workflows — roles, permissions and an audit trail included from day one.",
+        "included": [
+          "Roles and permissions",
+          "CRUD workflows for your data",
+          "Audit logging",
+          "Deployment"
+        ],
+        "extra": [
+          "Complex BI and reporting",
+          "Mobile applications",
+          "Integrations beyond the agreed scope"
+        ]
+      },
+      "accessControl": {
+        "title": "Access Control",
+        "price": "from €1,500",
+        "card": "Check-in, check-out and attendance — visible in real time.",
+        "summary": "We deliver access-control software for workplaces and sites: who is in, who left, and clean attendance reporting for the office.",
+        "included": [
+          "Access-control software: check-in/check-out flows",
+          "Workforce and attendance reporting",
+          "Staff training"
+        ],
+        "extra": [
+          "Hardware (readers, locks — at cost)",
+          "Site cabling and installation",
+          "Ongoing operation"
+        ],
+        "note": "The final price depends on site complexity."
+      },
+      "videoSurveillance": {
+        "title": "Video Surveillance",
+        "price": "from €800",
+        "card": "CCTV that alerts the right people at the right moment.",
+        "summary": "We design and configure video surveillance that works with your security company — cameras, recording and alarm notifications set up properly.",
+        "included": [
+          "System design",
+          "NVR and camera configuration",
+          "Alarm notifications",
+          "Integration with your security company"
+        ],
+        "extra": [
+          "Cameras and hardware (at cost)",
+          "Mounting and cabling",
+          "Storage"
+        ]
+      },
+      "mvpDevelopment": {
+        "title": "MVP Development",
+        "price": "from €1,900",
+        "card": "From idea to a working product you can put in front of users.",
+        "summary": "We take your idea through a scoping workshop and deliver a deployed core product plus one iteration round — enough to put it in front of real users.",
+        "included": [
+          "Scoping workshop",
+          "Core feature set",
+          "Deployment",
+          "One iteration round after first feedback"
+        ],
+        "extra": [
+          "Continued feature development (support plan or hourly)",
+          "Marketing content",
+          "App-store publishing"
+        ]
+      },
+      "web3Development": {
+        "title": "Web3 & Blockchain Development",
+        "price": "from €1,200",
+        "card": "Smart contract development — scoped personally with every client.",
+        "summary": "Blockchain work is scoped personally with every client. The base price covers one small EVM contract, tested and deployed; everything beyond that is agreed individually.",
+        "included": [
+          "One EVM smart contract of up to 100 lines",
+          "Test suite",
+          "Deployment script"
+        ],
+        "extra": [
+          "Everything else is agreed individually — larger or multiple contracts, backend and frontend integrations, web3 connectivity"
+        ],
+        "note": "Blockchain consulting: €150/hour."
+      },
+      "smartContractAudit": {
+        "title": "Smart Contract Audit",
+        "price": "from €900",
+        "card": "An automated audit with a documented findings report.",
+        "summary": "We run your contract through automated analysis tooling and deliver a documented findings report. Manual review goes deeper — and is quoted separately.",
+        "included": [
+          "Audit of one contract of up to 100 lines using automated analysis tools",
+          "Documented findings report"
+        ],
+        "extra": [
+          "Manual line-by-line audit",
+          "Custom test scripts and fuzzing",
+          "Re-audit after changes"
+        ]
+      }
+    }
   }
 }

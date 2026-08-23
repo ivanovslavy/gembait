@@ -37,6 +37,7 @@ export default function Navbar() {
     { to: `/${i18n.language}`, label: t('nav.home') },
     { to: `/${i18n.language}/services`, label: t('nav.services') },
     { to: `/${i18n.language}/products`, label: t('nav.products') },
+    { to: `/${i18n.language}/pricing`, label: t('nav.pricing') },
     { to: `/${i18n.language}/about`, label: t('nav.about') },
     { to: `/${i18n.language}/blog`, label: t('nav.blog') },
     { to: `/${i18n.language}/careers`, label: t('nav.careers') },

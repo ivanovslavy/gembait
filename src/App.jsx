@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import SEOHead from './components/SEOHead';
 import Home from './pages/Home';
 import Services from './pages/Services';
+import Pricing from './pages/Pricing';
+import PricingDetail from './pages/PricingDetail';
 import Products from './pages/Products';
 import About from './pages/About';
 import Blog from './pages/Blog';
@@ -47,6 +49,8 @@ export default function App() {
             <Route path="/:lang/services" element={<LangWrapper><Services /></LangWrapper>} />
             <Route path="/:lang/products" element={<LangWrapper><Products /></LangWrapper>} />
             <Route path="/:lang/products/:slug" element={<LangWrapper><ProductDetail /></LangWrapper>} />
+            <Route path="/:lang/pricing" element={<LangWrapper><Pricing /></LangWrapper>} />
+            <Route path="/:lang/pricing/:slug" element={<LangWrapper><PricingDetail /></LangWrapper>} />
             <Route path="/:lang/about" element={<LangWrapper><About /></LangWrapper>} />
             <Route path="/:lang/blog" element={<LangWrapper><Blog /></LangWrapper>} />
             <Route path="/:lang/blog/:slug" element={<LangWrapper><BlogPost /></LangWrapper>} />

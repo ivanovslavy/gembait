@@ -58,6 +58,33 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://gembait.com/en/pricing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://gembait.com/en/services</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/services"/>
     <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/services"/>
@@ -490,6 +517,330 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/products/gembarecords"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/linux-devops</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/linux-devops"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/linux-devops"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/linux-devops"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/linux-devops"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/linux-devops</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/linux-devops"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/linux-devops"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/linux-devops"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/linux-devops"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/linux-devops</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/linux-devops"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/linux-devops"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/linux-devops"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/linux-devops"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/backend-apis</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/backend-apis"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/backend-apis"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/backend-apis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/backend-apis"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/backend-apis</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/backend-apis"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/backend-apis"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/backend-apis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/backend-apis"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/backend-apis</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/backend-apis"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/backend-apis"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/backend-apis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/backend-apis"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/databases</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/databases"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/databases"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/databases"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/databases"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/databases</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/databases"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/databases"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/databases"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/databases"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/databases</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/databases"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/databases"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/databases"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/databases"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/react-websites</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/react-websites"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/react-websites"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/react-websites"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/react-websites"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/react-websites</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/react-websites"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/react-websites"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/react-websites"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/react-websites"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/react-websites</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/react-websites"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/react-websites"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/react-websites"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/react-websites"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/payment-integrations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/payment-integrations"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/payment-integrations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/payment-integrations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/payment-integrations"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/payment-integrations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/payment-integrations"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/payment-integrations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/payment-integrations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/payment-integrations"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/payment-integrations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/payment-integrations"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/payment-integrations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/payment-integrations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/payment-integrations"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/monitoring</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/monitoring"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/monitoring"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/monitoring"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/monitoring"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/monitoring</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/monitoring"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/monitoring"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/monitoring"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/monitoring"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/monitoring</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/monitoring"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/monitoring"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/monitoring"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/monitoring"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/admin-panels</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/admin-panels"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/admin-panels"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/admin-panels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/admin-panels"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/admin-panels</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/admin-panels"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/admin-panels"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/admin-panels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/admin-panels"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/admin-panels</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/admin-panels"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/admin-panels"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/admin-panels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/admin-panels"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/access-control</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/access-control"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/access-control"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/access-control"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/access-control"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/access-control</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/access-control"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/access-control"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/access-control"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/access-control"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/access-control</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/access-control"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/access-control"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/access-control"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/access-control"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/video-surveillance</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/video-surveillance"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/video-surveillance"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/video-surveillance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/video-surveillance"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/video-surveillance</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/video-surveillance"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/video-surveillance"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/video-surveillance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/video-surveillance"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/video-surveillance</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/video-surveillance"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/video-surveillance"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/video-surveillance"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/video-surveillance"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/mvp-development</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/mvp-development"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/mvp-development</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/mvp-development"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/mvp-development</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/mvp-development"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/web3-development</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/web3-development"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/web3-development"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/web3-development"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/web3-development"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/web3-development</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/web3-development"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/web3-development"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/web3-development"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/web3-development"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/web3-development</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/web3-development"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/web3-development"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/web3-development"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/web3-development"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/en/pricing/smart-contract-audit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/smart-contract-audit"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/smart-contract-audit"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/smart-contract-audit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/smart-contract-audit"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/bg/pricing/smart-contract-audit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/smart-contract-audit"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/smart-contract-audit"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/smart-contract-audit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/smart-contract-audit"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gembait.com/es/pricing/smart-contract-audit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gembait.com/en/pricing/smart-contract-audit"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://gembait.com/bg/pricing/smart-contract-audit"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gembait.com/es/pricing/smart-contract-audit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gembait.com/en/pricing/smart-contract-audit"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- Blog posts (only the languages each post is translated into) -->
