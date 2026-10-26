@@ -1,5 +1,42 @@
 [
   {
+    "slug": "postgres-rls-leaks-between-tenants-pool",
+    "date": "2026-10-26",
+    "lastUpdated": "2026-10-26",
+    "author": "GEMBA IT team",
+    "cluster": "backend-infrastructure",
+    "tags": [
+      "postgresql",
+      "row-level-security",
+      "node-postgres",
+      "multi-tenant",
+      "connection-pool",
+      "node-js"
+    ],
+    "image": "/images/blog/postgres-rls-leaks-between-tenants-pool/hero.webp",
+    "hero": "/images/blog/postgres-rls-leaks-between-tenants-pool/hero.webp",
+    "heroRetina": "/images/blog/postgres-rls-leaks-between-tenants-pool/hero@2x.webp",
+    "midImage": "/images/blog/postgres-rls-leaks-between-tenants-pool/mid.webp",
+    "midImageRetina": "/images/blog/postgres-rls-leaks-between-tenants-pool/mid@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Why Postgres RLS Leaks Between Tenants",
+      "bg": "Защо Postgres RLS изтича между клиенти",
+      "es": "Por qué el RLS de Postgres filtra datos entre tenants"
+    },
+    "excerpt": {
+      "en": "Postgres row-level security showed one tenant another tenant's rows under load. The policy was fine — the connection pool was handing out sessions with memory.",
+      "bg": "Postgres row-level security показа на един клиент редовете на друг под натоварване. Политиката беше наред — пулът раздаваше сесии с памет.",
+      "es": "El row-level security de Postgres mostró a un tenant las filas de otro bajo carga. La política estaba bien — el pool repartía sesiones con memoria."
+    },
+    "word_count": 1298,
+    "source_url": "https://stackoverflow.com/questions/80003232/postgres-row-level-security-leaks-across-tenants-when-using-a-pooled-connection",
+    "source_type": "stackoverflow",
+    "source_date": "2026-09-15",
+    "emotional_hook": "hidden_trap",
+    "first_hand_story_used": false
+  },
+  {
     "slug": "prisma-timestamptz-timezone-offset-bug",
     "date": "2026-08-04",
     "lastUpdated": "2026-08-04",

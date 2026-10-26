@@ -1,0 +1,52 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Why Postgres RLS Leaks Between Tenants",
+    "description": "Postgres row-level security showed one tenant another tenant's rows under load. The policy was fine — the connection pool was handing out sessions with memory.",
+    "image": "https://gembait.com/images/blog/postgres-rls-leaks-between-tenants-pool/hero.webp",
+    "datePublished": "2026-10-26",
+    "dateModified": "2026-10-26",
+    "author": { "@type": "Organization", "name": "GEMBA IT team", "url": "https://gembait.com/about" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": { "@type": "ImageObject", "url": "https://gembait.com/favicon.svg" }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/postgres-rls-leaks-between-tenants-pool",
+    "articleSection": "Backend & Infrastructure Lessons",
+    "keywords": "postgresql, row-level-security, node-postgres, multi-tenant, connection-pool, node-js",
+    "proficiencyLevel": "Expert",
+    "dependencies": "PostgreSQL 16, node-postgres (pg), pg-pool, Node.js, PgBouncer"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does PgBouncer in transaction mode break this?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, unless every tenant-dependent statement runs inside one explicit transaction. In transaction pooling mode, PgBouncer can give each statement a different backend connection, so a session-level SET lands on one backend and your SELECT on another. Use the withTenant helper (set_config(..., true) inside BEGIN … COMMIT), or switch PgBouncer to session mode."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I run DISCARD ALL on every release?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It's the simplest full reset, but a blunt one. It drops prepared statements, cached plans and sequence caches, so each reused connection pays a warm-up cost again — and it fails inside a transaction block. The leaner cleanup from the thread is ROLLBACK; RESET ALL; UNLISTEN *; SELECT pg_advisory_unlock_all();. If you rely on prepared statements, move the PREPARE calls into the pool's onConnect hook."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why can't I write SET app.current_tenant = $1?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The original question used exactly that, but SET is a utility command and Postgres only substitutes $1 placeholders in regular statements — pg gets back syntax error at or near \"$1\". The parameterised equivalent is SELECT set_config('app.current_tenant', $1, true). Never string-concatenate the tenant into SET; that's an injection point for switching tenants."
+        }
+      }
+    ]
+  }
+}
