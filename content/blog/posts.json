@@ -1,5 +1,42 @@
 [
   {
+    "slug": "stripe-node-hangs-after-retry-timeout",
+    "date": "2026-11-02",
+    "lastUpdated": "2026-11-02",
+    "author": "GEMBA IT team",
+    "cluster": "payment-integrations",
+    "tags": [
+      "stripe",
+      "stripe-node",
+      "node-js",
+      "fetch",
+      "retries",
+      "timeouts"
+    ],
+    "image": "/images/blog/stripe-node-hangs-after-retry-timeout/hero.webp",
+    "hero": "/images/blog/stripe-node-hangs-after-retry-timeout/hero.webp",
+    "heroRetina": "/images/blog/stripe-node-hangs-after-retry-timeout/hero@2x.webp",
+    "midImage": "/images/blog/stripe-node-hangs-after-retry-timeout/mid.webp",
+    "midImageRetina": "/images/blog/stripe-node-hangs-after-retry-timeout/mid@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "Why stripe-node Hangs After a Retry",
+      "bg": "Защо stripe-node увисва след повторен опит",
+      "es": "Por qué stripe-node se cuelga tras un reintento"
+    },
+    "excerpt": {
+      "en": "Since stripe-node 22.6.0, a retried request leaves its timeout timer armed. Your script finishes, then the process sits there for 80 seconds. Here's why.",
+      "bg": "От stripe-node 22.6.0 повторен опит оставя таймера на timeout въоръжен. Скриптът приключва, а процесът стои още 80 секунди. Ето защо.",
+      "es": "Desde stripe-node 22.6.0, una petición reintentada deja armado su timeout. El script termina y el proceso se queda 80 segundos. Te contamos por qué."
+    },
+    "word_count": 1298,
+    "source_url": "https://github.com/stripe/stripe-node/issues/2897",
+    "source_type": "github_issue",
+    "source_date": "2026-10-15",
+    "emotional_hook": "hidden_trap",
+    "first_hand_story_used": false
+  },
+  {
     "slug": "postgres-rls-leaks-between-tenants-pool",
     "date": "2026-10-26",
     "lastUpdated": "2026-10-26",

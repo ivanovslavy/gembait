@@ -1,0 +1,50 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Why stripe-node Hangs After a Retry",
+    "description": "Since stripe-node 22.6.0, a retried request leaves its timeout timer armed. Your script finishes, then the process sits there for 80 seconds. Here's why.",
+    "image": "https://gembait.com/images/blog/stripe-node-hangs-after-retry-timeout/hero.webp",
+    "datePublished": "2026-11-02",
+    "dateModified": "2026-11-02",
+    "author": { "@type": "Organization", "name": "GEMBA IT team", "url": "https://gembait.com/about" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": { "@type": "ImageObject", "url": "https://gembait.com/favicon.svg" }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/stripe-node-hangs-after-retry-timeout",
+    "articleSection": "Payment Integrations Technical Guide",
+    "keywords": "stripe, stripe-node, node-js, fetch, retries, timeouts"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this affect the default Node HTTP client?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Both reports use Stripe.createFetchHttpClient(). The default NodeHttpClient applies the timeout with req.setTimeout() on the request object and calls req.destroy() when it fires, so the timer is tied to the socket and goes away with the request. You're exposed on Deno, Cloudflare Workers or Bun, where the fetch client is the normal choice, or if you passed httpClient: Stripe.createFetchHttpClient() in Node."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which versions are affected and which fix it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Affected: 22.6.0 through 23.0.0, plus the 23.1.0 pre-releases before the fix, when using the fetch client. The regression arrived with PR #2815 in 22.6.0 (26 August 2026). The fix is PR #2895, released in 23.0.1 on 22 October 2026 and included in 23.1.0 and later. The reporter's matrix confirmed 18.5.0 through 22.5.0 are clean — though those versions still have the older body-timeout hang from #2814."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "My Deno tests fail with a leaked timer — same bug?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Very likely, if a Stripe call in that test got retried. Deno's test sanitizer refuses to pass a test that leaves a timer pending, and that's exactly what a discarded retry response does on 22.6.0–23.0.0. Upgrade to 23.0.1 or later and the sanitizer should go quiet. If it still complains, make sure your mock fetch returns a real Response with a body, because the fix works by cancelling that body stream."
+        }
+      }
+    ]
+  }
+}
