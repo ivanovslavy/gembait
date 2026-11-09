@@ -1,5 +1,42 @@
 [
   {
+    "slug": "ccipsend-success-is-not-a-receipt",
+    "date": "2026-11-09",
+    "lastUpdated": "2026-11-09",
+    "author": "GEMBA IT team",
+    "cluster": "web3-engineering",
+    "tags": [
+      "solidity",
+      "chainlink-ccip",
+      "cross-chain",
+      "erc-4626",
+      "vaults",
+      "testing"
+    ],
+    "image": "/images/blog/ccipsend-success-is-not-a-receipt/hero.webp",
+    "hero": "/images/blog/ccipsend-success-is-not-a-receipt/hero.webp",
+    "heroRetina": "/images/blog/ccipsend-success-is-not-a-receipt/hero@2x.webp",
+    "midImage": "/images/blog/ccipsend-success-is-not-a-receipt/mid.webp",
+    "midImageRetina": "/images/blog/ccipsend-success-is-not-a-receipt/mid@2x.webp",
+    "hero_status": "generated",
+    "title": {
+      "en": "ccipSend Success Is Not a Receipt",
+      "bg": "Успешен ccipSend не е разписка",
+      "es": "Un ccipSend exitoso no es un recibo"
+    },
+    "excerpt": {
+      "en": "A successful ccipSend only proves the message left. A cross-chain vault review found three bugs where every call succeeded and the books were still wrong.",
+      "bg": "Успешният ccipSend доказва само, че съобщението е тръгнало. Преглед на cross-chain vault откри три бъга, при които всяко извикване минава, а сметките пак са грешни.",
+      "es": "Un ccipSend exitoso solo prueba que el mensaje salió. Una revisión de un vault cross-chain halló tres bugs donde cada llamada tuvo éxito y los libros seguían mal."
+    },
+    "word_count": 1883,
+    "source_url": "https://www.reddit.com/r/solidity/comments/1xh32ob/a_successful_ccipsend_doesnt_mean_the_money/",
+    "source_type": "reddit",
+    "source_date": "2026-10-27",
+    "emotional_hook": "assumed_vs_reality",
+    "first_hand_story_used": false
+  },
+  {
     "slug": "stripe-node-hangs-after-retry-timeout",
     "date": "2026-11-02",
     "lastUpdated": "2026-11-02",

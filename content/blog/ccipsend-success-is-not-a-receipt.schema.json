@@ -1,0 +1,67 @@
+{
+  "articleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "ccipSend Success Is Not a Receipt",
+    "description": "A successful ccipSend only proves the message left. A cross-chain vault review found three bugs where every call succeeded and the books were still wrong.",
+    "image": "https://gembait.com/images/blog/ccipsend-success-is-not-a-receipt/hero.webp",
+    "datePublished": "2026-11-09",
+    "dateModified": "2026-11-09",
+    "author": {
+      "@type": "Organization",
+      "name": "GEMBA IT team",
+      "url": "https://gembait.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "GEMBA IT",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gembait.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://gembait.com/blog/ccipsend-success-is-not-a-receipt",
+    "articleSection": "Web3 Engineering Deep Dives",
+    "keywords": "solidity, chainlink-ccip, cross-chain, erc-4626, vaults, testing",
+    "proficiencyLevel": "Expert",
+    "dependencies": "Solidity, Chainlink CCIP, ERC-4626, Foundry, Aave v4"
+  },
+  "faqSchema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "If ccipReceive reverts, are the tokens lost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. CCIP execution on the destination is atomic: if your ccipReceive reverts, the token transfer reverts with it and the message is recorded as FAILURE on the OffRamp. Anyone can then re-execute it manually, through the CCIP Explorer or the CLI, usually with a higher gas limit for the callback. Empty revert data almost always means the receiver ran out of gas; non-empty data means your own contract reverted and you need to fix that first. For accounting, the important part is that until the retry succeeds the money is in limbo, so your books should model \"sent but not yet received\" as its own state."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I test cross-chain code with mocks or forks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both, deliberately. Fork tests pinned to a block hit the real token pools and the real rounding behaviour of the downstream protocol, which is where the fee-on-transfer and rounds-to-zero bugs lived. Mocks are still useful if they are hostile: configurable to skim a fee, deliver late, out of order, or twice. The thread's rule of thumb is to run the same invariant suite against both. A mock that always delivers the full amount only tests the happy path and gives a false sense of coverage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I know my receiver got tokens but no message?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Check supportsInterface. The CCIP receiver docs say that if the receiving address has no code, or supportsInterface returns false or reverts, only the tokens are transferred and ccipReceive is never called. Your contract ends up holding assets with no record of why. Inheriting CCIPReceiver handles this, but a proxy or a misconfigured address can silently fall into the tokens-only path. Set gasLimit to zero only when the receiver really is an externally owned account with no logic."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a successful ccipSend guarantee delivery at all?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It guarantees the source side: the fee was paid, the tokens were locked or burned, and CCIPMessageSent was emitted, so the send can't be cancelled. Delivery still depends on source finality (around 13 minutes from Ethereum mainnet), the Commit DON, the Execute DON, and your ccipReceive not reverting. The amount that lands is whatever the destination token pool releases, which can be less than you sent. The message ID is a tracking number, not a receipt."
+        }
+      }
+    ]
+  }
+}
